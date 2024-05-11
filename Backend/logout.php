@@ -4,5 +4,5 @@ session_start();
 session_unset();
 session_destroy();
 
-echo "<script>alert('Account Signout'); window.location='/qcpl/Frontend/home.html';</script>";
+echo "<script>alert('Account Signout'); window.location='/qcpl/Frontend/home.php';</script>";
 ?>
