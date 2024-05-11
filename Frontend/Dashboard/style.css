@@ -419,33 +419,40 @@ body {
 }
 
 
-.container .table{
+.summary{
   position: relative;
-  margin-top: 0px;
-  left: 520px;
-  border-spacing: 10px 10px;
-  border: 2px solid;
-  width: 50%;
-
+  top: -450px;
+  left: 65px;
+  width: 100%;
+  text-align: center;
 
 }
 
-tr th{
+.summary table{
+  width: 90%;
+}
+
+.summary table, tr, td {
+  border: 3px solid;
+}
+
+.summary tr{
+
+  height: 75px;
+
+}
+
+.summary th{
   background-color: #2a2185;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-align: center;
   color: #fff;
-  height: 40px;
-  width: 100%;
-
-  
-}
-td{
-  font-size: 1.5rem;
-  text-align: center;
   font-weight: 100px;
-  background-color: #fff;
+  height: 40px;
+
 }
+
+
 
 
 /* ================== SLIDER ============== */
