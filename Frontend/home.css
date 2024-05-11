@@ -99,3 +99,11 @@ img {
   display: inline-block;
   margin-right: 5px; /* Add space between text and icon */
 }
+.container {
+  font-size: 40px;
+  position: absolute;
+  color: white;
+  margin-top: 40px;
+  line-height: 1.8;
+  left: 250px
+}
