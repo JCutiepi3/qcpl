@@ -1,4 +1,4 @@
-gko<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title> QUEZON CITY PUBLIC LIBRARY </title>
