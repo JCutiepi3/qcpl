@@ -1,7 +1,8 @@
 /* =========== Google Fonts ============ */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
 
 * {
   font-family: "Ubuntu", sans-serif;
@@ -331,37 +332,6 @@ body {
   z-index: 1;
 }
 
-.box{
-  position: relative;
-  top: -980px;
-  left: 520px;
-  border-spacing: 10px 10px;
-  border: 2px solid;
-  width: 50%;
-
-  
-}
-
-tr{
-  background-color: #2a2185;
-  border-collapse: separate;
-
-}
- th{
-  font-size: 1.5rem;
-  text-align: center;
-  color: #fff;
-  font-weight: 100px;
-  height: 40px;
-
-  
-}
-td{
-  font-size: 1.5rem;
-  text-align: center;
-  font-weight: 100px;
-  background-color: #fff;
-}
 
 /* ================== ADD USER ============== */
 
@@ -447,6 +417,52 @@ td{
   font-weight: 100px;
   z-index: 1;
   color:white; 
+}
+
+/* ================== SUMMARY TABLE ============== */
+
+.summary{
+  position: relative;
+  top: -450px;
+  left: 65px;
+  width: 100%;
+  text-align: center;
+
+}
+
+tr:hover {
+  background-color: #7f79b5
+}
+
+.summary table{
+  width: 90%;
+  border: 4px solid;
+}
+
+
+.summary  tr, td {
+  border: 2px solid;
+}
+
+.summary tr{
+  height: 75px;
+
+}
+
+.summary th{
+  background-color: #2a2185;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+}
+
+.summary td{
+  font-size: 1rem;
+  font-weight: bold;
+
 }
 
 
