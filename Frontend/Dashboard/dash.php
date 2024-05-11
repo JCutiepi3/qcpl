@@ -108,7 +108,15 @@
 
                 </div>
             </div>
-            <h2>SUMMARY</h2>   
+
+            <div class="details">
+                <div class="upload">
+                    <div class="cardHeader">
+                        <h2>SUMMARY</h2>   
+                    </div> 
+                </div>
+            </div>
+
     <div class="container">
     <?php
     $server = "localhost";

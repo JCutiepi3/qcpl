@@ -331,37 +331,6 @@ body {
   z-index: 1;
 }
 
-.box{
-  position: relative;
-  top: -980px;
-  left: 520px;
-  border-spacing: 10px 10px;
-  border: 2px solid;
-  width: 50%;
-
-  
-}
-
-tr{
-  background-color: #2a2185;
-  border-collapse: separate;
-
-}
- th{
-  font-size: 1.5rem;
-  text-align: center;
-  color: #fff;
-  font-weight: 100px;
-  height: 40px;
-
-  
-}
-td{
-  font-size: 1.5rem;
-  text-align: center;
-  font-weight: 100px;
-  background-color: #fff;
-}
 
 /* ================== ADD USER ============== */
 
@@ -450,6 +419,33 @@ td{
 }
 
 
+.container .table{
+  position: relative;
+  margin-top: 0px;
+  left: 520px;
+  border-spacing: 10px 10px;
+  border: 2px solid;
+  width: 50%;
+
+
+}
+
+tr th{
+  background-color: #2a2185;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #fff;
+  height: 40px;
+  width: 100%;
+
+  
+}
+td{
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: 100px;
+  background-color: #fff;
+}
 
 
 /* ================== SLIDER ============== */
