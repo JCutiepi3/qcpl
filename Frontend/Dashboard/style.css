@@ -428,12 +428,22 @@ body {
 
 }
 
-.summary table{
-  width: 90%;
+tr:hover {
+  background-color: #7f79b5
 }
 
-.summary table, tr, td {
-  border: 3px solid;
+tr:nth-child(odd) {
+  background-color: #544d9d;
+}
+
+.summary table{
+  width: 90%;
+  border: 4px solid;
+}
+
+
+.summary  tr, td {
+  border: 2px solid;
 }
 
 .summary tr{
