@@ -10,6 +10,7 @@
     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 
 <body>
@@ -108,8 +109,16 @@
 
                 </div>
             </div>
-            <h2>SUMMARY</h2>   
-    <div class="container">
+
+            <div class="details">
+                <div class="upload">
+                    <div class="cardHeader">
+                        <h2>SUMMARY</h2>   
+                    </div> 
+                </div>
+            </div>
+
+    <div class="summary">
     <?php
     $server = "localhost";
     $username = "root";
@@ -127,7 +136,7 @@
 
     if ($result->num_rows > 0) {
         echo "<table>";
-        echo "<tr></th><th>Owner</th><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>Type</th><th>File</th></tr>";
+        echo "<tr><th>Owner</th><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>Type</th><th>File</th></tr>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . "<center>" . $row["owner"] . "</td>";
@@ -148,7 +157,7 @@
 
     $conn->close();
     ?>
-</div>
+    </div>
 
                
     <!-- =========== Scripts =========  -->
