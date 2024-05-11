@@ -333,97 +333,11 @@ body {
 }
 
 
-/* ================== ADD USER ============== */
-
-.details .info2{
-  position: relative;
-  top: -400px;
-  left: 250px;
-  background-color: #2a2185;
-  border-radius: 30px;
-  width: 600px;
-  height: 50px;
-
-
-}
-
-.details .info2 .name h2{
-  position: relative;
-  font-size: 1.5rem;
-  margin-left: 19px;
-  top: 11px;
-  font-weight: 100px;
-  z-index: 1;
-  color:white; 
-  
-  
-}
-
-.details .info3{
-  position: relative;
-  top: -375px;
-  left: 250px;
-  background-color: #2a2185;
-  border-radius: 30px;
-  width: 600px;
-  height: 50px;
-}
-
-.details .info3 .username h2{
-  position: relative;
-  font-size: 1.5rem;
-  left: 19px;
-  top: 11px;
-  font-weight: 100px;
-  z-index: 1;
-  color:white; 
-}
-
-.details .info4{
-  position: relative;
-  top: -350px;
-  left: 250px;
-  background-color: #2a2185;
-  border-radius: 30px;
-  width: 600px;
-  height: 50px;
-}
-
-.details .info4 .pass h2{
-  position: relative;
-  font-size: 1.5rem;
-  left: 19px;
-  top: 11px;
-  font-weight: 100px;
-  z-index: 1;
-  color:white; 
-}
-
-.details .info5{
-  position: relative;
-  top: -270px;
-  left: 450px;
-  background-color: #2a2185;
-  border-radius: 30px;
-  width: 200px;
-  height: 60px;
-}
-
-.details .info5 .save h2{
-  position: relative;
-  font-size: 1.5rem;
-  left: 67px;
-  top: 15px;
-  font-weight: 100px;
-  z-index: 1;
-  color:white; 
-}
-
 /* ================== SUMMARY TABLE ============== */
 
 .summary{
   position: relative;
-  top: -450px;
+  top: -460px;
   left: 65px;
   width: 100%;
   text-align: center;
@@ -464,6 +378,24 @@ tr:hover {
 
 }
 
+/* ================== ADD USER ============== */
+
+.add_user form{
+  position: relative;
+  top: -400px;
+  left: 250px;
+
+}
+
+.add_user form label{
+  position: relative;
+  font-size: 1.5rem;
+  margin-left: 19px;
+  top: 11px;
+  font-weight: 100px;
+
+
+}
 
 
 
