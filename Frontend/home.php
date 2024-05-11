@@ -11,7 +11,7 @@
     	<a href="https://web.quezoncitypubliclibrary.org/">
         <img src="img/Logo.png" alt="Logo" class="logo"></a>
         <div class="navbar">
-            <a href="home.html"> Home </a>
+            <a href="home.php"> Home </a>
             <a href="login.html"><ion-icon name="person-circle-outline" class="login-icon"></ion-icon></a>
     </header>
     <section>
