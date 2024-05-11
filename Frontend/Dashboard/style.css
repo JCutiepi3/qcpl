@@ -439,14 +439,13 @@ tr:hover {
   border: 4px solid;
 }
 
-
 .summary  tr, td {
   border: 2px solid;
 }
 
 .summary tr{
   height: 75px;
-
+  
 }
 
 .summary th{
