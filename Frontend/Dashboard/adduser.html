@@ -118,18 +118,20 @@
             </div>
         </div>
 
+        <div class="info_box">
+        </div>
     <div class = "add_user">
         <form action="/qcpl/Backend/adduser.php" method="POST">
-            <label>Name: </label>
-            <input type="text" name="name" placeholder="Enter Name" required/><br>
-            <label>Username: </label>
-            <input type="text" name="username" placeholder="Enter Username" required /><br>
-            <label>Password: </label>
+            <label id = "info_name">Name: </label>
+            <input type="text" name="name" placeholder="Enter Name" id = "input_name" required/><br>
+            
+            <label id = "info_username">Username: </label>
+            <input type="text" name="username" placeholder="Enter Username" id = "input_user" required /><br>
+           
+            <label id = "info_pass">Password: </label>
+            <input type="password" name="password" placeholder="Enter Password" id = "input_pass" required /><br>
     
-            <input type="password" name="password" placeholder="Enter Password" required /><br>
-    
-            <label for="type">Account type: </label>
-    
+            <label for="type" id = "info_type">Account type: </label>
             <select id="type" name="account_type" required>
     
               <option value="user">User</option>
@@ -137,8 +139,7 @@
     
             </select><br>
     
-            <input type="submit" value="Add Account" name="create" />
-    
+            <input type="submit" value="Add Account" id = "input_add" name="create" />
         </form>
     </div>
 
