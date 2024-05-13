@@ -37,7 +37,7 @@
                 </li>
 
                 <li>
-                    <a href="user.html">
+                    <a href="user.php">
                         <span class="icon">
                             <ion-icon name="people"></ion-icon>
                         </span>
