@@ -72,7 +72,7 @@
                 </li>
 
                 <li>
-                    <a href="home.html">
+                    <a href="/qcpl/Backend/logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -92,7 +92,7 @@
                 <form action="/qcpl/Backend/userslocator.php" method="GET">
                     <div class="search">
                         <label>
-                            <input type="number" name="name" placeholder="Search here">
+                            <input type="number" name="id" placeholder="Search here">
                             <input type="submit" id="sub_hide" name="find">
                             <ion-icon name="search-outline" name="find"></ion-icon>
                         </label>
@@ -104,47 +104,67 @@
                         <ion-icon name="person"></ion-icon>
                     </span>
 
-
-
-
                     </span>
                 </div>
             </div>
 
             <div class="findaccount">
-                <?php
-                $server = "localhost";
-                $username = "root";
-                $password = "";
-                $db = "qcpl";
-            
-                $conn = new mysqli($server, $username, $password, $db);
-            
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
+            <?php
+            $server = "localhost";
+            $username = "root";
+            $password = "";
+            $db = "qcpl";
+
+            $conn = new mysqli($server, $username, $password, $db);
+
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            $sql_users = "SELECT * FROM users";
+            $result_users = $conn->query($sql_users);
+
+            $sql_admins = "SELECT * FROM admins";
+            $result_admins = $conn->query($sql_admins);
+
+            if ($result_users->num_rows > 0) {
+                echo "<h2>Users</h2>";
+                echo "<table>";
+                echo "<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th></tr>";
+                while ($row = $result_users->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . "<center>" . $row["id"] . "</td>";
+                    echo "<td>" . "<center>" . $row["name"] . "</td>";
+                    echo "<td>" . "<center>" . $row["username"] . "</td>";
+                    echo "<td>" . "<center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                    echo "</tr>";
                 }
-            
-                $sql = "SELECT * FROM users UNION SELECT * FROM admins";
-                $result = $conn->query($sql);
-            
-                if ($result->num_rows > 0) {
-                    echo "<table>";
-                    echo "<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th></tr>";
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . "<center>" . $row["id"] . "</td>";
-                        echo "<td>" . "<center>" . $row["name"] . "</td>";
-                        echo "<td>" . "<center>" . $row["username"] . "</td>";
-                        echo "<td>" . "<center>" . $row["password"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo "<script>alert('No document found!');</script>";
+                echo "</table>";
+            } else {
+                echo "<p>No users found!</p>";
+            }
+
+            if ($result_admins->num_rows > 0) {
+                echo "<h2>Admins</h2>";
+                echo "<table>";
+                echo "<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th></tr>";
+                while ($row = $result_admins->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . "<center>" . $row["id"] . "</td>";
+                    echo "<td>" . "<center>" . $row["name"] . "</td>";
+                    echo "<td>" . "<center>" . $row["username"] . "</td>";
+                    echo "<td>" . "<center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                    echo "</tr>";
                 }
-            
-                $conn->close();
-                ?>
+                echo "</table>";
+            } else {
+                echo "<p>No admins found!</p>";
+            }
+
+            $conn->close();
+            ?>
+
+
                 </div>
 
           
