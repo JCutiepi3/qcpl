@@ -391,9 +391,17 @@ tr:hover {
   position: relative;
   font-size: 1.5rem;
   margin-left: 19px;
-  margin-top: 15px;
   font-weight: 100px;
+  text-transform: uppercase;
 }
+
+.add_user form input{
+  position: relative;
+  top: 0px;
+  left: 10px;
+
+
+
 
 
 /* ================== USER TABLE ============== */
