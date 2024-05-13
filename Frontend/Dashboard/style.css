@@ -354,7 +354,7 @@ tr:hover {
 }
 
 .summary  tr, td {
-  border: 2px solid;
+  border: 10px solid;
 }
 
 .summary tr{
@@ -391,14 +391,55 @@ tr:hover {
   position: relative;
   font-size: 1.5rem;
   margin-left: 19px;
-  top: 11px;
+  margin-top: 15px;
   font-weight: 100px;
-
-
 }
 
 
+/* ================== USER TABLE ============== */
 
+.findaccount{
+  position: relative;
+  top: -460px;
+  left: 65px;
+  width: 100%;
+  text-align: center;
+
+}
+
+tr:hover {
+  background-color: #7f79b5
+}
+
+.findaccount table{
+  width: 90%;
+  border: 4px solid;
+}
+
+.findaccount  tr, td {
+  border: 2px solid;
+}
+
+.findaccount tr{
+  height: 75px;
+  
+}
+
+.findaccount th{
+  background-color: #2a2185;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+}
+
+.findaccount td{
+  font-size: 1rem;
+  font-weight: bold;
+
+}
 /* ================== SLIDER ============== */
 
 
