@@ -22,6 +22,8 @@ if(isset($_POST["upload"])) {
     $description = $_POST['description'];
     $type = $_POST['type'];
 
+    $fileName = $_FILES['fileName']['name'];
+    $tempName = $_FILES['fileName']['tmp_name'];
 
     $file_path = "File_Uploaded/" . $fileName;
 
