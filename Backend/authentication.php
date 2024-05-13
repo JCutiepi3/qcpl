@@ -15,7 +15,7 @@ $username = $password = "";
 $username_err = $password_err = "";
 
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Check if username is empty
     if(empty(trim($_POST["username"]))){
@@ -64,6 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             // Redirect user to home page
                             header("location: home.php");
+                            exit;
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -86,34 +87,3 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <style>
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 360px; padding: 20px; }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["localhost"]); ?>" method="post">
-            <div>
-                <label>Username</label>
-                <input type="text" name="username" value="<?php echo $username; ?>">
-                <span><?php echo $username_err; ?></span>
-            </div>    
-            <div>
-                <label>Password</label>
-                <input type="password" name="password">
-                <span><?php echo $password_err; ?></span>
-            </div>
-            <div>
-                <input type="submit" value="Login">
-    </div>    
-</body>
-</html>
