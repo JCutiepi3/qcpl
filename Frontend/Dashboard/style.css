@@ -354,7 +354,7 @@ tr:hover {
 }
 
 .summary  tr, td {
-  border: 10px solid;
+  border: 2px solid;
 }
 
 .summary tr{
@@ -382,8 +382,8 @@ tr:hover {
 
 .add_user form{
   position: relative;
-  top: -400px;
-  left: 250px;
+  top: -790px;
+  left: 230px;
 
 }
 
@@ -395,10 +395,95 @@ tr:hover {
   text-transform: uppercase;
 }
 
-.add_user form input{
+#info_name{
   position: relative;
   top: 0px;
-  left: 10px;
+  
+}
+#input_name{
+  position: relative;
+  border: 1px solid;
+  top: -4px;
+  left: 20px;
+  height: 30px;
+  width : 50%;
+  padding-left: 5px;
+}
+
+
+#info_username{
+  position: relative;
+  top: 27px;
+  
+}
+#input_user{
+  position: relative;
+  border: 1px solid;
+  top: 23px;
+  left: 15px;
+  height: 30px;
+  width : 45.5%;
+  padding-left: 5px;
+
+}
+
+
+#info_pass{
+  position: relative;
+  top: 50px; 
+}
+#input_pass{
+  position: relative;
+  border: 1px solid;
+  top: 48px;
+  left: 12px;
+  height: 30px;
+  width : 45.5%;
+  padding-left: 5px;
+
+}
+
+#info_type{
+  position: relative;
+  top: 70px;
+}
+
+.add_user form select{
+  position: relative;
+  top: 66px;
+  left: 12px;
+  height: 30px;
+  width : 41.7%;
+}
+
+
+#input_add{
+  position: relative;
+  border: 1px solid;
+  top: 120px;
+  left: 270px;
+  height: 40px;
+  width : 20%;
+  background-color: #2a2185;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+
+
+}
+
+.info_box{
+  position: relative;
+  height: 400px;
+  width: 1000px;
+  top: -450px;
+  left: 100px;
+  box-shadow: 0 7px 25px rgb(206, 206, 206);
+  border: 2px solid #2a2185;
+
+}
+
 
 
 
