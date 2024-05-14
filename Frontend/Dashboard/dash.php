@@ -118,54 +118,60 @@
             </div>
 
             <div class="summary">
-                <?php
-                $server = "localhost";
-                $username = "root";
-                $password = "";
-                $db = "qcpl";
+            <?php
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
 
-                $conn = new mysqli($server, $username, $password, $db);
+$conn = new mysqli($server, $username, $password, $db);
 
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                $sql = "SELECT * FROM fileupload";
-                $result = $conn->query($sql);
+// Number of rows per page
+$rowsPerPage = 4;
 
-                if ($result->num_rows > 0) {
-                    echo "<table>";
-                    echo "<tr><th>Owner</th><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>Type</th><th>File</th></tr>";
-                
-                    $rowCount = 0; // Variable to track the number of rows displayed
-                    while ($row = $result->fetch_assoc()) {
-                        // Display only the first 4 rows
-                        if ($rowCount < 4) {
-                            echo "<tr>";
-                            echo "<td>" . "<center>" . $row["owner"] . "</td>";
-                            echo "<td>" . "<center>" . $row["division"] . "</td>";
-                            echo "<td>" . "<center>" . $row["section"] . "</td>";
-                            echo "<td>" . "<center>" . $row["category"] . "</td>";
-                            echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
-                            echo "<td>" . "<center>" . $row["received_date"] . "</td>";
-                            echo "<td>" . "<center>" . $row["received_from"] . "</td>";
-                            echo "<td>" . "<center>" . $row["type"] . "</td>";
-                            echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
-                            echo "</tr>";
-                
-                            $rowCount++; // Increment the row count
-                        } else {
-                            // If more than 4 rows are displayed, break out of the loop
-                            break;
-                        }
-                    }
-                    echo "</table>";
-                } else {
-                    echo "<script>alert('No document found!');</script>";
-                }
+// Get the page number from the query string, default to 1 if not provided
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-                $conn->close();
-                ?>
+// Calculate the offset for the SQL query
+$offset = ($page - 1) * $rowsPerPage;
+
+$sql = "SELECT * FROM fileupload LIMIT $rowsPerPage OFFSET $offset";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<table>";
+    echo "<tr><th>Owner</th><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>Type</th><th>File</th></tr>";
+
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . "<center>" . $row["owner"] . "</td>";
+        echo "<td>" . "<center>" . $row["division"] . "</td>";
+        echo "<td>" . "<center>" . $row["section"] . "</td>";
+        echo "<td>" . "<center>" . $row["category"] . "</td>";
+        echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
+        echo "<td>" . "<center>" . $row["received_date"] . "</td>";
+        echo "<td>" . "<center>" . $row["received_from"] . "</td>";
+        echo "<td>" . "<center>" . $row["type"] . "</td>";
+        echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+
+    // Add Next button if there are more rows
+    $nextPage = $page + 1;
+    echo "<a href='?page=$nextPage'>Next</a>";
+} else {
+    // No documents found, display alert and go back to displaying the first 4 rows
+    echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
+}
+
+$conn->close();
+?>
+
             </div>
         </div>
     </div>
