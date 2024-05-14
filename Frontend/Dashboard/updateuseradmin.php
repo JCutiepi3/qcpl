@@ -29,8 +29,38 @@
     } else {
         echo "No ID provided.";
     }
+
+    // Check if form is submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Retrieve form data
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        // Update user details in the database
+        $update_user_query = "UPDATE users SET name=?, username=?, password=? WHERE id=?";
+        $update_user_stmt = $conn->prepare($update_user_query);
+        $update_user_stmt->bind_param("sssi", $name, $username, $password, $id);
+        $update_user_result = $update_user_stmt->execute();
+
+        // Update admin details in the database
+        $update_admin_query = "UPDATE admins SET name=?, username=?, password=? WHERE id=?";
+        $update_admin_stmt = $conn->prepare($update_admin_query);
+        $update_admin_stmt->bind_param("sssi", $name, $username, $password, $id);
+        $update_admin_result = $update_admin_stmt->execute();
+
+        // Check if query executed successfully
+        if (!$update_user_result && !$update_admin_result) {
+            die("Update failed: " . $conn->error);
+        } else {
+            // Redirect to another page
+            header("Location: user.php");
+            exit(); // Make sure no further code is executed after the redirect
+        }
+    }
 ?>
-<form action="updateuser.php" method="POST">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
     <input type="hidden" name="id" value="<?php echo $id; ?>"> <!-- Hidden input to pass user ID -->
     <div class="form-group">
         <label for="name">Name</label>
