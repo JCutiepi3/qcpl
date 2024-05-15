@@ -118,7 +118,7 @@
             </div>
 
             <div class="summary">
-            <?php
+<?php
 $server = "localhost";
 $username = "root";
 $password = "";
@@ -163,7 +163,7 @@ if ($result->num_rows > 0) {
 
     // Add Next button if there are more rows
     $nextPage = $page + 1;
-    echo "<a href='?page=$nextPage'>Next</a>";
+    echo "<a href='?page=$nextPage' id = next>Next</a>";
 } else {
     // No documents found, display alert and go back to displaying the first 4 rows
     echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";

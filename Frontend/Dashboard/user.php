@@ -109,6 +109,11 @@
                 </div>
             </div>
 
+            <div class="details">
+                <div class="upload"> 
+                </div>
+            </div>
+
             <div class="findaccount">
             <?php
             $server = "localhost";
@@ -129,7 +134,9 @@
             $result_admins = $conn->query($sql_admins);
 
             if ($result_users->num_rows > 0) {
-                echo "<h2>Users</h2>";
+
+
+                echo "<h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br>ADMINS</h2>";
                 echo "<table>";
                 echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
                 
@@ -137,7 +144,7 @@
                 $rowCount = 0;
                 
                 // Loop through the result set
-                while ($row = $result_users->fetch_assoc()) {
+                while ($row = $result_admins->fetch_assoc()) {
                     // Display only the first 4 rows
                     if ($rowCount < 4) {
                         echo "<tr>";
@@ -156,9 +163,9 @@
                 
                 echo "</table>";
             }
-
+            
             if ($result_admins->num_rows > 0) {
-                echo "<h2>Admins</h2>";
+                echo "<h2><br><br>USERS</h2>";
                 echo "<table>";
                 echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
                 
@@ -166,7 +173,7 @@
                 $rowCount = 0;
                 
                 // Loop through the result set
-                while ($row = $result_admins->fetch_assoc()) {
+                while ($row = $result_users->fetch_assoc()) {
                     // Display only the first 4 rows
                     if ($rowCount < 4) {
                         echo "<tr>";
