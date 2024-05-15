@@ -28,7 +28,7 @@ if(isset($_POST["login"])) {
         $result = $stmt->get_result();
 
         if($result->num_rows > 0) {
-            echo "<script>alert('Successfully Login'); window.location='/qcpl/Frontend/home.php';</script>";
+            echo "<script>alert('Successfully Login'); window.location='/qcpl/Frontend/user1.html';</script>";
         } else {
             echo "<script>alert('Incorrect Username or Password'); window.location='/qcpl/Frontend/login.html';</script>";
         }
