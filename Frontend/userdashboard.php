@@ -87,42 +87,48 @@
                         <h2>DOCUMENTS</h2>   
                     </div> 
                 </div>
-                    <div class="table">
-    <table class="table_th">
-        <thead>
-            <tr class="bg1">
-                <th class="px-4 py-2">Owner</th>
-                <th class="px-4 py-2">Division</th>
-                <th class="px-4 py-2">Section</th>
-                <th class="px-4 py-2">Locator Number</th>
-                <th class="px-4 py-2">Receive Date</th>
-                <th class="px-4 py-2">Receive From</th>
-                <th class="px-4 py-2">Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg2" onclick="alert('Clicked John Doe')">
-                <td class="px-4 py-2">John Doe</td>
-                <td class="px-4 py-2">Finance</td>
-                <td class="px-4 py-2">Accounts</td>
-                <td class="px-4 py-2">12345</td>
-                <td class="px-4 py-2">2022-01-01</td>
-                <td class="px-4 py-2">Supplier A</td>
-                <td class="px-4 py-2">Pending</td>
-            </tr>
-            <tr class="bg3" onclick="alert('Clicked Jane Smith')">
-                <td class="px-4 py-2">Jane Smith</td>
-                <td class="px-4 py-2">Marketing</td>
-                <td class="px-4 py-2">Advertising</td>
-                <td class="px-4 py-2">54321</td>
-                <td class="px-4 py-2">2022-01-15</td>
-                <td class="px-4 py-2">Supplier B</td>
-                <td class="px-4 py-2">Approved</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-            </div>
+                    <div class="table_th">
+                        <div class="container">
+                            <?php
+                            $server = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $db = "qcpl";
+                            
+                            $conn = new mysqli($server, $username, $password, $db);
+                            
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+                            
+                            $owner = "user";
+                            
+                            $sql = "SELECT * FROM fileupload WHERE owner = '$owner'";
+                            $result = $conn->query($sql);
+                            
+                            if ($result->num_rows > 0) { 
+                                echo "<table>";
+                                echo "<tr><th>Owner</th><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>Type</th><th>File</th></tr>";
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" ."<center>". $row["owner"] . "</td>";
+                                    echo "<td>" ."<center>". $row["division"] . "</td>";
+                                    echo "<td>" ."<center>". $row["section"] . "</td>";
+                                    echo "<td>" ."<center>". $row["category"] . "</td>";
+                                    echo "<td>" ."<center>". $row["locator_num"] . "</td>";
+                                    echo "<td>" ."<center>". $row["received_date"] . "</td>";
+                                    echo "<td>" ."<center>". $row["received_from"] . "</td>";
+                                    echo "<td>" ."<center>". $row["type"] . "</td>";
+                                    echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                            } else {
+                                echo "<script>alert('No document found!');</script>";
+                            }
+                            
+                            $conn->close();
+                            ?>
                
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>

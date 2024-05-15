@@ -128,7 +128,7 @@
             $result_admins = $conn->query($sql_admins);
 
             if ($result_admins->num_rows > 0) {
-                echo "<h2>Admins</h2>";
+                echo "<h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>Admins</h2>";
                 echo "<table>";
                 echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
                 
@@ -156,8 +156,8 @@
                 echo "</table>";
             }
 
-            if ($result_admins->num_rows > 0) {
-                echo "<h2>Admins</h2>";
+            if ($result_users->num_rows > 0) {
+                echo "<h2><br><br>Users</h2>";
                 echo "<table>";
                 echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
                 
