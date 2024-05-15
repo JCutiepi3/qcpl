@@ -180,6 +180,7 @@
                         // Increment the row count
                         $rowCount++;
                     }
+                    
                 }
                 
                 echo "</table>";
