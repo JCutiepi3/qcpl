@@ -9,6 +9,7 @@
     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -127,8 +128,8 @@
             $sql_admins = "SELECT * FROM admins";
             $result_admins = $conn->query($sql_admins);
 
-            if ($result_admins->num_rows > 0) {
-                echo "<h2>Admins</h2>";
+            if ($result_users->num_rows > 0) {
+                echo "<h2>Users</h2>";
                 echo "<table>";
                 echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
                 

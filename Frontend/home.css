@@ -20,10 +20,10 @@ body {
 }
 
 img {
-  width: 90px;
+  width: 68px;
   height: 60px;
   left: 15px;
-  top: 2px;
+  top: 1.9px;
   position: fixed;
   z-index: 1; /* Set a lower z-index to place it behind the navbar */
   background-size: contain;
@@ -100,10 +100,10 @@ img {
   margin-right: 5px; /* Add space between text and icon */
 }
 .container {
-  font-size: 50 px;
+  font-size: 50px;
   position: absolute;
   color: white;
   margin-top: 40px;
   line-height: 1.8;
-  left: 250px
+  left: 200px
 }
