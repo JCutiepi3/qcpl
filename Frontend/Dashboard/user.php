@@ -163,15 +163,11 @@
                 
                 echo "</table>";
             }
-<<<<<<< HEAD
-            
             if ($result_admins->num_rows > 0) {
                 echo "<h2><br><br>USERS</h2>";
-=======
-
+            }
             if ($result_users->num_rows > 0) {
                 echo "<h2><br><br>Users</h2>";
->>>>>>> 9865f42263a2e5a8e1e224a9ee850f3d7afc371c
                 echo "<table>";
                 echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
                 
@@ -206,9 +202,6 @@
 
 
                 </div>
-
-          
-
 
                
     <!-- =========== Scripts =========  -->
