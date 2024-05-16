@@ -1,6 +1,4 @@
 <?php
-session_start(); // Start the session to access session variables
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -25,11 +23,5 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-
-// Display the name of the logged-in user (assuming it's stored in a session variable)
-if(isset($_SESSION['username'])){
-    echo "Logged in as: ".$_SESSION['username'];
-}
-
 $conn->close();
 ?>

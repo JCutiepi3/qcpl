@@ -1,3 +1,31 @@
+<?php
+session_start(); 
+
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
+
+$conn = new mysqli($server, $username, $password, $db);
+
+if($conn->connect_error) {
+    die("Failed to connect: " . $conn->connect_error);
+}
+
+$name = ""; // Variable to store user's name
+
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    $sql = "SELECT name FROM users WHERE username = '$username'";
+    $result = $conn->query($sql);
+
+    if($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $name = $row['name'];
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,36 +130,13 @@
                
 
             <?php
-session_start(); 
-
-$server = "localhost";
-$username = "root";
-$password = "";
-$db = "qcpl";
-
-$conn = new mysqli($server, $username, $password, $db);
-
-if($conn->connect_error) {
-    die("Failed to connect: " . $conn->connect_error);
-}
-
-if(isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-    $sql = "SELECT name FROM users WHERE username = '$username'";
-    $result = $conn->query($sql);
-
-    if($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $name = $row['name'];
-        echo "Welcome, " . $name . "!";
-    } else {
-        echo "Welcome!";
-    }
-} else {
-    echo "Welcome!";
-}
-
-?>
+            // Display welcome message with user's name
+            if(!empty($name)) {
+                echo "<div class='welcome'>Welcome, $name!</div>";
+            } else {
+                echo "<div class='welcome'>Welcome!</div>";
+            }
+            ?>
                 <div class="user">
                     <span class="icon">
                         
