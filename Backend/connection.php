@@ -16,6 +16,7 @@
         $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
         $stmt->execute();
         $result = $stmt->get_result();
+        $name = $_GET['name'];
 
         if($result->num_rows > 0) {
             echo "<script>alert('Successfully Login'); window.location='/qcpl/Frontend/Dashboard/dash.php';</script>";
@@ -29,6 +30,7 @@
 
             if($result->num_rows > 0) {
                 echo "<script>alert('Successfully Login'); window.location='/qcpl/Frontend/userdashboard.php';</script>";
+                echo "Welcome, " . $_SESSION["name"] . "!";
             } else {
                 echo "<script>alert('Incorrect Username or Password'); window.location='/qcpl/Frontend/login.html';</script>";
             }

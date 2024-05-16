@@ -101,8 +101,27 @@
             </form>
                
 
+            <?php
+session_start(); // Start the session
+
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
+
+$conn = new mysqli($server, $username, $password, $db);
+
+if($conn->connect_error) {
+    die("Failed to connect: " . $conn->connect_error);
+}
+
+$name = $_GET['name']; // Fetch name from URL parameter
+
+echo "Welcome, " . $name . "!";
+?>
                 <div class="user">
                     <span class="icon">
+                        
                         <ion-icon name="person"></ion-icon>
                     </span>
 
