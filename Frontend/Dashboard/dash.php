@@ -102,7 +102,7 @@
                
 
             <?php
-session_start(); // Start the session
+session_start(); 
 
 $server = "localhost";
 $username = "root";
@@ -115,9 +115,22 @@ if($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
 
-$name = $_GET['name']; // Fetch name from URL parameter
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    $sql = "SELECT name FROM users WHERE username = '$username'";
+    $result = $conn->query($sql);
 
-echo "Welcome, " . $name . "!";
+    if($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $name = $row['name'];
+        echo "Welcome, " . $name . "!";
+    } else {
+        echo "Welcome!";
+    }
+} else {
+    echo "Welcome!";
+}
+
 ?>
                 <div class="user">
                     <span class="icon">
