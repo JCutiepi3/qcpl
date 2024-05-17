@@ -98,77 +98,43 @@
             </div>
 
              <!-- ================Upload ================= -->
-             <div class="details">
-                <div class="upload">
-                    <div class="cardHeader">
-                        <h2>UPLOAD DOCUMENTS</h2>   
-                    </div>
- 
-                    <h1>Upload File</h1>
-                    <form action="fileupload.php" method="post" enctype="multipart/form-data">
-                
-                        <label>Owner: </label>
-                        <input type="radio" name="owner" value="admin" required>
-                        <label>ADMIN</label>
-                        <input type="radio" name="owner" value="user" required>
-                        <label>USER ACCOUNT</label> <br>
-                
-                        <label>Division: </label>
-                        <select name="division" id="division" required>
-                        <option >Select Division</option>
-                        <option >MIS</option>
-                        <option >ADMIN</option>
-                        <option >TECHNICAL</option>
-                        </select><br>
-                
-                        <label>Section: </label>
-                        <select name="section" id="section" required>
-                        <option >Select Section</option>
-                        <option >4A</option>
-                        <option >4B</option>
-                        <option >4C</option>
-                        </select><br>
-                
-                        <label>Category: </label>
-                        <input type="radio" name="category" value="incoming" required>
-                        <label>Incoming</label>
-                        <input type="radio" name="category" value="outgoing" required>
-                        <label>Outgoing</label> <br>
-                
-                        <label >Locator Number: </label>
-                        <input type="number" name="locator_num" required><br>
-                
-                        <label>Received Date: </label>
-                        <input type="datetime-local" name="received_date" required><br>
-                       
-                        <label for="">Received From: </label>
-                        <input type="text" name="received_from" required><br>
-                
-                        <label for="">Subject: </label>
-                        <input type="text" name="subject" required><br>
-                
-                        <label for="">Description: </label>
-                        <input type="text" name="description" required><br>
-                
-                        <label>Type: </label>
-                        <select name="type" required>
-                        <option >Select Type of Letter</option>
-                        <option >Docs</option>
-                        <option >Pdf</option>
-                        <option >Paper</option>
-                        </select><br>
-                
-                        <input type="file" name="fileName"><br>
-                        <input type="submit" name="upload" value="Upload">
-                    </form>
+             <h1>Upload File</h1>
+            <form action="/qcpl/Backend/fileupload.php" method="POST" enctype="multipart/form-data">
 
-        </div>
+                <label>Category: </label>
+                <input type="radio" name="category" value="incoming" required>
+                <label>Incoming</label>
+                <input type="radio" name="category" value="outgoing" required>
+                <label>Outgoing</label> <br>
 
+                <label >Locator Number: </label>
+                <input type="number" name="locator_num" required><br>
 
-          
+                <label>Received Date: </label>
+                <input type="datetime-local" name="received_date" required><br>
+            
+                <label for="">Received From: </label>
+                <input type="text" name="received_from" required><br>
 
-  
-               
+                <label for="">Subject: </label>
+                <input type="text" name="subject" required><br>
+
+                <label for="">Description: </label>
+                <input type="text" name="description" required><br>
+
+                <label>File Type: </label>
+                <select name="type" id="type" required>
+                    <option value="">Select Division</option>
+                    <option value="DOCS">Document</option>
+                    <option value="PDF">Portable Document Format</option>
+                    <option value="IMG">Image</option>
+                </select>
+                <br>    
+
+                <input type="file" name="fileName"><br>
+                <input type="submit" name="upload" value="Submit">
+            </form>
+                    
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
 
