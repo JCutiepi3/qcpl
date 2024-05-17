@@ -12,6 +12,7 @@ if(isset($_POST["create"])){
     }
 
     $name = $conn->real_escape_string($_POST['name']);
+    $division = $conn->real_escape_string($_POST['division']);
     $username = $conn->real_escape_string($_POST['username']);
     $password = $conn->real_escape_string($_POST['password']);
     $account_type = $conn->real_escape_string($_POST['account_type']);
@@ -23,9 +24,9 @@ if(isset($_POST["create"])){
     }
 
     if ($account_type == "admin") {
-        $query = "INSERT INTO admins (name, username, password) VALUES ('$name', '$username', '$password')";
+        $query = "INSERT INTO admins (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
     } elseif ($account_type == "user") {
-        $query = "INSERT INTO users (name, username, password) VALUES ('$name', '$username', '$password')";
+        $query = "INSERT INTO users (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
     } else {
         echo "<script>alert('Invalid account type!'); window.location='/qcpl/Frontend/Dashboard/dash.php';</script>";
         exit();

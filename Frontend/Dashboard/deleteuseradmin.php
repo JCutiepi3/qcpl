@@ -1,5 +1,4 @@
 <?php
-    // Establish database connection (assuming you have already defined $server, $username, $password, and $db)
     $server = "localhost";
     $username = "root";
     $password = "";
