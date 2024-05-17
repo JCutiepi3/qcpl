@@ -33,8 +33,6 @@ if(isset($_POST["login"])) {
             $user = $result->fetch_assoc();
             $_SESSION["name"] = $user['name']; 
             echo "<script>alert('Successfully Login'); window.location='/qcpl/Frontend/userdashboard.php';</script>";
-            // Displaying the user's name
-            echo "Welcome, " . $_SESSION["name"] . "!";
         } else {
             echo "<script>alert('Incorrect Username or Password'); window.location='/qcpl/Frontend/login.html';</script>";
         }
