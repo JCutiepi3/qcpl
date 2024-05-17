@@ -12,17 +12,14 @@ if($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
 
-$name = ""; // Variable to store user's name
+$name = ""; 
 
-if(isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-    $sql = "SELECT name FROM admins WHERE username = '$username'";
-    $result = $conn->query($sql);
-
-    if($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $name = $row['name'];
-    }
+if(isset($_SESSION["name"])) {
+    echo "Welcome, " . $_SESSION["name"] . "!";
+} else {
+    // Redirect the user to the login page if the session variable isn't set
+    header("Location: /qcpl/Frontend/login.html");
+    exit();
 }
 
 ?>
@@ -167,13 +164,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Number of rows per page
+
 $rowsPerPage = 4;
 
-// Get the page number from the query string, default to 1 if not provided
+
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-// Calculate the offset for the SQL query
+
 $offset = ($page - 1) * $rowsPerPage;
 
 $sql = "SELECT * FROM fileupload LIMIT $rowsPerPage OFFSET $offset";
@@ -198,11 +195,11 @@ if ($result->num_rows > 0) {
     }
     echo "</table>";
 
-    // Add Next button if there are more rows
+
     $nextPage = $page + 1;
     echo "<a href='?page=$nextPage' id = next>Next</a>";
 } else {
-    // No documents found, display alert and go back to displaying the first 4 rows
+   
     echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
 }
 
