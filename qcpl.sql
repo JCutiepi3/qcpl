@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2024 at 08:44 AM
+-- Generation Time: May 17, 2024 at 09:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `division` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -38,9 +39,35 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `username`, `password`) VALUES
-(1, 'admin', 'admin', 'admin'),
-(5, 'try', 'try', 'try');
+INSERT INTO `admins` (`id`, `name`, `division`, `username`, `password`) VALUES
+(1, 'admin', 'admin', 'admin', 'admin'),
+(21, 'Guillermo Mercado', 'Readers\' Services Division', 'admin1', 'admin1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boss1`
+--
+
+CREATE TABLE `boss1` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boss2`
+--
+
+CREATE TABLE `boss2` (
+  `id` int(11) NOT NULL,
+  `name` int(255) NOT NULL,
+  `username` int(255) NOT NULL,
+  `password` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -61,18 +88,24 @@ CREATE TABLE `fileupload` (
   `subject` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
-  `file_path` varchar(255) NOT NULL
+  `file_path` varchar(255) NOT NULL,
+  `boss2_comment` varchar(255) NOT NULL,
+  `boss1_comment` varchar(255) NOT NULL,
+  `status` enum('pending','processing','completed') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `fileupload`
 --
 
-INSERT INTO `fileupload` (`id`, `file_name`, `owner`, `division`, `section`, `category`, `locator_num`, `received_date`, `received_from`, `subject`, `description`, `type`, `file_path`) VALUES
-(78, 'Screenshot 2024-05-10 083332.png', 'admin', 'ADMIN', '4B', 'incoming', '222', '2024-05-10', 'ok', 'ok', 'ok', 'Pdf', 'File_Uploaded/Screenshot 2024-05-10 083332.png'),
-(79, 'Screenshot 2024-05-07 105858.png', 'user', 'MIS', '4A', 'outgoing', '000', '2024-05-10', 'sfs', 'sfsf', 'sfs', 'Pdf', 'File_Uploaded/Screenshot 2024-05-07 105858.png'),
-(80, 'Screenshot 2024-05-10 081013.png', 'user', 'ADMIN', '4B', 'outgoing', '2323', '2024-05-10', '215125', 'j', 'high', 'Docs', 'File_Uploaded/Screenshot 2024-05-10 081013.png'),
-(81, 'c4611_sample_explain.pdf', 'admin', 'MIS', '4B', 'outgoing', '0909', '2024-05-10', 'ok', 'ok', 'ok', 'Pdf', 'File_Uploaded/c4611_sample_explain.pdf');
+INSERT INTO `fileupload` (`id`, `file_name`, `owner`, `division`, `section`, `category`, `locator_num`, `received_date`, `received_from`, `subject`, `description`, `type`, `file_path`, `boss2_comment`, `boss1_comment`, `status`) VALUES
+(87, '6928-1-19774-1-10-20191218.pdf', NULL, NULL, NULL, 'incoming', '12345', '2024-05-17', 'done', 'done', 'done', 'PDF', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', '', '', 'pending'),
+(88, 'user.htm', NULL, NULL, NULL, 'incoming', '909', '2024-05-17', 'ok', 'ok', 'ok', 'DOCS', 'File_Uploaded/user.htm', '', '', 'pending'),
+(89, '6928-1-19774-1-10-20191218.pdf', NULL, NULL, NULL, 'outgoing', '8989', '2024-05-17', 'okok', 'okok', 'okok', 'IMG', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', '', '', 'pending'),
+(90, '6928-1-19774-1-10-20191218.pdf', NULL, NULL, NULL, 'incoming', '7676', '2024-05-17', 'nice', 'nice', 'nice', 'IMG', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', '', '', 'pending'),
+(91, '6928-1-19774-1-10-20191218.pdf', NULL, NULL, NULL, 'outgoing', '3434', '2024-05-17', 'uwu', 'uwu', 'uwu', 'PDF', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', '', '', 'pending'),
+(92, '6928-1-19774-1-10-20191218.pdf', NULL, NULL, NULL, 'incoming', '136462', '2024-05-17', 'done', 'done', 'done', 'PDF', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', '', '', 'pending'),
+(93, 'user.htm', NULL, NULL, NULL, 'outgoing', '11', '2024-05-17', '4pm', '4pm', '4pm', 'DOCS', 'File_Uploaded/user.htm', '', '', 'pending');
 
 -- --------------------------------------------------------
 
@@ -83,6 +116,7 @@ INSERT INTO `fileupload` (`id`, `file_name`, `owner`, `division`, `section`, `ca
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `division` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -91,9 +125,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`) VALUES
-(19, 'ok', 'user', 'user'),
-(25, 'try', 'try', 'try');
+INSERT INTO `users` (`id`, `name`, `division`, `username`, `password`) VALUES
+(1, 'user', 'user', 'user', 'user'),
+(38, '2:40', 'Library Extension Division', '2:40', '123355678');
 
 --
 -- Indexes for dumped tables
@@ -103,6 +137,18 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`) VALUES
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `boss1`
+--
+ALTER TABLE `boss1`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `boss2`
+--
+ALTER TABLE `boss2`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -125,19 +171,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `boss1`
+--
+ALTER TABLE `boss1`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `boss2`
+--
+ALTER TABLE `boss2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `fileupload`
 --
 ALTER TABLE `fileupload`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
