@@ -15,7 +15,7 @@ if(isset($_GET['locator_num'])){
     echo "Locator number not provided.";
 }
 ?>
-<form action="submit_comment.php" method="post">
+<form action="/qcpl/Backend/boss1backend.php" method="post">
   </select><label>Division: </label>
             <select name="division" id="division" required onchange="updateSubdivision()">
                 <option value="">Select Division</option>
@@ -74,9 +74,7 @@ if(isset($_GET['locator_num'])){
                             subdivisionSelect.add(new Option("Marketing Section", "optionQ"));
                             break;
                         case "administrative":
-                            subdivisionSelect.add(new Option("Option Admin 1 (Administrative Services)", "optionAdmin1"));
-                            subdivisionSelect.add(new Option("Option Admin 2 (Administrative Services)", "optionAdmin2"));
-                            subdivisionSelect.add(new Option("Option Admin 3 (Administrative Services)", "optionAdmin3"));
+                        subdivisionSelect.add(new Option("No Section", "optionG"));
                             break;
                         case "district":
                             subdivisionSelect.add(new Option("Branch Libraries", "optionD1"));
@@ -90,7 +88,19 @@ if(isset($_GET['locator_num'])){
   <label for="comment">Comment:</label require><br>
   <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
   <br><br>
-  <input type="submit" value="Submit">
+  
+  <label>Status: </label>
+<input type="radio" id="pending" name="status" value="pending">
+<label for="pending">Pending</label>
+
+<input type="radio" id="processing" name="status" value="processing">
+<label for="processing">Processing</label>
+
+<input type="radio" id="completed" name="status" value="completed">
+<label for="completed">Completed</label><br>
+
+
+  <input type="submit" name="submit" value="Submit">
 </form>
 
 </body>

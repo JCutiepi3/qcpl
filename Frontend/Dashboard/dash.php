@@ -133,6 +133,7 @@ if(isset($_SESSION['username'])) {
                         echo "<td>" . "<center>" . $row["received_from"] . "</td>";
                         echo "<td>" . "<center>" . $row["type"] . "</td>";
                         echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+                        echo "<td>" . "<center>" . $row["status"] . "</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
