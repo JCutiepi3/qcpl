@@ -1,5 +1,4 @@
 <?php
-echo "tanginmo";
 if(isset($_POST["create"])){
     $server = "localhost";
     $username = "root";
@@ -16,6 +15,12 @@ if(isset($_POST["create"])){
     $username = $conn->real_escape_string($_POST['username']);
     $password = $conn->real_escape_string($_POST['password']);
     $account_type = $conn->real_escape_string($_POST['account_type']);
+
+    // Check if password meets the length requirement
+    if(strlen($password) < 8) {
+        echo "<script>alert('Password must be at least 8 characters long.'); window.location='/qcpl/Frontend/Dashboard/adduser.html';</script>";
+        exit();
+    }
 
     if ($account_type == "admin") {
         $query = "INSERT INTO admins (name, username, password) VALUES ('$name', '$username', '$password')";

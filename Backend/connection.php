@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if(isset($_POST["login"])) {
     $server = "localhost";
     $username = "root";
@@ -10,7 +12,7 @@ if(isset($_POST["login"])) {
     if($conn->connect_error) {
         die("Failed to connect: " . $conn->connect_error);
     }
- 
+
     $query = "SELECT * FROM admins WHERE BINARY username = ? AND BINARY password = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
@@ -18,9 +20,9 @@ if(isset($_POST["login"])) {
     $result = $stmt->get_result();
 
     if($result->num_rows > 0) {
+        $_SESSION["name"] = "Admin"; 
         echo "<script>alert('Successfully Login'); window.location='/qcpl/Frontend/Dashboard/dash.php';</script>";
     } else {
-
         $query = "SELECT * FROM users WHERE username = ? AND password = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
@@ -28,7 +30,11 @@ if(isset($_POST["login"])) {
         $result = $stmt->get_result();
 
         if($result->num_rows > 0) {
-            echo "<script>alert('Successfully Login'); window.location='/qcpl/Frontend/home.php';</script>";
+            $user = $result->fetch_assoc();
+            $_SESSION["name"] = $user['name']; 
+            echo "<script>alert('Successfully Login'); window.location='/qcpl/Frontend/userdashboard.php';</script>";
+            // Displaying the user's name
+            echo "Welcome, " . $_SESSION["name"] . "!";
         } else {
             echo "<script>alert('Incorrect Username or Password'); window.location='/qcpl/Frontend/login.html';</script>";
         }

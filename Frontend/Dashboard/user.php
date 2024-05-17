@@ -9,6 +9,7 @@
     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -108,6 +109,11 @@
                 </div>
             </div>
 
+            <div class="details">
+                <div class="upload"> 
+                </div>
+            </div>
+
             <div class="findaccount">
             <?php
             $server = "localhost";
@@ -128,49 +134,74 @@
             $result_admins = $conn->query($sql_admins);
 
             if ($result_users->num_rows > 0) {
-                echo "<h2>Users</h2>";
+
+
+                echo "<h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br>ADMINS</h2>";
                 echo "<table>";
-                echo "<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th>Action</th></tr>";
-                while ($row = $result_users->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . "<center>" . $row["id"] . "</td>";
-                    echo "<td>" . "<center>" . $row["name"] . "</td>";
-                    echo "<td>" . "<center>" . $row["username"] . "</td>";
-                    echo "<td>" . "<center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                    echo "<td>" . "<center>" . "<a href='?edit_user&id=" . $row["id"] . "'>Edit</a> | <a href='?delete_user&id=" . $row["id"] . "'>Delete</a>" . "</td>";
-                    echo "</tr>";
+                echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
+                
+                // Initialize variable to track the number of rows displayed
+                $rowCount = 0;
+                
+                // Loop through the result set
+                while ($row = $result_admins->fetch_assoc()) {
+                    // Display only the first 4 rows
+                    if ($rowCount < 4) {
+                        echo "<tr>";
+                        echo "<td>" . "<center>" . $row["id"] . "</td>";
+                        echo "<td>" . "<center>" . $row["name"] . "</td>";
+                        echo "<td>" . "<center>" . $row["username"] . "</td>";
+                        echo "<td>" . "<center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                        echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+                        echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
+                        echo "</tr>";
+                        
+                        // Increment the row count
+                        $rowCount++;
+                    }
                 }
+                
                 echo "</table>";
-            } else {
-                echo "<p>No users found!</p>";
+            }
+            if ($result_admins->num_rows > 0) {
+                echo "<h2><br><br>USERS</h2>";
+            }
+            if ($result_users->num_rows > 0) {
+                echo "<h2><br><br>Users</h2>";
+                echo "<table>";
+                echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
+                
+                // Initialize variable to track the number of rows displayed
+                $rowCount = 0;
+                
+                // Loop through the result set
+                while ($row = $result_users->fetch_assoc()) {
+                    // Display only the first 4 rows
+                    if ($rowCount < 4) {
+                        echo "<tr>";
+                        echo "<td>" . "<center>" . $row["id"] . "</td>";
+                        echo "<td>" . "<center>" . $row["name"] . "</td>";
+                        echo "<td>" . "<center>" . $row["username"] . "</td>";
+                        echo "<td>" . "<center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                        echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+                        echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
+                        echo "</tr>";
+                        
+                        // Increment the row count
+                        $rowCount++;
+                    }
+                    
+                }
+                
+                echo "</table>";
             }
 
-            if ($result_admins->num_rows > 0) {
-                echo "<h2>Admins</h2>";
-                echo "<table>";
-                echo "<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th>Action</th></tr>";
-                while ($row = $result_admins->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . "<center>" . $row["id"] . "</td>";
-                    echo "<td>" . "<center>" . $row["name"] . "</td>";
-                    echo "<td>" . "<center>" . $row["username"] . "</td>";
-                    echo "<td>" . "<center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                    echo "<td>" . "<center>" . "<a href='?edit_user&id=" . $row["id"] . "'>Edit</a> | <a href='?delete_user&id=" . $row["id"] . "'>Delete</a>" . "</td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
-            } else {
-                echo "<p>No admins found!</p>";
-            }
 
             $conn->close();
             ?>
 
 
                 </div>
-
-          
-
 
                
     <!-- =========== Scripts =========  -->
@@ -182,3 +213,9 @@
 </body>
 
 </html>
+
+<?php
+if (isset($_GET['delete_msg'])){
+    echo "<h6>".$_GET['delete_msg']."</h6>";
+}
+?>
