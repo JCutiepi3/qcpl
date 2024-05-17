@@ -1,34 +1,33 @@
-
 <?php
-// Establish connection to your database
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "qcpl";
 
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
+    $locator_num = $_POST['locator_num']; // Add this line to retrieve locator_num
     $division = $_POST['division'];
     $section = $_POST['section'];
-    $boss1_comment = $_POST['boss1_comment'];
+    $boss1_comment = $_POST['comment']; // Updated from 'boss1_comment'
     $status = $_POST['status'];
 
-    // Prepare and bind the update statement
-    $stmt = $conn->prepare("UPDATE fileupload SET division=?, section=?, boss1_comment=?, status=? WHERE id=?");
-    $stmt->bind_param("ssssi", $division, $section, $boss1_comment, $status, $id);
 
-    // Set parameters and execute the statement
-    $id = $_POST['id']; // Assuming you have an id field in your form
-    $stmt->execute();
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Close statement
-    $stmt->close();
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-    // Redirect to the page after updating
-    header("Location: /Frontend/Dashboard/bossaccount.php");
-    exit();
+    $sql = "UPDATE fileupload SET division='$division', section='$section', comment='$comment', status='$status' WHERE locator_num='$locator_num'";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Record updated successfully";
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+
+    $conn->close();
 }
 ?>

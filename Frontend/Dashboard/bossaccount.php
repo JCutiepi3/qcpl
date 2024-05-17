@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Display Locator Number</title>
+  <title>Boss 1</title>
 </head>
 <body>
 
@@ -21,21 +21,17 @@
 
     <?php
 
-    // Include your database connection details (replace with your actual credentials)
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "qcpl";
 
-    // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check connection
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
-
-    // Define your SQL query to select the desired data
+    
     $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, status FROM fileupload";
 
     // Perform the query

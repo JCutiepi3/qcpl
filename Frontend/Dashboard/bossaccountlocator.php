@@ -30,7 +30,7 @@ if(isset($_GET['locator_num'])){
 
             <div id="subdivisionOptions" style="display: none;">
                 <label>Section: </label>
-                <select name="subdivision" id="subdivision" required>
+                <select name="section" id="subdivision" required>
                 </select>
             </div>
 
@@ -85,12 +85,12 @@ if(isset($_GET['locator_num'])){
                 }
             </script>
   <br>
-  <label for="comment">Comment:</label require><br>
-  <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+  <label for="comment">Comment:</label><br>
+  <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
   <br><br>
   
   <label>Status: </label>
-<input type="radio" id="pending" name="status" value="pending">
+<input type="radio" id="pending" name="status" value="pending" required>
 <label for="pending">Pending</label>
 
 <input type="radio" id="processing" name="status" value="processing">
