@@ -15,11 +15,16 @@ if ($conn->connect_error) {
 $name = ""; 
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
+<<<<<<< Updated upstream
     $sql = "SELECT name FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
+=======
+    $sql = "SELECT name FROM admins WHERE username = '$username'";
+    $result = $conn->query($sql);
+>>>>>>> Stashed changes
 
     if($result->num_rows > 0) {
         $row = $result->fetch_assoc();
