@@ -15,7 +15,7 @@ if(isset($_GET['locator_num'])){
     echo "Locator number not provided.";
 }
 ?>
-<form action="../Backend/boss1backend.php" method="post">
+<form action="/qcpl/Backend/boss1backend.php" method="POST">
   </select><label>Division: </label>
             <select name="division" id="division" required onchange="updateSubdivision()">
                 <option value="">Select Division</option>
