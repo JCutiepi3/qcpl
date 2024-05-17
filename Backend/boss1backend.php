@@ -1,18 +1,17 @@
 <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "qcpl";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "qcpl";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $locator_num = $_POST['locator_num']; // Add this line to retrieve locator_num
-    $division = $_POST['division'];
-    $section = $_POST['section'];
-    $boss1_comment = $_POST['comment']; // Updated from 'boss1_comment'
-    $status = $_POST['status'];
-
+    
+    $locator_num = isset($_POST['locator_num']) ? $_POST['locator_num'] : '';
+    $division = isset($_POST['division']) ? $_POST['division'] : '';
+    $section = isset($_POST['section']) ? $_POST['section'] : '';
+    $boss1_comment = isset($_POST['comment']) ? $_POST['comment'] : ''; 
+    $status = isset($_POST['status']) ? $_POST['status'] : '';
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -20,12 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "UPDATE fileupload SET division='$division', section='$section', comment='$comment', status='$status' WHERE locator_num='$locator_num'";
+    $sql = "UPDATE fileupload SET division='$division', section='$section', boss1_comment='$boss1_comment', status='$status' WHERE locator_num='$locator_num'";
+
 
     if ($conn->query($sql) === TRUE) {
-        echo "Record updated successfully";
+        echo "<script>alert('Successfully Updated the Database!'); window.location='/qcpl/Frontend/Dashboard/bossaccount.php';</script>";
     } else {
-        echo "Error updating record: " . $conn->error;
+        echo "<script>alert('ERROR!'); window.location='/qcpl/Frontend/Dashboard/bossaccount.php';</script>" . $conn->error;
     }
 
     $conn->close();
