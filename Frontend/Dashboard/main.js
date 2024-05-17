@@ -3,7 +3,8 @@ let list = document.querySelectorAll(".navigation li");
 
 function activeLink() {
   list.forEach((item) => {
-    item.classList.remove("hovered");
+    item.classList.focus("hovered")
+
   });
   this.classList.add("hovered");
 }
@@ -20,6 +21,13 @@ toggle.onclick = function () {
   main.classList.toggle("active");
 };
 
-
-
+var header = document.getElementById("navigation");
+var btns = header.getElementsByClassName("navigation");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+  });
+}
 

@@ -155,7 +155,7 @@ if ($result->num_rows > 0) {
         echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
         echo "<td>" . "<center>" . $row["received_date"] . "</td>";
         echo "<td>" . "<center>" . $row["received_from"] . "</td>";
-        echo "<td>" . "<center>" . $row["type"] . "</td>";
+        echo "<td id = 'types'>" . "<center>" . $row["type"] . "</td>";
         echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
         echo "</tr>";
     }

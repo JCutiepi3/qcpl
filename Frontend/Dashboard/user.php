@@ -114,95 +114,93 @@
                 </div>
             </div>
 
+            <div class="details2">
+                <div class="upload2"> 
+                </div>
+            </div>
+
             <div class="findaccount">
             <?php
-            $server = "localhost";
-            $username = "root";
-            $password = "";
-            $db = "qcpl";
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
 
-            $conn = new mysqli($server, $username, $password, $db);
+$conn = new mysqli($server, $username, $password, $db);
 
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-            $sql_users = "SELECT * FROM users";
-            $result_users = $conn->query($sql_users);
+$sql_users = "SELECT * FROM users";
+$result_users = $conn->query($sql_users);
 
-            $sql_admins = "SELECT * FROM admins";
-            $result_admins = $conn->query($sql_admins);
+$sql_admins = "SELECT * FROM admins";
+$result_admins = $conn->query($sql_admins);
 
-            if ($result_users->num_rows > 0) {
-
-
-                echo "<h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br>ADMINS</h2>";
-                echo "<table>";
-                echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
-                
-                // Initialize variable to track the number of rows displayed
-                $rowCount = 0;
-                
-                // Loop through the result set
-                while ($row = $result_admins->fetch_assoc()) {
-                    // Display only the first 4 rows
-                    if ($rowCount < 4) {
-                        echo "<tr>";
-                        echo "<td>" . "<center>" . $row["id"] . "</td>";
-                        echo "<td>" . "<center>" . $row["name"] . "</td>";
-                        echo "<td>" . "<center>" . $row["username"] . "</td>";
-                        echo "<td>" . "<center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                        echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
-                        echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
-                        echo "</tr>";
-                        
-                        // Increment the row count
-                        $rowCount++;
-                    }
-                }
-                
-                echo "</table>";
-            }
-<<<<<<< HEAD
+if ($result_admins->num_rows > 0) {
+    echo "<h2>ADMINS</h2>";
+    echo "<table>";
+    echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
+    
+    // Initialize variable to track the number of rows displayed
+    $rowCount = 0;
+    
+    // Loop through the result set
+    while ($row = $result_admins->fetch_assoc()) {
+        // Display only the first 4 rows
+        if ($rowCount < 4) {
+            echo "<tr>";
+            echo "<td>" . "<center>" . $row["id"] . "</td>";
+            echo "<td>" . "<center>" . $row["name"] . "</td>";
+            echo "<td>" . "<center>" . $row["username"] . "</td>";
+            echo "<td>" . "<center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+            echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+            echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
+            echo "</tr>";
             
-            if ($result_admins->num_rows > 0) {
-                echo "<h2><br><br>USERS</h2>";
-=======
-
-            if ($result_users->num_rows > 0) {
-                echo "<h2><br><br>Users</h2>";
->>>>>>> 9865f42263a2e5a8e1e224a9ee850f3d7afc371c
-                echo "<table>";
-                echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
-                
-                // Initialize variable to track the number of rows displayed
-                $rowCount = 0;
-                
-                // Loop through the result set
-                while ($row = $result_users->fetch_assoc()) {
-                    // Display only the first 4 rows
-                    if ($rowCount < 4) {
-                        echo "<tr>";
-                        echo "<td>" . "<center>" . $row["id"] . "</td>";
-                        echo "<td>" . "<center>" . $row["name"] . "</td>";
-                        echo "<td>" . "<center>" . $row["username"] . "</td>";
-                        echo "<td>" . "<center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                        echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
-                        echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
-                        echo "</tr>";
-                        
-                        // Increment the row count
-                        $rowCount++;
-                    }
-                    
-                }
-                
-                echo "</table>";
-            }
+            // Increment the row count
+            $rowCount++;
+        }
+    }
+    
+    echo "</table>";
+}
 
 
-            $conn->close();
-            ?>
+
+if ($result_users->num_rows > 0) {
+    echo "<h2><br><br><br><br><br><br>USERS</h2>";
+    echo "<table>";
+    echo '<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
+    
+    // Initialize variable to track the number of rows displayed
+    $rowCount = 0;
+    
+    // Loop through the result set
+    while ($row = $result_users->fetch_assoc()) {
+        // Display only the first 4 rows
+        if ($rowCount < 4) {
+            echo "<tr>";
+            echo "<td>" . "<center>" . $row["id"] . "</td>";
+            echo "<td>" . "<center>" . $row["name"] . "</td>";
+            echo "<td>" . "<center>" . $row["username"] . "</td>";
+            echo "<td>" . "<center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+            echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+            echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
+            echo "</tr>";
+            
+            // Increment the row count
+            $rowCount++;
+        }
+    }
+    
+    echo "</table>";
+}
+
+$conn->close();
+?>
+
 
 
                 </div>
