@@ -121,11 +121,10 @@ if(isset($_SESSION['username'])) {
 
                 if ($result->num_rows > 0) {
                     echo "<table>";
-                    echo "<tr><th>Owner</th><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>Type</th><th>File</th></tr>";
+                    echo "<tr><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>File type</th><th>File</th><th>Status</th></tr>";
 
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . "<center>" . $row["owner"] . "</td>";
                         echo "<td>" . "<center>" . $row["division"] . "</td>";
                         echo "<td>" . "<center>" . $row["section"] . "</td>";
                         echo "<td>" . "<center>" . $row["category"] . "</td>";
@@ -138,7 +137,6 @@ if(isset($_SESSION['username'])) {
                     }
                     echo "</table>";
 
-                    // Add Navigation Buttons
                     $prevPage = $page - 1;
                     if ($prevPage > 0) {
                         echo "<a href='?page=$prevPage' id='prev'>Previous</a>";
