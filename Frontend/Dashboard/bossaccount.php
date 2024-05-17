@@ -9,15 +9,13 @@
 
   <table>
     <tr>
-      <th>Owner</th>
-      <th>Division</th>
-      <th>Section</th>
       <th>Category</th>
       <th>Locator Number</th>
       <th>Received Date</th>
       <th>Received From</th>
       <th>Type</th>
       <th>File</th>
+      <th>Comment</th>
     </tr>
 
     <?php
@@ -37,7 +35,7 @@
     }
 
     // Define your SQL query to select the desired data
-    $sql = "SELECT owner, division, section, category, locator_num, received_date, received_from, type, file_path FROM fileupload";
+    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path FROM fileupload";
 
     // Perform the query
     $result = $conn->query($sql);
@@ -46,15 +44,13 @@
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" . "<center>" . $row["owner"] . "</td>";
-        echo "<td>" . "<center>" . $row["division"] . "</td>";
-        echo "<td>" . "<center>" . $row["section"] . "</td>";
         echo "<td>" . "<center>" . $row["category"] . "</td>";
         echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
         echo "<td>" . "<center>" . $row["received_date"] . "</td>";
         echo "<td>" . "<center>" . $row["received_from"] . "</td>";
         echo "<td>" . "<center>" . $row["type"] . "</td>";
-        echo "<td><a href='bossaccountlocator.php?locator_num=" . $row["locator_num"] . "' target='_blank'>View Locator Number</a></td>";
+        echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+        echo "<td><a href='bossaccountlocator.php?locator_num=" . $row["locator_num"] . "' target='_blank'>View Uploaded File</a></td>";
         echo "</tr>";
       }
     } else {

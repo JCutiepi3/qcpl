@@ -80,7 +80,6 @@
             <div class="details">
                 <div class="upload"></div>
             </div>
-
             <div class="findaccount">
                 <?php
                 $server = "localhost";
@@ -101,6 +100,7 @@
                 $result_admins = $conn->query($sql_admins);
 
                 if ($result_admins->num_rows > 0) {
+                    echo "<h2>Accounts</h2>";
                     echo "<h2>ADMINS</h2>";
                     echo "<table>";
                     echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
