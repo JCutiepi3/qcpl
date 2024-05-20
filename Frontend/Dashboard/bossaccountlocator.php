@@ -15,7 +15,8 @@ if(isset($_GET['locator_num'])){
     echo "Locator number not provided.";
 }
 ?>
-<form action="/qcpl/Backend/boss1backend.php" method="post">
+<form action="/qcpl/Backend/boss1backend.php" method="POST">
+    <input type="hidden" name="locator_num" value="<?php echo $locatorNum ?>">
   </select><label>Division: </label>
             <select name="division" id="division" required onchange="updateSubdivision()">
                 <option value="">Select Division</option>
@@ -52,32 +53,32 @@ if(isset($_GET['locator_num'])){
 
                     switch (division) {
                         case "readers":
-                            subdivisionSelect.add(new Option("Reference Section", "option1"));
-                            subdivisionSelect.add(new Option("Filipiniana, Local History and Archives Section", "option2"));
-                            subdivisionSelect.add(new Option("Law Research Section", "option3"));
-                            subdivisionSelect.add(new Option("Periodical Section", "option4"));
-                            subdivisionSelect.add(new Option("Children;s Section", "option5"));
-                            subdivisionSelect.add(new Option("Management Information System Section", "option6"));
+                            subdivisionSelect.add(new Option("Reference Section"));
+                            subdivisionSelect.add(new Option("Filipiniana, Local History and Archives Section"));
+                            subdivisionSelect.add(new Option("Law Research Section"));
+                            subdivisionSelect.add(new Option("Periodical Section"));
+                            subdivisionSelect.add(new Option("Children;s Section"));
+                            subdivisionSelect.add(new Option("Management Information System Section"));
                             break;
                         case "technical":
-                            subdivisionSelect.add(new Option("Collection Development", "optionA"));
-                            subdivisionSelect.add(new Option("Cataloging Section", "optionB"));
-                            subdivisionSelect.add(new Option("Binding and Preservation Section", "optionC"));
+                            subdivisionSelect.add(new Option("Collection Development"));
+                            subdivisionSelect.add(new Option("Cataloging Section"));
+                            subdivisionSelect.add(new Option("Binding and Preservation Section"));
                             break;
                         case "library":
-                            subdivisionSelect.add(new Option("Recreational", "optionX"));
-                            subdivisionSelect.add(new Option("Outreach", "optionY"));
-                            subdivisionSelect.add(new Option("Puppeteers", "optionZ"));
+                            subdivisionSelect.add(new Option("Recreational",));
+                            subdivisionSelect.add(new Option("Outreach"));
+                            subdivisionSelect.add(new Option("Puppeteers"));
                             break;
                         case "publication":
-                            subdivisionSelect.add(new Option("Publishing Section", "optionP"));
-                            subdivisionSelect.add(new Option("Marketing Section", "optionQ"));
+                            subdivisionSelect.add(new Option("Publishing Section"));
+                            subdivisionSelect.add(new Option("Marketing Section"));
                             break;
                         case "administrative":
-                        subdivisionSelect.add(new Option("No Section", "optionG"));
+                        subdivisionSelect.add(new Option("No Section"));
                             break;
                         case "district":
-                            subdivisionSelect.add(new Option("Branch Libraries", "optionD1"));
+                            subdivisionSelect.add(new Option("Branch Libraries"));
                         
                         default:
                             break;
