@@ -46,34 +46,81 @@ if(isset($_SESSION['username'])) {
 
 <body>
 
-    <!-- Navigation -->
-    <div class="container">
+        <!-- =============== Navigation ================ -->
+        <div class="container">
         <div class="navigation">
             <ul>
-                <!-- Logo and Title -->
                 <li>
                     <a href="#">
                         <span class="img">
-                            <img src="imgs/logo.png">
+                            <img src="imgs/logo.png" >
                         </span>
                         <span class="title">Quezon City Public Library</span>
                     </a>
                 </li>
 
-                <!-- Navigation Links -->
-                <li><a href="dash.php"><ion-icon name="apps"></ion-icon><span class="title">Dashboard</span></a></li>
-                <li><a href="user.php"><ion-icon name="people"></ion-icon><span class="title">Users</span></a></li>
-                <li><a href="doc.html"><ion-icon name="add-circle"></ion-icon><span class="title">Upload Document</span></a></li>
-                <li><a href="adduser.html"><ion-icon name="person-add"></ion-icon><span class="title">Add User</span></a></li>
-                <li><a href="faqs.html"><ion-icon name="help"></ion-icon><span class="title">FAQs</span></a></li>
-                <li><a href="/qcpl/Backend/logout.php"><ion-icon name="log-out-outline"></ion-icon><span class="title">Sign Out</span></a></li>
+                <li>
+                    <a href="dash.php">
+                        <span class="icon">
+                            <ion-icon name="apps"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="user.php">
+                        <span class="icon">
+                            <ion-icon name="people"></ion-icon>
+                        </span>
+                        <span class="title">Users</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="doc.html">
+                        <span class="icon">
+                            <ion-icon name="add-circle"></ion-icon>
+                        </span>
+                        <span class="title">Upload Document</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="adduser.html">
+                        <span class="icon">
+                            <ion-icon name="person-add"></ion-icon>
+                        </span>
+                        <span class="title" >Add User</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="faqs.html">
+                        <span class="icon">
+                            <ion-icon name="help"></ion-icon>
+                        </span>
+                        <span class="title">FAQs</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/qcpl/Backend/logout.php">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
             </ul>
         </div>
 
-        <!-- Main Content -->
+        <!-- ========================= Main ==================== -->
         <div class="main">
             <div class="topbar">
-                <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
                 
                 <!-- Search Form -->
                 <form action="/qcpl/Backend/locator.php" method="GET">
@@ -132,7 +179,7 @@ if(isset($_SESSION['username'])) {
                         echo "<td>" . "<center>" . $row["received_date"] . "</td>";
                         echo "<td>" . "<center>" . $row["received_from"] . "</td>";
                         echo "<td>" . "<center>" . $row["type"] . "</td>";
-                        echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+                        echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
                         echo "<td>" . "<center>" . $row["status"] . "</td>";
                         echo "</tr>";
                     }

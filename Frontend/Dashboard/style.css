@@ -353,15 +353,11 @@ body {
 
 
 }
-.summary tr:hover {
-  background-color: #7f79b5;
-}
 
 .summary table{
   width: 90%;
   border: 2px solid;
 }
-
 
 .summary tr{
   height: 75px;
@@ -388,6 +384,10 @@ body {
   text-decoration: none;
 }
 
+#file:hover{
+  background-color: #7f79b5;
+}
+
 #types{
   text-transform: uppercase;
 }
@@ -395,7 +395,6 @@ body {
 #next:hover {
   background-color: #7f79b5;
 }
-
 
 #next{
   position: relative;
@@ -452,13 +451,13 @@ body {
 
 #info_username{
   position: relative;
-  top: 27px;
+  top: 20px;
   
 }
 #input_user{
   position: relative;
   border: 1px solid;
-  top: 23px;
+  top: 15px;
   left: 15px;
   height: 30px;
   width : 45.5%;
@@ -469,12 +468,12 @@ body {
 
 #info_pass{
   position: relative;
-  top: 50px; 
+  top: 55px; 
 }
 #input_pass{
   position: relative;
   border: 1px solid;
-  top: 48px;
+  top: 50px;
   left: 12px;
   height: 30px;
   width : 45.5%;
@@ -493,16 +492,19 @@ body {
   left: 12px;
   height: 30px;
   width : 41.7%;
+  text-transform: uppercase;
+  
 }
+
 
 
 #input_add{
   position: relative;
   border: 1px solid;
-  top: 120px;
+  top: 110px;
   left: 270px;
   height: 40px;
-  width : 20%;
+  width : 25%;
   background-color: #2a2185;
   color: #fff;
   border-radius: 10px;
@@ -527,6 +529,24 @@ body {
 
 }
 
+#info_division{
+  position: relative;
+  top: 40px;
+  
+}
+
+#division{
+  position: relative;
+  border: 1px solid;
+  top: 35px;
+  left: 39px;
+  height: 30px;
+  width : 45.5%;
+  padding-left: 5px;
+  text-transform: uppercase;
+
+}
+
 
 /* ================== USER TABLE ============== */
 
@@ -539,7 +559,7 @@ body {
 
 }
 
- td a:hover {
+.findaccount td a:hover {
   background-color: #7f79b5;
 
 
