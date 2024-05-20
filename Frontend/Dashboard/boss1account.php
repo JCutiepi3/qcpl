@@ -34,10 +34,8 @@
     
     $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, status FROM fileupload";
 
-    // Perform the query
     $result = $conn->query($sql);
 
-    // Check query results
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
         echo "<tr>";
