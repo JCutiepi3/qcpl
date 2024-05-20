@@ -60,49 +60,23 @@ if(isset($_SESSION['username'])) {
                 </li>
 
                 
-                <!-- Navigation Links -->
-            <li class="dropdown" onclick="toggleDropdown('dashboardDropdown')">
-            <a href="dash.php" class="dropbtn"><ion-icon name="apps"></ion-icon><span class="title">Dashboard</span></a>
-            <div class="dropdown-content" id="dashboardDropdown">
-            <a href="incoming.php">Incoming</a>
-            <a href="outgoing.php">Outgoing</a>
-            </div>
-            </li>
 
-            <script>
-            function toggleDropdown(dropdownId) {
-                var dropdown = document.getElementById(dropdownId);
-                dropdown.classList.toggle("show");
-            }
-
-            window.onclick = function(event) {
-                if (!event.target.matches('.dropbtn')) {
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    for (var i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            }
-            </script>
-
-            </li>
-                <li><a href="user.php"><ion-icon name="people"></ion-icon><span class="title">Users</span></a></li>
-                <li><a href="doc.html"><ion-icon name="add-circle"></ion-icon><span class="title">Upload Document</span></a></li>
-                <li><a href="adduser.html"><ion-icon name="person-add"></ion-icon><span class="title">Add User</span></a></li>
-                <li><a href="faqs.html"><ion-icon name="help"></ion-icon><span class="title">FAQs</span></a></li>
-                <li><a href="/qcpl/Backend/logout.php"><ion-icon name="log-out-outline"></ion-icon><span class="title">Sign Out</span></a></li>
                 
                 <li>
                     <a href="dash.php">
-                        <span class="icon">
+                       <span class="icon">
                             <ion-icon name="apps"></ion-icon>
                         </span>
                         <span class="title">Dashboard</span>
+
+                        <ul class="sub-menu">
+                            <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
+                            <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                        </ul>
                     </a>
                 </li>
+
+
 
                 <li>
                     <a href="user.php">

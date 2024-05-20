@@ -113,6 +113,10 @@ body {
  
 }
 
+.navigation .sub-menu .sub_dash a{
+  font-size: 1rem;
+}
+
 /* ------NAVIGATION HOVERS----- */
 
 .navigation ul li:hover,
