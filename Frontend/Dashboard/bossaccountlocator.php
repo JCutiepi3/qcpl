@@ -20,7 +20,7 @@ if(isset($_GET['locator_num'])){
   </select><label>Division: </label>
             <select name="division" id="division" required onchange="updateSubdivision()">
                 <option value="">Select Division</option>
-                <option value="readers">Readers' Services Division</option>
+                <option value="Readers Service Division">Readers Services Division</option>
                 <option value="technical">Technical Division</option>
                 <option value="library">Library Extension Division</option>
                 <option value="publication">Publication Division</option>
@@ -52,12 +52,12 @@ if(isset($_GET['locator_num'])){
                     subdivisionSelect.innerHTML = "";
 
                     switch (division) {
-                        case "readers":
+                        case "Readers Service Division":
                             subdivisionSelect.add(new Option("Reference Section"));
                             subdivisionSelect.add(new Option("Filipiniana, Local History and Archives Section"));
                             subdivisionSelect.add(new Option("Law Research Section"));
                             subdivisionSelect.add(new Option("Periodical Section"));
-                            subdivisionSelect.add(new Option("Children;s Section"));
+                            subdivisionSelect.add(new Option("Childrens Section"));
                             subdivisionSelect.add(new Option("Management Information System Section"));
                             break;
                         case "technical":
