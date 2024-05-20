@@ -22,9 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "UPDATE fileupload SET division='$division', section='$section', boss1_comment='$boss1_comment', status='$status' WHERE locator_num='$locator_num'";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Successfully Updated the Database!'); window.location='/qcpl/Frontend/Dashboard/bossaccount.php';</script>";
+        echo "<script>alert('Successfully Updated the Database!'); window.location='/qcpl/Frontend/Dashboard/boss1account.php';</script>";
     } else {
-        echo "<script>alert('Error updating record: " . $conn->error . "'); window.location='/qcpl/Frontend/Dashboard/bossaccount.php';</script>";
+        echo "<script>alert('Error updating record: " . $conn->error . "'); window.location='/qcpl/Frontend/Dashboard/boss1account.php';</script>";
     }
 
     $conn->close();

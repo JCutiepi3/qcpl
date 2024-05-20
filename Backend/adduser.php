@@ -27,6 +27,12 @@ if(isset($_POST["create"])){
         $query = "INSERT INTO admins (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
     } elseif ($account_type == "user") {
         $query = "INSERT INTO users (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
+    } 
+    elseif ($account_type == "boss1") {
+        $query = "INSERT INTO boss1 (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
+    } 
+    elseif ($account_type == "boss2") {
+        $query = "INSERT INTO boss2 (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
     } else {
         echo "<script>alert('Invalid account type!'); window.location='/qcpl/Frontend/Dashboard/dash.php';</script>";
         exit();

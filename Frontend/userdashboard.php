@@ -9,7 +9,7 @@
 
     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="Dashboard/imgs/logo.png">
-    <link rel="stylesheet" href="Dashboard/styleuser.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -101,17 +101,16 @@
                                 die("Connection failed: " . $conn->connect_error);
                             }
                             
-                            $owner = "user";
+                            $category = "outgoing";
                             
-                            $sql = "SELECT * FROM fileupload WHERE owner = '$owner'";
+                            $sql = "SELECT * FROM fileupload WHERE category = '$category'";
                             $result = $conn->query($sql);
                             
                             if ($result->num_rows > 0) { 
                                 echo "<table>";
-                                echo "<tr><th>Owner</th><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>Type</th><th>File</th></tr>";
+                                echo "<tr><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>Type</th><th>File</th><th>Status</th></tr>";
                                 while($row = $result->fetch_assoc()) {
                                     echo "<tr>";
-                                    echo "<td>" ."<center>". $row["owner"] . "</td>";
                                     echo "<td>" ."<center>". $row["division"] . "</td>";
                                     echo "<td>" ."<center>". $row["section"] . "</td>";
                                     echo "<td>" ."<center>". $row["category"] . "</td>";
@@ -120,6 +119,7 @@
                                     echo "<td>" ."<center>". $row["received_from"] . "</td>";
                                     echo "<td>" ."<center>". $row["type"] . "</td>";
                                     echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+                                    echo "<td>" . "<center>" . $row["status"] . "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</table>";
