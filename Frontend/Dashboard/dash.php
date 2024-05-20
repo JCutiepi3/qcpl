@@ -11,13 +11,12 @@ $conn = new mysqli($server, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
-
 $name = ""; 
-if(isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-    $sql = "SELECT name FROM users WHERE username = ?";
+if(isset($_SESSION['name'])) {
+    $name = $_SESSION['name'];
+    $sql = "SELECT name FROM admins WHERE name = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param("s", $name);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -27,7 +26,6 @@ if(isset($_SESSION['username'])) {
     }
     $stmt->close();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +143,7 @@ if(isset($_SESSION['username'])) {
                 if(!empty($name)) {
                     echo "<div class='welcome'>Welcome, $name!</div>";
                 } else {
-                    echo "<div class='welcome'>Welcome!</div>";
+                    echo "<div class='welcome'></div>";
                 }
                 ?>
                 <div class="user"><span class="icon"><ion-icon name="person"></ion-icon></span></div>
@@ -162,7 +160,6 @@ if(isset($_SESSION['username'])) {
 
             <div class="summary">
                 <?php
-                // Fetch documents from database
                 $rowsPerPage = 4;
                 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
                 $offset = ($page - 1) * $rowsPerPage;
@@ -199,7 +196,6 @@ if(isset($_SESSION['username'])) {
                     $nextPage = $page + 1;
                     echo "<a href='?page=$nextPage' id='next'>Next</a>";
                 } else {
-                    // No documents found, display alert and go back to displaying the first 4 rows
                     echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
                 }
 
