@@ -56,17 +56,13 @@ if(isset($_SESSION['name'])) {
                         <span class="title">Quezon City Public Library</span>
                     </a>
                 </li>
-
-                
-
                 
                 <li>
                     <a href="dash.php">
                        <span class="icon">
                             <ion-icon name="apps"></ion-icon>
                         </span>
-                        <span class="title">Dashboard</span>
-
+                        <span class="title">Dashboard <ion-icon id ="down_btn" name="caret-down-outline"></ion-icon></span>
                         <ul class="sub-menu">
                             <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
                             <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
