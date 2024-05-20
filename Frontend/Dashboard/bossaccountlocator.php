@@ -21,11 +21,11 @@ if(isset($_GET['locator_num'])){
             <select name="division" id="division" required onchange="updateSubdivision()">
                 <option value="">Select Division</option>
                 <option value="Readers Service Division">Readers Services Division</option>
-                <option value="technical">Technical Division</option>
-                <option value="library">Library Extension Division</option>
-                <option value="publication">Publication Division</option>
-                <option value="administrative">Administrative Services</option>
-                <option value="district">District Libraries Division</option>
+                <option value="Technical Division">Technical Division</option>
+                <option value="Library Extension Division">Library Extension Division</option>
+                <option value="Publication Division">Publication Division</option>
+                <option value="Administrative Services">Administrative Services</option>
+                <option value="District Libraries Division">District Libraries Division</option>
             </select>
             <br>
 
@@ -60,24 +60,24 @@ if(isset($_GET['locator_num'])){
                             subdivisionSelect.add(new Option("Childrens Section"));
                             subdivisionSelect.add(new Option("Management Information System Section"));
                             break;
-                        case "technical":
+                        case "Technical Division":
                             subdivisionSelect.add(new Option("Collection Development"));
                             subdivisionSelect.add(new Option("Cataloging Section"));
                             subdivisionSelect.add(new Option("Binding and Preservation Section"));
                             break;
-                        case "library":
+                        case "Library Extension Division":
                             subdivisionSelect.add(new Option("Recreational",));
                             subdivisionSelect.add(new Option("Outreach"));
                             subdivisionSelect.add(new Option("Puppeteers"));
                             break;
-                        case "publication":
+                        case "Publication Division":
                             subdivisionSelect.add(new Option("Publishing Section"));
                             subdivisionSelect.add(new Option("Marketing Section"));
                             break;
-                        case "administrative":
+                        case "Administrative Services":
                         subdivisionSelect.add(new Option("No Section"));
                             break;
-                        case "district":
+                        case "District Libraries Division":
                             subdivisionSelect.add(new Option("Branch Libraries"));
                         
                         default:
