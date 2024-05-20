@@ -47,7 +47,7 @@
         echo "<td>" . "<center>" . $row["received_from"] . "</td>";
         echo "<td>" . "<center>" . $row["type"] . "</td>";
         echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
-        echo "<td><a href='bossaccountlocator.php?locator_num=" . $row["locator_num"] . "' target='_blank'>UPDATE</a></td>";
+        echo "<td><a href='bossaccountlocator.php?locator_num=" . $row["locator_num"] . "' target='_self'>UPDATE</a></td>";
         echo "<td>" . "<center>" . $row["status"] . "</td>";
         echo "</tr>";
       }
