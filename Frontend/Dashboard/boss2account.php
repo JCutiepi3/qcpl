@@ -1,26 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View and Submit</title>
-</head>
-<body>
-    <!-- View Button -->
-    <button onclick="viewDocument()">View Document</button>
-
-    <!-- Comment Form -->
-    <form action="submit.php" method="post">
-        <!-- Comment Box (required) -->
-        <textarea id="commentBox" name="comment" rows="4" cols="50" placeholder="Enter your comment here..." required></textarea>
-
-        <!-- Submit Button -->
-        <br>
-        <input type="submit" value="Submit">
-    </form><!DOCTYPE html>
 <html>
 <head>
-  <title>Boss 1</title>
+  <title>Boss 2</title>
 </head>
 <body>
 
@@ -33,7 +14,6 @@
       <th>Received Date</th>
       <th>Received From</th>
       <th>Type</th>
-      <th>File</th>
       <th>Comment</th>
       <th>Status</th>
     </tr>
@@ -63,8 +43,7 @@
         echo "<td>" . "<center>" . $row["received_date"] . "</td>";
         echo "<td>" . "<center>" . $row["received_from"] . "</td>";
         echo "<td>" . "<center>" . $row["type"] . "</td>";
-        echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
-        echo "<td><a href='bossaccountlocator.php?locator_num=" . $row["locator_num"] . "' target='_self'>UPDATE</a></td>";
+        echo "<td><a href='boss2accountlocator.php?locator_num=" . $row["locator_num"] . "' target='_self'>ADD</a></td>";
         echo "<td>" . "<center>" . $row["status"] . "</td>";
         echo "</tr>";
       }
