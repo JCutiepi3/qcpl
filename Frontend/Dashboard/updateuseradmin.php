@@ -36,24 +36,19 @@
         $name = $_POST['name'];
         $username = $_POST['username'];
         $password = $_POST['password'];
-    
-        // Server-side validation for password length
-        if (strlen($password) < 8) {
-            die("Password must be at least 8 characters long.");
-        }
-    
+
         // Update user details in the database
         $update_user_query = "UPDATE users SET name=?, username=?, password=? WHERE id=?";
         $update_user_stmt = $conn->prepare($update_user_query);
         $update_user_stmt->bind_param("sssi", $name, $username, $password, $id);
         $update_user_result = $update_user_stmt->execute();
-    
+
         // Update admin details in the database
         $update_admin_query = "UPDATE admins SET name=?, username=?, password=? WHERE id=?";
         $update_admin_stmt = $conn->prepare($update_admin_query);
         $update_admin_stmt->bind_param("sssi", $name, $username, $password, $id);
         $update_admin_result = $update_admin_stmt->execute();
-    
+
         // Check if query executed successfully
         if (!$update_user_result && !$update_admin_result) {
             die("Update failed: " . $conn->error);
@@ -76,8 +71,7 @@
     </div>
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" name="password" class="form-control" minlength="8" value="<?php echo $row['password']; ?>">
-        <!-- Add minlength="8" to enforce minimum 8 characters -->
+        <input type="text" name="password" class="form-control" value="<?php echo $row['password']; ?>">
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
 </form>
