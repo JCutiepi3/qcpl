@@ -57,18 +57,21 @@ if(isset($_SESSION['name'])) {
                     </a>
                 </li>
                 
-                <li>
-                    <a href="dash.php">
-                       <span class="icon">
-                            <ion-icon name="apps"></ion-icon>
-                        </span>
-                        <span class="title">Dashboard <ion-icon id ="down_btn" name="caret-down-outline"></ion-icon></span>
-                        <ul class="sub-menu">
-                            <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
-                            <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
-                        </ul>
+                <div class="dropdown">
+                    <li>
+                    <a href="dash.php" class="dropdown-toggle">
+                    <span class="icon">
+                    <ion-icon name="apps"></ion-icon>
+                    </span>
+                    <span class="title">Dashboard <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                </li>
+                    </li>
+                    
+                    <ul class="dropdown-menu">
+                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
+                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                    </ul>
+                </div>
 
 
 

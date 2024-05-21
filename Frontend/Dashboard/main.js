@@ -21,22 +21,15 @@ toggle.onclick = function () {
   main.classList.toggle("active");
 };
 
-function toggleDropdown(dropdownId) {
-  var dropdown = document.getElementById(dropdownId);
-  dropdown.classList.toggle("show");
-}
+const downBtn = document.getElementById('down_btn');
+const dropdownMenu = document.querySelector('.dropdown-menu');
 
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      for (var i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-              openDropdown.classList.remove('show');
-          }
-      }
-  }
-}
+downBtn.addEventListener('click', function() {
+  const dropdown = this.closest('.dropdown'); // Find closest dropdown container
+  dropdown.classList.toggle('show');
+});
+
+
 
 
 
