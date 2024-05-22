@@ -99,6 +99,12 @@
                 $sql_admins = "SELECT * FROM admins";
                 $result_admins = $conn->query($sql_admins);
 
+                $sql_boss1 = "SELECT * FROM boss1";
+                $result_boss1 = $conn->query($sql_boss1);
+
+                $sql_boss2 = "SELECT * FROM boss2";
+                $result_boss2 = $conn->query($sql_boss2);
+
                 if ($result_admins->num_rows > 0) {
                     echo "<h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br>Accounts</h2>";
                     echo "<h2>ADMINS</h2>";
@@ -113,9 +119,8 @@
                             echo "<td><center>" . $row["division"] . "</td>";
                             echo "<td><center>" . $row["username"] . "</td>";
                             echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                            echo "<td><center><a href='javascript:void(0);' onclick='confirmUpdate(" . $row["id"] . ")'>Edit</a></td>";
-                            echo "<td><center><a href='javascript:void(0);' onclick='confirmDelete(" . $row["id"] . ")'>Delete</a></td>";
-
+                            echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+                            echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
                             echo "</tr>";
                             $rowCount++;
                         }
@@ -141,7 +146,49 @@
                             $rowCount++;
                         }
                     }
-                    echo "</table>";
+                     echo "</table>";
+                    if ($result_boss1->num_rows > 0) {
+                        echo "<h2>BOSS 1</h2>";
+                        echo "<table>";
+                        echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
+                        $rowCount = 0;
+                        while ($row = $result_boss1->fetch_assoc()) {
+                            if ($rowCount < 4) {
+                                echo "<tr>";
+                                echo "<td><center>" . $row["id"] . "</td>";
+                                echo "<td><center>" . $row["name"] . "</td>";
+                                echo "<td><center>" . $row["division"] . "</td>";
+                                echo "<td><center>" . $row["username"] . "</td>";
+                                echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                                echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+                                echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
+                                echo "</tr>";
+                                $rowCount++;
+                            }
+                        }
+                        echo "</table>";
+                    }
+                    if ($result_boss2->num_rows > 0) {
+                        echo "<h2>BOSS 2</h2>";
+                        echo "<table>";
+                        echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
+                        $rowCount = 0;
+                        while ($row = $result_boss2->fetch_assoc()) {
+                            if ($rowCount < 4) {
+                                echo "<tr>";
+                                echo "<td><center>" . $row["id"] . "</td>";
+                                echo "<td><center>" . $row["name"] . "</td>";
+                                echo "<td><center>" . $row["division"] . "</td>";
+                                echo "<td><center>" . $row["username"] . "</td>";
+                                echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                                echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+                                echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
+                                echo "</tr>";
+                                $rowCount++;
+                            }
+                        }
+                        echo "</table>";
+                    }
                 }
                 $conn->close();
                 ?>
@@ -162,12 +209,13 @@
                 window.location.href = 'deleteuseradmin.php?id=' + id;
             }
         }
-
         function confirmUpdate(id) {
-            if (confirm("Are you sure you want to update?")) {
-                window.location.href = 'updateuseradmin.php?id=' + id;
-            }
+        if (confirm("Are you sure you want to update?")) {
+            window.location.href = 'updateuseradmin.php?id=' + id; // Redirect to updateuseradmin.php with ID
         }
+    }
+</script>
+
     </script>
 
     <?php
