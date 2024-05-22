@@ -17,6 +17,7 @@
       <th>File</th>
       <th>Comment</th>
       <th>Status</th>
+      <th>Boss 2 Comment</th>
     </tr>
 
     <?php
@@ -31,8 +32,13 @@
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
+    if (!isset($_SESSION['name'])) {
+      // Redirect to login page if user is not logged in
+      header("Location: ../login.html");
+      exit();
+  }
     
-    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, status FROM fileupload";
+    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, status, boss2_comment FROM fileupload";
 
     $result = $conn->query($sql);
 
@@ -47,6 +53,7 @@
         echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
         echo "<td><a href='bossaccountlocator.php?locator_num=" . $row["locator_num"] . "' target='_self'>UPDATE</a></td>";
         echo "<td>" . "<center>" . $row["status"] . "</td>";
+        echo "<td>" . "<center>" . $row["boss2_comment"] . "</td>";
         echo "</tr>";
       }
     } else {

@@ -30,6 +30,11 @@
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
+    if (!isset($_SESSION['name'])) {
+      // Redirect to login page if user is not logged in
+      header("Location: ../login.html");
+      exit();
+  }
     
     $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, status FROM fileupload";
 

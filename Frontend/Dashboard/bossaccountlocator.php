@@ -86,6 +86,7 @@ if(isset($_GET['locator_num'])){
                 }
             </script>
   <br>
+
   <label for="comment">Comment:</label><br>
   <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
   <br><br>
@@ -101,9 +102,52 @@ if(isset($_GET['locator_num'])){
 <label for="completed">Completed</label><br>
 
 
+
   <input type="submit" name="submit" value="Submit">
 </form>
 
 </body>
 </html>
 
+<table>
+    <tr>
+      <th>Boss 2 Comment</th>
+    </tr>
+
+    <?php 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "qcpl";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+if (!isset($_SESSION['name'])) {
+    // Redirect to login page if user is not logged in
+    header("Location: ../login.html");
+    exit();
+}
+
+$sql = "SELECT boss2_comment, status FROM fileupload"; // Idagdag ang status sa iyong query
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        if (isset($row["status"]) && $row["status"] == "pending") { // Siguraduhing mayroong "status" at ito ay "pending" bago ma-display ang boss2_comment
+            echo "<td>" . "<center>" . $row["boss2_comment"] . "</td>";
+        } else {
+            echo "<td>No comment available for this row.</td>";
+        }
+        echo "</tr>";
+    }
+} else {
+    echo "<tr><td colspan='9'>No records found.</td></tr>";
+}
+
+$conn->close();
+?>

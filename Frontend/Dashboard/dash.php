@@ -11,22 +11,36 @@ $conn = new mysqli($server, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
-$name = ""; 
-if(isset($_SESSION['name'])) {
-    $name = $_SESSION['name'];
-    $sql = "SELECT name FROM admins WHERE name = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $name);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $name = $row['name'];
-    }
-    $stmt->close();
+if (!isset($_SESSION['name'])) {
+    // Redirect to login page if user is not logged in
+    header("Location: ../login.html");
+    exit();
 }
+
+$name = $_SESSION['name'];
+
+// Validate user against database
+$sql = "SELECT name FROM admins WHERE name = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $name);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if($result->num_rows === 0) {
+    // If user is not found in the database, invalidate session and redirect to login page
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
+
+// User is validated, proceed with displaying the welcome message
+$row = $result->fetch_assoc();
+$name = $row['name'];
+
+$stmt->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,6 +86,8 @@ if(isset($_SESSION['name'])) {
                          <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
                     </ul>
                 </div>
+
+
 
                 <li>
                     <a href="user.php">

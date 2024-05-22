@@ -92,6 +92,11 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
+                if (!isset($_SESSION['name'])) {
+                    // Redirect to login page if user is not logged in
+                    header("Location: ../login.html");
+                    exit();
+                }
 
                 $sql_users = "SELECT * FROM users";
                 $result_users = $conn->query($sql_users);
@@ -224,6 +229,9 @@
     }
     ?>
     
+    
 </body>
 
 </html>
+
+
