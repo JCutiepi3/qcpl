@@ -111,29 +111,29 @@
                 </div>
             <form action="/qcpl/Backend/fileupload.php" method="POST" enctype="multipart/form-data">
 
-                <label>Category: </label>
-                <input type="radio" name="category" value="Incoming" required>
-                <label>Incoming</label>
-                <input type="radio" name="category" value="Outgoing" required>
-                <label>Outgoing</label> <br>
+                <label id = "lb_cat">Category: </label>
+                <input id = "in_in" type="radio" name="category" value="Incoming" required>
+                <label id = "lb_in">Incoming</label>
+                <input id = "in_out" type="radio" name="category" value="Outgoing"  required>
+                <label id = "lb_out">Outgoing</label> <br>
 
-                <label >Locator Number: </label>
-                <input type="number" name="locator_num" required><br>
+                <label id = "lb_loc">Locator Number: </label>
+                <input id = "in_loc" type="number" name="locator_num" required><br>
 
-                <label>Received Date: </label>
-                <input type="datetime-local" name="received_date" required><br>
+                <label id = "lb_rec">Received Date: </label>
+                <input id = "in_rec" type="datetime-local" name="received_date" required><br>
             
-                <label for="">Received From: </label>
-                <input type="text" name="received_from" required><br>
+                <label id = "lb_from" for="">Received From: </label>
+                <input id = "in_from" type="text" name="received_from" required><br>
 
-                <label for="">Subject: </label>
-                <input type="text" name="subject" required><br>
+                <label id = "lb_sub" for="">Subject: </label>
+                <input id = "in_sub" type="text" name="subject" required><br>
 
-                <label for="">Description: </label>
-                <input type="text" name="description" required><br>
+                <label id = "lb_dec" for="">Description: </label>
+                <input id = "in_dec" type="text" name="description" required><br>
 
-                <label>File Type: </label>
-                <select name="type" id="type" required>
+                <label id = "lb_filetype">File Type: </label>
+                <select id = "in_sel" name="type" id="type" required>
                     <option value="">Select Document Format</option>
                     <option value="DOCS">Document</option>
                     <option value="PDF">Portable Document Format</option>
@@ -141,8 +141,8 @@
                 </select>
                 <br>    
 
-                <input type="file" name="fileName"><br>
-                <input type="submit" name="upload" value="Submit">
+                <input id = "in_file" type="file" name="fileName"><br>
+                <input id = "in_submit" type="submit" name="upload" value="Submit">
             </form>
         </div>
                     
