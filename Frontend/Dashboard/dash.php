@@ -73,8 +73,6 @@ if(isset($_SESSION['name'])) {
                     </ul>
                 </div>
 
-
-
                 <li>
                     <a href="user.php">
                         <span class="icon">
