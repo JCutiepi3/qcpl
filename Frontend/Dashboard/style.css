@@ -105,6 +105,12 @@ body {
 
 }
 
+.dorpdown .dropdown-menu .sub_dash {
+  position: relative;
+  left: 80px;
+  top: 110px;
+}
+
 
 .navigation ul li a .img img {
   width: 100%;
@@ -317,8 +323,9 @@ body {
 /* ================== ADMIN/USER  TEXT============== */
 .upload_file form {
   position: relative;
-  top: -1000px;
+  top: -1010px;
   left: 300px;
+  color: #2a2185;
 }
 
 .info_box2{
@@ -331,6 +338,153 @@ body {
   border: 2px solid #2a2185;
 
 }
+
+.upload_file label{
+  position: relative;
+  font-weight: bolder;
+  top:50px;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+}
+
+.upload_file input{
+  position: relative;
+  top:50px;
+  left: 50px;
+}
+
+
+#lb_in{
+  position: relative;
+  left: 150px;
+  font-size: 1.1rem;
+}
+#in_in{
+  position: relative;
+  left: 11.6%;
+}
+
+#lb_out{
+  position: relative;
+  left: 180px;
+  font-size: 1.1rem;
+}
+#in_out{
+  position: relative;
+  left: 14.5%;
+}
+
+#lb_loc{
+  position: relative;
+  top: 65px;
+}
+#in_loc{
+  position: relative;
+  top: 63px;
+  left: 20px;
+  width: 30%;
+  height: 25px;
+  border: 1px solid;
+
+}
+
+#lb_rec{
+  position: relative;
+  top: 80px;
+}
+#in_rec{
+  position: relative;
+  top: 78px;
+  left: 52px;
+  width: 29.9%;
+  height: 25px;
+  border: 1px solid;
+}
+
+
+#lb_from{
+  position: relative;
+  top: 95px;
+}
+#in_from{
+  position: relative;
+  top: 93px;
+  left: 45px;
+  width: 29.9%;
+  height: 25px;
+  border: 1px solid;
+}
+
+
+#lb_sub{
+  position: relative;
+  top: 110px;
+}
+#in_sub{
+  position: relative;
+  top: 107px;
+  left: 123.5px;
+  width: 29.8%;
+  height: 25px;
+  border: 1px solid;
+}
+
+
+#lb_dec{
+  position: relative;
+  top: 125px;
+}
+#in_dec{
+  position: relative;
+  top: 123px;
+  left: 74px;
+  width: 29.7%;
+  height: 25px;
+  border: 1px solid;
+}
+
+
+#lb_filetype{
+  position: relative;
+  top: 140px;
+}
+#in_sel{
+  position: relative;
+  top: 138px;
+  left: 112px;
+  width: 29.7%;
+  height: 25px;
+  border: 1px solid;
+}
+
+#in_file{
+  position: relative;
+  top: 150px;
+  left: 222px;
+  width: 30%;
+}
+
+#in_submit{
+  position: relative;
+  top: 195px;
+  left: 200px;
+  width: 20%;
+  height: 40px;
+  background-color: #2a2185;
+  color: #fff;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: bolder;
+  border-radius: 10px;
+  border: 0px;
+}
+#in_submit:hover{
+  background-color: #7f79b5;
+}
+
+
+
+
 
 /* ================== SUMMARY TABLE ============== */
 
@@ -346,28 +500,39 @@ body {
 
 .summary table{
   width: 90%;
-  border: 2px solid;
+  border-collapse: collapse; 
+  
+
+  
 }
 
 .summary tr{
   height: 75px;
+
   
 }
 
 .summary th{
   background-color: #2a2185;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-align: center;
   color: #fff;
   font-weight: 100px;
   height: 40px;
   font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
+  
+
 }
 
 .summary td{
   font-size: 1rem;
   font-weight: bold;
-  border-style: none;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
+
 }
 
 .summary a{
@@ -376,42 +541,152 @@ body {
 
 #file:hover{
   background-color: #7f79b5;
+
 }
 
 #types{
   text-transform: uppercase;
 }
 
-#next:hover {
-  background-color: #7f79b5;
-}
-
 #next{
-  position: relative;
+  position: fixed;
   display: block;
-  top: 50px;
-  left: 500px;
-  color: #222;
+  top: 595px;
+  left: 1330px;
   text-decoration: none;
-  background-color: #2a2185;
-  color: #fff;
+  color: #2a2185;
   width: 150px;
   height: 50px;
-  padding-top: 10px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  font-weight: bolder;
-  border-radius: 10px;
+  font-size: 3rem;
 
 }
 
+#prev{
+  position: fixed;
+  display: block;
+  top: 595px;
+  left: 1260px;
+  text-decoration: none;
+  color: #2a2185;
+  width: 150px;
+  height: 50px;
+  font-size: 3rem;
+  
 
+}
+
+#status{
+text-transform: uppercase;
+}
+#category{
+  text-transform: uppercase;
+}
+
+
+/* ================== INCOMING ============== */
+
+  .incoming{
+    position: relative;
+    top: 50px;
+    left: 40px;
+    width: 100%;
+    text-align: center;
+  
+  }
+  
+  .incoming table{
+    width: 94%;
+    border-collapse: collapse; 
+
+  }
+  
+  .incoming tr{
+    height: 75px;
+    
+  }
+  
+  .incoming th{
+    background-color: #2a2185;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #fff;
+    font-weight: 100px;
+    height: 40px;
+    font-family: "Bitter", serif;
+    text-transform:uppercase ;
+    border: 1.5px solid;
+    border-color: white;
+  }
+  
+  .incoming td{
+    font-size: 1rem;
+    font-weight: bold;
+    border-bottom: 3px solid;
+    border-color: #2a2185;
+  }
+  
+  .incoming a{
+    text-decoration: none;
+  }
+
+
+
+/* ================== OUTGOING ============== */
+
+.outgoing{
+  position: relative;
+  top: 50px;
+  left: 40px;
+  width: 100%;
+  text-align: center;
+
+
+}
+
+.outgoing table{
+  width: 94%;
+  border-collapse: collapse; 
+
+}
+
+.outgoing tr{
+  height: 75px;
+  
+}
+
+.outgoing th{
+  background-color: #2a2185;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
+}
+
+.outgoing td{
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
+}
+
+.outgoing a{
+  text-decoration: none;
+}
+ 
+  
 /* ================== ADD USER ============== */
 
 .add_user form{
   position: relative;
-  top: -830px;
+  top: -845px;
   left: 230px;
+  color: #2a2185;
+  font-weight: bolder;
 
 }
 
@@ -428,6 +703,7 @@ body {
   top: 0px;
   
 }
+
 #input_name{
   position: relative;
   border: 1px solid;
@@ -437,7 +713,6 @@ body {
   width : 45.5%;
   padding-left: 5px;
 }
-
 
 #info_username{
   position: relative;
@@ -454,7 +729,6 @@ body {
   padding-left: 5px;
 
 }
-
 
 #info_pass{
   position: relative;
@@ -486,8 +760,6 @@ body {
   
 }
 
-
-
 #input_add{
   position: relative;
   border: 1px solid;
@@ -500,8 +772,7 @@ body {
   border-radius: 10px;
   font-size: 1.3rem;
   text-transform: uppercase;
-
-
+  font-weight: bolder;
 }
 
 #input_add:hover{
@@ -597,15 +868,22 @@ body {
 .findaccount td a{
   text-decoration: none;
 }
-/* ================== SLIDER ============== */
 
+#ad_edit:hover{
+  background-color: #7f79b5;
+}
+#ad_delete:hover{
+  background-color: #7f79b5;
+}
 
+#us_edit:hover{
+  background-color: #7f79b5;
+}
+#us_delete:hover{
+  background-color: #7f79b5;
+}
 
-
-
-
-
-/* ================== STATUS ============== */
+/* ================== STATUS ============== 
 .status.delivered {
   color: var(--black1);
   font-size: 1rem;
@@ -630,6 +908,10 @@ body {
   font-weight: 500;
   text-align: center;
 }
+*/
+
+
+
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {

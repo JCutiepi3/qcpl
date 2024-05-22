@@ -57,22 +57,22 @@ if(isset($_SESSION['name'])) {
                     </a>
                 </li>
                 
-                <div class="dropdown">
-                    <li>
+   
+                <li>
                     <a href="dash.php" class="dropdown-toggle">
                     <span class="icon">
                     <ion-icon name="apps"></ion-icon>
                     </span>
                     <span class="title">Dashboard <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    </li>
-                    
-                    <ul class="dropdown-menu">
+
                          <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
-                    </ul>
-                </div>
+                    
 
+                    
+                </li>
+                
 
 
                 <li>
@@ -142,6 +142,7 @@ if(isset($_SESSION['name'])) {
                 </form>
 
                 <!-- Welcome Message -->
+                
                 <?php
                 if(!empty($name)) {
                     echo "<div class='welcome'>Welcome, $name!</div>";
@@ -181,26 +182,28 @@ if(isset($_SESSION['name'])) {
                         echo "<tr>";
                         echo "<td>" . "<center>" . $row["division"] . "</td>";
                         echo "<td>" . "<center>" . $row["section"] . "</td>";
-                        echo "<td>" . "<center>" . $row["category"] . "</td>";
+                        echo "<td id ='category'>" . "<center>" . $row["category"] . "</td>";
                         echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
                         echo "<td>" . "<center>" . $row["received_date"] . "</td>";
                         echo "<td>" . "<center>" . $row["received_from"] . "</td>";
                         echo "<td>" . "<center>" . $row["type"] . "</td>";
                         echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
-                        echo "<td>" . "<center>" . $row["status"] . "</td>";
+                        echo "<td id ='status'>" . "<center>" . $row["status"] . "</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
 
                     $prevPage = $page - 1;
                     if ($prevPage > 0) {
-                        echo "<a href='?page=$prevPage' id='prev'>Previous</a>";
+                        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
                     }
                     $nextPage = $page + 1;
-                    echo "<a href='?page=$nextPage' id='next'>Next</a>";
+                    echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
                 } else {
                     echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
                 }
+
+                
 
                 $stmt->close();
                 $conn->close();

@@ -46,56 +46,81 @@ if(isset($_SESSION['username'])) {
 
 <body>
 
-    <!-- Navigation -->
-    <div class="container">
+  <!-- =============== Navigation ================ -->
+  <div class="container">
         <div class="navigation">
             <ul>
-                <!-- Logo and Title -->
                 <li>
                     <a href="#">
                         <span class="img">
-                            <img src="imgs/logo.png">
+                            <img src="imgs/logo.png" >
                         </span>
                         <span class="title">Quezon City Public Library</span>
                     </a>
                 </li>
-
                 
-                <!-- Navigation Links -->
-            <li class="dropdown" onclick="toggleDropdown('dashboardDropdown')">
-            <a href="dash.php" class="dropbtn"><ion-icon name="apps"></ion-icon><span class="title">Dashboard</span></a>
-            <div class="dropdown-content" id="dashboardDropdown">
-            <a href="incoming.php">Incoming</a>
-            <a href="outgoing.php">Outgoing</a>
-            </div>
-            </li>
+   
+                <li>
+                    <a href="dash.php" class="dropdown-toggle">
+                    <span class="icon">
+                    <ion-icon name="apps"></ion-icon>
+                    </span>
+                    <span class="title">Dashboard <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
 
-            <script>
-            function toggleDropdown(dropdownId) {
-                var dropdown = document.getElementById(dropdownId);
-                dropdown.classList.toggle("show");
-            }
+                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
+                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                    
 
-            window.onclick = function(event) {
-                if (!event.target.matches('.dropbtn')) {
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    for (var i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            }
-            </script>
-
-            </li>
-                <li><a href="user.php"><ion-icon name="people"></ion-icon><span class="title">Users</span></a></li>
-                <li><a href="doc.html"><ion-icon name="add-circle"></ion-icon><span class="title">Upload Document</span></a></li>
-                <li><a href="adduser.html"><ion-icon name="person-add"></ion-icon><span class="title">Add User</span></a></li>
-                <li><a href="faqs.html"><ion-icon name="help"></ion-icon><span class="title">FAQs</span></a></li>
-                <li><a href="/qcpl/Backend/logout.php"><ion-icon name="log-out-outline"></ion-icon><span class="title">Sign Out</span></a></li>
+                    
+                </li>
                 
+
+
+                <li>
+                    <a href="user.php">
+                        <span class="icon">
+                            <ion-icon name="people"></ion-icon>
+                        </span>
+                        <span class="title">Users</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="doc.html">
+                        <span class="icon">
+                            <ion-icon name="add-circle"></ion-icon>
+                        </span>
+                        <span class="title">Upload Document</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="adduser.html">
+                        <span class="icon">
+                            <ion-icon name="person-add"></ion-icon>
+                        </span>
+                        <span class="title" >Add User</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="faqs.html">
+                        <span class="icon">
+                            <ion-icon name="help"></ion-icon>
+                        </span>
+                        <span class="title">FAQs</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/qcpl/Backend/logout.php">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
             </ul>
             
         </div>
@@ -131,7 +156,10 @@ if(isset($_SESSION['username'])) {
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>SUMMARY</h2>
+                        <h2>INCOMING</h2>
+
+
+            <div class ="incoming">
                         <?php
             // Fetch documents from database
             $rowsPerPage = 4;
@@ -153,31 +181,32 @@ if(isset($_SESSION['username'])) {
                     echo "<tr>";
                     echo "<td>" . "<center>" . $row["division"] . "</td>";
                     echo "<td>" . "<center>" . $row["section"] . "</td>";
-                    echo "<td>" . "<center>" . $row["category"] . "</td>";
+                    echo "<td id = 'category'>" . "<center>" . $row["category"] . "</td>";
                     echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
                     echo "<td>" . "<center>" . $row["received_date"] . "</td>";
                     echo "<td>" . "<center>" . $row["received_from"] . "</td>";
                     echo "<td>" . "<center>" . $row["type"] . "</td>";
-                    echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
-                    echo "<td>" . "<center>" . $row["status"] . "</td>";
+                    echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+                    echo "<td id = 'status'>" . "<center>" . $row["status"] . "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
 
                 $prevPage = $page - 1;
                 if ($prevPage > 0) {
-                    echo "<a href='?page=$prevPage' id='prev'>Previous</a>";
+                    echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
                 }
                 $nextPage = $page + 1;
-                echo "<a href='?page=$nextPage' id='next'>Next</a>";
+                echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
             } else {
-                // No documents found, display alert and go back to displaying the first 4 rows
                 echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
             }
+
 
             $stmt->close();
             $conn->close();
             ?>
+            </div>
                     </div>
                 </div>
             </div>
