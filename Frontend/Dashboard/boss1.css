@@ -27,6 +27,7 @@ body {
 .container {
   position: relative;
   width: 100%;
+
 }
 
 /* =============== Navigation ================ */
@@ -344,7 +345,7 @@ tr:hover {
 
 .table ion-icon {
   position: relative;
-  width: 40px;
+  width: 55px;
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
@@ -416,3 +417,6 @@ tr:hover {
   margin-top: 20px;
   visibility: hidden;
 }
+
+
+

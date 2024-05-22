@@ -28,7 +28,7 @@
                 </li>
                 
                 <li>
-                    <a href="#">
+                    <a href="dash.php">
                         <span class="icon">
                             <ion-icon name="documents-outline"></ion-icon>
                         </span>
@@ -83,64 +83,51 @@
     <table class="table_th">
         <thead>
             <tr class="bg1">
-                <th class="px-4 py-2">File</th>
+                <th class="px-4 py-2">Owner</th>
+                <th class="px-4 py-2">Division</th>
+                <th class="px-4 py-2">Section</th>
                 <th class="px-4 py-2">Locator Number</th>
                 <th class="px-4 py-2">Receive Date</th>
                 <th class="px-4 py-2">Receive From</th>
                 <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2"> Comment </th>s
+                <td class="px-4 py-2">Comment</td>
             </tr>
         </thead>
         <tbody>
-            <tbody id="table-body">
-              <tr class="clickable-row" data-row-id="1">
-                <td class="px-4 py-2">View</td>
+            <tr class="bg2" onclick="alert('Clicked John Doe')">
+                <td class="px-4 py-2">John Doe</td>
+                <td class="px-4 py-2">Finance</td>
+                <td class="px-4 py-2">Accounts</td>
                 <td class="px-4 py-2">12345</td>
                 <td class="px-4 py-2">2022-01-01</td>
                 <td class="px-4 py-2">Supplier A</td>
                 <td class="px-4 py-2">Pending</td>
-                <td class="px-4 py-2"><a href="C:\xampps\htdocs\qcpl\Frontend\comment.html" class="comments-button">Comments</a></td>
+                <td class="px-4 py-2">view</td>
+
+            
             </tr>
-            <tbody id="table-body">
-              <tr class="clickable-row" data-row-id="2">
-                <td class="px-4 py-2">View</td>
+            <tr class="bg3" onclick="alert('Clicked Jane Smith')">
+                <td class="px-4 py-2">Jane Smith</td>
+                <td class="px-4 py-2">Marketing</td>
+                <td class="px-4 py-2">Advertising</td>
                 <td class="px-4 py-2">54321</td>
                 <td class="px-4 py-2">2022-01-15</td>
                 <td class="px-4 py-2">Supplier B</td>
                 <td class="px-4 py-2">Approved</td>
-                <td class="px-4 py-2"><a href="C:\xampps\htdocs\qcpl\Frontend\comment.html" class="comments-button">Comments</a></td>
+                <td class="px-4 py-2">view</td>
             </tr>
         </tbody>
-        <td > <ion-icon name="arrow-forward-circle-sharp"></ion-icon> </td>
+        <tr class="bg1">
+    <td class="next-icon">
+        <ion-icon name="arrow-forward-circle-sharp"></ion-icon>
+    </td>
+</tr>
     </table>
 </div>
             </div>
                
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
-
-    <script>// add hovered class to selected list item
-let list = document.querySelectorAll(".navigation li");
-
-function activeLink() {
-  list.forEach((item) => {
-    item.classList.focus("hovered")
-
-  });
-  this.classList.add("hovered");
-}
-
-list.forEach((item) => item.addEventListener("mouseover", activeLink));
-
-// Menu Toggle
-let toggle = document.querySelector(".toggle");
-let navigation = document.querySelector(".navigation");
-let main = document.querySelector(".main");
-
-toggle.onclick = function () {
-  navigation.classList.toggle("active");
-  main.classList.toggle("active");
-};</script>
 
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
