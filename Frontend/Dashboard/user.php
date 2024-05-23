@@ -24,12 +24,19 @@
                         <span class="title">Quezon City Public Library</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="dash.php">
-                        <span class="icon"><ion-icon name="apps"></ion-icon></span>
+                        <span class="icon"><ion-icon name="apps"></ion-icon></ion-icon></span>
                         <span class="title">Dashboard</span>
+                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
+
+                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
+                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
                     </a>
                 </li>
+                
                 <li>
                     <a href="user.php">
                         <span class="icon"><ion-icon name="people"></ion-icon></span>
@@ -55,12 +62,7 @@
                         <span class="title">Add User</span>
                     </a>
                 </li>
-                <li>
-                    <a href="faqs.html">
-                        <span class="icon"><ion-icon name="help"></ion-icon></span>
-                        <span class="title">FAQs</span>
-                    </a>
-                </li>
+
                 <li>
                     <a href="/qcpl/Backend/logout.php">
                         <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
@@ -126,12 +128,125 @@
                     echo "<td><a href='deleteuser.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Delete</a></td>";
                     echo "</tr>";
                 }
+<<<<<<< Updated upstream
                 echo "</table>";
             } else {
                 echo "<p>No accounts found.</p>";
             }
             $conn->close();
             ?>
+=======
+                // if (!isset($_SESSION['name'])) {
+                //     // Redirect to login page if user is not logged in
+                //     header("Location: ../login.html");
+                //     exit();
+                // }
+
+                $sql_users = "SELECT * FROM users";
+                $result_users = $conn->query($sql_users);
+
+                $sql_admins = "SELECT * FROM admins";
+                $result_admins = $conn->query($sql_admins);
+
+                $sql_boss1 = "SELECT * FROM boss1";
+                $result_boss1 = $conn->query($sql_boss1);
+
+                $sql_boss2 = "SELECT * FROM boss2";
+                $result_boss2 = $conn->query($sql_boss2);
+
+                if ($result_admins->num_rows > 0) {
+                    echo "<h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br>Accounts</h2>";
+                    echo "<h2>ADMINS</h2>";
+                    echo "<table>";
+                    echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
+                    $rowCount = 0;
+                    while ($row = $result_admins->fetch_assoc()) {
+                        if ($rowCount < 4) {
+                            echo "<tr>";
+                            echo "<td><center>" . $row["id"] . "</td>";
+                            echo "<td><center>" . $row["name"] . "</td>";
+                            echo "<td><center>" . $row["division"] . "</td>";
+                            echo "<td><center>" . $row["username"] . "</td>";
+                            echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                            echo "<td  id = 'ad_edit'><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+                            echo "<td  id = 'ad_delete'><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
+                            echo "</tr>";
+                            $rowCount++;
+                        }
+                    }
+                    echo "</table>";
+                }
+                if ($result_users->num_rows > 0) {
+                    echo "<h2>USERS</h2>";
+                    echo "<table>";
+                    echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
+                    $rowCount = 0;
+                    while ($row = $result_users->fetch_assoc()) {
+                        if ($rowCount < 4) {
+                            echo "<tr>";
+                            echo "<td><center>" . $row["id"] . "</td>";
+                            echo "<td><center>" . $row["name"] . "</td>";
+                            echo "<td><center>" . $row["division"] . "</td>";
+                            echo "<td><center>" . $row["username"] . "</td>";
+                            echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                            echo "<td id = 'us_edit'><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+                            echo "<td id = 'us_delete'><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
+                            echo "</tr>";
+                            $rowCount++;
+                        }
+                    }
+                     echo "</table>";
+
+                     
+                    if ($result_boss1->num_rows > 0) {
+                        echo "<h2>BOSS 1</h2>";
+                        echo "<table>";
+                        echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
+                        $rowCount = 0;
+                        while ($row = $result_boss1->fetch_assoc()) {
+                            if ($rowCount < 4) {
+                                echo "<tr>";
+                                echo "<td><center>" . $row["id"] . "</td>";
+                                echo "<td><center>" . $row["name"] . "</td>";
+                                echo "<td><center>" . $row["division"] . "</td>";
+                                echo "<td><center>" . $row["username"] . "</td>";
+                                echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                                echo "<td  id = 'boss1_edit'><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+                                echo "<td  id = 'boss1_delete'><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
+                                echo "</tr>";
+                                $rowCount++;
+                            }
+                        }
+                        echo "</table>";
+                    }
+
+
+                    
+                    if ($result_boss2->num_rows > 0) {
+                        echo "<h2>BOSS 2</h2>";
+                        echo "<table>";
+                        echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
+                        $rowCount = 0;
+                        while ($row = $result_boss2->fetch_assoc()) {
+                            if ($rowCount < 4) {
+                                echo "<tr>";
+                                echo "<td><center>" . $row["id"] . "</td>";
+                                echo "<td><center>" . $row["name"] . "</td>";
+                                echo "<td><center>" . $row["division"] . "</td>";
+                                echo "<td><center>" . $row["username"] . "</td>";
+                                echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                                echo "<td id = 'boss2_edit'><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
+                                echo "<td id = 'boss2_delete'><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
+                                echo "</tr>";
+                                $rowCount++;
+                            }
+                        }
+                        echo "</table>";
+                    }
+                }
+                $conn->close();
+                ?>
+>>>>>>> Stashed changes
             </div>
         </div>
     </div>
