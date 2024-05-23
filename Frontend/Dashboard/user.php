@@ -33,7 +33,14 @@
                 <li>
                     <a href="user.php">
                         <span class="icon"><ion-icon name="people"></ion-icon></span>
-                        <span class="title">Users</span>
+                        <span class="title">Accounts</span>
+                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
+
+                         <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
+                         <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
+                         <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
+                         <li class="sub_dash"><a href="outgoing.php">Boss 2</a></li>
                     </a>
                 </li>
                 <li>
@@ -92,11 +99,11 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
-                if (!isset($_SESSION['name'])) {
-                    // Redirect to login page if user is not logged in
-                    header("Location: ../login.html");
-                    exit();
-                }
+                // if (!isset($_SESSION['name'])) {
+                //     // Redirect to login page if user is not logged in
+                //     header("Location: ../login.html");
+                //     exit();
+                // }
 
                 $sql_users = "SELECT * FROM users";
                 $result_users = $conn->query($sql_users);
@@ -126,9 +133,6 @@
                             echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
                             echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
                             echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
-                            echo "<td id ='ad_edit'><center><a href='javascript:void(0);' onclick='confirmUpdate(" . $row["id"] . ")'>Edit</a></td>";
-                            echo "<td id ='ad_delete'><center><a href='javascript:void(0);' onclick='confirmDelete(" . $row["id"] . ")'>Delete</a></td>";
-
                             echo "</tr>";
                             $rowCount++;
                         }

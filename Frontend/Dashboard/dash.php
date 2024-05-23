@@ -11,11 +11,10 @@ $conn = new mysqli($server, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
-if (!isset($_SESSION['name'])) {
-    // Redirect to login page if user is not logged in
-    header("Location: ../login.html");
-    exit();
-}
+// if (!isset($_SESSION['name'])) {
+//     header("Location: ../login.html");
+//     exit();
+// }
 
 $name = $_SESSION['name'];
 

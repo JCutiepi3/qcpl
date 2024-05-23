@@ -11,11 +11,11 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-if (!isset($_SESSION['name'])) {
-    // Redirect to login page if user is not logged in
-    header("Location: ../login.html");
-    exit();
-}
+// if (!isset($_SESSION['name'])) {
+//     // Redirect to login page if user is not logged in
+//     header("Location: ../login.html");
+//     exit();
+// }
 
 // Fetch all files from database
 $sql = "SELECT * FROM testupload ORDER BY ID DESC"; // Fetch all files
