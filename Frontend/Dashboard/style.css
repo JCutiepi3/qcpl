@@ -114,16 +114,12 @@ body {
  
 }
 
-.navigation .dropdown-toggle li .sub_dash{
-  padding:  6px 6px 14px 80px;
-  margin: -10px;
-  background-color: white;
-  color: #2a2185;
-}
 
-.navigation li .sub_dash a{
-  padding: 5px 0;
-  text-decoration: none;
+
+ .dropdown-toggle li {
+ 
+  margin-top: -10px;
+  font-size: 3rem;
   
 }
 
@@ -804,63 +800,106 @@ text-transform: uppercase;
 
 /* ================== ACCOUNTS SUMMARY============== */
 
-.findaccount{
+.accts_user{
   position: relative;
-  top: -1200px;
-  left: 20px;
+  top: -550px;
+  left: 65px;
   width: 100%;
   text-align: center;
 
 }
 
-.findaccount td a:hover {
-  background-color: #7f79b5;
-
-
+.accts_user table{
+  width: 90%;
+  border-collapse: collapse; 
+  
 }
 
-.findaccount table {
-  width: 80%;
-  margin-top: 20px;
-  border: 3px solid;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-.findaccount tr{
+.accts_user tr{
   height: 75px;
   
 }
 
-.findaccount th{
+.accts_user th{
   background-color: #2a2185;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-align: center;
   color: #fff;
   font-weight: 100px;
   height: 40px;
   font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
   
+
+}
+
+.accts_user td{
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
+
+}
+
+.accts_user a{
+  text-decoration: none;
+}
+
+/* ====================== ADMIN ACCOUNT ========================== */
+
+.findaccount{
+  position: relative;
+  top: -550px;
+  left: 40px;
+  width: 93%;
+  text-align: center;
+
+}
+
+
+.findaccount table{
+ 
+  border-collapse: collapse; 
+}
+
+.findaccount tr{
+  height: 65px;
+  
+}
+
+.findaccount th{
+  background-color: #2a2185;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
 }
 
 .findaccount td{
   font-size: 1rem;
   font-weight: bold;
-  border-style: none;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
 }
 
-.findaccount h2 {
-
-  color: var(--blue);
-  font-family: "Sedan SC", serif;
-  font-size: 2rem;
-  
-}
-
-.findaccount td a{
+.findaccount a{
   text-decoration: none;
 }
+
+#fa_edit:hover{
+  background-color: #7f79b5;
+}
+#fa_delete:hover{
+  background-color: #7f79b5;
+}
+
 
 #ad_edit:hover{
   background-color: #7f79b5;

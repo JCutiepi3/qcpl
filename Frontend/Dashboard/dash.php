@@ -72,22 +72,24 @@ if(isset($_SESSION['name'])) {
                     </span>
                     <span class="title">Dashboard</span>
                     </a>
+                    
 
                          <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
-                    
-
-                    
-                </li>
                 
-
-
+                </li>
+         
                 <li>
                     <a href="user.php">
-                        <span class="icon">
-                            <ion-icon name="people"></ion-icon>
-                        </span>
-                        <span class="title">Users</span>
+                        <span class="icon"><ion-icon name="people"></ion-icon></span>
+                        <span class="title">Accounts</span>
+                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
+
+                         <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
+                         <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
+                         <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
+                         <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
                     </a>
                 </li>
 
