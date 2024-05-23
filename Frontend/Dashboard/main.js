@@ -21,13 +21,6 @@ toggle.onclick = function () {
   main.classList.toggle("active");
 };
 
-const downBtn = document.getElementById('down_btn');
-const dropdownMenu = document.querySelector('.dropdown-menu');
-
-downBtn.addEventListener('click', function() {
-  const dropdown = this.closest('.dropdown'); // Find closest dropdown container
-  dropdown.classList.toggle('show');
-});
 
 
 
