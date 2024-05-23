@@ -9,7 +9,7 @@
 
     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="Dashboard/imgs/logo.png">
-    <link rel="stylesheet" href="/Frontend/Dashboard/boss1.css">
+    <link rel="stylesheet" href="C:\xampps\htdocs\qcpl\Frontend\Dashboard\boss1.css">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                 </li>
                 
                 <li>
-                    <a href="#">
+                    <a href="boss1.html">
                         <span class="icon">
                             <ion-icon name="documents-outline"></ion-icon>
                         </span>
@@ -81,37 +81,33 @@
                 </div>
                     <div class="table">
     <table class="table_th">
-        <thead>
-            <tr class="bg1">
-                <th class="px-4 py-2">File</th>
-                <th class="px-4 py-2">Locator Number</th>
-                <th class="px-4 py-2">Receive Date</th>
-                <th class="px-4 py-2">Receive From</th>
-                <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2"> Comment </th>s
-            </tr>
-        </thead>
-        <tbody>
-            <tbody id="table-body">
-              <tr class="clickable-row" data-row-id="1">
-                <td class="px-4 py-2">View</td>
-                <td class="px-4 py-2">12345</td>
-                <td class="px-4 py-2">2022-01-01</td>
-                <td class="px-4 py-2">Supplier A</td>
-                <td class="px-4 py-2">Pending</td>
-                <td class="px-4 py-2"><a href="C:\xampps\htdocs\qcpl\Frontend\comment.html" class="comments-button">Comments</a></td>
-            </tr>
-            <tbody id="table-body">
-              <tr class="clickable-row" data-row-id="2">
-                <td class="px-4 py-2">View</td>
-                <td class="px-4 py-2">54321</td>
-                <td class="px-4 py-2">2022-01-15</td>
-                <td class="px-4 py-2">Supplier B</td>
-                <td class="px-4 py-2">Approved</td>
-                <td class="px-4 py-2"><a href="C:\xampps\htdocs\qcpl\Frontend\comment.html" class="comments-button">Comments</a></td>
-            </tr>
-        </tbody>
-        <td > <ion-icon name="arrow-forward-circle-sharp"></ion-icon> </td>
+
+        <divdiv id="multiStepForm">    
+            <h2>Locator Number:</h2>
+            <label>Division: </label>
+                <select name="type" id="type" required>
+                    <option value=""></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            <label><br>Section: </label>
+                <select name="type" id="type" required>
+                    <option value=""></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            <label for="comment"><br>Comment:</label>
+            <textarea id="comment" name="comment"></textarea>
+
+            <br>Status: <input type="radio" name="Status">Pending</input>
+            <input type="radio" name="Status">Ongoing</input>
+            <input type="radio" name="Status">Completed</input>
+        </div>
+        
+        <td id="send"> 
+            <ion-icon name="send-outline"></ion-icon> </td>
     </table>
 </div>
             </div>
