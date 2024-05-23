@@ -1,0 +1,12 @@
+if else after boss 1 completed it will automatically updated to outgoing
+user.php (update account credentials yung union sa update) 
+dapat kapag na delete na sa database dapat sa Directory din
+drop down ng accounts (users,admins,boss1,and boss2)
+add comment by boss 1 (dashboard)
+
+sessions
+session(welcome user)
+account validation
+password ""(galing database sir recom)
+
+create account per division and section

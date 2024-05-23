@@ -15,12 +15,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if user is logged in
-if (!isset($_SESSION['name'])) {
-    // Redirect to login page if user is not logged in
-    header("Location: ../login.html");
-    exit();
-}
+// // Check if user is logged in
+// if (!isset($_SESSION['name'])) {
+//     // Redirect to login page if user is not logged in
+//     header("Location: ../login.html");
+//     exit();
+// }
 
 // Retrieve the locator number from the query parameter
 $locatorNum = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
