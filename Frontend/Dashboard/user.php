@@ -95,122 +95,50 @@
                 <div class="upload"></div>
             </div>
             <div class="findaccount">
-                <?php
-                $server = "localhost";
-                $username = "root";
-                $password = "";
-                $db = "qcpl";
+            <?php
+            $server = "localhost";
+            $username = "root";
+            $password = "";
+            $db = "qcpl";
 
-                $conn = new mysqli($server, $username, $password, $db);
+            $conn = new mysqli($server, $username, $password, $db);
 
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // SQL UNION query to fetch all accounts from different tables
+            $sql = "SELECT id, name, division, username, password, 'Admin' as role FROM admins
+                    UNION ALL
+                    SELECT id, name, division, username, password, 'User' as role FROM users
+                    UNION ALL
+                    SELECT id, name, division, username, password, 'Boss1' as role FROM boss1
+                    UNION ALL
+                    SELECT id, name, division, username, password, 'Boss2' as role FROM boss2";
+
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                echo "<h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>Accounts</h2>";
+                echo "<table style='width:100%; text-align:center;''>";
+                echo "<tr><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th>Role</th><th colspan='2'>Action</th></tr>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["division"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["username"]) . "</td>";
+                    echo "<td>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["role"]) . "</td>";
+                    echo "<td><a href='updateuseradmin.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Edit</a></td>";
+                    echo "<td><a href='deleteuser.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Delete</a></td>";
+                    echo "</tr>";
                 }
-                // if (!isset($_SESSION['name'])) {
-                //     // Redirect to login page if user is not logged in
-                //     header("Location: ../login.html");
-                //     exit();
-                // }
-
-                $sql_users = "SELECT * FROM users";
-                $result_users = $conn->query($sql_users);
-
-                $sql_admins = "SELECT * FROM admins";
-                $result_admins = $conn->query($sql_admins);
-
-                $sql_boss1 = "SELECT * FROM boss1";
-                $result_boss1 = $conn->query($sql_boss1);
-
-                $sql_boss2 = "SELECT * FROM boss2";
-                $result_boss2 = $conn->query($sql_boss2);
-
-                if ($result_admins->num_rows > 0) {
-                    echo "<h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br>Accounts</h2>";
-                    echo "<h2>ADMINS</h2>";
-                    echo "<table>";
-                    echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
-                    $rowCount = 0;
-                    while ($row = $result_admins->fetch_assoc()) {
-                        if ($rowCount < 4) {
-                            echo "<tr>";
-                            echo "<td><center>" . $row["id"] . "</td>";
-                            echo "<td><center>" . $row["name"] . "</td>";
-                            echo "<td><center>" . $row["division"] . "</td>";
-                            echo "<td><center>" . $row["username"] . "</td>";
-                            echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                            echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
-                            echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
-                            echo "</tr>";
-                            $rowCount++;
-                        }
-                    }
-                    echo "</table>";
-                }
-                if ($result_users->num_rows > 0) {
-                    echo "<h2>USERS</h2>";
-                    echo "<table>";
-                    echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
-                    $rowCount = 0;
-                    while ($row = $result_users->fetch_assoc()) {
-                        if ($rowCount < 4) {
-                            echo "<tr>";
-                            echo "<td><center>" . $row["id"] . "</td>";
-                            echo "<td><center>" . $row["name"] . "</td>";
-                            echo "<td><center>" . $row["division"] . "</td>";
-                            echo "<td><center>" . $row["username"] . "</td>";
-                            echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                            echo "<td id = 'us_edit'><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
-                            echo "<td id = 'us_delete'><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
-                            echo "</tr>";
-                            $rowCount++;
-                        }
-                    }
-                     echo "</table>";
-                    if ($result_boss1->num_rows > 0) {
-                        echo "<h2>BOSS 1</h2>";
-                        echo "<table>";
-                        echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
-                        $rowCount = 0;
-                        while ($row = $result_boss1->fetch_assoc()) {
-                            if ($rowCount < 4) {
-                                echo "<tr>";
-                                echo "<td><center>" . $row["id"] . "</td>";
-                                echo "<td><center>" . $row["name"] . "</td>";
-                                echo "<td><center>" . $row["division"] . "</td>";
-                                echo "<td><center>" . $row["username"] . "</td>";
-                                echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                                echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
-                                echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
-                                echo "</tr>";
-                                $rowCount++;
-                            }
-                        }
-                        echo "</table>";
-                    }
-                    if ($result_boss2->num_rows > 0) {
-                        echo "<h2>BOSS 2</h2>";
-                        echo "<table>";
-                        echo '<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan="2">Action</th></tr>';
-                        $rowCount = 0;
-                        while ($row = $result_boss2->fetch_assoc()) {
-                            if ($rowCount < 4) {
-                                echo "<tr>";
-                                echo "<td><center>" . $row["id"] . "</td>";
-                                echo "<td><center>" . $row["name"] . "</td>";
-                                echo "<td><center>" . $row["division"] . "</td>";
-                                echo "<td><center>" . $row["username"] . "</td>";
-                                echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                                echo "<td><center><a href='updateuseradmin.php?id=" . $row["id"] . "'>Edit</a></td>";
-                                echo "<td><center><a href='deleteuseradmin.php?id=" . $row["id"] . "'>Delete</a></td>";
-                                echo "</tr>";
-                                $rowCount++;
-                            }
-                        }
-                        echo "</table>";
-                    }
-                }
-                $conn->close();
-                ?>
+                echo "</table>";
+            } else {
+                echo "<p>No accounts found.</p>";
+            }
+            $conn->close();
+            ?>
             </div>
         </div>
     </div>

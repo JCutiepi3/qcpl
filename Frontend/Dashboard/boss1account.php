@@ -33,6 +33,7 @@
       die("Connection failed: " . $conn->connect_error);
     }
     
+
     
     $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, status, boss2_comment FROM fileupload";
 

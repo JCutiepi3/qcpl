@@ -11,13 +11,14 @@ $conn = new mysqli($server, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
-if (!isset($_SESSION['name'])) {
-    // Redirect to login page if user is not logged in
-    header("Location: ../login.html");
-    exit();
-}
 
-$name = ""; 
+// if (!isset($_SESSION['name'])) {
+//     // Redirect to login page if user is not logged in
+//     header("Location: ../login.html");
+//     exit();
+// }
+
+$name = "";
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
     $sql = "SELECT name FROM users WHERE username = ?";
