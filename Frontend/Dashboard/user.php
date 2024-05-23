@@ -87,8 +87,14 @@
             </div>
 
             <div class="details">
-                <div class="upload"></div>
+                <div class="upload">
+                    <div class="cardHeader">
+                        <h2>ACCOUNTS</h2>
+                    </div>
+                </div>
             </div>
+
+
             <div class="findaccount">
             <?php
             $server = "localhost";
@@ -114,7 +120,6 @@
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                echo "<h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>Accounts</h2>";
                 echo "<table style='width:100%; text-align:center;''>";
                 echo "<tr><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th>Role</th><th colspan='2'>Action</th></tr>";
                 while ($row = $result->fetch_assoc()) {
@@ -124,8 +129,8 @@
                     echo "<td>" . htmlspecialchars($row["username"]) . "</td>";
                     echo "<td>" . str_repeat("*", strlen($row["password"])) . "</td>";
                     echo "<td>" . htmlspecialchars($row["role"]) . "</td>";
-                    echo "<td><a href='updateuseradmin.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Edit</a></td>";
-                    echo "<td><a href='deleteuser.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Delete</a></td>";
+                    echo "<td id='fa_edit'><a href='updateuseradmin.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Edit</a></td>";
+                    echo "<td id='fa_delete'><a href='deleteuser.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Delete</a></td>";
                     echo "</tr>";
                 }
                 echo "</table>";
