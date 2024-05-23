@@ -11,31 +11,18 @@ $conn = new mysqli($server, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
-// Assuming user's name is stored in session upon login
-$name = isset($_SESSION['name']) ? $_SESSION['name'] : 'Guest';
+    // If user is not found in the database, invalidate session and redirect to login page
+    session_unset();
+    session_destroy();
+    header("Location: ../login.html");
+    exit();{
 
-
-// if (!isset($_SESSION['name'])) {
-//     header("Location: ../login.html");
-//     exit();
-// }
-
-// If name is not set, you might want to redirect to login
-if ($name === 'Guest') {
 // Validate user against database
     $sql = "SELECT name FROM admins WHERE name = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $name);
     $stmt->execute();
     $result = $stmt->get_result();
-}
-
-if($result->num_rows === 0) {
-    // If user is not found in the database, invalidate session and redirect to login page
-    // session_unset();
-    // session_destroy();
-    // header("Location: ../login.html");
-    // exit();
 }
     $stmt->close();
 ?>
