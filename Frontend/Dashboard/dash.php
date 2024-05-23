@@ -16,14 +16,14 @@ if ($conn->connect_error) {
 //     exit();
 // }
 
-$name = $_SESSION['name'];
+    $name = $_SESSION['name'];
 
 // Validate user against database
-$sql = "SELECT name FROM admins WHERE name = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $name);
-$stmt->execute();
-$result = $stmt->get_result();
+    $sql = "SELECT name FROM admins WHERE name = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
 if($result->num_rows === 0) {
     // If user is not found in the database, invalidate session and redirect to login page
@@ -34,10 +34,10 @@ if($result->num_rows === 0) {
 }
 
 // User is validated, proceed with displaying the welcome message
-$row = $result->fetch_assoc();
-$name = $row['name'];
+        $row = $result->fetch_assoc();
+        $name = $row['name'];
 
-$stmt->close();
+    $stmt->close();
 ?>
 
 
