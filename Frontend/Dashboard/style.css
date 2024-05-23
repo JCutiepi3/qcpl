@@ -483,8 +483,6 @@ body {
 
 
 
-
-
 /* ================== SUMMARY TABLE ============== */
 
 .summary{
@@ -494,20 +492,16 @@ body {
   width: 100%;
   text-align: center;
 
-
 }
 
 .summary table{
   width: 90%;
   border-collapse: collapse; 
   
-
-  
 }
 
 .summary tr{
   height: 75px;
-
   
 }
 
@@ -808,7 +802,7 @@ text-transform: uppercase;
 }
 
 
-/* ================== USER TABLE ============== */
+/* ================== ACCOUNTS SUMMARY============== */
 
 .findaccount{
   position: relative;
@@ -882,6 +876,19 @@ text-transform: uppercase;
   background-color: #7f79b5;
 }
 
+#boss1_edit:hover{
+  background-color: #7f79b5;
+}
+#boss1_delete:hover{
+  background-color: #7f79b5;
+}
+
+#boss2_edit:hover{
+  background-color: #7f79b5;
+}
+#boss2_delete:hover{
+  background-color: #7f79b5;
+}
 /* ================== STATUS ============== 
 .status.delivered {
   color: var(--black1);
@@ -910,7 +917,191 @@ text-transform: uppercase;
 */
 
 
+/* ====================== USER ACCOUNTS ========================== */
+.accts_user{
+  position: relative;
+  top: -550px;
+  left: 65px;
+  width: 100%;
+  text-align: center;
 
+}
+
+.accts_user table{
+  width: 90%;
+  border-collapse: collapse; 
+  
+}
+
+.accts_user tr{
+  height: 75px;
+  
+}
+
+.accts_user th{
+  background-color: #2a2185;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
+  
+
+}
+
+.accts_user td{
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
+
+}
+
+.accts_user a{
+  text-decoration: none;
+}
+
+/* ====================== ADMIN ACCOUNT ========================== */
+
+.accts_admin{
+  position: relative;
+  top: -550px;
+  left: 40px;
+  width: 100%;
+  text-align: center;
+
+}
+
+
+.accts_admin table{
+  width: 94%;
+  border-collapse: collapse; 
+}
+
+.accts_admin tr{
+  height: 75px;
+  
+}
+
+.accts_admin th{
+  background-color: #2a2185;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
+}
+
+.accts_admin td{
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
+}
+
+.accts_admin a{
+  text-decoration: none;
+}
+
+/* ====================== BOSS 1 ACCOUNT ========================== */
+
+.accts_boss1{
+  position: relative;
+  top: -550px;
+  left: 40px;
+  width: 100%;
+  text-align: center;
+
+}
+
+.accts_boss1 table{
+  width: 94%;
+  border-collapse: collapse; 
+
+}
+
+.accts_boss1 tr{
+  height: 75px;
+  
+}
+
+.accts_boss1 th{
+  background-color: #2a2185;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
+}
+
+.accts_boss1 td{
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
+}
+
+.accts_boss1 a{
+  text-decoration: none;
+}
+
+/* ====================== BOSS 2 ACCOUNT ========================== */
+
+.accts_boss2{
+  position: relative;
+  top: -550px;
+  left: 40px;
+  width: 100%;
+  text-align: center;
+
+}
+
+.accts_boss2 table{
+  width: 94%;
+  border-collapse: collapse; 
+
+}
+
+.accts_boss2 tr{
+  height: 75px;
+  
+}
+
+.accts_boss2 th{
+  background-color: #2a2185;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
+}
+
+.accts_boss2 td{
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
+}
+
+.accts_boss2 a{
+  text-decoration: none;
+}
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {

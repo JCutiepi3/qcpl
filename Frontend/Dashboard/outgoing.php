@@ -66,7 +66,7 @@ if(isset($_SESSION['username'])) {
                 
                 <li>
                     <a href="dash.php">
-                        <span class="icon"><ion-icon name="dropdown-toggle"></ion-icon></span>
+                        <span class="icon"><ion-icon name="apps"></ion-icon></ion-icon></span>
                         <span class="title">Dashboard</span>
                         <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
@@ -86,7 +86,7 @@ if(isset($_SESSION['username'])) {
                          <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
                          <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
                          <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
-                         <li class="sub_dash"><a href="outgoing.php">Boss 2</a></li>
+                         <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
                     </a>
                 </li>
 
@@ -108,14 +108,6 @@ if(isset($_SESSION['username'])) {
                     </a>
                 </li>
 
-                <li>
-                    <a href="faqs.html">
-                        <span class="icon">
-                            <ion-icon name="help"></ion-icon>
-                        </span>
-                        <span class="title">FAQs</span>
-                    </a>
-                </li>
 
                 <li>
                     <a href="/qcpl/Backend/logout.php">

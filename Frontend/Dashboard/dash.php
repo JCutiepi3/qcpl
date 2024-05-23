@@ -59,11 +59,18 @@ if(isset($_SESSION['name'])) {
                 
    
                 <li>
+<<<<<<< Updated upstream
                     <a href="dash.php" class="dropdown-toggle">
                     <span class="icon">
                     <ion-icon name="apps"></ion-icon>
                     </span>
                     <span class="title">Dashboard <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+=======
+                        <a href="dash.php">
+                        <span class="icon"><ion-icon name="apps"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+>>>>>>> Stashed changes
                     </a>
 
                          <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
@@ -77,10 +84,22 @@ if(isset($_SESSION['name'])) {
 
                 <li>
                     <a href="user.php">
+<<<<<<< Updated upstream
                         <span class="icon">
                             <ion-icon name="people"></ion-icon>
                         </span>
                         <span class="title">Users</span>
+=======
+                        <span class="icon"><ion-icon name="people"></ion-icon></span>
+                        <span class="title">Accounts</span>
+                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
+
+                         <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
+                         <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
+                         <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
+                         <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
+>>>>>>> Stashed changes
                     </a>
                 </li>
 
@@ -102,14 +121,6 @@ if(isset($_SESSION['name'])) {
                     </a>
                 </li>
 
-                <li>
-                    <a href="faqs.html">
-                        <span class="icon">
-                            <ion-icon name="help"></ion-icon>
-                        </span>
-                        <span class="title">FAQs</span>
-                    </a>
-                </li>
 
                 <li>
                     <a href="/qcpl/Backend/logout.php">
