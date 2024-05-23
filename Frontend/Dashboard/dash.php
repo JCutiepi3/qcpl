@@ -63,12 +63,14 @@ if(isset($_SESSION['name'])) {
                     <span class="icon">
                     <ion-icon name="apps"></ion-icon>
                     </span>
-                    <span class="title">Dashboard <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+                    <span class="title">Dashboard </span>
                     </a>
 
-                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
-                    
+                    <i> <ion-icon name="caret-down-outline"></ion-icon> </i>
+                    <ul class="sub_dash">
+                         <li><a href="incoming.php">Incoming</a></li>
+                         <li><a href="outgoing.php">Outgoing</a></li>
+                    </ul>
 
                     
                 </li>
