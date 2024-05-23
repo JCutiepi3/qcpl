@@ -21,7 +21,7 @@ if ($result_admins->num_rows > 0) {
     echo "<tbody>";
     while ($row = $result_admins->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" . htmlspecialchars($row["id"]) . "</td>";
+        echo "<td>" . "<center>" . htmlspecialchars($row["id"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["division"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["username"]) . "</td>";
