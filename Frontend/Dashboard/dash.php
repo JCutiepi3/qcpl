@@ -72,20 +72,15 @@ if($result->num_rows === 0) {
                 
    
                 <li>
-                    <a href="dash.php" class="dropdown-toggle">
-                    <span class="icon">
-                    <ion-icon name="apps"></ion-icon>
-                    </span>
-                    <span class="title">Dashboard </span>
+                    <a href="dash.php">
+                        <span class="icon"><ion-icon name="dropdown-toggle"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
 
-                    <i> <ion-icon name="caret-down-outline"></ion-icon> </i>
-                    <ul class="sub_dash">
-                         <li><a href="incoming.php">Incoming</a></li>
-                         <li><a href="outgoing.php">Outgoing</a></li>
-                    </ul>
-
-                    
+                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
+                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                    </a>
                 </li>
                 
                 <li>
