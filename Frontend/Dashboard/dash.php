@@ -11,35 +11,22 @@ $conn = new mysqli($server, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
-// Assuming user's name is stored in session upon login
-$name = isset($_SESSION['name']) ? $_SESSION['name'] : 'Guest';
-
-
-// if (!isset($_SESSION['name'])) {
-//     header("Location: ../login.html");
-//     exit();
-// }
-
-// If name is not set, you might want to redirect to login
-if ($name === 'Guest') {
-// Validate user against database
+$name = ""; 
+if(isset($_SESSION['name'])) {
+    $name = $_SESSION['name'];
     $sql = "SELECT name FROM admins WHERE name = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $name);
     $stmt->execute();
     $result = $stmt->get_result();
-}
 
-if($result->num_rows === 0) {
-    // If user is not found in the database, invalidate session and redirect to login page
-    // session_unset();
-    // session_destroy();
-    // header("Location: ../login.html");
-    // exit();
-}
+    if($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $name = $row['name'];
+    }
     $stmt->close();
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,28 +59,28 @@ if($result->num_rows === 0) {
                 
    
                 <li>
-                    <a href="dash.php">
-                        <span class="icon"><ion-icon name="dropdown-toggle"></ion-icon></span>
-                        <span class="title">Dashboard</span>
-                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+                    <a href="dash.php" class="dropdown-toggle">
+                    <span class="icon">
+                    <ion-icon name="apps"></ion-icon>
+                    </span>
+                    <span class="title">Dashboard <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
 
                          <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
-                    </a>
+                    
+
+                    
                 </li>
                 
+
+
                 <li>
                     <a href="user.php">
-                        <span class="icon"><ion-icon name="people"></ion-icon></span>
-                        <span class="title">Accounts</span>
-                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
-                    </a>
-
-                         <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
-                         <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
-                         <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
-                         <li class="sub_dash"><a href="outgoing.php">Boss 2</a></li>
+                        <span class="icon">
+                            <ion-icon name="people"></ion-icon>
+                        </span>
+                        <span class="title">Users</span>
                     </a>
                 </li>
 
@@ -233,4 +220,5 @@ if($result->num_rows === 0) {
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
-</html> 
+</html>
+    
