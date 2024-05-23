@@ -11,13 +11,6 @@ $conn = new mysqli($server, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
-    // If user is not found in the database, invalidate session and redirect to login page
-    session_unset();
-    session_destroy();
-    header("Location: ../login.html");
-    exit();{
-
-// Validate user against database
 $name = ""; 
 if(isset($_SESSION['name'])) {
     $name = $_SESSION['name'];
@@ -26,7 +19,6 @@ if(isset($_SESSION['name'])) {
     $stmt->bind_param("s", $name);
     $stmt->execute();
     $result = $stmt->get_result();
-}
 
     if($result->num_rows > 0) {
         $row = $result->fetch_assoc();
@@ -67,10 +59,11 @@ if(isset($_SESSION['name'])) {
                 
    
                 <li>
-                        <a href="dash.php">
-                        <span class="icon"><ion-icon name="apps"></ion-icon></span>
-                        <span class="title">Dashboard</span>
-                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+                    <a href="dash.php" class="dropdown-toggle">
+                    <span class="icon">
+                    <ion-icon name="apps"></ion-icon>
+                    </span>
+                    <span class="title">Dashboard</span>
                     </a>
 
                          <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
@@ -84,15 +77,10 @@ if(isset($_SESSION['name'])) {
 
                 <li>
                     <a href="user.php">
-                        <span class="icon"><ion-icon name="people"></ion-icon></span>
-                        <span class="title">Accounts</span>
-                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
-                    </a>
-
-                         <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
-                         <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
-                         <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
-                         <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
+                        <span class="icon">
+                            <ion-icon name="people"></ion-icon>
+                        </span>
+                        <span class="title">Users</span>
                     </a>
                 </li>
 
@@ -114,6 +102,14 @@ if(isset($_SESSION['name'])) {
                     </a>
                 </li>
 
+                <li>
+                    <a href="faqs.html">
+                        <span class="icon">
+                            <ion-icon name="help"></ion-icon>
+                        </span>
+                        <span class="title">FAQs</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="/qcpl/Backend/logout.php">
