@@ -10,16 +10,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql_users = "SELECT * FROM users";
-$result_users = $conn->query($sql_users);
+$sql_admins = "SELECT * FROM admins";
+$result_admins = $conn->query($sql_admins);
 
-if ($result_users->num_rows > 0) {
-    echo "<h2>USERS</h2>";
-    echo "<table aria-describedby='user-table'>";
+if ($result_admins->num_rows > 0) {
+    echo "<h2>ADMINS</h2>";
+    echo "<table aria-describedby='admin-table'>";
     echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
     echo "</thead>";
     echo "<tbody>";
-    while ($row = $result_users->fetch_assoc()) {
+    while ($row = $result_admins->fetch_assoc()) {
         echo "<tr>";
         echo "<td><center>" .  htmlspecialchars($row["id"]) . "</td>";
         echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";

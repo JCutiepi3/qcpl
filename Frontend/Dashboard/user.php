@@ -47,7 +47,7 @@
                          <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
                          <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
                          <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
-                         <li class="sub_dash"><a href="outgoing.php">Boss 2</a></li>
+                         <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
                     </a>
                 </li>
                 <li>
