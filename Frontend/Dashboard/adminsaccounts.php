@@ -137,8 +137,8 @@ $result_admins = $conn->query($sql_admins);
                 echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
                 echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
                 echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                echo "<td id='ad_edit'><center><a href='updateuseradmin.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
-                echo "<td id='ad_delete'><center><a href='deleteuseradmin.php?id=" . htmlspecialchars($row["id"]) . "'>Delete</a></td>";
+                echo "<td id='ad_edit'><center><a href='/qcpl/Backend/updateadminaccount.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
+                echo "<td id='ad_delete'><center><a href='/qcpl/Backend/deleteaccount.php?id=" . htmlspecialchars($row["id"]) . "'>Delete</a></td>";
                 echo "</tr>";
             }
             echo "</tbody>";

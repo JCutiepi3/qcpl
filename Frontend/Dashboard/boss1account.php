@@ -14,10 +14,11 @@
       <th>Received Date</th>
       <th>Received From</th>
       <th>Type</th>
+      <th>Boss 2 Comment</th>
+      <th>Boss 1 Comment</th>
       <th>File</th>
       <th>Comment</th>
       <th>Status</th>
-      <th>Boss 2 Comment</th>
     </tr>
 
     <?php
@@ -35,7 +36,7 @@
     
 
     
-    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, status, boss2_comment FROM fileupload";
+    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, status, boss2_comment, boss1_comment FROM fileupload";
 
     $result = $conn->query($sql);
 
@@ -47,10 +48,11 @@
         echo "<td>" . "<center>" . $row["received_date"] . "</td>";
         echo "<td>" . "<center>" . $row["received_from"] . "</td>";
         echo "<td>" . "<center>" . $row["type"] . "</td>";
+        echo "<td>" . "<center>" . $row["boss2_comment"] . "</td>";
+        echo "<td>" . "<center>" . $row["boss1_comment"] . "</td>";
         echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
         echo "<td><a href='bossaccountlocator.php?locator_num=" . $row["locator_num"] . "' target='_self'>UPDATE</a></td>";
         echo "<td>" . "<center>" . $row["status"] . "</td>";
-        echo "<td>" . "<center>" . $row["boss2_comment"] . "</td>";
         echo "</tr>";
       }
     } else {

@@ -67,7 +67,6 @@
 
 
     <script>
-        // Function to view document (replace 'document_path' with the actual document path)
         function viewDocument() {
             window.open('document_path', '_blank');
         }

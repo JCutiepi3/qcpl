@@ -134,8 +134,8 @@ $result_boss1 = $conn->query($sql_boss1);
                 echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
                 echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
                 echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                echo "<td id='boss1_edit'><center><a href='updateuseradmin.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
-                echo "<td id='boss1_delete'><center><a href='deleteuseradmin.php?id=" . htmlspecialchars($row["id"]) . "'>Delete</a></td>";
+                echo "<td id='boss1_edit'><center><a href='/qcpl/Backend/updateboss1account.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
+                echo "<td id='boss1_delete'><center><a href='/qcpl/Backend/deleteaccount.php?id=" . htmlspecialchars($row["id"]) . "'>Delete</a></td>";
                 echo "</tr>";
             }
             echo "</tbody>";

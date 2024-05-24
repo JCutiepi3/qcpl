@@ -1,8 +1,6 @@
 <?php
-// Start the session
 session_start();
 
-// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -10,19 +8,10 @@ $dbname = "qcpl";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// // Check if user is logged in
-// if (!isset($_SESSION['name'])) {
-//     // Redirect to login page if user is not logged in
-//     header("Location: ../login.html");
-//     exit();
-// }
-
-// Retrieve the locator number from the query parameter
 $locatorNum = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
 ?>
 
@@ -34,7 +23,6 @@ $locatorNum = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided
 <body>
 
 <?php
-// Display the locator number
 echo "<h1>Locator Number: $locatorNum</h1>";
 ?>
 
@@ -129,30 +117,3 @@ echo "<h1>Locator Number: $locatorNum</h1>";
 
 </body>
 </html>
-
-<!-- <table>
-    <tr>
-      <th>Boss 2 Comment</th>
-    </tr>
-
- <?php 
-$sql = "SELECT boss2_comment, status FROM fileupload"; // Idagdag ang status sa iyong query
-
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        if (isset($row["status"]) && $row["status"] == "pending") { // Siguraduhing mayroong "status" at ito ay "pending" bago ma-display ang boss2_comment
-            echo "<td>" . "<center>" . $row["boss2_comment"] . "</td>";
-        } else {
-            echo "<td>No comment available for this row.</td>";
-        }
-        echo "</tr>";
-    }
-} else {
-    echo "<tr><td colspan='9'>No records found.</td></tr>";
-}
-
-$conn->close();
-?>  -->

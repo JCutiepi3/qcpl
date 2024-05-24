@@ -76,10 +76,10 @@
         <div class="main">
             <div class="topbar">
                 <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
-                <form action="/qcpl/Backend/userslocator.php" method="GET" class="search">
+                <form action="/qcpl/Backend/accountlocator.php" method="GET" class="search">
                     <label>
-                        <input type="number" name="id" placeholder="Search here">
-                        <input type="submit" id="sub_hide" name="find">
+                        <input type="text" name="name" placeholder="Search here">
+                        <input type="submit" id="sub_hide" name="finder">
                         <ion-icon name="search-outline" name="find"></ion-icon>
                     </label>
                 </form>
@@ -121,17 +121,15 @@
 
             if ($result->num_rows > 0) {
                 echo "<table style='width:100%; text-align:center;''>";
-                echo "<tr><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th>Role</th><th colspan='2'>Action</th></tr>";
+                echo "<tr><th>Role</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th></tr>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row["role"]) . "</td>";
                     echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
                     echo "<td>" . htmlspecialchars($row["division"]) . "</td>";
                     echo "<td>" . htmlspecialchars($row["username"]) . "</td>";
                     echo "<td>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                    echo "<td>" . htmlspecialchars($row["role"]) . "</td>";
-                    echo "<td id='fa_edit'><a href='updateuseradmin.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Edit</a></td>";
-                    echo "<td id='fa_delete'><a href='deleteuser.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Delete</a></td>";
-                    echo "</tr>";
+                   echo "</tr>";
                 }
                 echo "</table>";
             } else {
@@ -158,7 +156,7 @@
         }
         function confirmUpdate(id) {
         if (confirm("Are you sure you want to update?")) {
-            window.location.href = 'updateuseradmin.php?id=' + id; // Redirect to updateuseradmin.php with ID
+            window.location.href = 'updateuseradmin.php?id=' + id; 
         }
     }
 </script>

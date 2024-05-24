@@ -11,11 +11,6 @@ $conn = new mysqli($server, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
-// if (!isset($_SESSION['name'])) {
-//     // Redirect to login page if user is not logged in
-//     header("Location: ../login.html");
-//     exit();
-// }
 
 $name = ""; 
 if(isset($_SESSION['username'])) {
@@ -127,25 +122,6 @@ if(isset($_SESSION['username'])) {
             <div class="topbar">
                 <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
                 
-                <!-- Search Form -->
-                <form action="/qcpl/Backend/locator.php" method="GET">
-                    <div class="search">
-                        <label>
-                            <input type="number" name="locator" placeholder="Search here">
-                            <input type="submit" id="sub_hide" name="find">
-                            <ion-icon name="search-outline"></ion-icon>
-                        </label>
-                    </div>
-                </form>
-
-                <!-- Welcome Message -->
-                <?php
-                if(!empty($name)) {
-                    echo "<div class='welcome'>Welcome, $name!</div>";
-                } else {
-                    echo "<div class='welcome'>Welcome!</div>";
-                }
-                ?>
                 <div class="user"><span class="icon"><ion-icon name="person"></ion-icon></span></div>
             </div>
 
@@ -158,12 +134,10 @@ if(isset($_SESSION['username'])) {
 
             <div class ="incoming">
                         <?php
-            // Fetch documents from database
             $rowsPerPage = 4;
             $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
             $offset = ($page - 1) * $rowsPerPage;
 
-            // Modify the SQL query to filter by category
             $sql = "SELECT * FROM fileupload WHERE category = 'Incoming' LIMIT ? OFFSET ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ii", $rowsPerPage, $offset);
