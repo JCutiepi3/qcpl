@@ -4,7 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Boss 2</title>
-  
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    a {
+      color: #0000EE; 
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
@@ -16,8 +36,9 @@
       <th>Locator Number</th>
       <th>Received Date</th>
       <th>Received From</th>
-      <th>Type</th>
       <th>Boss2 Comment</th>
+      <th>Type</th>
+      <th>File</th>
       <th>Status</th>
       <th>Action</th>
     </tr>
@@ -34,7 +55,8 @@
       die("Connection failed: " . $conn->connect_error);
     }
     
-    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status IN ('Pending', 'Processing')";
+    // Adjusted SQL query to filter by status 'Pending'
+    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Pending'";
 
     $result = $conn->query($sql);
 
@@ -45,10 +67,11 @@
         echo "<td>" . htmlspecialchars($row["locator_num"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["received_date"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["received_from"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["type"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["type"]) . "</td>";
         echo "<td><a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
+        echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
+        echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
         echo "</tr>";
       }
     } else {

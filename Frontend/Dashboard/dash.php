@@ -104,14 +104,6 @@ if(isset($_SESSION['name'])) {
                     </a>
                 </li>
 
-                <li>
-                    <a href="faqs.html">
-                        <span class="icon">
-                            <ion-icon name="help"></ion-icon>
-                        </span>
-                        <span class="title">FAQs</span>
-                    </a>
-                </li>
 
                 <li>
                     <a href="/qcpl/Backend/logout.php">

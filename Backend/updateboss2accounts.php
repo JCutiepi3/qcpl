@@ -15,20 +15,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $username = $_POST['username'];
     $password = $_POST['password']; 
-
     $query = "UPDATE boss2 SET name=?, username=?, password=? WHERE id=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $name, $username, $password, $id);
     if ($stmt->execute()) {
         echo "Boss2 updated successfully.";
-        header("Location: /qcpl/Frontend/Dashboard/boss2accounts.php"); // Redirect back to the boss2 accounts page
+        header("Location: /qcpl/Frontend/Dashboard/boss2accounts.php");
         exit();
     } else {
         echo "Error updating record: " . $conn->error;
     }
 }
 
-// Retrieve boss2 data
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $query = "SELECT * FROM boss2 WHERE id = ?";

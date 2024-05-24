@@ -98,7 +98,7 @@ echo "<h1>Locator Number: $locatorNum</h1>";
     </script>
     <br>
 
-    <label for="comment">Comment:</label><br>
+    <label for="comment" required>Comment:</label><br>
     <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
     <br><br>
     

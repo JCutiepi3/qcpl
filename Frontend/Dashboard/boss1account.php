@@ -1,68 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Boss 1</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    a {
+      color: #0000EE; 
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>Locator Numbers</h1>
+  <h1 id="tableDescription">Locator Numbers</h1>
 
-  <table>
-    <tr>
-      <th>Category</th>
-      <th>Locator Number</th>
-      <th>Received Date</th>
-      <th>Received From</th>
-      <th>Type</th>
-      <th>Boss 2 Comment</th>
-      <th>Boss 1 Comment</th>
-      <th>File</th>
-      <th>Comment</th>
-      <th>Status</th>
-    </tr>
+  <table aria-describedby="tableDescription">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Locator Number</th>
+        <th>Received Date</th>
+        <th>Received From</th>
+        <th>Boss2 Comment</th>
+        <th>Type</th>
+        <th>File</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "qcpl";
 
-    <?php
+      $conn = new mysqli($servername, $username, $password, $dbname);
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "qcpl";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
-    
-
-    
-    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, status, boss2_comment, boss1_comment FROM fileupload";
-
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . "<center>" . $row["category"] . "</td>";
-        echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
-        echo "<td>" . "<center>" . $row["received_date"] . "</td>";
-        echo "<td>" . "<center>" . $row["received_from"] . "</td>";
-        echo "<td>" . "<center>" . $row["type"] . "</td>";
-        echo "<td>" . "<center>" . $row["boss2_comment"] . "</td>";
-        echo "<td>" . "<center>" . $row["boss1_comment"] . "</td>";
-        echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
-        echo "<td><a href='bossaccountlocator.php?locator_num=" . $row["locator_num"] . "' target='_self'>UPDATE</a></td>";
-        echo "<td>" . "<center>" . $row["status"] . "</td>";
-        echo "</tr>";
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
       }
-    } else {
-      echo "<tr><td colspan='9'>No records found.</td></tr>";
-    }
+      
+      $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Processing'";
 
-    $conn->close();
+      $result = $conn->query($sql);
 
-    ?>
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          echo "<tr>";
+          echo "<td>" . htmlspecialchars($row["category"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row["locator_num"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row["received_date"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row["received_from"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
+          echo "<td>" . htmlspecialchars($row["type"]) . "</td>";
+          echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+          echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
+          echo "<td><a href='bossaccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
+          echo "</tr>";
+        }
+      } else {
+        echo "<tr><td colspan='9'>No records found.</td></tr>";
+      }
 
+      $conn->close();
+      ?>
+    </tbody>
   </table>
 
 </body>
