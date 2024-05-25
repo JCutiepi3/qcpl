@@ -159,7 +159,7 @@ $result_boss1 = $conn->query($sql_boss1);
                 echo '<a href="?page=' . ($page + 1) . '">Next</a>';
                 echo '</div>';
             } else {
-                echo "<p>No Boss 1 Account found.</p>";
+                echo "<script>alert('No Boss 1 Account Found!'); window.location.href = '?page=1';</script>";
             }
             $stmt->close();
             $conn->close();

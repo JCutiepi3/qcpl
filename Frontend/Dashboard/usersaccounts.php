@@ -162,7 +162,7 @@ $result_users = $conn->query($sql_users);
             echo '<a href="?page=' . ($page + 1) . '">Next</a>';
             echo '</div>';
         } else {
-            echo "<p>No Users Account found.</p>";
+            echo "<script>alert('No User Account Found!'); window.location.href = '?page=1';</script>";
         }
         $conn->close();
         ?>

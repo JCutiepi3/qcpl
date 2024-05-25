@@ -33,15 +33,15 @@
   <table aria-describedby="tableDescription">
     <thead>
       <tr>
-        <th>Category</th>
-        <th>Locator Number</th>
-        <th>Received Date</th>
-        <th>Received From</th>
-        <th>Boss2 Comment</th>
-        <th>Type</th>
-        <th>File</th>
-        <th>Status</th>
-        <th>Action</th>
+        <th><center>Category</th>
+        <th><center>Locator Number</th>
+        <th><center>Received Date</th>
+        <th><center>Received From</th>
+        <th><center>Boss2 Comment</th>
+        <th><center>Type</th>
+        <th><center>File</th>
+        <th><center>Status</th>
+        <th><center>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -64,15 +64,15 @@
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           echo "<tr>";
-          echo "<td>" . htmlspecialchars($row["category"]) . "</td>";
-          echo "<td>" . htmlspecialchars($row["locator_num"]) . "</td>";
-          echo "<td>" . htmlspecialchars($row["received_date"]) . "</td>";
-          echo "<td>" . htmlspecialchars($row["received_from"]) . "</td>";
-          echo "<td>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
-          echo "<td>" . htmlspecialchars($row["type"]) . "</td>";
-          echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
-          echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
-          echo "<td><a href='bossaccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
+          echo "<td><center>" . htmlspecialchars($row["category"]) . "</td>";
+          echo "<td><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
+          echo "<td><center>" . htmlspecialchars($row["received_date"]) . "</td>";
+          echo "<td><center>" . htmlspecialchars($row["received_from"]) . "</td>";
+          echo "<td><center>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
+          echo "<td><center>" . htmlspecialchars($row["type"]) . "</td>";
+          echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'><center>View File</a></td>";
+          echo "<td><center>" . htmlspecialchars($row["status"]) . "</td>";
+          echo "<td><center><a href='bossaccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
           echo "</tr>";
         }
       } else {

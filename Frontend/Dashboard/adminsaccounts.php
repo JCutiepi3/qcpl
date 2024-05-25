@@ -162,7 +162,7 @@ $result_admins = $conn->query($sql_admins);
                 echo '<a href="?page=' . ($page + 1) . '">Next</a>';
                 echo '</div>';
             } else {
-                echo "<p>No Admins Account found.</p>";
+                echo "<script>alert('No Admin Account Found!'); window.location.href = '?page=1';</script>";
             }
             $stmt->close();
             $conn->close();

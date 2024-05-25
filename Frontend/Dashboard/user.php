@@ -71,7 +71,6 @@
                 </li>
             </ul>
         </div>
-
         <!-- Main Content -->
         <div class="main">
             <div class="topbar">
@@ -147,7 +146,7 @@
                     echo '<a href="?page=' . ($page + 1) . '">Next</a>';
                     echo '</div>';
                 } else {
-                    echo "<p>No accounts found.</p>";
+                    echo "<script>alert('No Account Found!'); window.location.href = '?page=1';</script>";
                 }
 
                 $stmt->close();
