@@ -16,7 +16,6 @@ $output = '';
 if (isset($_GET['name']) && !empty($_GET['name'])) {
     $name = $conn->real_escape_string($_GET['name']);
 
-    // Query multiple tables if 'accounts' does not exist
     $sql = "SELECT id, name, division, 'User' as role FROM users WHERE name LIKE ?
             UNION
             SELECT id, name, division, 'Admin' as role FROM admins WHERE name LIKE ?

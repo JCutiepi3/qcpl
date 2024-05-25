@@ -1,4 +1,3 @@
-//user summary
 <div class="container">
 <?php
 $server = "localhost";

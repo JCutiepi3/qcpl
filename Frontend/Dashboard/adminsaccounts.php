@@ -126,12 +126,10 @@ $result_admins = $conn->query($sql_admins);
         <div class="accts_admin">
     
         <?php
-            // Assuming $conn is your database connection
             $rowsPerPage = 4;
             $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
             $offset = ($page - 1) * $rowsPerPage;
 
-            // Prepare the SQL query with pagination
             $sql = "SELECT id, name, division, username, password FROM admins LIMIT ? OFFSET ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ii", $rowsPerPage, $offset);
@@ -156,7 +154,6 @@ $result_admins = $conn->query($sql_admins);
                 echo "</tbody>";
                 echo "</table>";
 
-                // Pagination Controls
                 echo '<div style="text-align:center; margin-top:20px;">';
                 if ($page > 1) {
                     echo '<a href="?page=' . ($page - 1) . '">Previous</a>';

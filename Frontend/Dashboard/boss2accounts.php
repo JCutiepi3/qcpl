@@ -152,7 +152,6 @@ $result_boss2 = $conn->query($sql_boss2);
                 echo "</tbody>";
                 echo "</table>";
 
-                // Pagination Controls
                 echo '<div style="text-align:center; margin-top:20px;">';
                 if ($page > 1) {
                     echo '<a href="?page=' . ($page - 1) . '">Previous</a>';

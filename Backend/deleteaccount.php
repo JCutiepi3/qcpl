@@ -9,13 +9,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if 'id' parameter is set in the URL
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $roles = ['users', 'admins', 'boss1', 'boss2'];
     $deleted = false;
 
-    // Iterate through roles to find which table the ID exists in
     foreach ($roles as $role) {
         $query = "SELECT * FROM $role WHERE id = ?";
         $stmt = $conn->prepare($query);
@@ -23,7 +21,6 @@ if (isset($_GET['id'])) {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        // If the ID exists in this table
         if ($result->num_rows > 0) {
             $deleteQuery = "DELETE FROM $role WHERE id = ?";
             $deleteStmt = $conn->prepare($deleteQuery);
@@ -32,8 +29,8 @@ if (isset($_GET['id'])) {
 
             if ($deleteStmt->affected_rows > 0) {
                 $deleted = true;
-                break; // Stop the loop once the record is found and deleted
-            }
+                break;     
+             }
         }
     }
 
