@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2024 at 06:06 AM
+-- Generation Time: May 25, 2024 at 09:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,8 +41,7 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `name`, `division`, `username`, `password`) VALUES
 (1, 'admin', 'admin', 'admin', 'admin'),
-(25, 'adminn', 'Readers\' Services Division', 'adminn', 'adminn123'),
-(26, 'Guillermo Mercado', 'Library Extension Division', 'guillermomercado123', 'guillermomercado123');
+(29, 'Guillermo Mercado', 'Administrative Services', 'guillermomercado123', 'guillermomercado123');
 
 -- --------------------------------------------------------
 
@@ -64,7 +63,7 @@ CREATE TABLE `boss1` (
 
 INSERT INTO `boss1` (`id`, `name`, `division`, `username`, `password`) VALUES
 (1, 'boss1', 'boss1', 'boss1', 'boss1'),
-(6, 'Guillermo Mamaril', 'Technical Division', 'guillermomamaril123', 'guillermomamaril123');
+(9, 'Guillermo Mercado', 'Administrative Services', 'guillermomercado123', 'guillermomercado123');
 
 -- --------------------------------------------------------
 
@@ -85,7 +84,8 @@ CREATE TABLE `boss2` (
 --
 
 INSERT INTO `boss2` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'boss2', 'boss2', 'boss2', 'boss2');
+(1, 'boss2', 'boss2', 'boss2', 'boss2'),
+(6, 'Guillermo Mercado', 'Publication Division', 'guillermomercado123', 'guillermomercado123');
 
 -- --------------------------------------------------------
 
@@ -108,7 +108,7 @@ CREATE TABLE `fileupload` (
   `file_path` varchar(255) NOT NULL,
   `boss2_comment` varchar(255) NOT NULL,
   `boss1_comment` varchar(255) NOT NULL,
-  `status` enum('pending','processing','completed') NOT NULL
+  `status` enum('Pending','Processing','Completed') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -116,17 +116,12 @@ CREATE TABLE `fileupload` (
 --
 
 INSERT INTO `fileupload` (`id`, `file_name`, `division`, `section`, `category`, `locator_num`, `received_date`, `received_from`, `subject`, `description`, `type`, `file_path`, `boss2_comment`, `boss1_comment`, `status`) VALUES
-(87, '6928-1-19774-1-10-20191218.pdf', 'Readers\' Services Division', 'Publishing Section', 'Incoming', '12345', '2024-05-17', 'done', 'done', 'done', 'PDF', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', 'saadad', 'hgfdsa', 'pending'),
-(88, 'user.htm', 'Library Extension Division', 'Recreational', 'Incoming', '909', '2024-05-17', 'ok', 'ok', 'ok', 'DOCS', 'File_Uploaded/user.htm', '', 'aaaa', 'pending'),
-(89, '6928-1-19774-1-10-20191218.pdf', 'Technical Division', 'Collection Development', 'Outgoing', '8989', '2024-05-17', 'okok', 'okok', 'okok', 'IMG', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', '', 'sd', 'pending'),
-(90, '6928-1-19774-1-10-20191218.pdf', 'Publication Division', 'Publishing Section', 'Incoming', '7676', '2024-05-17', 'nice', 'nice', 'nice', 'IMG', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', '', 'jhgfdes', 'pending'),
-(91, '6928-1-19774-1-10-20191218.pdf', NULL, NULL, 'Outgoing', '3434', '2024-05-17', 'uwu', 'uwu', 'uwu', 'PDF', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', '', '', 'pending'),
-(92, '6928-1-19774-1-10-20191218.pdf', '', '', 'Incoming', '136462', '2024-05-17', 'done', 'done', 'done', 'PDF', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', '', '', 'completed'),
-(93, 'user.htm', '', '', 'Outgoing', '11', '2024-05-17', '4pm', '4pm', '4pm', 'DOCS', 'File_Uploaded/user.htm', 'GUMANA KANA PLSSSSSSSSSSSSSSSSSSSSSS', 'nigga moments', 'pending'),
-(94, '6928-1-19774-1-10-20191218.pdf', 'readers', 'Children;s Section', 'Incoming', '9090909', '2024-05-20', 'okokookok', 'okokokokk', 'okokokokk', 'DOCS', 'File_Uploaded/6928-1-19774-1-10-20191218.pdf', '', 'ok', 'processing'),
-(95, 'PDF 2.pdf', NULL, NULL, 'Incoming', '90091', '2024-05-21', 'bro', 'bro', 'bro', 'DOCS', 'File_Uploaded/PDF 2.pdf', '', '', 'pending'),
-(96, 'PDF 2.pdf', NULL, NULL, 'Incoming', '456', '2024-05-04', 'AAA', 'SSSS', 'SSS', 'PDF', 'File_Uploaded/PDF 2.pdf', '', '', 'pending'),
-(97, 'TASK OJT.txt', NULL, NULL, 'Incoming', '0', '2024-05-23', 'ok', 'opo', 'oo', 'DOCS', 'File_Uploaded/TASK OJT.txt', '', '', 'pending');
+(101, 'Theory of Programming.pdf', 'Readers Service Division', 'Periodical Section', 'Incoming', '1', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Theory of Programming.pdf', 'done', 'locate', 'Completed'),
+(102, 'Programmig.pdf', NULL, NULL, 'Outgoing', '5', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Programmig.pdf', '', '', 'Pending'),
+(103, 'Backtrack Programming.pdf', NULL, NULL, 'Incoming', '2', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Backtrack Programming.pdf', '', '', 'Pending'),
+(104, 'PARADIGM OF PROGRAMMING.pdf', NULL, NULL, 'Incoming', '3', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/PARADIGM OF PROGRAMMING.pdf', '', '', 'Pending'),
+(105, 'ProgLang.pdf', NULL, NULL, 'Incoming', '4', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/ProgLang.pdf', '', '', 'Pending'),
+(106, 'TASK OJT.txt', NULL, NULL, 'Incoming', '0', '2024-05-25', 'ok', 'ok', 'ok', 'DOCS', 'File_Uploaded/TASK OJT.txt', 'oks', '', 'Processing');
 
 -- --------------------------------------------------------
 
@@ -167,7 +162,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'user', 'user', 'user', 'user');
+(1, 'user', 'user', 'user', 'user'),
+(51, 'Guillermo Mercado1', 'Technical Division', 'guillermomercado123', 'guillermomercado123');
 
 --
 -- Indexes for dumped tables
@@ -217,25 +213,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `boss1`
 --
 ALTER TABLE `boss1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `boss2`
 --
 ALTER TABLE `boss2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fileupload`
 --
 ALTER TABLE `fileupload`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `testupload`
@@ -247,7 +243,7 @@ ALTER TABLE `testupload`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
