@@ -20,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $name, $username, $password, $id);
     if ($stmt->execute()) {
-        echo "User updated successfully.";
-        header("Location: /qcpl/Frontend/Dashboard/usersaccounts.php"); // Redirect back to the user accounts page
+        echo "<script>alert('Account updated successfully.');</script>";
+        header("Location: /qcpl/Frontend/Dashboard/usersaccounts.php"); 
         exit();
     } else {
         echo "Error updating record: " . $conn->error;
@@ -45,10 +45,15 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Edit User</title>
+    <script>
+        function confirmUpdate() {
+            return confirm("Are you sure you want to update this user?");
+        }
+    </script>
 </head>
 <body>
     <h2>Edit User</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return confirmUpdate();">
         <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
         <p>
             <label for="name">Name:</label>

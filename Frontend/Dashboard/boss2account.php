@@ -69,9 +69,9 @@
         echo "<td>" . htmlspecialchars($row["received_from"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["type"]) . "</td>";
-        echo "<td><a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
-        echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
         echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+        echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
+        echo "<td><a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
         echo "</tr>";
       }
     } else {

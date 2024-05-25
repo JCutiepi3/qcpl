@@ -45,10 +45,15 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Edit Admin</title>
+    <script>
+        function confirmUpdate() {
+            return confirm("Are you sure you want to update this admin?");
+        }
+    </script>
 </head>
 <body>
     <h2>Edit Admin</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return confirmUpdate();">
         <input type="hidden" name="id" value="<?php echo $admin['id']; ?>">
         <p>
             <label for="name">Name:</label>

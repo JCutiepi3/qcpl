@@ -187,7 +187,6 @@ if(isset($_SESSION['name'])) {
                     echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
                 }
 
-                
 
                 $stmt->close();
                 $conn->close();

@@ -22,7 +22,7 @@ $result_boss1 = $conn->query($sql_boss1);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQs</title>
+    <title>Accounts</title>
 
     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
@@ -122,36 +122,64 @@ $result_boss1 = $conn->query($sql_boss1);
             </div>
         
         <div class ="accts_boss1">
-         <?php
-         if ($result_boss1->num_rows > 0) {
-            echo "<table aria-describedby='boss1-table'>";
-            echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
-            echo "<tbody>";
-            while ($row = $result_boss1->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td><center>" .  htmlspecialchars($row["id"]) . "</td>";
-                echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
-                echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
-                echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
-                echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                echo "<td id='boss1_edit'><center><a href='/qcpl/Backend/updateboss1account.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
-                echo "<td id='boss1_delete'><center><a href='/qcpl/Backend/deleteaccount.php?id=" . htmlspecialchars($row["id"]) . "'>Delete</a></td>";
-                echo "</tr>";
-            }
-            echo "</tbody>";
-            echo "</table>";
-        } else {
-            echo "<p>No Boss 1 found.</p>";
-        }
-        $conn->close();
-        ?> 
-        </div>
+        <?php
+            // Assuming $conn is your database connection
+            $rowsPerPage = 4;
+            $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+            $offset = ($page - 1) * $rowsPerPage;
 
-  
+            // Prepare the SQL query with pagination
+            $sql = "SELECT id, name, division, username, password FROM boss1 LIMIT ? OFFSET ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ii", $rowsPerPage, $offset);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                echo "<table aria-describedby='boss1-table'>";
+                echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
+                echo "<tbody>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td><center>" . htmlspecialchars($row["id"]) . "</td>";
+                    echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
+                    echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
+                    echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
+                    echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                    echo "<td id='boss1_edit'><center><a href='/qcpl/Backend/updateboss1account.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
+                    echo "<td id='boss1_delete'><center><a href='#' onclick='confirmDeleteBoss1(" . htmlspecialchars($row["id"]) . ")'>Delete</a></td>";
+                    echo "</tr>";
+                }
+                echo "</tbody>";
+                echo "</table>";
+
+                // Pagination Controls
+                echo '<div style="text-align:center; margin-top:20px;">';
+                if ($page > 1) {
+                    echo '<a href="?page=' . ($page - 1) . '">Previous</a>';
+                }
+                echo ' | ';
+                echo '<a href="?page=' . ($page + 1) . '">Next</a>';
+                echo '</div>';
+            } else {
+                echo "<p>No Boss 1 Account found.</p>";
+            }
+            $stmt->close();
+            $conn->close();
+            ?>
+
+        </div>
                
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
-
+    
+    <script>
+    function confirmDeleteBoss1(boss1Id) {
+        if (confirm("Are you sure you want to delete this Boss 1 account?")) {
+            window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + boss1Id;
+        }
+    }
+    </script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

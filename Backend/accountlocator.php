@@ -36,7 +36,7 @@ if (isset($_GET['name']) && !empty($_GET['name'])) {
             $output .= "<tr><td>" . htmlspecialchars($row['name']) . "</td>";
             $output .= "<td>" . htmlspecialchars($row['division']) . "</td>";
             $output .= "<td>" . htmlspecialchars($row['role']) . "</td>";
-            $output .= "<td><a href='details.php?id=" . $row['id'] . "'>View Details</a></td></tr>";
+            $output .= "<td><a href='info.php?id=" . $row['id'] . "'>View Details</a></td></tr>";
         }
         $output .= "</table>";
     } else {

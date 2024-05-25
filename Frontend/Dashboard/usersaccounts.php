@@ -24,7 +24,7 @@ $result_users = $conn->query($sql_users);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQs</title>
+    <title>Accounts</title>
 
     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
@@ -126,30 +126,52 @@ $result_users = $conn->query($sql_users);
 
 
 
-<div class="accts_user">
-<?php
-if ($result_users->num_rows > 0) {
-    echo "<table aria-describedby='user-table'>";
-    echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
-    echo "<tbody>";
-    while ($row = $result_users->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td><center>" .  htmlspecialchars($row["id"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
-        echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-        echo "<td id='us_edit'><center><a href='/qcpl/Backend/updateuseraccount.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
-        echo "<td id='us_delete'><center><a href='/qcpl/Backend/deleteaccount.php?id=" . htmlspecialchars($row["id"]) . "'>Delete</a></td>";
-        echo "</tr>";
-    }
-    echo "</tbody>";
-    echo "</table>";
-} else {
-    echo "<p>No Users found.</p>";
-}
-$conn->close();
-?>
+    <div class="accts_user">
+        <?php
+        // Assuming $conn is your database connection
+        $rowsPerPage = 4;
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+        $offset = ($page - 1) * $rowsPerPage;
+
+        // Prepare the SQL query with pagination
+        $sql = "SELECT id, name, division, username, password FROM users LIMIT ? OFFSET ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $rowsPerPage, $offset);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            echo "<table aria-describedby='user-table'>";
+            echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
+            echo "<tbody>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td><center>" . htmlspecialchars($row["id"]) . "</td>";
+                echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
+                echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
+                echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
+                echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                echo "<td id='us_edit'><center><a href='/qcpl/Backend/updateuseraccount.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
+                echo "<td id='us_delete'><center><a href='#' onclick='confirmDelete(" . htmlspecialchars($row["id"]) . ")'>Delete</a></td>";
+                echo "</tr>";
+            }
+            echo "</tbody>";
+            echo "</table>";
+
+            // Pagination Controls
+            echo '<div style="text-align:center; margin-top:20px;">';
+            if ($page > 1) {
+                echo '<a href="?page=' . ($page - 1) . '">Previous</a>';
+            }
+            echo ' | ';
+            echo '<a href="?page=' . ($page + 1) . '">Next</a>';
+            echo '</div>';
+        } else {
+            echo "<p>No Users Account found.</p>";
+        }
+        $conn->close();
+        ?>
+
 </div>
 
           
@@ -158,6 +180,14 @@ $conn->close();
                
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
+    
+    <script>
+    function confirmDelete(userId) {
+        if (confirm("Are you sure you want to delete this account?")) {
+            window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + userId;
+        }
+    }
+    </script>
 
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
