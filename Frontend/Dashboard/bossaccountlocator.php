@@ -1,4 +1,89 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- ======= Styles ====== -->
+    <link rel="shortcut icon" type="image/x-icon" href="/Frontend/Dashboard/imgs/logo.png">
+    <link rel="stylesheet" href="boss1.css">
+</head>
+
+<body>
+
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="img">
+                            <img src="Dashboard/imgs/logo.png" >
+                        </span>
+                        <span class="title">Quezon City Public Library</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="boss1.html">
+                        <span class="icon">
+                            <ion-icon name="documents-outline"></ion-icon>
+                        </span>
+                        <span class="title">Document</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/qcpl/Backend/logout.php">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                
+            <form action="/qcpl/Backend/locator.php" method="GET">
+                <div class="search">
+                    <label>
+                        <input type="number" name="locator" placeholder="Search here">
+                        <input type="submit" id="sub_hide" name="find">
+                        <ion-icon name="search-outline" name="locate"></ion-icon>
+                    </label>
+                </div>
+            </form>
+               
+
+                <div class="user">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+
+                </div>
+            </div>
+
+            <div class="details">
+                <div class="upload">
+                    <div class="cardHeader">
+                        <h2>DOCUMENTS</h2>   
+                    </div> 
+                </div>
+                    <div class="table">
+    <table class="table_th">
+
+        <divdiv id="multiStepForm">    
+        <?php
 session_start();
 
 $servername = "localhost";
@@ -98,6 +183,7 @@ echo "<h1>Locator Number: $locatorNum</h1>";
     </script>
     <br>
 
+
     <label for="comment" required>Comment:</label><br>
     <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
     <br><br>
@@ -115,5 +201,36 @@ echo "<h1>Locator Number: $locatorNum</h1>";
     <input type="submit" name="submit" value="Submit">
 </form>
 
+               
+    <!-- =========== Scripts =========  -->
+    <script src="main.js"></script>
+
+    <script>// add hovered class to selected list item
+let list = document.querySelectorAll(".navigation li");
+
+function activeLink() {
+  list.forEach((item) => {
+    item.classList.focus("hovered")
+
+  });
+  this.classList.add("hovered");
+}
+
+list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+// Menu Toggle
+let toggle = document.querySelector(".toggle");
+let navigation = document.querySelector(".navigation");
+let main = document.querySelector(".main");
+
+toggle.onclick = function () {
+  navigation.classList.toggle("active");
+  main.classList.toggle("active");
+};</script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
