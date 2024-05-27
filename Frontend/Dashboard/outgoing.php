@@ -12,11 +12,6 @@ if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
 
-// if (!isset($_SESSION['name'])) {
-//     // Redirect to login page if user is not logged in
-//     header("Location: ../login.html");
-//     exit();
-// }
 
 $name = "";
 if(isset($_SESSION['username'])) {
@@ -125,26 +120,7 @@ if(isset($_SESSION['username'])) {
         <div class="main">
             <div class="topbar">
                 <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
-                
-                <!-- Search Form -->
-                <form action="/qcpl/Backend/locator.php" method="GET">
-                    <div class="search">
-                        <label>
-                            <input type="number" name="locator" placeholder="Search here">
-                            <input type="submit" id="sub_hide" name="find">
-                            <ion-icon name="search-outline"></ion-icon>
-                        </label>
-                    </div>
-                </form>
 
-                <!-- Welcome Message -->
-                <?php
-                if(!empty($name)) {
-                    echo "<div class='welcome'>Welcome, $name!</div>";
-                } else {
-                    echo "<div class='welcome'>Welcome!</div>";
-                }
-                ?>
                 <div class="user"><span class="icon"><ion-icon name="person"></ion-icon></span></div>
             </div>
 

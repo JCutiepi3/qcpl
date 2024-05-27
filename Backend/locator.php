@@ -26,7 +26,7 @@ if(isset($_GET['find'])) {
             "<br>Description: " . $row["description"]. "<br>Type: " . $row["type"]. "<br>File: <a href='/qcpl/Backend/".$row["file_path"]."' target='_blank'>View File</a>";
         }
     } else {
-        echo "<script>alert('No document found!'); window.location='/qcpl/Frontend/Dashboard/dash.html';</script>";
+        echo "<script>alert('No document found!'); window.location='/qcpl/Frontend/Dashboard/dash.php';</script>";
     }
     $conn->close();
 }

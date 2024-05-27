@@ -1,24 +1,15 @@
 <?php
-// Database connection
 $servername = "localhost";
-$username = "root"; // Change this
-$password = ""; // Change this
+$username = "root";
+$password = "";
 $dbname = "qcpl";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-// if (!isset($_SESSION['name'])) {
-//     // Redirect to login page if user is not logged in
-//     header("Location: ../login.html");
-//     exit();
-// }
-
-// Fetch all files from database
-$sql = "SELECT * FROM testupload ORDER BY ID DESC"; // Fetch all files
+$sql = "SELECT * FROM testupload ORDER BY ID DESC"; 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -34,7 +25,6 @@ if ($result->num_rows > 0) {
     echo "No files found.";
 }
 
-// File download handling
 if(isset($_GET['file'])) {
     $filePath = $_GET['file'];
     if (file_exists($filePath)) {

@@ -5,10 +5,8 @@
 <body>
 
 <?php
-// Retrieve the locator number from the query parameter
 if(isset($_GET['locator_num'])){
     $locatorNum = $_GET['locator_num'];
-    // Display the locator number
     echo "<h1>Locator Number: $locatorNum</h1>";
 } else {
     echo "Locator number not provided.";
@@ -19,7 +17,7 @@ if(isset($_GET['locator_num'])){
 
             </script>
   <br>
-  <label for="comment">Comment:</label><br>
+  <label for="comment" required>Comment:</label><br>
   <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
   <br><br>
   
@@ -38,7 +36,6 @@ if(isset($_GET['locator_num'])){
 </html>
 
     <script>
-        // Function to view document (replace 'document_path' with the actual document path)
         function viewDocument() {
             window.open('document_path', '_blank');
         }
@@ -59,8 +56,3 @@ $conn = new mysqli($server, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
-// if (!isset($_SESSION['name'])) {
-//     // Redirect to login page if user is not logged in
-//     header("Location: ../login.html");
-//     exit();
-// }

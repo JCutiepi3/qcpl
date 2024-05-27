@@ -11,7 +11,7 @@ $conn = new mysqli($server, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect: " . $conn->connect_error);
 }
-$name = ""; 
+
 if(isset($_SESSION['name'])) {
     $name = $_SESSION['name'];
     $sql = "SELECT name FROM admins WHERE name = ?";
@@ -103,14 +103,6 @@ if(isset($_SESSION['name'])) {
                     </a>
                 </li>
 
-                <li>
-                    <a href="faqs.html">
-                        <span class="icon">
-                            <ion-icon name="help"></ion-icon>
-                        </span>
-                        <span class="title">FAQs</span>
-                    </a>
-                </li>
 
                 <li>
                     <a href="/qcpl/Backend/logout.php">
@@ -141,16 +133,6 @@ if(isset($_SESSION['name'])) {
                         </label>
                     </div>
                 </form>
-
-                <!-- Welcome Message -->
-                
-                <?php
-                if(!empty($name)) {
-                    echo "<div class='welcome'>Welcome, $name!</div>";
-                } else {
-                    echo "<div class='welcome'></div>";
-                }
-                ?>
                 <div class="user"><span class="icon"><ion-icon name="person"></ion-icon></span></div>
             </div>
 
@@ -204,7 +186,6 @@ if(isset($_SESSION['name'])) {
                     echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
                 }
 
-                
 
                 $stmt->close();
                 $conn->close();

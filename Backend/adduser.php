@@ -17,7 +17,6 @@ if(isset($_POST["create"])){
     $password = $conn->real_escape_string($_POST['password']);
     $account_type = $conn->real_escape_string($_POST['account_type']);
 
-    // Check if password meets the length requirement
     if(strlen($password) < 8) {
         echo "<script>alert('Password must be at least 8 characters long.'); window.location='/qcpl/Frontend/Dashboard/adduser.html';</script>";
         exit();

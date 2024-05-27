@@ -23,7 +23,7 @@ if(isset($_GET['find'])) {
     
         while($row = $result->fetch_assoc()) {
             echo "ID: " . $row["id"]. "<br>Name: " . $row["name"]. "<br>Username: " . $row["username"]. 
-            "<br>Password: " . $row["password"] . "<br>"; // Fixed concatenation
+            "<br>Password: " . $row["password"] . "<br>";
         }
     } else {
         echo "<script>alert('Account not found!'); window.location='/qcpl/Frontend/Dashboard/user.php';</script>";

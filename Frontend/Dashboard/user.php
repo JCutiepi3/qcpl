@@ -71,15 +71,14 @@
                 </li>
             </ul>
         </div>
-
         <!-- Main Content -->
         <div class="main">
             <div class="topbar">
                 <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
-                <form action="/qcpl/Backend/userslocator.php" method="GET" class="search">
+                <form action="/qcpl/Backend/accountlocator.php" method="GET" class="search">
                     <label>
-                        <input type="number" name="id" placeholder="Search here">
-                        <input type="submit" id="sub_hide" name="find">
+                        <input type="text" name="name" placeholder="Search here">
+                        <input type="submit" id="sub_hide" name="finder">
                         <ion-icon name="search-outline" name="find"></ion-icon>
                     </label>
                 </form>
@@ -97,48 +96,62 @@
 
             <div class="findaccount">
             <?php
-            $server = "localhost";
-            $username = "root";
-            $password = "";
-            $db = "qcpl";
+                $server = "localhost";
+                $username = "root";
+                $password = "";
+                $db = "qcpl";
 
-            $conn = new mysqli($server, $username, $password, $db);
+                $conn = new mysqli($server, $username, $password, $db);
 
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            // SQL UNION query to fetch all accounts from different tables
-            $sql = "SELECT id, name, division, username, password, 'Admin' as role FROM admins
-                    UNION ALL
-                    SELECT id, name, division, username, password, 'User' as role FROM users
-                    UNION ALL
-                    SELECT id, name, division, username, password, 'Boss1' as role FROM boss1
-                    UNION ALL
-                    SELECT id, name, division, username, password, 'Boss2' as role FROM boss2";
-
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                echo "<table style='width:100%; text-align:center;''>";
-                echo "<tr><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th>Role</th><th colspan='2'>Action</th></tr>";
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row["division"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row["username"]) . "</td>";
-                    echo "<td>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                    echo "<td>" . htmlspecialchars($row["role"]) . "</td>";
-                    echo "<td id='fa_edit'><a href='updateuseradmin.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Edit</a></td>";
-                    echo "<td id='fa_delete'><a href='deleteuser.php?id=" . htmlspecialchars($row["id"]) . "&role=" . htmlspecialchars($row["role"]) . "'>Delete</a></td>";
-                    echo "</tr>";
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
                 }
-                echo "</table>";
-            } else {
-                echo "<p>No accounts found.</p>";
-            }
-            $conn->close();
-            ?>
+
+                $rowsPerPage = 4;
+                $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+                $offset = ($page - 1) * $rowsPerPage;
+
+                $sql = "SELECT id, name, division, username, password, 'Admin' as role FROM admins
+                        UNION ALL
+                        SELECT id, name, division, username, password, 'User' as role FROM users
+                        UNION ALL
+                        SELECT id, name, division, username, password, 'Boss1' as role FROM boss1
+                        UNION ALL
+                        SELECT id, name, division, username, password, 'Boss2' as role FROM boss2
+                        LIMIT ? OFFSET ?";
+
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ii", $rowsPerPage, $offset);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    echo "<table style='width:100%; text-align:center;'>";
+                    echo "<tr><th>Role</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th></tr>";
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row["role"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["division"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["username"]) . "</td>";
+                        echo "<td>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                    echo '<div style="text-align:center; margin-top:20px;">';
+                    if ($page > 1) {
+                        echo '<a href="?page=' . ($page - 1) . '">Previous</a>';
+                    }
+                    echo ' | ';
+                    echo '<a href="?page=' . ($page + 1) . '">Next</a>';
+                    echo '</div>';
+                } else {
+                    echo "<script>alert('No Account Found!'); window.location.href = '?page=1';</script>";
+                }
+
+                $stmt->close();
+                $conn->close();
+                ?>
             </div>
         </div>
     </div>
@@ -158,7 +171,7 @@
         }
         function confirmUpdate(id) {
         if (confirm("Are you sure you want to update?")) {
-            window.location.href = 'updateuseradmin.php?id=' + id; // Redirect to updateuseradmin.php with ID
+            window.location.href = 'updateuseradmin.php?id=' + id; 
         }
     }
 </script>
