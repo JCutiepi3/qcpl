@@ -65,7 +65,6 @@ if(isset($_SESSION['name'])) {
                     </span>
                     <span class="title">Dashboard</span>
                     </a>
-                    
 
                          <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
