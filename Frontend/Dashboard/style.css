@@ -115,15 +115,13 @@ body {
 }
 
 
+.navigation li.sub_dash{
+  position: relative;
+  padding: 6px 6px 9px 100px;
+  font-size: 1rem;
+  width: 100%;
 
- .dropdown-toggle li {
- 
-  margin-top: -10px;
-  font-size: 3rem;
-  
 }
-
-
 
 
 
@@ -146,7 +144,17 @@ body {
   
 }
 
+#dash_down_btn{
+  position: relative;
+  left: 50px;
+  
+}
 
+#acct_down_btn{
+  position: relative;
+  left: 61px;
+  
+}
 
 
 
@@ -493,12 +501,10 @@ body {
 .summary table{
   width: 90%;
   border-collapse: collapse; 
-  
 }
 
 .summary tr{
   height: 75px;
-  
 }
 
 .summary th{
@@ -512,8 +518,6 @@ body {
   text-transform:uppercase ;
   border: 1.5px solid;
   border-color: white;
-  
-
 }
 
 .summary td{
@@ -538,7 +542,7 @@ body {
 }
 
 #next{
-  position: fixed;
+  position: absolute;
   display: block;
   top: 595px;
   left: 1330px;
@@ -1179,8 +1183,7 @@ text-transform: uppercase;
 }
 
  .add_user form{
-  position: relative;
-  top: -830px;
+  top: -850px;
   left: 130px;
 }
 
@@ -1191,9 +1194,148 @@ text-transform: uppercase;
 #input_add{
 
   left: 200px;
+}
+
+.incoming{
+  left: 20px;
+}
+
+.incoming th{
+  font-size: .65rem;
+}
+
+.incoming td{
+  font-size: .6rem;
+}
+
+.incoming a{
+  text-decoration: none;
+}
+
+.outgoing{
+  left: 20px;
+}
+
+.outgoing th{
+  font-size: .65rem;
+}
+
+.outgoing td{
+  font-size: .6rem;
+}
+
+.outgoing a{
+  text-decoration: none;
+}
+
+.accts_user{
+  width: 90%;
+}
+
+.accts_user th{
+  font-size: 1rem;
+}
+
+.accts_user td{
+  font-size: .8rem;
+}
+
+.accts_user a{
+  text-decoration: none;
+}
+
+.accts_admin{
+  width: 92%;
+}
+
+.accts_admin th{
+  font-size: .9rem;
+}
+
+.accts_admin td{
+  font-size: .8rem;
+}
+
+.accts_admin a{
+  text-decoration: none;
+}
+
+.accts_boss1{
+  width: 92%;
+}
+
+.accts_boss1 th{
+  font-size: 1rem;
+}
+
+.accts_boss1 td{
+  font-size: .8rem;
+}
+
+.accts_boss1 a{
+  text-decoration: none;
+}
+
+.accts_boss2{
+  width: 92%;
+}
+
+.accts_boss2 th{
+  font-size: 1rem;
+}
+
+.accts_boss2 td{
+  font-size: .8rem;
+}
+
+.accts_boss2 a{
+  text-decoration: none;
+}
+
+.upload_file form {
+  position: relative;
+  top: -1010px;
+  left: 120px;
+
+}
+
+.info_box2{
+  position: relative;
+  width: 500px;
+  top: -540px;
+  left: 70px;
 
 
 }
+
+
+
+#lb_in{
+  left: 90px;
+  font-size: 1rem;
+}
+#in_in{
+  position: relative;
+  left: 14%;
+}
+
+#lb_out{
+  position: relative;
+  left: 90px;
+  font-size: 1rem;
+}
+#in_out{
+  position: relative;
+  left: 14.5%;
+}
+
+
+#in_submit{
+  left: 160px;
+
+}
+
+
 
 }
 
@@ -1224,6 +1366,8 @@ text-transform: uppercase;
     right: 0;
     left: initial;
   }
+
+  
 }
 
 #sub_hide {

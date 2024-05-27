@@ -60,22 +60,24 @@ if(isset($_SESSION['username'])) {
                 </li>
                 
                 <li>
-                    <a href="dash.php">
-                        <span class="icon"><ion-icon name="apps"></ion-icon></ion-icon></span>
-                        <span class="title">Dashboard</span>
-                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+                    <a href="dash.php" class="dropdown-toggle">
+                    <span class="icon">
+                    <ion-icon name="apps"></ion-icon>
+                    </span>
+                    <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
+                    
 
                          <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
-                    </a>
-                </li>
                 
+                </li>
+         
                 <li>
                     <a href="user.php">
                         <span class="icon"><ion-icon name="people"></ion-icon></span>
-                        <span class="title">Accounts</span>
-                        <ion-icon id="down_btn" name="caret-down-outline"></ion-icon></span>
+                        <span class="title">Accounts<ion-icon id="acct_down_btn" name="caret-down-outline"></ion-icon></span>
+                        
                     </a>
 
                          <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
@@ -84,6 +86,7 @@ if(isset($_SESSION['username'])) {
                          <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
                     </a>
                 </li>
+
 
                 <li>
                     <a href="doc.html">
