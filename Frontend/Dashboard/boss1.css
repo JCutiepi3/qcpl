@@ -274,60 +274,133 @@ body {
 }
 
 
+/* ===================COMMENT=================*/
+/* ======= Locator Form ======= */
+.locator-form {
+  margin: 50px auto;
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.locator-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.locator-form select,
+.locator-form textarea {
+  width: calc(100% - 10px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.locator-form input[type="radio"] {
+  margin-right: 5px;
+}
+
+.locator-form input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.locator-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.icon-container {
+  position: relative; /* Allows positioning the icon within */
+  width: 55px; /* Adjust width as needed */
+  height: 55px; /* Adjust height as needed */
+  border-radius: 5px; /* Rounded corners */
+  display: flex; /* Enables centering the icon */
+  justify-content: center; /* Center the icon horizontally */
+  align-items: center; /* Center the icon vertically */
+  background-color: #4CAF50; 
+  float: right;
+}
+
+.icon-container {
+  width: 55px;
+  height: 55px;
+  background-color: #ddd; /* Light gray background */
+  border-radius: 50%; /* Rounded corners */
+  position: relative; /* Allows positioning the triangle */
+}
+
+.icon-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%; /* Center the triangle horizontally */
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 20px 0 0; /* Right triangle shape */
+  border-color: transparent transparent blue; /* Blue fill */
+}
+
+
+
+
+
+
+
 /* ================== SUMMARY TABLE ============== */
 
-tr.bg-blue-800.dark\:bg-blue-300.text-white.dark\:text-zinc-900 {
-  border-bottom: 2px solid black; /* Adjust the thickness and color as needed */
-}
-
-.summary {
+.table{
   position: relative;
-  top: -460px;
-  left: 65px;
+  top: 17px;
+  left: 40px;
   width: 100%;
   text-align: center;
-  border-bottom: black;
-}
 
-tr:hover {
-  background-color: #7f79b5;
-}
-
-.summary table {
-  width: 90%;
-  border: 5px solid;
-  border-bottom: 9px solid;   
-}
-
-.summary tr,
-.summary td {
-  border: solid; /* Remove border from all cells */
-  border-bottom: 9px solid; /* Keep border only at the bottom of cells */
-}
-
-.summary tr {
-  height: 75px;
-}
-
-.bg1 th {
-  border-bottom: 2px solid red;
 
 }
 
-.summary th {
+.table table{
+  width: 94%;
+  border-collapse: collapse; 
+
+}
+
+.table tr{
+  height: 60px;
+  
+}
+
+.table th{
   background-color: #2a2185;
-  font-size: 2rem;
+  font-size: 1.1rem;
   text-align: center;
   color: #fff;
   font-weight: 100px;
   height: 40px;
-  font-family: "Bitter", serif;
+  font-family: italics;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
 }
 
-.summary td {
+.table td{
   font-size: 1rem;
   font-weight: bold;
+  border-bottom: 2px solid;
+  border-color: #2a2185;
+}
 
+.table a{
+  text-decoration: none;
 }
 
 .table {
@@ -337,11 +410,12 @@ tr:hover {
   border-spacing: 15px;
   text-align: center;
   letter-spacing: 2px;
-  font-family: 'Arial', sans-serif;
+  font-family: italics;
   color: #2a2185;
   font-size: 20px;
   
 }
+
 
 .table ion-icon {
   position: relative;
@@ -363,12 +437,13 @@ tr:hover {
 
 
 
+
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
     left: -300px;
   }   }
-
+}
 
 @media (max-width: 768px) {
   .details {
@@ -417,6 +492,3 @@ tr:hover {
   margin-top: 20px;
   visibility: hidden;
 }
-
-
-
