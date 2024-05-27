@@ -40,19 +40,84 @@ if (isset($_GET['id'])) {
 }
 ?>
 
+
+<!-- Edit_Admin -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Admin</title>
+    <title>EditAdmin</title>
     <script>
         function confirmUpdate() {
             return confirm("Are you sure you want to update this admin?");
         }
     </script>
 </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EditAdmin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Light blue background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+            color: #0277bd; /* Dark blue heading */
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #01579b; /* Medium blue label */
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #81d4fa; /* Light blue border */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #0288d1; /* Blue button */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0277bd; /* Darker blue on hover */
+        }
+    </style>
+</head>
 <body>
-    <h2>Edit Admin</h2>
+    <!-- Edit Admin -->
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return confirmUpdate();">
         <input type="hidden" name="id" value="<?php echo $admin['id']; ?>">
         <p>
@@ -70,4 +135,6 @@ if (isset($_GET['id'])) {
         <input type="submit" value="Update Admin">
     </form>
 </body>
+</html>
+
 </html>
