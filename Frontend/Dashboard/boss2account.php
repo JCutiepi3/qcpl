@@ -21,7 +21,7 @@
                 <li>
                     <a href="#">
                         <span class="img">
-                            <img src="Dashboard/imgs/logo.png" >
+                            <img src="../Frontend/Dashboard/imgs/logo.png"     alt="BOSS 2 ">
                         </span>
                         <span class="title">Quezon City Public Library</span>
                     </a>
@@ -145,7 +145,7 @@
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
 
-    <script>// add hovered class to selected list item
+    <script>
 let list = document.querySelectorAll(".navigation li");
 
 function activeLink() {
