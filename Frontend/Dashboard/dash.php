@@ -1,40 +1,12 @@
-<?php
-session_start();
 
-$server = "localhost";
-$username = "root";
-$password = "";
-$db = "qcpl";
-
-$conn = new mysqli($server, $username, $password, $db);
-
-if ($conn->connect_error) {
-    die("Failed to connect: " . $conn->connect_error);
-}
-
-if(isset($_SESSION['name'])) {
-    $name = $_SESSION['name'];
-    $sql = "SELECT name FROM admins WHERE name = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $name);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $name = $row['name'];
-    }
-    $stmt->close();
-}
-?>
-
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Home</title>
 
     <!-- Styles -->
@@ -148,10 +120,14 @@ if(isset($_SESSION['name'])) {
 
             <div class="summary">
                 <?php
+                $server = "localhost";
+                $username = "root";
+                $password = "";
+                $db = "qcpl";
+                $conn = new mysqli($server, $username, $password, $db);
                 $rowsPerPage = 4;
                 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
                 $offset = ($page - 1) * $rowsPerPage;
-
                 $sql = "SELECT * FROM fileupload LIMIT ? OFFSET ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("ii", $rowsPerPage, $offset);
@@ -187,7 +163,6 @@ if(isset($_SESSION['name'])) {
                     echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
                 }
 
-
                 $stmt->close();
                 $conn->close();
                 ?>
@@ -201,7 +176,6 @@ if(isset($_SESSION['name'])) {
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
 
 </html>
     
