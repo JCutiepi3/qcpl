@@ -8,7 +8,7 @@
     <title>Home</title>
 
     <!-- ======= Styles ====== -->
-    <link rel="shortcut icon" type="image/x-icon" href="Dashboard/imgs/logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
     <link rel="stylesheet" href="boss1.css">
 </head>
 
@@ -21,7 +21,7 @@
                 <li>
                     <a href="#">
                         <span class="img">
-                            <img src="Dashboard/imgs/logo.png" >
+                            <img src="imgs/logo.png">
                         </span>
                         <span class="title">Quezon City Public Library</span>
                     </a>
@@ -145,7 +145,7 @@
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
 
-    <script>// add hovered class to selected list item
+    <script>
 let list = document.querySelectorAll(".navigation li");
 
 function activeLink() {

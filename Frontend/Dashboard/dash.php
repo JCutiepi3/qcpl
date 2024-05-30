@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,7 +118,7 @@
                 $stmt->execute();
                 $result = $stmt->get_result();
 
-                if ($result->num_rows > 0) {
+                if ($result->num_rows > 0) {                    
                     echo "<table>";
                     echo "<tr><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>File type</th><th>File</th><th>Status</th></tr>";
 
@@ -132,7 +131,7 @@
                         echo "<td>" . "<center>" . $row["received_date"] . "</td>";
                         echo "<td>" . "<center>" . $row["received_from"] . "</td>";
                         echo "<td>" . "<center>" . $row["type"] . "</td>";
-                        echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+                        echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'><center>View File</a></td>";
                         echo "<td id ='status'>" . "<center>" . $row["status"] . "</td>";
                         echo "</tr>";
                     }

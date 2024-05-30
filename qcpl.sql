@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2024 at 09:22 AM
+-- Generation Time: May 30, 2024 at 03:15 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -117,11 +117,11 @@ CREATE TABLE `fileupload` (
 
 INSERT INTO `fileupload` (`id`, `file_name`, `division`, `section`, `category`, `locator_num`, `received_date`, `received_from`, `subject`, `description`, `type`, `file_path`, `boss2_comment`, `boss1_comment`, `status`) VALUES
 (101, 'Theory of Programming.pdf', 'Readers Service Division', 'Periodical Section', 'Incoming', '1', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Theory of Programming.pdf', 'done', 'locate', 'Completed'),
-(102, 'Programmig.pdf', NULL, NULL, 'Outgoing', '5', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Programmig.pdf', '', '', 'Pending'),
-(103, 'Backtrack Programming.pdf', NULL, NULL, 'Incoming', '2', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Backtrack Programming.pdf', '', '', 'Pending'),
+(102, 'Programmig.pdf', 'Administrative Services', 'No Section', 'Outgoing', '5', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Programmig.pdf', 'jkjhjkj', 'done', 'Completed'),
+(103, 'Backtrack Programming.pdf', NULL, NULL, 'Incoming', '2', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Backtrack Programming.pdf', 'done', '', 'Processing'),
 (104, 'PARADIGM OF PROGRAMMING.pdf', NULL, NULL, 'Incoming', '3', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/PARADIGM OF PROGRAMMING.pdf', '', '', 'Pending'),
 (105, 'ProgLang.pdf', NULL, NULL, 'Incoming', '4', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/ProgLang.pdf', '', '', 'Pending'),
-(106, 'TASK OJT.txt', NULL, NULL, 'Incoming', '0', '2024-05-25', 'ok', 'ok', 'ok', 'DOCS', 'File_Uploaded/TASK OJT.txt', 'oks', '', 'Processing');
+(106, 'TASK OJT.txt', 'Technical Division', 'Binding and Preservation Section', 'Incoming', '0', '2024-05-25', 'ok', 'ok', 'ok', 'DOCS', 'File_Uploaded/TASK OJT.txt', 'oks', 'gjlkklgdsklckzlx', 'Completed');
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `division`, `username`, `password`) VALUES
 (1, 'user', 'user', 'user', 'user'),
-(51, 'Guillermo Mercado1', 'Technical Division', 'guillermomercado123', 'guillermomercado123');
+(51, 'Guillermo Mercado', 'Technical Division', 'guillermomercado123', 'guillermomercado123'),
+(52, 'Joana Jane Naval', 'Technical Division', 'Wannabee', 'wanna12345');
 
 --
 -- Indexes for dumped tables
@@ -243,7 +244,7 @@ ALTER TABLE `testupload`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

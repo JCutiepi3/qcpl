@@ -8,10 +8,9 @@
     <title>Home</title>
 
     <!-- ======= Styles ====== -->
-    <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
-    <link rel="stylesheet" href="/Frontend/Dashboard/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/Logo.png">
+    <link rel="stylesheet" href="userdashboard.css">
 </head>
-
 <body>
 
     <!-- =============== Navigation ================ -->
@@ -21,26 +20,18 @@
                 <li>
                     <a href="#">
                         <span class="img">
-                            <img src="Dashboard/imgs/logo.png" >
+                            <img src="img/Logo.png" >
                         </span>
                         <span class="title">Quezon City Public Library</span>
                     </a>
                 </li>
                 
                 <li>
-                    <a href="dash.php">
+                    <a href="userdashboard.php">
                         <span class="icon">
                             <ion-icon name="documents-outline"></ion-icon>
                         </span>
                         <span class="title">Document</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="faqs.html">
-                        <span class="icon">
-                            <ion-icon name="help"></ion-icon>
-                        </span>
-                        <span class="title">FAQs</span>
                     </a>
                 </li>
 
@@ -85,9 +76,7 @@
                 <div class="upload">
                     <div class="cardHeader">
                         <h2>DOCUMENTS</h2>   
-                    </div> 
-                </div>
-                    <div class="table_th">
+                        <div class="table_th">
                         <div class="container">
                             <?php
                             $server = "localhost";
@@ -129,6 +118,8 @@
                             
                             $conn->close();
                             ?>
+                    </div> 
+                </div>
                
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
