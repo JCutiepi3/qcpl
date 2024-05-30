@@ -8,7 +8,7 @@
     <title>Home</title>
 
     <!-- ======= Styles ====== -->
-    <link rel="shortcut icon" type="image/x-icon" href="/Frontend/Dashboard/imgs/logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
     <link rel="stylesheet" href="boss1.css">
 </head>
 
@@ -21,7 +21,7 @@
                 <li>
                     <a href="#">
                         <span class="img">
-                            <img src="Dashboard/imgs/logo.png" >
+                            <img src="imgs/logo.png" >
                         </span>
                         <span class="title">Quezon City Public Library</span>
                     </a>
@@ -54,16 +54,7 @@
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
                 
-            <form action="/qcpl/Backend/locator.php" method="GET">
-                <div class="search">
-                    <label>
-                        <input type="number" name="locator" placeholder="Search here">
-                        <input type="submit" id="sub_hide" name="find">
-                        <ion-icon name="search-outline" name="locate"></ion-icon>
-                    </label>
-                </div>
-            </form>
-               
+    
 
                 <div class="user">
                     <span class="icon">
@@ -77,12 +68,8 @@
                 <div class="upload">
                     <div class="cardHeader">
                         <h2>DOCUMENTS</h2>   
-                    </div> 
                 </div>
-                    <div class="table">
-    <table class="table_th">
-
-        <divdiv id="multiStepForm">    
+                 
         <?php
 session_start();
 
@@ -113,7 +100,6 @@ echo "<h1>Locator Number: $locatorNum</h1>";
 
 <form action="/qcpl/Backend/boss1backend.php" method="POST">
     <input type="hidden" name="locator_num" value="<?php echo htmlspecialchars($locatorNum); ?>">
-    <label>Division: </label>
     <select name="division" id="division" required onchange="updateSubdivision()">
         <option value="">Select Division</option>
         <option value="Readers Service Division">Readers Services Division</option>
@@ -183,25 +169,21 @@ echo "<h1>Locator Number: $locatorNum</h1>";
     </script>
     <br>
 
-
-    <label for="comment" required>Comment:</label><br>
-    <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
+    <textarea id="comment" name="comment" rows="4" cols="50" required> </textarea>
     <br><br>
     
     <label>Status: </label>
     <input type="radio" id="pending" name="status" value="pending" required>
     <label for="pending">Pending</label>
-
     <input type="radio" id="processing" name="status" value="processing">
     <label for="processing">Processing</label>
-
     <input type="radio" id="completed" name="status" value="completed">
     <label for="completed">Completed</label><br>
 
     <input type="submit" name="submit" value="Submit">
 </form>
 
-               
+</div>             
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
 

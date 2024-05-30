@@ -76,9 +76,7 @@
                 <div class="upload">
                     <div class="cardHeader">
                         <h2>DOCUMENTS</h2>   
-                    </div> 
-                </div>
-                    <div class="table_th">
+                        <div class="table_th">
                         <div class="container">
                             <?php
                             $server = "localhost";
@@ -120,6 +118,8 @@
                             
                             $conn->close();
                             ?>
+                    </div> 
+                </div>
                
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
