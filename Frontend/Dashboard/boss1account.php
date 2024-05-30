@@ -148,7 +148,7 @@
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
 
-    <script>// add hovered class to selected list item
+    <script>
 let list = document.querySelectorAll(".navigation li");
 
 function activeLink() {
