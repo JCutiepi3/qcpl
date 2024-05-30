@@ -1,12 +1,11 @@
 
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Home</title>
 
     <!-- Styles -->
@@ -16,8 +15,8 @@
 
 <body>
 
-        <!-- =============== Navigation ================ -->
-        <div class="container">
+  <!-- =============== Navigation ================ -->
+  <div class="container">
         <div class="navigation">
             <ul>
                 <li>
@@ -29,7 +28,6 @@
                     </a>
                 </li>
                 
-   
                 <li>
                     <a href="dash.php" class="dropdown-toggle">
                     <span class="icon">
@@ -57,6 +55,7 @@
                          <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
                     </a>
                 </li>
+
 
                 <li>
                     <a href="doc.html">
@@ -89,23 +88,11 @@
             
         </div>
 
-        <!-- ========================= Main ==================== -->
+        <!-- Main Content -->
         <div class="main">
             <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
-                </div>
+                <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
                 
-                <!-- Search Form -->
-                <form action="/qcpl/Backend/locator.php" method="GET">
-                    <div class="search">
-                        <label>
-                            <input type="number" name="locator" placeholder="Search here">
-                            <input type="submit" id="sub_hide" name="find">
-                            <ion-icon name="search-outline"></ion-icon>
-                        </label>
-                    </div>
-                </form>
                 <div class="user"><span class="icon"><ion-icon name="person"></ion-icon></span></div>
             </div>
 
@@ -114,12 +101,10 @@
                 <div class="upload">
                     <div class="cardHeader">
                         <h2>SUMMARY</h2>
-                    </div>
-                </div>
-            </div>
 
-            <div class="summary">
-                <?php
+
+            <div class ="summary">
+            <?php
                 $server = "localhost";
                 $username = "root";
                 $password = "";
@@ -166,6 +151,10 @@
                 $stmt->close();
                 $conn->close();
                 ?>
+
+            </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -176,6 +165,7 @@
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
 
 </html>
     

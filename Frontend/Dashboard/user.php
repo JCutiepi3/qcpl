@@ -1,3 +1,36 @@
+<?php
+session_start();
+
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
+
+$conn = new mysqli($server, $username, $password, $db);
+
+if ($conn->connect_error) {
+    die("Failed to connect: " . $conn->connect_error);
+}
+
+
+$name = "";
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    $sql = "SELECT name FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $name = $row['name'];
+    }
+    $stmt->close();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,26 +38,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
+    <title>Accounts</title>
+
     <!-- Styles -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Navigation -->
-    <div class="container">
+         <!-- =============== Navigation ================ -->
+  <div class="container">
         <div class="navigation">
             <ul>
                 <li>
                     <a href="#">
                         <span class="img">
-                            <img src="imgs/logo.png">
+                            <img src="imgs/logo.png" >
                         </span>
                         <span class="title">Quezon City Public Library</span>
                     </a>
                 </li>
-
+                
                 <li>
                     <a href="dash.php" class="dropdown-toggle">
                     <span class="icon">
@@ -53,51 +87,53 @@
                     </a>
                 </li>
 
+
                 <li>
                     <a href="doc.html">
-                        <span class="icon"><ion-icon name="add-circle"></ion-icon></span>
+                        <span class="icon">
+                            <ion-icon name="add-circle"></ion-icon>
+                        </span>
                         <span class="title">Upload Document</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="adduser.html">
-                        <span class="icon"><ion-icon name="person-add"></ion-icon></span>
-                        <span class="title">Add User</span>
                     </a>
                 </li>
 
                 <li>
+                    <a href="adduser.html">
+                        <span class="icon">
+                            <ion-icon name="person-add"></ion-icon>
+                        </span>
+                        <span class="title" >Add User</span>
+                    </a>
+                </li>
+
+
+                <li>
                     <a href="/qcpl/Backend/logout.php">
-                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
                         <span class="title">Sign Out</span>
                     </a>
                 </li>
             </ul>
+            
         </div>
+
         <!-- Main Content -->
         <div class="main">
             <div class="topbar">
                 <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
-                <form action="/qcpl/Backend/accountlocator.php" method="GET" class="search">
-                    <label>
-                        <input type="text" name="name" placeholder="Search here">
-                        <input type="submit" id="sub_hide" name="finder">
-                        <ion-icon name="search-outline" name="find"></ion-icon>
-                    </label>
-                </form>
+
                 <div class="user"><span class="icon"><ion-icon name="person"></ion-icon></span></div>
             </div>
 
+            <!-- Document Summary -->
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
                         <h2>ACCOUNTS</h2>
-                    </div>
-                </div>
-            </div>
 
-
-            <div class="findaccount">
+                        <div class="findaccount">
             <?php
                 $server = "localhost";
                 $username = "root";
@@ -141,20 +177,23 @@
                         echo "</tr>";
                     }
                     echo "</table>";
-                    echo '<div style="text-align:center; margin-top:20px;">';
-                    if ($page > 1) {
-                        echo '<a href="?page=' . ($page - 1) . '">Previous</a>';
+
+                    $prevPage = $page - 1;
+                    if ($prevPage > 0) {
+                        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
                     }
-                    echo ' | ';
-                    echo '<a href="?page=' . ($page + 1) . '">Next</a>';
-                    echo '</div>';
+                    $nextPage = $page + 1;
+                    echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
                 } else {
-                    echo "<script>alert('No Account Found!'); window.location.href = '?page=1';</script>";
+                    echo "<script>alert('No Accounts found!'); window.location.href = '?page=1';</script>";
                 }
 
                 $stmt->close();
                 $conn->close();
                 ?>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -186,10 +225,8 @@
         echo "<h6>".$_GET['delete_msg']."</h6>";
     }
     ?>
-    
-    
+
 </body>
 
 </html>
-
-
+    
