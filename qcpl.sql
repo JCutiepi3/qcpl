@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2024 at 06:05 AM
+-- Generation Time: May 31, 2024 at 10:31 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -119,7 +119,32 @@ INSERT INTO `fileupload` (`id`, `file_name`, `division`, `section`, `category`, 
 (104, 'PARADIGM OF PROGRAMMING.pdf', NULL, NULL, 'Incoming', '3', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/PARADIGM OF PROGRAMMING.pdf', 'oks', '', 'Processing'),
 (105, 'ProgLang.pdf', NULL, NULL, 'Incoming', '4', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/ProgLang.pdf', '', '', 'Pending'),
 (106, 'TASK OJT.txt', 'Technical Division', 'Binding and Preservation Section', 'Incoming', '0', '2024-05-25', 'ok', 'ok', 'ok', 'DOCS', 'File_Uploaded/TASK OJT.txt', 'oks', 'gjlkklgdsklckzlx', 'Completed'),
-(107, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Incoming', '12345', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'DOCS', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending');
+(107, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Incoming', '12345', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'DOCS', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending'),
+(108, 'receiving.php', NULL, NULL, NULL, '888', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/receiving.php', '', '', 'Pending'),
+(109, 'uploadincoming.php', NULL, NULL, 'Incoming', '136362070066', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/uploadincoming.php', '', '', 'Pending'),
+(110, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Outgoing', '90909', '2024-05-31', 'oks', 'okso', 'oks', 'PDF', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending'),
+(111, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Incoming', '111', '2024-05-31', 'EQRQ', 'REWRQ', 'EWRQ', 'DOCS', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `receiving`
+--
+
+CREATE TABLE `receiving` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `division` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `receiving`
+--
+
+INSERT INTO `receiving` (`id`, `name`, `division`, `username`, `password`) VALUES
+(1, 'Guillermo Mercado', 'try', 'receive', 'receive');
 
 -- --------------------------------------------------------
 
@@ -191,6 +216,12 @@ ALTER TABLE `fileupload`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `receiving`
+--
+ALTER TABLE `receiving`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `testupload`
 --
 ALTER TABLE `testupload`
@@ -228,7 +259,13 @@ ALTER TABLE `boss2`
 -- AUTO_INCREMENT for table `fileupload`
 --
 ALTER TABLE `fileupload`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+
+--
+-- AUTO_INCREMENT for table `receiving`
+--
+ALTER TABLE `receiving`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `testupload`

@@ -28,7 +28,7 @@
                 </li>
                 
                 <li>
-                    <a href="#">
+                    <a href="boss2account.php">
                         <span class="icon">
                             <ion-icon name="documents-outline"></ion-icon>
                         </span>
@@ -94,42 +94,41 @@
     </tr>
 
     <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "qcpl";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "qcpl";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
-    
-    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Pending'";
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
-    $result = $conn->query($sql);
+$sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE category = 'Incoming' AND status = 'Pending'";
 
-    if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td><center>" . htmlspecialchars($row["category"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["received_date"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["received_from"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["type"]) . "</td>";
-        echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'><center>View File</a></td>";
-        echo "<td><center>" . htmlspecialchars($row["status"]) . "</td><center>";
-        echo "<td><center><a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
-        echo "</tr>";
-      }
-    } else {
-      echo "<tr><td colspan='8'>No records found.</td></tr>";
-    }
+$result = $conn->query($sql);
 
-    $conn->close();
-    ?>
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    echo "<tr>";
+    echo "<td><center>" . htmlspecialchars($row["category"]) . "</td>";
+    echo "<td><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
+    echo "<td><center>" . htmlspecialchars($row["received_date"]) . "</td>";
+    echo "<td><center>" . htmlspecialchars($row["received_from"]) . "</td>";
+    echo "<td><center>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
+    echo "<td><center>" . htmlspecialchars($row["type"]) . "</td>";
+    echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'><center>View File</a></td>";
+    echo "<td><center>" . htmlspecialchars($row["status"]) . "</td><center>";
+    echo "<td><center><a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
+    echo "</tr>";
+  }
+} else {
+  echo "<tr><td colspan='9'>No records found.</td></tr>";
+}
 
+$conn->close();
+?>
   </table>
 
 </body>
@@ -151,7 +150,6 @@ function activeLink() {
 
 list.forEach((item) => item.addEventListener("mouseover", activeLink));
 
-// Menu Toggle
 let toggle = document.querySelector(".toggle");
 let navigation = document.querySelector(".navigation");
 let main = document.querySelector(".main");

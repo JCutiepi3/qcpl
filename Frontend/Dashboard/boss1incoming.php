@@ -69,7 +69,7 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>SUMMARY</h2>
+                        <h2>INCOMING</h2>
                     </div>
                     <div class="sum_tb">
                         <table aria-describedby="tableDescription">
@@ -87,41 +87,44 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                $servername = "localhost";
-                                $username = "root";
-                                $password = "";
-                                $dbname = "qcpl";
+                            <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "qcpl";
 
-                                $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-                                if ($conn->connect_error) {
-                                    die("Connection failed: " . $conn->connect_error);
-                                }
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                                $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Processing'";
-                                $result = $conn->query($sql);
+// Adjusted SQL query to filter by category 'Incoming'
+$sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Processing' AND category = 'Incoming'";
+$result = $conn->query($sql);
 
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<tr id='table'>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["category"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["received_date"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["received_from"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["type"]) . "</td>";
-                                        echo "<td id='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'><center>View File</a></td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["status"]) . "</td>";
-                                        echo "<td id='table_th'><center><a href='bossaccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
-                                        echo "</tr>";
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='9'>No records found.</td></tr>";
-                                }
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row["category"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["locator_num"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["received_date"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["received_from"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["type"]) . "</td>";
+        echo "<td><a href='/qcpl/Backend/" . htmlspecialchars($row["file_path"]) . "' target='_blank' aria-label='View file for " . htmlspecialchars($row["locator_num"]) . "'>View File</a></td>";
+        echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
+        echo "<td><a href='bossaccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+} else {
+    echo "<p>No records found.</p>";
+}
 
-                                $conn->close();
-                                ?>
+$conn->close();
+?>
                             </tbody>
                         </table>
                     </div>

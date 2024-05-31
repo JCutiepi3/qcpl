@@ -121,46 +121,53 @@ $result_users = $conn->query($sql_users);
 
                         <div class="accts_user">
                         <?php
-                        $rowsPerPage = 4;
-                        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-                        $offset = ($page - 1) * $rowsPerPage;
-                        $sql = "SELECT id, name, division, username, password FROM users LIMIT ? OFFSET ?";
-                        $stmt = $conn->prepare($sql);
-                        $stmt->bind_param("ii", $rowsPerPage, $offset);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
+$rowsPerPage = 4;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $rowsPerPage;
+$sql = "SELECT id, name, division, username, password FROM users LIMIT ? OFFSET ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ii", $rowsPerPage, $offset);
+$stmt->execute();
+$result = $stmt->get_result();
 
-                        if ($result->num_rows > 0) {
-                            echo "<table aria-describedby='user-table'>";
-                            echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
-                            echo "<tbody>";
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td><center>" . htmlspecialchars($row["id"]) . "</td>";
-                                echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
-                                echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
-                                echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
-                                echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                                echo "<td id='us_edit'><center><a href='/qcpl/Backend/updateuseraccount.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
-                                echo "<td id='us_delete'><center><a href='#' onclick='confirmDelete(" . htmlspecialchars($row["id"]) . ")'>Delete</a></td>";
-                                echo "</tr>";
-                            }
-                            echo "</tbody>";
-                            echo "</table>";
+if ($result->num_rows > 0) {
+    echo "<table aria-describedby='user-table'>";
+    echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
+    echo "<tbody>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row["id"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["division"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["username"]) . "</td>";
+        echo "<td>" . str_repeat("*", strlen($row["password"])) . "</td>";
+        echo "<td id='us_edit'><a href='/qcpl/Backend/updateuseraccount.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
+        echo "<td id='us_delete'><a href='#' onclick='confirmDelete(" . htmlspecialchars($row["id"]) . ")'>Delete</a></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
 
-                            $prevPage = $page - 1;
-                            if ($prevPage > 0) {
-                                echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
-                            }
-                            $nextPage = $page + 1;
-                            echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
-                        } else {
-                            echo "<script>alert('No User Account found!'); window.location.href = '?page=1';</script>";
-                        }
+    $prevPage = $page - 1;
+    if ($prevPage > 0) {
+        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
+    }
+    $nextPage = $page + 1;
+    echo "<a href='?page=$nextPage' id='next'><ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
+} else {
+    echo "<script>alert('No User Account found!'); window.location.href = '?page=1';</script>";
+}
 
-                        $conn->close();
-                        ?>
+$conn->close();
+?>
 
+<script>
+function confirmDelete(id) {
+    if (confirm("Are you sure you want to delete this user?")) {
+        window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + id;
+    }
+}
+</script>
                     </div>
                     </div>
                 </div>

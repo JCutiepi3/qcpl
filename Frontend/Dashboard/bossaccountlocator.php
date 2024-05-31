@@ -180,7 +180,11 @@ echo "<h1>Locator Number: $locatorNum</h1>";
     <input type="radio" id="completed" name="status" value="completed">
     <label for="completed">Completed</label><br>
 
-    <input type="submit" name="submit" value="Submit">
+    <button type="submit" name="submit" id="button">
+    <ion-icon name="send-sharp"></ion-icon></button>
+    
+
+    
 </form>
 
 </div>             

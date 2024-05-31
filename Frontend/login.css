@@ -4,16 +4,16 @@
   margin: 0;
   padding: 0;
   box-sizing: content-box;
-  font width: 100%;
+  font-width: 100%;
   font-size: 21px;
-  font-family: 'Arial', sans-serif; /* Changed font-family to Roboto */
+  font-family: 'Arial', sans-serif; 
   font-weight: bold;
 }
 
 body {
   min-height: 100vh;
   background: linear-gradient(#519872, #BEC5AD);
-  background-image: url("img/bg5.jpg"); /* Set the background image */
+  background-image: url("img/bg5.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -25,7 +25,7 @@ img {
   left: 20px;
   top: 0px;
   position: fixed;
-  z-index: 1; /* Set a lower z-index to place it behind the navbar */
+  z-index: 1; 
   background-size: contain;
   background-repeat: no-repeat;
 }

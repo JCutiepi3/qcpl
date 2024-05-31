@@ -274,14 +274,24 @@ form label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 50%; /* Adjust width as needed */
+  width: 50%;
 }
 
+
+form label {
+  display: flex;
+  align-items: center; 
+  margin-right: 10px;
 }
 
-form input[type="radio"], form label[for="pending"], form label[for="processing"], form label[for="completed"] {
+form input[type="radio"] {
   margin-right: 5px;
 }
+
+.status-container { 
+  display: flex; 
+}
+
 
 input[type="submit"] {
   padding: 10px 20px;
@@ -298,7 +308,22 @@ input[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-
+#button { 
+    background-color:transparent; 
+    border: none;
+    color: blue;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 40px;
+    margin:4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+    right: 55px;
+    top: 55vh;  
+}
 
 
 

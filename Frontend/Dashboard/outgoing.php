@@ -131,7 +131,7 @@ if(isset($_SESSION['username'])) {
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>OUTGOING</h2>
+                        <h2>KUNG ANO DIVISION</h2>
 
                     <div class ="outgoing">
                         <?php
@@ -147,13 +147,11 @@ if(isset($_SESSION['username'])) {
 
                         if ($result->num_rows > 0) {
                             echo "<table>";
-                            echo "<tr><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>File type</th><th>File</th><th>Status</th></tr>";
+                            echo "<tr><th>Section</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>File type</th><th>File</th><th>Status</th></tr>";
 
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<td>" . "<center>" . $row["division"] . "</td>";
                                 echo "<td>" . "<center>" . $row["section"] . "</td>";
-                                echo "<td id ='category'>" . "<center>" . $row["category"] . "</td>";
                                 echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
                                 echo "<td>" . "<center>" . $row["received_date"] . "</td>";
                                 echo "<td>" . "<center>" . $row["received_from"] . "</td>";

@@ -53,17 +53,6 @@
                 <div class="toggle">
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
-                
-            <form action="/qcpl/Backend/locator.php" method="GET">
-                <div class="search">
-                    <label>
-                        <input type="number" name="locator" placeholder="Search here">
-                        <input type="submit" id="sub_hide" name="find">
-                        <ion-icon name="search-outline" name="locate"></ion-icon>
-                    </label>
-                </div>
-            </form>
-               
 
                 <div class="user">
                     <span class="icon">
