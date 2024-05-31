@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2024 at 03:15 AM
+-- Generation Time: May 31, 2024 at 06:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,8 +40,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin'),
-(29, 'Guillermo Mercado', 'Administrative Services', 'guillermomercado123', 'guillermomercado123');
+(1, 'Guillermo Mercado', 'Administrative Services', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -62,8 +61,7 @@ CREATE TABLE `boss1` (
 --
 
 INSERT INTO `boss1` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'boss1', 'boss1', 'boss1', 'boss1'),
-(9, 'Guillermo Mercado', 'Administrative Services', 'guillermomercado123', 'guillermomercado123');
+(1, 'Guillermo Mercado', 'Administrative Services', 'boss1', 'boss1');
 
 -- --------------------------------------------------------
 
@@ -84,8 +82,7 @@ CREATE TABLE `boss2` (
 --
 
 INSERT INTO `boss2` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'boss2', 'boss2', 'boss2', 'boss2'),
-(6, 'Guillermo Mercado', 'Publication Division', 'guillermomercado123', 'guillermomercado123');
+(1, 'boss2', 'boss2', 'boss2', 'boss2');
 
 -- --------------------------------------------------------
 
@@ -118,10 +115,11 @@ CREATE TABLE `fileupload` (
 INSERT INTO `fileupload` (`id`, `file_name`, `division`, `section`, `category`, `locator_num`, `received_date`, `received_from`, `subject`, `description`, `type`, `file_path`, `boss2_comment`, `boss1_comment`, `status`) VALUES
 (101, 'Theory of Programming.pdf', 'Readers Service Division', 'Periodical Section', 'Incoming', '1', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Theory of Programming.pdf', 'done', 'locate', 'Completed'),
 (102, 'Programmig.pdf', 'Administrative Services', 'No Section', 'Outgoing', '5', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Programmig.pdf', 'jkjhjkj', 'done', 'Completed'),
-(103, 'Backtrack Programming.pdf', NULL, NULL, 'Incoming', '2', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Backtrack Programming.pdf', 'done', '', 'Processing'),
-(104, 'PARADIGM OF PROGRAMMING.pdf', NULL, NULL, 'Incoming', '3', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/PARADIGM OF PROGRAMMING.pdf', '', '', 'Pending'),
+(103, 'Backtrack Programming.pdf', 'Administrative Services', 'No Section', 'Incoming', '2', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Backtrack Programming.pdf', 'done', ' Done', 'Completed'),
+(104, 'PARADIGM OF PROGRAMMING.pdf', NULL, NULL, 'Incoming', '3', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/PARADIGM OF PROGRAMMING.pdf', 'oks', '', 'Processing'),
 (105, 'ProgLang.pdf', NULL, NULL, 'Incoming', '4', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/ProgLang.pdf', '', '', 'Pending'),
-(106, 'TASK OJT.txt', 'Technical Division', 'Binding and Preservation Section', 'Incoming', '0', '2024-05-25', 'ok', 'ok', 'ok', 'DOCS', 'File_Uploaded/TASK OJT.txt', 'oks', 'gjlkklgdsklckzlx', 'Completed');
+(106, 'TASK OJT.txt', 'Technical Division', 'Binding and Preservation Section', 'Incoming', '0', '2024-05-25', 'ok', 'ok', 'ok', 'DOCS', 'File_Uploaded/TASK OJT.txt', 'oks', 'gjlkklgdsklckzlx', 'Completed'),
+(107, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Incoming', '12345', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'DOCS', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -162,9 +160,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'user', 'user', 'user', 'user'),
-(51, 'Guillermo Mercado', 'Technical Division', 'guillermomercado123', 'guillermomercado123'),
-(52, 'Joana Jane Naval', 'Technical Division', 'Wannabee', 'wanna12345');
+(1, 'user', 'user', 'user', 'user');
 
 --
 -- Indexes for dumped tables
@@ -214,13 +210,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `boss1`
 --
 ALTER TABLE `boss1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `boss2`
@@ -232,7 +228,7 @@ ALTER TABLE `boss2`
 -- AUTO_INCREMENT for table `fileupload`
 --
 ALTER TABLE `fileupload`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT for table `testupload`
@@ -244,7 +240,7 @@ ALTER TABLE `testupload`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
