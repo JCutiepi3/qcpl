@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2024 at 10:31 AM
+-- Generation Time: Jun 01, 2024 at 07:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -123,7 +123,8 @@ INSERT INTO `fileupload` (`id`, `file_name`, `division`, `section`, `category`, 
 (108, 'receiving.php', NULL, NULL, NULL, '888', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/receiving.php', '', '', 'Pending'),
 (109, 'uploadincoming.php', NULL, NULL, 'Incoming', '136362070066', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/uploadincoming.php', '', '', 'Pending'),
 (110, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Outgoing', '90909', '2024-05-31', 'oks', 'okso', 'oks', 'PDF', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending'),
-(111, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Incoming', '111', '2024-05-31', 'EQRQ', 'REWRQ', 'EWRQ', 'DOCS', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending');
+(111, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Incoming', '111', '2024-05-31', 'EQRQ', 'REWRQ', 'EWRQ', 'DOCS', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending'),
+(112, 'QCPL.jpg', NULL, NULL, 'Incoming', '1', '2024-06-01', '00', '00', '00', 'IMG', 'File_Uploaded/QCPL.jpg', '', '', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -259,7 +260,7 @@ ALTER TABLE `boss2`
 -- AUTO_INCREMENT for table `fileupload`
 --
 ALTER TABLE `fileupload`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `receiving`
