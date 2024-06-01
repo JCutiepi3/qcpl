@@ -86,7 +86,7 @@ $result_boss2 = $conn->query($sql_boss2);
                         <span class="icon">
                             <ion-icon name="person-add"></ion-icon>
                         </span>
-                        <span class="title" >Add User</span>
+                        <span class="title" >Add Account</span>
                     </a>
                 </li>
 

@@ -99,7 +99,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Adjusted SQL query to filter by category 'Incoming'
 $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Processing' AND category = 'Incoming'";
 $result = $conn->query($sql);
 

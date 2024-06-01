@@ -102,7 +102,7 @@ if(isset($_SESSION['username'])) {
                         <span class="icon">
                             <ion-icon name="person-add"></ion-icon>
                         </span>
-                        <span class="title" >Add User</span>
+                        <span class="title" >Add Account</span>
                     </a>
                 </li>
 
