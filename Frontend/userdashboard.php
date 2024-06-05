@@ -13,8 +13,8 @@
 </head>
 <body>
 
-    <!-- =============== Navigation ================ -->
-    <div class="container">
+     <!-- =============== Navigation ================ -->
+     <div class="container">
         <div class="navigation">
             <ul>
                 <li>
@@ -68,7 +68,6 @@
                     <span class="icon">
                         <ion-icon name="person"></ion-icon>
                     </span>
-
                 </div>
             </div>
 
@@ -76,8 +75,9 @@
                 <div class="upload">
                     <div class="cardHeader">
                         <h2>DOCUMENTS</h2>   
-                        <div class="table_th">
-                        <div class="container">
+                        </div>
+                    <div class="sum_tb">
+                        <table aria-describedby="tableDescription">
                             <?php
                             $server = "localhost";
                             $username = "root";
@@ -90,9 +90,7 @@
                                 die("Connection failed: " . $conn->connect_error);
                             }
                             
-                            $category = "outgoing";
-                            
-                            $sql = "SELECT * FROM fileupload WHERE category = '$category'";
+                            $sql = "SELECT division, section, category, locator_num, received_date, received_from, file_path, type, status FROM fileupload WHERE status = 'Processing'";
                             $result = $conn->query($sql);
                             
                             if ($result->num_rows > 0) { 
@@ -123,6 +121,29 @@
                
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
+
+    <script>
+let list = document.querySelectorAll(".navigation li");
+
+function activeLink() {
+  list.forEach((item) => {
+    item.classList.focus("hovered")
+
+  });
+  this.classList.add("hovered");
+}
+
+list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+// Menu Toggle
+let toggle = document.querySelector(".toggle");
+let navigation = document.querySelector(".navigation");
+let main = document.querySelector(".main");
+
+toggle.onclick = function () {
+  navigation.classList.toggle("active");
+  main.classList.toggle("active");
+};</script>
 
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
