@@ -34,6 +34,15 @@
                         <span class="title">Document</span>
                     </a>
                 </li>
+                <li>
+                    <a href="useroutgoing.php" class="dropdown-toggle">
+                    <span class="icon">
+                    <ion-icon name="add-circle"></ion-icon>
+                    </span>
+                    <span class="title">Upload Document<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
+                
+                </li>
 
                 <li>
                     <a href="/qcpl/Backend/logout.php">
@@ -52,6 +61,7 @@
                 <div class="toggle">
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
+                
                 
             <form action="/qcpl/Backend/locator.php" method="GET">
                 <div class="search">
@@ -119,6 +129,7 @@
                             $conn->close();
                             ?>
                     </div> 
+                    
                 </div>
                
     <!-- =========== Scripts =========  -->

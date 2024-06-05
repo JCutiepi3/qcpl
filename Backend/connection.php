@@ -38,7 +38,6 @@ if(isset($_POST["login"])) {
             $_SESSION["division"] = $user['division']; 
             echo "<script>alert('Successfully Login as User'); window.location='/qcpl/Frontend/userdashboard.php';</script>";
         } else {
-            
             $query = "SELECT * FROM boss1 WHERE username = ? AND password = ?";
             $stmt = $conn->prepare($query);
             $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
@@ -52,7 +51,6 @@ if(isset($_POST["login"])) {
                 $_SESSION["division"] = $boss1['division']; 
                 echo "<script>alert('Successfully Login as Boss1'); window.location='/qcpl/Frontend/Dashboard/boss1account.php';</script>";
             } else {
-               
                 $query = "SELECT * FROM receiving WHERE username = ? AND password = ?";
                 $stmt = $conn->prepare($query);
                 $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
@@ -60,27 +58,41 @@ if(isset($_POST["login"])) {
                 $result = $stmt->get_result();
 
                 if($result->num_rows > 0) {
-                    $boss2 = $result->fetch_assoc();
+                    $receiving = $result->fetch_assoc();
                     $_SESSION["name"] = $_POST['username']; 
                     $_SESSION["role"] = "receiving"; 
                     $_SESSION["division"] = $receiving['division']; 
                     echo "<script>alert('Successfully Login as Receiving'); window.location='/qcpl/Frontend/Dashboard/receiving.php';</script>";
-                }else {
-               
-                $query = "SELECT * FROM boss2 WHERE username = ? AND password = ?";
-                $stmt = $conn->prepare($query);
-                $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
-                $stmt->execute();
-                $result = $stmt->get_result();
-
-                if($result->num_rows > 0) {
-                    $boss2 = $result->fetch_assoc();
-                    $_SESSION["name"] = $_POST['username']; 
-                    $_SESSION["role"] = "boss2"; 
-                    $_SESSION["division"] = $boss2['division']; 
-                    echo "<script>alert('Successfully Login as Boss2'); window.location='/qcpl/Frontend/Dashboard/boss2account.php';</script>";
                 } else {
-                    echo "<script>alert('Incorrect Username or Password'); window.location='/qcpl/Frontend/login.html';</script>";
+                    $query = "SELECT * FROM boss2 WHERE username = ? AND password = ?";
+                    $stmt = $conn->prepare($query);
+                    $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+
+                    if($result->num_rows > 0) {
+                        $boss2 = $result->fetch_assoc();
+                        $_SESSION["name"] = $_POST['username']; 
+                        $_SESSION["role"] = "boss2"; 
+                        $_SESSION["division"] = $boss2['division']; 
+                        echo "<script>alert('Successfully Login as Boss2'); window.location='/qcpl/Frontend/Dashboard/boss2account.php';</script>";
+                    } else {
+                        $query = "SELECT * FROM proofreader WHERE username = ? AND password = ?";
+                        $stmt = $conn->prepare($query);
+                        $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        if($result->num_rows > 0) {
+                            $proofreader = $result->fetch_assoc();
+                            $_SESSION["name"] = $_POST['username']; 
+                            $_SESSION["role"] = "proofreader"; 
+                            $_SESSION["division"] = $proofreader['division']; 
+                            echo "<script>alert('Successfully Login as Proofreader'); window.location='/qcpl/Frontend/Dashboard/proofreader.html';</script>";
+                        } else {
+                            echo "<script>alert('Incorrect Username or Password'); window.location='/qcpl/Frontend/login.html';</script>";
+                        }
+                    }
                 }
             }
         }
@@ -88,6 +100,5 @@ if(isset($_POST["login"])) {
 
     $stmt->close();
     $conn->close();
-}
 }
 ?>
