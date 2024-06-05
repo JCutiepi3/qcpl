@@ -39,9 +39,8 @@
                     <span class="icon">
                     <ion-icon name="add-circle"></ion-icon>
                     </span>
-                    <span class="title">Upload Document<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
+                    <span class="title">Upload Document</span>
                     </a>
-                
                 </li>
 
                 <li>

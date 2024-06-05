@@ -317,21 +317,18 @@ input[type="submit"]:hover {
     text-decoration: none;
     display: inline-block;
     font-size: 40px;
-    margin:4px 2px;
+    margin: 4px 2px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
     position: absolute;
     right: 55px;
     top: 55vh;  
 }
 
-
-
-
 /* ================== SUMMARY TABLE ============== */
 .sum_tb{
   position: relative;
-  top: 5px;
+  top: 3px;
   left: 65px;
   width: 100%;
   text-align: center;
@@ -354,10 +351,12 @@ input[type="submit"]:hover {
   color: #fff;
   font-weight: 100px;
   height: 40px;
+  border-spacing: 10px;
   font-family: "Bitter", serif;
-  text-transform:uppercase ;
-  border: 1.5px solid;
+  text-transform: uppercase ;
+  border: 2px solid;
   border-color: white;
+  border-spacing: 10px;
 }
 
 .sum_tb td{
@@ -371,9 +370,6 @@ input[type="submit"]:hover {
 .sum_tb a{
   text-decoration: none;
 }
-
-/*======================= Boss 2 Outgoing =======================*/
-
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
