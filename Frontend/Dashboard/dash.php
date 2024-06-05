@@ -26,18 +26,46 @@
                         <span class="title">Quezon City Public Library</span>
                     </a>
                 </li>
-                
+
                 <li>
+                    <a href="dash.php" class="dropdown-toggle">
+                        <span class="icon">
+                            <ion-icon name="apps"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard <ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
+                    <ul class="sub_menu">
+                        <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
+                        <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="user.php" class="dropdown-toggle">
+                        <span class="icon"><ion-icon name="people"></ion-icon></span>
+                        <span class="title">Accounts <ion-icon id="acct_down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
+                    <ul class="sub_menu">
+                        <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
+                        <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
+                        <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
+                        <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
+                    </ul>
+                </li>
+                
+                <!-- <li>
                     <a href="dash.php" class="dropdown-toggle">
                     <span class="icon">
                     <ion-icon name="apps"></ion-icon>
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
+                    <ul class="sub_menu" id="dashboard-submenu">
+                        <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
+                        <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                    </ul>
 
-                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                         
                 
                 </li>
          
@@ -53,13 +81,15 @@
                          <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
                          <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
                     </a>
-                </li>
+                </li> -->
+
+                
 
 
                 <li>
                     <a href="doc.html">
                         <span class="icon">
-                            <ion-icon name="add-circle"></ion-icon>
+                            <ion-icon name="add-circle"></ion-icon>sa
                         </span>
                         <span class="title">Upload Document</span>
                     </a>
@@ -104,37 +134,25 @@
 
             <div class ="summary">
             <?php
-                session_start(); 
-                $server = "localhost";
-                $username = "root";
-                $password = "";
-                $db = "qcpl";
-                $conn = new mysqli($server, $username, $password, $db);
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-
+ $server = "localhost";
+ $username = "root";
+ $password = "";
+ $db = "qcpl";
+ $conn = new mysqli($server, $username, $password, $db);
+ if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+ }
                 $rowsPerPage = 4;
                 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
                 $offset = ($page - 1) * $rowsPerPage;
 
-                if (!isset($_SESSION['division'])) {
-                    echo "<script>alert('Division not set. Please log in again.'); window.location.href = '/qcpl/Frontend/login.html';</script>";
-                    exit;
-                }
-
-                $division = $_SESSION['division'];
-
-                $sql = "SELECT * FROM fileupload WHERE division = ? LIMIT ? OFFSET ?";
+                $sql = "SELECT * FROM fileupload LIMIT ? OFFSET ?";
                 $stmt = $conn->prepare($sql);
-                if (!$stmt) {
-                    die("Error preparing statement: " . $conn->error);
-                }
-                $stmt->bind_param("sii", $division, $rowsPerPage, $offset);
+                $stmt->bind_param("ii", $rowsPerPage, $offset);
                 $stmt->execute();
                 $result = $stmt->get_result();
 
-                if ($result->num_rows > 0) {                    
+                if ($result->num_rows > 0) {
                     echo "<table>";
                     echo "<tr><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>File type</th><th>File</th><th>Status</th></tr>";
 
@@ -147,7 +165,7 @@
                         echo "<td>" . "<center>" . $row["received_date"] . "</td>";
                         echo "<td>" . "<center>" . $row["received_from"] . "</td>";
                         echo "<td>" . "<center>" . $row["type"] . "</td>";
-                        echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'><center>View File</a></td>";
+                        echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
                         echo "<td id ='status'>" . "<center>" . $row["status"] . "</td>";
                         echo "</tr>";
                     }
@@ -160,12 +178,15 @@
                     $nextPage = $page + 1;
                     echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
                 } else {
-                    echo "<script>alert('No documents found for your division.'); window.location.href = 'dash.php';</script>";
+                    echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
                 }
+
+                
 
                 $stmt->close();
                 $conn->close();
                 ?>
+            
             </div>
                     </div>
                 </div>
