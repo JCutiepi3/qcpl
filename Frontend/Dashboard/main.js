@@ -19,14 +19,6 @@ toggle.onclick = function () {
   main.classList.toggle("active");
 };
 
-const dropdownToggles = document.querySelectorAll('.dropdown-toggle'); // Select all dropdown toggles
-
-dropdownToggles.forEach(toggle => {
-  toggle.addEventListener('click', function() {
-    const subMenu = this.nextElementSibling; // Get the next sibling submenu
-    subMenu.classList.toggle('show'); // Toggle the 'show' class for visibility
-  });
-});
 
 
 
