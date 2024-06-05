@@ -158,7 +158,7 @@ if(isset($_SESSION['username'])) {
                     echo "<td>" . "<center>" . $row["received_date"] . "</td>";
                     echo "<td>" . "<center>" . $row["received_from"] . "</td>";
                     echo "<td>" . "<center>" . $row["type"] . "</td>";
-                    echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+                    echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
                     echo "<td id = 'status'>" . "<center>" . $row["status"] . "</td>";
                     echo "</tr>";
                 }

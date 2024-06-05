@@ -26,18 +26,46 @@
                         <span class="title">Quezon City Public Library</span>
                     </a>
                 </li>
-                
+
                 <li>
+                    <a href="dash.php" class="dropdown-toggle">
+                        <span class="icon">
+                            <ion-icon name="apps"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard <ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
+                    <ul class="sub_menu">
+                        <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
+                        <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="user.php" class="dropdown-toggle">
+                        <span class="icon"><ion-icon name="people"></ion-icon></span>
+                        <span class="title">Accounts <ion-icon id="acct_down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
+                    <ul class="sub_menu">
+                        <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
+                        <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
+                        <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
+                        <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
+                    </ul>
+                </li>
+                
+                <!-- <li>
                     <a href="dash.php" class="dropdown-toggle">
                     <span class="icon">
                     <ion-icon name="apps"></ion-icon>
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
+                    <ul class="sub_menu" id="dashboard-submenu">
+                        <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
+                        <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                    </ul>
 
-                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                         
                 
                 </li>
          
@@ -53,13 +81,15 @@
                          <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
                          <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
                     </a>
-                </li>
+                </li> -->
+
+                
 
 
                 <li>
                     <a href="doc.html">
                         <span class="icon">
-                            <ion-icon name="add-circle"></ion-icon>
+                            <ion-icon name="add-circle"></ion-icon>sa
                         </span>
                         <span class="title">Upload Document</span>
                     </a>
