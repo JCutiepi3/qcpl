@@ -331,7 +331,7 @@ input[type="submit"]:hover {
 /* ================== SUMMARY TABLE ============== */
 .sum_tb{
   position: relative;
-  top: 5px;
+  top: -130px;
   left: 65px;
   width: 100%;
   text-align: center;
@@ -371,7 +371,6 @@ input[type="submit"]:hover {
 .sum_tb a{
   text-decoration: none;
 }
-
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {

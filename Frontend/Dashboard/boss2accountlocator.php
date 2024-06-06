@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Boss 2 Comment</title>
 
     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
-    <link rel="stylesheet" href="boss1.css">
+    <link rel="stylesheet" href="boss2accountlocator.css">
 </head>
 
 <body>
@@ -110,12 +110,7 @@ if(isset($_GET['locator_num'])){
   <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
   <br><br>
   
-  <label>Status: </label>
-<input type="radio" id="pending" name="status" value="pending" required>
-<label for="pending">Pending</label>
-
-<input type="radio" id="processing" name="status" value="processing">
-<label for="processing">Processing</label>
+ 
 <br>
 <br>
         <input type="submit" value="Submit">

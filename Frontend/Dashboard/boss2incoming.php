@@ -66,7 +66,7 @@
              <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                      <h1>Locator Numbers</h1>  
+                    <h2>INCOMING</h2> 
                         </div>
                     <div class="sum_tb">
                         <table aria-describedby="tableDescription">

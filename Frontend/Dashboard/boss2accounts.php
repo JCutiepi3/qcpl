@@ -115,7 +115,7 @@ $result_boss2 = $conn->query($sql_boss2);
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>BOSS 2</h2>
+                        <h2>BOSS 2=</h2>
 
                     <div class ="accts_boss2">
                     <?php

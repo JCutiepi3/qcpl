@@ -207,109 +207,200 @@ body {
 
 
 /* ================== UPLOAD ============== */
+
 .details {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  margin-top: 60px;
-}
-
-/* ================== BOX============== */
-.details .upload{
-  position: relative;
-  min-height: 500px;
-  margin-top: -10px;
-  display: grid;
-  background: var(--white);
-  padding: 20px;
-  box-shadow: 0 7px 25px rgb(206, 206, 206);
-  border-radius: 30px;
-}
-
-.details .cardHeader {
-  margin-top: -60px;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.cardHeader h2 {
-  color: var(--blue);
-  font-family: "Sedan SC", serif;
-  font-size: 2rem;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin-top: 60px;
+  }
   
-}
+  /* ================== BOX============== */
+  
+  .details .upload {
+    position: relative;
+    min-height: 500px;
+    margin-top: -10px;
+    display: grid;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgb(206, 206, 206);
+    border-radius: 30px;
+  }
+  
+  .details .cardHeader {
+    margin-top: -60px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .cardHeader h2 {
+    color: var(--blue);
+    font-family: "Sedan SC", serif;
+    font-size: 2rem;
+  }
+  
+  /* ===================COMMENT=================*/
+  
+  /* Move the comment section styles above the form styles */
+  
+  h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: -0.90em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+    position: absolute;
+    top: 85px;  /* Adjust top position as needed */
+    left: 50px;  /* Adjust left position as needed */
 
+  }
+  
+  label[for="comment"] {
+    display: block;
+    margin-bottom: 5px; 
+    font-weight: bold;
+    position: absolute;
+    top: 125px;  
+    left: 55px;  
+  }
 
-/* ===================COMMENT=================*/
+  #comment {
+    width: 90%; 
+    height: 40%;
+    resize: none; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 3px; 
+    font-size: 16px; 
+    top: 150px;
+    left: 50px;
+    position: absolute;
+  }
 
-.form-container {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-family: italics;
+  form select, form textarea, form input[type="submit"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 80px;
+    font-style: italic;
+    margin-bottom: 10px;
+    width: 100%;
+  }
 
-}
+  label {
+    display: block; /* Display the label on a new line */
+    margin-bottom: 5px; /* Add space below the label */
+    font-weight: bold; /* Make label text bold (optional) */
+  }
+  
+  input[type="radio"] {
+    position: relative;
+    margin-right: 10px; /* Add space between radio buttons */
+    margin-left: 150px  ;
+    margin-top: -200px;
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-form select, form textarea, form input[type="submit"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  font-style: italic;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-form label {
-  font-size: 16px;
-  font-style: italic;
-  margin-bottom: 5px;
-  width: 50%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 50%;
-}
-
-
-form label {
-  display: flex;
-  align-items: center; 
-  margin-right: 10px;
-}
-
-form input[type="radio"] {
-  margin-right: 5px;
-}
-
-.status-container { 
-  display: flex; 
-}
-
-
-input[type="submit"] {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
-  cursor: pointer;
-
-}
-
-input[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-#button { 
-    background-color:transparent; 
+  }
+  
+  input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    left: 500px;
+    margin-top: -200px;
+  
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  #button { 
+      background-color:transparent; 
+      border: none;
+      color: blue;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 40px;
+      margin: 10px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+      position: absolute;
+      right: 55px;
+      top: 100vh;  
+  }  
+  /* ===================FORM=================*/
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: -10px;
+  }
+  
+  form select,
+  form textarea,
+  form input[type="submit"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-style: italic;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  form label {
+    font-size: 16px;
+    font-style: italic;
+    margin-bottom: 5px;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  form label {
+    display: flex;
+    align-items: center;
+    margin-right: 90px;
+  }
+  
+  form input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .status-container {
+    display: flex;
+  }
+  
+  input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  #button {
+    background-color: transparent;
     border: none;
     color: blue;
     padding: 10px 20px;
@@ -317,61 +408,13 @@ input[type="submit"]:hover {
     text-decoration: none;
     display: inline-block;
     font-size: 40px;
-    margin:4px 2px;
+    margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
     position: absolute;
     right: 55px;
-    top: 55vh;  
-}
-
-
-
-
-/* ================== SUMMARY TABLE ============== */
-.sum_tb{
-  position: relative;
-  top: 5px;
-  left: 65px;
-  width: 100%;
-  text-align: center;
-
-}
-
-.sum_tb table{
-  width: 90%;
-  border-collapse: collapse; 
-}
-
-.sum_tb tr{
-  height: 75px;
-}
-
-.sum_tb th{
-  background-color: #2a2185;
-  font-size: 1.1rem;
-  text-align: center;
-  color: #fff;
-  font-weight: 100px;
-  height: 40px;
-  font-family: "Bitter", serif;
-  text-transform:uppercase ;
-  border: 1.5px solid;
-  border-color: white;
-}
-
-.sum_tb td{
-  font-size: 1rem;
-  font-weight: bold;
-  border-bottom: 3px solid;
-  border-color: #2a2185;
-
-}
-
-.sum_tb a{
-  text-decoration: none;
-}
-
+    top: 55vh;
+  }
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
