@@ -79,6 +79,10 @@
                 <div class="upload">
                     <div class="cardHeader">
                         <h2>INCOMING</h2>
+
+                        <div class ="rec_upload_inc">
+                        <div class="info_box3">
+                        </div>
                         <form action="/qcpl/Backend/fileupload.php" method="POST" enctype="multipart/form-data">
 
                             <label id = "lb_loc">Locator Number: </label>
@@ -94,21 +98,22 @@
                             <input id = "in_sub" type="text" name="subject" required><br>
 
                             <label id = "lb_dec" for="">Description: </label>
-                            <input id = "in_dec" type="text" name="description" required><br>
+                            <input id = "in_dec" type="text" name="description" required>
 
-                            <label id="lb_filetype">File Type:</label>
-                            <select name="type" id="in_sel" required>
+                            <label id="rec_lb_filetype">File Type:</label>
+                            <select name="type" id="rec_in_sel" required>
                                 <option value="" disabled selected>Select Document Format</option>
                                 <option value="DOCS">Document</option>
                                 <option value="PDF">Portable Document Format</option>
                                 <option value="IMG">Image</option>
                             </select>
-                            <br>    
+                               
 
-                            <input id = "in_file" type="file" name="fileName"><br>
+                            <input id = "rec_in_file" type="file" name="fileName"><br>
                             <input id = "in_submit" type="submit" name="incomingupload" value="Submit">
                         </form>
                     
+                        </div>
             
                     </div>
                 </div>
