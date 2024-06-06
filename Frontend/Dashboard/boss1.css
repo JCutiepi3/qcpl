@@ -321,8 +321,8 @@ input[type="submit"]:hover {
     cursor: pointer;
     border-radius: 5px;
     position: absolute;
-    right: 55px;
-    top: 55vh;  
+    right: 40px;
+    top: 70vh;  
 }
 
 

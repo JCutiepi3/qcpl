@@ -175,8 +175,8 @@
             <input type="hidden" id="status" name="status" value="pending">
             
             <button type="submit" name="submit" id="button">
-                <ion-icon name="send-sharp"></ion-icon>
-            </button>
+    <ion-icon name="send-sharp"></ion-icon>
+</button>
         </form>
 
         </div>             

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2024 at 07:29 AM
+-- Generation Time: Jun 06, 2024 at 02:45 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -103,6 +103,7 @@ CREATE TABLE `fileupload` (
   `description` text DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
   `file_path` varchar(255) NOT NULL,
+  `proofreader_comment` varchar(255) NOT NULL,
   `boss2_comment` varchar(255) NOT NULL,
   `boss1_comment` varchar(255) NOT NULL,
   `status` enum('Pending','Processing','Completed') NOT NULL
@@ -112,19 +113,40 @@ CREATE TABLE `fileupload` (
 -- Dumping data for table `fileupload`
 --
 
-INSERT INTO `fileupload` (`id`, `file_name`, `division`, `section`, `category`, `locator_num`, `received_date`, `received_from`, `subject`, `description`, `type`, `file_path`, `boss2_comment`, `boss1_comment`, `status`) VALUES
-(101, 'Theory of Programming.pdf', 'Readers Service Division', 'Periodical Section', 'Incoming', '1', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Theory of Programming.pdf', 'done', 'locate', 'Completed'),
-(102, 'Programmig.pdf', 'Administrative Services', 'No Section', 'Outgoing', '5', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Programmig.pdf', 'jkjhjkj', 'done', 'Completed'),
-(103, 'Backtrack Programming.pdf', 'Administrative Services', 'No Section', 'Incoming', '2', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Backtrack Programming.pdf', 'done', ' Done', 'Completed'),
-(104, 'PARADIGM OF PROGRAMMING.pdf', NULL, NULL, 'Incoming', '3', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/PARADIGM OF PROGRAMMING.pdf', 'oks', '', 'Processing'),
-(105, 'ProgLang.pdf', NULL, NULL, 'Incoming', '4', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/ProgLang.pdf', '', '', 'Pending'),
-(106, 'TASK OJT.txt', 'Technical Division', 'Binding and Preservation Section', 'Incoming', '0', '2024-05-25', 'ok', 'ok', 'ok', 'DOCS', 'File_Uploaded/TASK OJT.txt', 'oks', 'gjlkklgdsklckzlx', 'Completed'),
-(107, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Incoming', '12345', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'DOCS', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending'),
-(108, 'receiving.php', NULL, NULL, NULL, '888', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/receiving.php', '', '', 'Pending'),
-(109, 'uploadincoming.php', NULL, NULL, 'Incoming', '136362070066', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/uploadincoming.php', '', '', 'Pending'),
-(110, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Outgoing', '90909', '2024-05-31', 'oks', 'okso', 'oks', 'PDF', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending'),
-(111, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Incoming', '111', '2024-05-31', 'EQRQ', 'REWRQ', 'EWRQ', 'DOCS', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', 'Pending'),
-(112, 'QCPL.jpg', NULL, NULL, 'Incoming', '1', '2024-06-01', '00', '00', '00', 'IMG', 'File_Uploaded/QCPL.jpg', '', '', 'Pending');
+INSERT INTO `fileupload` (`id`, `file_name`, `division`, `section`, `category`, `locator_num`, `received_date`, `received_from`, `subject`, `description`, `type`, `file_path`, `proofreader_comment`, `boss2_comment`, `boss1_comment`, `status`) VALUES
+(101, 'Theory of Programming.pdf', 'Readers Service Division', 'Periodical Section', 'Incoming', '1', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Theory of Programming.pdf', '', 'done', 'locate', 'Completed'),
+(102, 'Programmig.pdf', 'Administrative Services', 'No Section', 'Outgoing', '5', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Programmig.pdf', '', 'jkjhjkj', 'done', 'Completed'),
+(103, 'Backtrack Programming.pdf', 'Administrative Services', 'No Section', 'Incoming', '2', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/Backtrack Programming.pdf', '', 'done', ' Done', 'Completed'),
+(104, 'PARADIGM OF PROGRAMMING.pdf', 'Readers Service Division', 'Law Research Section', 'Incoming', '3', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/PARADIGM OF PROGRAMMING.pdf', '', 'aa', 'asda', 'Pending'),
+(105, 'ProgLang.pdf', NULL, NULL, 'Incoming', '4', '2024-05-25', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/ProgLang.pdf', '', '', '', 'Pending'),
+(106, 'TASK OJT.txt', 'Technical Division', 'Binding and Preservation Section', 'Incoming', '0', '2024-05-25', 'ok', 'ok', 'ok', 'DOCS', 'File_Uploaded/TASK OJT.txt', '', 'oks', 'gjlkklgdsklckzlx', 'Completed'),
+(107, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Incoming', '12345', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'DOCS', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', '', 'Pending'),
+(108, 'receiving.php', NULL, NULL, NULL, '888', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/receiving.php', '', '', '', 'Pending'),
+(109, 'uploadincoming.php', NULL, NULL, 'Incoming', '136362070066', '2024-05-31', 'QCPL', 'QCPL', 'QCPL', 'PDF', 'File_Uploaded/uploadincoming.php', '', '', '', 'Pending'),
+(110, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Outgoing', '90909', '2024-05-31', 'oks', 'okso', 'oks', 'PDF', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', '', 'Pending'),
+(111, '441387242_7605432596213440_6127717901911252576_n.jpg', NULL, NULL, 'Incoming', '111', '2024-05-31', 'EQRQ', 'REWRQ', 'EWRQ', 'DOCS', 'File_Uploaded/441387242_7605432596213440_6127717901911252576_n.jpg', '', '', '', 'Pending'),
+(112, 'QCPL.jpg', NULL, NULL, 'Incoming', '1', '2024-06-01', '00', '00', '00', 'IMG', 'File_Uploaded/QCPL.jpg', '', '', '', 'Pending'),
+(113, 'QCPL.png', 'District Libraries Division', 'Branch Libraries', 'Incoming', '11111', '2024-06-05', '44', '55', 'ssas', 'IMG', 'File_Uploaded/QCPL.png', '', 'ok', 'ok', 'Pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `proofreader`
+--
+
+CREATE TABLE `proofreader` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `proofreader`
+--
+
+INSERT INTO `proofreader` (`id`, `name`, `username`, `password`) VALUES
+(1, 'proof', 'proof', 'proof');
 
 -- --------------------------------------------------------
 
@@ -182,13 +204,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'user', 'user', 'user', 'user');
-
---
 -- Indexes for dumped tables
 --
 
@@ -214,6 +229,12 @@ ALTER TABLE `boss2`
 -- Indexes for table `fileupload`
 --
 ALTER TABLE `fileupload`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `proofreader`
+--
+ALTER TABLE `proofreader`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -260,7 +281,13 @@ ALTER TABLE `boss2`
 -- AUTO_INCREMENT for table `fileupload`
 --
 ALTER TABLE `fileupload`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+
+--
+-- AUTO_INCREMENT for table `proofreader`
+--
+ALTER TABLE `proofreader`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `receiving`

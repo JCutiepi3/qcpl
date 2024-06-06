@@ -40,6 +40,7 @@
                 
                 </li>
 
+                <li>
                     <a href="/qcpl/Backend/logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>

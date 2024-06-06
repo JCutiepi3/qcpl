@@ -119,6 +119,7 @@ if(isset($_GET['locator_num'])){
 <br>
 <br>
         <input type="submit" value="Submit">
+        
 </form>
 
 </body>
