@@ -16,8 +16,8 @@ if (isset($_POST["incomingupload"]) || isset($_POST["outgoingupload"])) {
     // Determine the category based on the form submission
     $category = isset($_POST["incomingupload"]) ? 'Incoming' : 'Outgoing';
 
-    $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '')";
+    $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment, status) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '', 'First Review')";
     $stmt = $conn->prepare($query);
 
     // Ensure variables are assigned before binding
@@ -50,8 +50,6 @@ if (isset($_POST["incomingupload"]) || isset($_POST["outgoingupload"])) {
 }
 ?>
 
-
-
 <?php
 if(isset($_POST["upload"])) {
  
@@ -66,8 +64,8 @@ if(isset($_POST["upload"])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '')";
+    $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment, status) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '', 'First Review')";
     $stmt = $conn->prepare($query);
 
     $stmt->bind_param("ssissssss", $fileName, $category, $locator_num, $received_date, $received_from, $subject, $description, $type, $file_path);

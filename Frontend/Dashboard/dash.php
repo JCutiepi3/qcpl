@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Home</title>
-
     <!-- Styles -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
     <link rel="stylesheet" href="style.css">
@@ -63,7 +63,7 @@
                 <li>
                     <a href="doc.html">
                         <span class="icon">
-                            <ion-icon name="add-circle"></ion-icon>sa
+                            <ion-icon name="add-circle"></ion-icon>
                         </span>
                         <span class="title">Upload Document</span>
                     </a>
@@ -160,8 +160,6 @@
                 $stmt->close();
                 $conn->close();
                 ?>
-
-
             </div>
             </div>
                     </div>

@@ -108,14 +108,6 @@ if(isset($_GET['locator_num'])){
   <br>
   <label for="comment" required>Comment:</label><br>
   <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
-  <br><br>
-  
-  <label>Status: </label>
-<input type="radio" id="pending" name="status" value="pending" required>
-<label for="pending">Pending</label>
-
-<input type="radio" id="processing" name="status" value="processing">
-<label for="processing">Processing</label>
 <br>
 <br>
         <input type="submit" value="Submit">
@@ -151,7 +143,7 @@ if ($conn->connect_error) {
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
 
-    <script>// add hovered class to selected list item
+    <script>
 let list = document.querySelectorAll(".navigation li");
 
 function activeLink() {
@@ -164,7 +156,6 @@ function activeLink() {
 
 list.forEach((item) => item.addEventListener("mouseover", activeLink));
 
-// Menu Toggle
 let toggle = document.querySelector(".toggle");
 let navigation = document.querySelector(".navigation");
 let main = document.querySelector(".main");

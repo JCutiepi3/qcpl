@@ -105,7 +105,7 @@
       die("Connection failed: " . $conn->connect_error);
     }
     
-    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Pending'";
+    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'First Review'";
 
     $result = $conn->query($sql);
 

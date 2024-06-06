@@ -7,9 +7,10 @@ $dbname = "qcpl";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    $locator_num = isset($_POST['locator_num']) ? $_POST['locator_num'] : '';
-    $boss2_comment = isset($_POST['comment']) ? $_POST['comment'] : ''; 
-    $status = isset($_POST['status']) ? $_POST['status'] : '';
+    $locator_num = isset($_POST['locator_num']) ? htmlspecialchars($_POST['locator_num']) : '';
+    $boss2_comment = isset($_POST['comment']) ? htmlspecialchars($_POST['comment']) : ''; 
+    $status = isset($_POST['status']) ? htmlspecialchars($_POST['status']) : '';
+    $status = "Second Review";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -17,14 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "UPDATE fileupload SET  boss2_comment='$boss2_comment', status='$status' WHERE locator_num='$locator_num'";
+    // Prepare and bind
+    $stmt = $conn->prepare("UPDATE fileupload SET boss2_comment=?, status=? WHERE locator_num=?");
+    $stmt->bind_param("sss", $boss2_comment, $status, $locator_num);
 
-    if ($conn->query($sql) === TRUE) {
+    if ($stmt->execute() === TRUE) {
         echo "<script>alert('Successfully Updated the Database!'); window.location='/qcpl/Frontend/Dashboard/boss2account.php';</script>";
     } else {
-        echo "<script>alert('Error updating record: " . $conn->error . "'); window.location='/qcpl/Frontend/Dashboard/boss2account.php';</script>";
+        echo "<script>alert('Error updating record: " . $stmt->error . "'); window.location='/qcpl/Frontend/Dashboard/boss2account.php';</script>";
     }
 
+    $stmt->close();
     $conn->close();
 }
 ?>

@@ -173,13 +173,26 @@ $result_boss2 = $conn->query($sql_boss2);
     <!-- Scripts -->
     <script src="main.js"></script>
 
-    <script>
-    function confirmDeleteBoss2(boss2Id) {
-        if (confirm("Are you sure you want to delete this Boss 2 account?")) {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+function confirmDeleteBoss2(boss2Id) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
             window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + boss2Id;
         }
-    }
-    </script>
+    });
+}
+</script>
+
 
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
