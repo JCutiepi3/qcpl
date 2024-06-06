@@ -331,17 +331,17 @@ body {
 /* ================== ADMIN/USER  TEXT============== */
 .upload_file form {
   position: relative;
-  top: -1010px;
+  top: -1080px;
   left: 300px;
   color: #2a2185;
 }
 
 .info_box2{
   position: relative;
-  height: 480px;
-  width: 1000px;
-  top: -540px;
-  left: 110px;
+  height: 510px;
+  width: 900px;
+  top: -560px;
+  left: 100px;
   box-shadow: 0 7px 25px rgb(206, 206, 206);
   border: 2px solid #2a2185;
 
@@ -440,20 +440,29 @@ body {
 
 #lb_dec{
   position: relative;
-  top: 125px;
+  top: 100px;
 }
 
+#in_dec{
+  position: relative;
+  width: 29.8%;
+  top: 125px;
+  left: 75px;
+  border: 1px solid;
+  height: 80px;
+}
 
 
 #lb_filetype{
   position: relative;
-  top: 140px;
+  top: 200px;
+  right: 515px;
 
 }
 #in_sel{
   position: relative;
-  top: 138px;
-  left: 112px;
+  top: 200px;
+  right: 400px;
   width: 29.7%;
   height: 25px;
   border: 1px solid;
@@ -461,14 +470,14 @@ body {
 
 #in_file{
   position: relative;
-  top: 150px;
-  left: 222px;
+  top: 190px;
+  left: 224px;
   width: 30%;
 }
 
 #in_submit{
   position: relative;
-  top: 195px;
+  top: 225px;
   left: 200px;
   width: 20%;
   height: 40px;
@@ -1072,6 +1081,206 @@ body {
   text-decoration: none;
 }
 
+
+/* ====================== DASH RECEIVING ========================== */
+
+.rec_dash{
+  position: relative;
+  top: 50px;
+  left: 40px;
+  width: 100%;
+  text-align: center;
+
+}
+
+.rec_dash table{
+  width: 94%;
+  border-collapse: collapse; 
+
+}
+
+.rec_dash tr{
+  height: 75px;
+  
+}
+
+.rec_dash th{
+  background-color: #2a2185;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
+}
+
+.rec_dash td{
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
+}
+
+.rec_dash a{
+  text-decoration: none;
+}
+
+/* ====================== RECEIVING  INCOMING ========================== */
+
+.rec_incoming{
+  position: relative;
+  top: 50px;
+  left: 40px;
+  width: 100%;
+  text-align: center;
+
+}
+
+.rec_incoming table{
+  width: 94%;
+  border-collapse: collapse; 
+
+}
+
+.rec_incoming tr{
+  height: 75px;
+  
+}
+
+.rec_incoming th{
+  background-color: #2a2185;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
+}
+
+.rec_incoming td{
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
+}
+
+.rec_incoming a{
+  text-decoration: none;
+}
+
+/* ====================== RECEIVING OUTGOING ========================== */
+
+.rec_outgoing{
+  position: relative;
+  top: 50px;
+  left: 40px;
+  width: 100%;
+  text-align: center;
+
+}
+
+.rec_outgoing table{
+  width: 94%;
+  border-collapse: collapse; 
+
+}
+
+.rec_outgoing tr{
+  height: 75px;
+  
+}
+
+.rec_outgoing th{
+  background-color: #2a2185;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 100px;
+  height: 40px;
+  font-family: "Bitter", serif;
+  text-transform:uppercase ;
+  border: 1.5px solid;
+  border-color: white;
+}
+
+.rec_outgoing td{
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  border-color: #2a2185;
+}
+
+.rec_outgoing a{
+  text-decoration: none;
+}
+
+
+/* ================== RECEIVNING UPLOAD INCOMING ============== */
+.rec_upload_inc form {
+  position: relative;
+  top: -450px;
+  left: 300px;
+  color: #2a2185;
+}
+
+.info_box3{
+  position: relative;
+  height: 530px;
+  width: 1000px;
+  top: 80px;
+  left: 90px;
+  box-shadow: 0 7px 25px rgb(206, 206, 206);
+  border: 2px solid #2a2185;
+
+}
+
+.rec_upload_inc label{
+  position: relative;
+  font-weight: bolder;
+  top:50px;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+}
+
+.rec_upload_inc input{
+  position: relative;
+  top:50px;
+  left: 50px;
+}
+
+#rec_lb_filetype{
+  position: relative;
+  top: 200px;
+  right: 490px;
+
+}
+#rec_in_sel{
+  position: relative;
+  top: 200px;
+  right: 378px;
+  width: 29.7%;
+  height: 25px;
+  border: 1px solid;
+}
+
+#rec_in_file{
+  position: relative;
+  top: 190px;
+  left: 224px;
+  width: 30%;
+}
+
+
+
+
+
+
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
@@ -1233,13 +1442,13 @@ body {
 }
 
 .upload_file form {
-  top: -1030px;
+  top: -1075px;
   left: 140px;
 }
 
 .info_box2{
   width: 600px;
-  top: -540px;
+  top: -560px;
   left: 80px;
 }
 
@@ -1260,11 +1469,48 @@ body {
 }
 
 
+
+#lb_filetype{
+  right: 372px;
+
+}
+#in_sel{
+  top: 200px;
+  right: 263px;
+
+}
+
+#in_file{
+  left: 224px;
+
+}
+
 #in_submit{
-  top: 205px;
+  top: 220px;
   left: 170px;
 
 }
+
+.rec_upload_inc form {
+  top: -470px;
+  left: 140px;
+}
+
+.info_box3{
+  width: 600px;
+  top: 40px;
+  left: 50px;
+
+}
+
+#rec_lb_filetype{
+  right: 350px;
+}
+
+#rec_in_sel{
+  left: -238px;
+}
+
 
 }
 
@@ -1303,6 +1549,10 @@ body {
     position: fixed;
     right: 0;
     left: initial;
+  }
+
+  #rec_in_sel{
+    left: -238px;
   }
   
 }

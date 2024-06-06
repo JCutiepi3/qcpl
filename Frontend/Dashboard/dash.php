@@ -63,7 +63,7 @@
                 <li>
                     <a href="doc.html">
                         <span class="icon">
-                            <ion-icon name="add-circle"></ion-icon>sa
+                            <ion-icon name="add-circle"></ion-icon>
                         </span>
                         <span class="title">Upload Document</span>
                     </a>
