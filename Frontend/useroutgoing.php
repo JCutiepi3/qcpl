@@ -34,11 +34,6 @@
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
-
-                         <li class="sub_dash"><a href="receiveincoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="receiveoutgoing.php">Outgoing</a></li>
-                
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle">

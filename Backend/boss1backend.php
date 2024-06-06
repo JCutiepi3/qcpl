@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $division = isset($_POST['division']) ? $_POST['division'] : '';
     $section = isset($_POST['section']) ? $_POST['section'] : '';
     $boss1_comment = isset($_POST['comment']) ? $_POST['comment'] : ''; 
-    $status = isset($_POST['status']) ? $_POST['status'] : '';
+    $status = "Approved";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 

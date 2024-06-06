@@ -87,42 +87,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                $servername = "localhost";
-                                $username = "root";
-                                $password = "";
-                                $dbname = "qcpl";
-
-                                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                                if ($conn->connect_error) {
-                                    die("Connection failed: " . $conn->connect_error);
-                                }
-
-                                $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Second Review'";
-                                $result = $conn->query($sql);
-
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<tr id='table'>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["category"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["received_date"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["received_from"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["type"]) . "</td>";
-                                        echo "<td id='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'><center>View File</a></td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["status"]) . "</td>";
-                                        echo "<td id='table_th'><center><a href='bossaccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
-                                        echo "</tr>";
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='9'>No records found.</td></tr>";
-                                }
-
-                                $conn->close();
-                                ?>
-                            </tbody>
+                                <tr><td colspan='9'>No records found.</td></tr>                            </tbody>
                         </table>
                     </div>
                 </div>

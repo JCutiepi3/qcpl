@@ -99,7 +99,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Processing' AND category = 'Incoming'";
+$sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Second Review' AND category = 'Incoming'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
