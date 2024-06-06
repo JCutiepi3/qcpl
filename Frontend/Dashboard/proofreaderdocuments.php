@@ -110,25 +110,12 @@ if(isset($_GET['locator_num'])){
   <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
   <br><br>
   
-  <label>Status: </label>
-<input type="radio" id="pending" name="status" value="pending" required>
-<label for="pending">Pending</label>
-
-<input type="radio" id="processing" name="status" value="processing">
-<label for="processing">Processing</label>
-<br>
-<br>
-        <input type="submit" value="Submit">
+  <!-- Removed the radio buttons for manual status setting -->
+  <input type="hidden" name="status" value="pending">
+  
+  <input type="submit" value="Submit">
 </form>
 
-</body>
-</html>
-
-    <script>
-        function viewDocument() {
-            window.open('document_path', '_blank');
-        }
-    </script>
 </body>
 </html>
 

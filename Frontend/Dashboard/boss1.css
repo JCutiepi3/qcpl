@@ -372,8 +372,6 @@ input[type="submit"]:hover {
   text-decoration: none;
 }
 
-/*======================= Boss 2 Outgoing =======================*/
-
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {

@@ -27,13 +27,17 @@
                 </li>
                 
                 <li>
-                    <a href="userdashboard.php">
-                        <span class="icon">
-                            <ion-icon name="documents-outline"></ion-icon>
-                        </span>
-                        <span class="title">Document</span>
+                    <a href="userdashboard.php" class="dropdown-toggle">
+                    <span class="icon">
+                    <ion-icon name="apps"></ion-icon>
+                    </span>
+                    <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                </li>
+                    
+
+                         <li class="sub_dash"><a href="receiveincoming.php">Incoming</a></li>
+                         <li class="sub_dash"><a href="receiveoutgoing.php">Outgoing</a></li>
+                
                 <li>
                     <a href="useroutgoing.php" class="dropdown-toggle">
                     <span class="icon">

@@ -317,18 +317,21 @@ input[type="submit"]:hover {
     text-decoration: none;
     display: inline-block;
     font-size: 40px;
-    margin: 4px 2px;
+    margin:4px 2px;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 5px;
     position: absolute;
     right: 55px;
     top: 55vh;  
 }
 
+
+
+
 /* ================== SUMMARY TABLE ============== */
 .sum_tb{
   position: relative;
-  top: -125px;
+  top: -130px;
   left: 65px;
   width: 100%;
   text-align: center;
@@ -341,7 +344,7 @@ input[type="submit"]:hover {
 }
 
 .sum_tb tr{
-  height: 80px;
+  height: 75px;
 }
 
 .sum_tb th{
@@ -350,13 +353,11 @@ input[type="submit"]:hover {
   text-align: center;
   color: #fff;
   font-weight: 100px;
-  height: 50px;
-  border-spacing: 10px;
+  height: 40px;
   font-family: "Bitter", serif;
-  text-transform: uppercase ;
-  border: 2px solid;
+  text-transform:uppercase ;
+  border: 1.5px solid;
   border-color: white;
-  border-spacing: 10px;
 }
 
 .sum_tb td{

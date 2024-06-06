@@ -128,6 +128,7 @@ $result_boss1 = $conn->query($sql_boss1);
                         $stmt->execute();
                         $result = $stmt->get_result();
 
+                        
                         if ($result->num_rows > 0) {
                             echo "<table aria-describedby='boss1-table'>";
                             echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
@@ -145,7 +146,7 @@ $result_boss1 = $conn->query($sql_boss1);
                             }
                             echo "</tbody>";
                             echo "</table>";
-
+                        
                             $prevPage = $page - 1;
                             if ($prevPage > 0) {
                                 echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
@@ -155,32 +156,49 @@ $result_boss1 = $conn->query($sql_boss1);
                         } else {
                             echo "<script>alert('No Boss 1 Account found!'); window.location.href = '?page=1';</script>";
                         }
-
+                        
                         $stmt->close();
                         $conn->close();
                         ?>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="main.js"></script>
-
-    <script>
-    function confirmDeleteBoss1(boss1Id) {
-        if (confirm("Are you sure you want to delete this Boss 1 account?")) {
-            window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + boss1Id;
-        }
-    }
-    </script>
-
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
-
-</html>
-    
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        
+                        <!-- Scripts -->
+                        <script src="main.js"></script>
+                        
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                        <script>
+                        function confirmDeleteBoss1(boss1Id) {
+                            Swal.fire({
+                                title: "Are you sure?",
+                                text: "You won't be able to revert this!",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Yes, delete it!"
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    }).then(() => {
+                                        window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + boss1Id;
+                                    });
+                                }
+                            });
+                        }
+                        </script>
+                        
+                        <!-- Ionicons -->
+                        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+                        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+                        </body>
+                        
+                        </html>
+                        
