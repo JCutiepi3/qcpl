@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boss 2 Account</title>
+    <title>Home</title>
 
     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
@@ -28,17 +28,14 @@
                 </li>
                 
                 <li>
-                    <a href="#">
+                    <a href="proofviewdocument.php">
                         <span class="icon">
                             <ion-icon name="documents-outline"></ion-icon>
                         </span>
-                        <span class="title">Document<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon</span>
-                        <li class="sub_dash"><a href="boss2incoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="boss2outgoing.php">Outgoing</a></li>
+                        <span class="title">Document</span>
                     </a>
                 </li>
 
-                </li>
                 <li>
                     <a href="/qcpl/Backend/logout.php">
                         <span class="icon">
@@ -56,7 +53,6 @@
                 <div class="toggle">
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
-        
 
                 <div class="user">
                     <span class="icon">
@@ -69,71 +65,88 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                    <!DOCTYPE html>
-<html lang="en">
+                        <h2>DOCUMENTS</h2>   
+                    </div> 
+                </div>
+                    <div class="table">
+    <table class="table_th">
+
+        <divdiv id="multiStepForm">    
+        <?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "qcpl";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$locatorNum = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
+?>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boss 2</title>
+  <title>Boss 2 Locator</title>
 </head>
 <body>
 
-  <h1>Locator Numbers</h1>
+<?php
+if(isset($_GET['locator_num'])){
+    $locatorNum = $_GET['locator_num'];
+    echo "<h1>Locator Number: $locatorNum</h1>";
+} else {
+    echo "Locator number not provided.";
+}
+?>
+<form action="/qcpl/Backend/boss2backend.php" method="POST">
+    <input type="hidden" name="locator_num" value="<?php echo $locatorNum ?>">
 
-  <table>
-    <tr>
-      <th><center>Category</th>
-      <th><center>Locator Number</th>
-      <th><center>Received Date</th>
-      <th><center>Received From</th>
-      <th><center>Boss2 Comment</th>
-      <th><center>Type</th>
-      <th><center>File</th>
-      <th><center>Status</th>
-      <th><center>Action</th>
-    </tr>
+            </script>
+  <br>
+  <label for="comment" required>Comment:</label><br>
+  <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
+  <br><br>
+  
+  <label>Status: </label>
+<input type="radio" id="pending" name="status" value="pending" required>
+<label for="pending">Pending</label>
 
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "qcpl";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
-    
-    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Pending'";
-
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td><center>" . htmlspecialchars($row["category"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["received_date"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["received_from"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
-        echo "<td><center>" . htmlspecialchars($row["type"]) . "</td>";
-        echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'><center>View File</a></td>";
-        echo "<td><center>" . htmlspecialchars($row["status"]) . "</td><center>";
-        echo "<td><center><a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
-        echo "</tr>";
-      }
-    } else {
-      echo "<tr><td colspan='8'>No records found.</td></tr>";
-    }
-
-    $conn->close();
-    ?>
-
-  </table>
+<input type="radio" id="processing" name="status" value="processing">
+<label for="processing">Processing</label>
+<br>
+<br>
+        <input type="submit" value="Submit">
+</form>
 
 </body>
 </html>
+
+    <script>
+        function viewDocument() {
+            window.open('document_path', '_blank');
+        }
+    </script>
+</body>
+</html>
+
+<?php
+session_start();
+
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
+
+$conn = new mysqli($server, $username, $password, $db);
+
+if ($conn->connect_error) {
+    die("Failed to connect: " . $conn->connect_error);
+}
+?>
+
                
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
@@ -151,7 +164,6 @@ function activeLink() {
 
 list.forEach((item) => item.addEventListener("mouseover", activeLink));
 
-// Menu Toggle
 let toggle = document.querySelector(".toggle");
 let navigation = document.querySelector(".navigation");
 let main = document.querySelector(".main");

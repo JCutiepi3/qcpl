@@ -28,7 +28,7 @@
                 </li>
                 
                 <li>
-                    <a href="proofreader.html" class="dropdown-toggle">
+                    <a href="proofreader.php" class="dropdown-toggle">
                     <span class="icon">
                     <ion-icon name="apps"></ion-icon>
                     </span>
@@ -108,7 +108,7 @@ if ($result->num_rows > 0) {
         echo "<td style='text-align: center;'>" . htmlspecialchars($row["file_path"]) . "</td>";
         echo "<td style='text-align: center;'><a href='/qcpl/Backend/" . htmlspecialchars($row["file_path"]) . "' target='_self' aria-label='View file for " . htmlspecialchars($row["locator_num"]) . "'>View File</a></td>";
         echo "<td style='text-align: center;'>" . htmlspecialchars($row["status"]) . "</td>";
-        echo "<td><a href='proofreader.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
+        echo "<td><a href='proofreaderdocuments.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
         echo "</tr>";
     }
     echo "</tbody>";

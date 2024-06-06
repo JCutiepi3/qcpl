@@ -331,7 +331,7 @@ input[type="submit"]:hover {
 /* ================== SUMMARY TABLE ============== */
 .sum_tb{
   position: relative;
-  top: -150px;
+  top: 5px;
   left: 65px;
   width: 100%;
   text-align: center;
@@ -372,11 +372,7 @@ input[type="submit"]:hover {
   text-decoration: none;
 }
 
-
-
-
-
-
+/*======================= Boss 2 Outgoing =======================*/
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
