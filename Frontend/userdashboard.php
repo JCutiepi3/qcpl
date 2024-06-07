@@ -103,7 +103,7 @@
                                 die("Connection failed: " . $conn->connect_error);
                             }
                             
-                            $sql = "SELECT division, section, category, locator_num, received_date, received_from, file_path, type, status FROM fileupload WHERE status = 'Processing'";
+                            $sql = "SELECT division, section, category, locator_num, received_date, received_from, file_path, type, status FROM fileupload";
                             $result = $conn->query($sql);
                             
                             if ($result->num_rows > 0) { 

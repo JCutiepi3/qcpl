@@ -82,60 +82,62 @@
                     
                         <div class ="rec_outgoing">
                         <?php
-                            session_start(); 
-                            $server = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $db = "qcpl";
-                            $conn = new mysqli($server, $username, $password, $db);
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
+session_start(); 
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
+$conn = new mysqli($server, $username, $password, $db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                            $rowsPerPage = 4;
-                            $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-                            $offset = ($page - 1) * $rowsPerPage;
+$rowsPerPage = 4;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $rowsPerPage;
 
-                            $sql = "SELECT * FROM fileupload WHERE category = 'Outgoing' LIMIT ? OFFSET ?";
-                            $stmt = $conn->prepare($sql);
-                            if (!$stmt) {
-                                die("Error preparing statement: " . $conn->error);
-                            }
-                            $stmt->bind_param("ii", $rowsPerPage, $offset);
-                            $stmt->execute();
-                            $result = $stmt->get_result();
+$sql = "SELECT * FROM fileupload WHERE category = 'Outgoing' LIMIT ? OFFSET ?";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Error preparing statement: " . $conn->error);
+}
+$stmt->bind_param("ii", $rowsPerPage, $offset);
+$stmt->execute();
+$result = $stmt->get_result();
 
-                            if ($result->num_rows > 0) {                    
-                                echo "<table>";
-                                echo "<tr><th>Division</th><th>Section</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>File type</th><th>File</th><th>Status</th></tr>";
+if ($result->num_rows > 0) {                    
+    echo "<table>";
+    echo "<tr><th>Locator Number</th><th>Division</th><th>Section</th><th>Subject</th><th>Description</th><th>Receive From</th><th>Receive Date</th><th>Status</th><th>Action</th></tr>";
 
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>" . "<center>" . $row["division"] . "</td>";
-                                    echo "<td>" . "<center>" . $row["section"] . "</td>";
-                                    echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
-                                    echo "<td>" . "<center>" . $row["received_date"] . "</td>";
-                                    echo "<td>" . "<center>" . $row["received_from"] . "</td>";
-                                    echo "<td>" . "<center>" . $row["type"] . "</td>";
-                                    echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'><center>View File</a></td>";
-                                    echo "<td id ='status'>" . "<center>" . $row["status"] . "</td>";
-                                    echo "</tr>";
-                                }
-                                echo "</table>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td><center>" . $row["locator_num"] . "</center></td>";
+        echo "<td><center>" . $row["division"] . "</center></td>";
+        echo "<td><center>" . $row["section"] . "</center></td>";
+        echo "<td><center>" . $row["subject"] . "</center></td>";
+        echo "<td><center>" . $row["description"] . "</center></td>";
+        echo "<td><center>" . $row["received_from"] . "</center></td>";
+        echo "<td><center>" . $row["received_date"] . "</center></td>";
+        echo "<td><center>" . $row["status"] . "</center></td>";
+        echo "<td>" ."<center>". "<a href='receivelocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
+        echo "</tr>";
+    }
+    echo "</table>";
 
-                                $prevPage = $page - 1;
-                                if ($prevPage > 0) {
-                                    echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
-                                }
-                                $nextPage = $page + 1;
-                                echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
-                            } else {
-                                echo "<script>alert('No documents found in the Outgoing category.'); window.location.href = 'receiving.php';</script>";
-                            }
+    $prevPage = $page - 1;
+    if ($prevPage > 0) {
+        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
+    }
+    $nextPage = $page + 1;
+    echo "<a href='?page=$nextPage' id='next'><ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
+} else {
+    echo "<p>No documents found.</p>";
+}
 
-                            $stmt->close();
-                            $conn->close();
-                        ?>
+$stmt->close();
+$conn->close();
+?>
+
                     
                     </div>
                 </div>

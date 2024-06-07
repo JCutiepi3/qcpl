@@ -113,6 +113,9 @@ if(isset($_GET['locator_num'])){
         <input type="submit" value="Submit">
         
 </form>
+<!-- HELP ME FIX MY CODE BUT DONT CHANGE OR REMOVE ANYTHING JUST ADD WHAT I NEEDED
+
+show only the Locator Number, Category, Subject Description Receive from, receive date, proofreader comment , boss 2 comment, boss 1 comment , file type, file, and status -->
 
 </body>
 </html>
@@ -124,22 +127,6 @@ if(isset($_GET['locator_num'])){
     </script>
 </body>
 </html>
-
-<?php
-session_start();
-
-$server = "localhost";
-$username = "root";
-$password = "";
-$db = "qcpl";
-
-$conn = new mysqli($server, $username, $password, $db);
-
-if ($conn->connect_error) {
-    die("Failed to connect: " . $conn->connect_error);
-}
-?>
-
                
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>

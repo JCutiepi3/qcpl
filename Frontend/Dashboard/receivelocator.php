@@ -34,20 +34,14 @@
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle">
+                    <a href="uploadincoming.php" class="dropdown-toggle">
                     <span class="icon">
                     <ion-icon name="add-circle"></ion-icon>
                     </span>
                     <span class="title">Upload Document<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
-
-                         <li class="sub_dash"><a href="uploadincoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="uploadoutgoing.php">Outgoing</a></li>
-                
                 </li>
 
                 <li>
@@ -74,41 +68,56 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>INCOMING</h2>
+                        <h2>DOCUMENT</h2>
+<?php
 
-                        <div class ="rec_upload_inc">
-                        <div class="info_box3">
-                        </div>
-                        <form action="/qcpl/Backend/fileupload.php" method="POST" enctype="multipart/form-data">
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "qcpl";
 
-                            <label id = "lb_loc">Locator Number: </label>
-                            <input id = "in_loc" type="number" name="locator_num" required><br>
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-                            <label id = "lb_rec">Received Date: </label>
-                            <input id = "in_rec" type="datetime-local" name="received_date" required><br>
-                        
-                            <label id = "lb_from" for="">Received From: </label>
-                            <input id = "in_from" type="text" name="received_from" required><br>
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                            <label id = "lb_sub" for="">Subject: </label>
-                            <input id = "in_sub" type="text" name="subject" required><br>
+$locator_num = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
 
-                            <label id = "lb_dec" for="">Description: </label>
-                            <input id = "in_dec" type="text" name="description" required>
+if(isset($_GET['locator_num'])){
+    $locator_num = $_GET['locator_num'];
+    echo "<h1>Locator Number: $locator_num</h1>";
+    $sql = "SELECT locator_num, category, subject, description, received_from, received_date, proofreader_comment, boss2_comment, boss1_comment, type, file_path, status FROM fileupload WHERE locator_num = '$locator_num'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "<table border='1'>";
+        echo "<tr><th>Locator Number</th><th>Category</th><th>Subject</th><th> Description</th><th>Receive From</th><th>Receive Date</th><th>Proofreader Comment</th><th>Boss 2 Comment</th><th>Boss 1 Comment</th><th>File Type</th><th>File</th><th>Status</th></tr>";
+        while($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td><center>".$row["locator_num"]."</td>";
+            echo "<td><center>".$row["category"]."</td>";
+            echo "<td><center>".$row["subject"]."</td>";
+            echo "<td><center>".$row["description"]."</td>";
+            echo "<td><center>".$row["received_from"]."</td>";
+            echo "<td><center>".$row["received_date"]."</td>";
+            echo "<td><center>".$row["proofreader_comment"]."</td>";
+            echo "<td><center>".$row["boss2_comment"]."</td>";
+            echo "<td><center>".$row["boss1_comment"]."</td>";
+            echo "<td><center>".$row["type"]."</td>";
+            echo "<td><center><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
+            echo "<td><center>".$row["status"]."</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "No results found.";
+    }
+} else {
+    echo "Locator number not provided.";
+}
+?>
 
-                            <label id="rec_lb_filetype">File Type:</label>
-                            <select name="type" id="rec_in_sel" required>
-                                <option value="" disabled selected>Select Document Format</option>
-                                <option value="DOCS">Document</option>
-                                <option value="PDF">Portable Document Format</option>
-                                <option value="IMG">Image</option>
-                            </select>
-                               
-
-                            <input id = "rec_in_file" type="file" name="fileName" required><br>
-                            <input id = "in_submit" type="submit" name="incomingupload" value="Submit">
-                        </form>
-                    
+                        <div class="rec_dash">
                         </div>
             
                     </div>

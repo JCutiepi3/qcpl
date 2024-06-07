@@ -13,14 +13,11 @@ if ($conn->connect_error) {
 }
 
 if (isset($_POST["incomingupload"]) || isset($_POST["outgoingupload"])) {
-    // Determine the category based on the form submission
     $category = isset($_POST["incomingupload"]) ? 'Incoming' : 'Outgoing';
 
     $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment, status) 
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '', 'First Review')";
     $stmt = $conn->prepare($query);
-
-    // Ensure variables are assigned before binding
     $locator_num = $_POST['locator_num'];
     $received_date = $_POST['received_date'];
     $received_from = $_POST['received_from'];
@@ -42,7 +39,8 @@ if (isset($_POST["incomingupload"]) || isset($_POST["outgoingupload"])) {
             echo "Error: " . $query . "<br>" . $conn->error;
         }
     } else {
-        echo "Error uploading file.";
+        echo "<script>alert('Error uploading file.'); window.location.href = '../Frontend/Dashboard/uploadincoming.php';</script>";
+
     }
 
     $stmt->close();

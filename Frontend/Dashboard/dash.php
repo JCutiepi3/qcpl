@@ -47,14 +47,7 @@
                     <a href="user.php">
                         <span class="icon"><ion-icon name="people"></ion-icon></span>
                         <span class="title">Accounts<ion-icon id="acct_down_btn" name="caret-down-outline"></ion-icon></span>
-                        
-                    </a>
 
-                         <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
-                         <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
-                         <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
-                         <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
-                    </a>
                 </li>
 
                 
@@ -108,58 +101,62 @@
 
             <div class ="summary">
             <?php
-                $server = "localhost";
-                $username = "root";
-                $password = "";
-                $db = "qcpl";
-                $conn = new mysqli($server, $username, $password, $db);
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-                $rowsPerPage = 4;
-                $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-                $offset = ($page - 1) * $rowsPerPage;
+session_start(); 
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
+$conn = new mysqli($server, $username, $password, $db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                $sql = "SELECT * FROM fileupload LIMIT ? OFFSET ?";
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("ii", $rowsPerPage, $offset);
-                $stmt->execute();
-                $result = $stmt->get_result();
+$rowsPerPage = 4;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $rowsPerPage;
 
-                if ($result->num_rows > 0) {
-                    echo "<table>";
-                    echo "<tr><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>File type</th><th>File</th><th>Status</th></tr>";
+$sql = "SELECT * FROM fileupload LIMIT ? OFFSET ?";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Error preparing statement: " . $conn->error);
+}
+$stmt->bind_param("ii", $rowsPerPage, $offset);
+$stmt->execute();
+$result = $stmt->get_result();
 
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . "<center>" . $row["division"] . "</td>";
-                        echo "<td>" . "<center>" . $row["section"] . "</td>";
-                        echo "<td id ='category'>" . "<center>" . $row["category"] . "</td>";
-                        echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
-                        echo "<td>" . "<center>" . $row["received_date"] . "</td>";
-                        echo "<td>" . "<center>" . $row["received_from"] . "</td>";
-                        echo "<td>" . "<center>" . $row["type"] . "</td>";
-                        echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
-                        echo "<td id ='status'>" . "<center>" . $row["status"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
+if ($result->num_rows > 0) {                    
+    echo "<table>";
+    echo "<tr><th>Locator Number</th><th>Category</th><th>Division</th><th>Section</th><th>Subject</th><th>Description</th><th>Receive From</th><th>Receive Date</th><th>Status</th><th>Action</th></tr>";
 
-                    $prevPage = $page - 1;
-                    if ($prevPage > 0) {
-                        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
-                    }
-                    $nextPage = $page + 1;
-                    echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
-                } else {
-                    echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
-                }
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td><center>" . $row["locator_num"] . "</td>";
+        echo "<td><center>" . $row["category"] . "</td>";
+        echo "<td><center>" . $row["division"] . "</td>";
+        echo "<td><center>" . $row["section"] . "</td>";
+        echo "<td><center>" . $row["subject"] . "</td>";
+        echo "<td><center>" . $row["description"] . "</td>";
+        echo "<td><center>" . $row["received_from"] . "</td>";
+        echo "<td><center>" . $row["received_date"] . "</td>";
+        echo "<td><center>" . $row["status"] . "</td>";
+        echo "<td>" ."<center>". "<a href='adminlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
+        echo "</tr>";
+    }
+    echo "</table>";
 
-                
+    $prevPage = $page - 1;
+    if ($prevPage > 0) {
+        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
+    }
+    $nextPage = $page + 1;
+    echo "<a href='?page=$nextPage' id='next' ><ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
+} else {
+    echo "<p>No Approved Document.</p>";
+}
 
-                $stmt->close();
-                $conn->close();
-                ?>
+$stmt->close();
+$conn->close();
+?>
             </div>
             </div>
                     </div>

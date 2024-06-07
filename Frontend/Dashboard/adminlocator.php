@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Home</title>
-
     <!-- Styles -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
     <link rel="stylesheet" href="style.css">
@@ -33,29 +33,14 @@
                     <ion-icon name="apps"></ion-icon>
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
-                    </a>
-                    
-
-                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
-                
+                    </a>           
                 </li>
          
                 <li>
                     <a href="user.php">
                         <span class="icon"><ion-icon name="people"></ion-icon></span>
                         <span class="title">Accounts<ion-icon id="acct_down_btn" name="caret-down-outline"></ion-icon></span>
-                        
-                    </a>
-
-                         <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
-                         <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
-                         <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
-                         <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
-                    </a>
                 </li>
-
-
                 <li>
                     <a href="doc.html">
                         <span class="icon">
@@ -95,72 +80,61 @@
                 <div class="user"><span class="icon"><ion-icon name="person"></ion-icon></span></div>
             </div>
 
-            
             <!-- Document Summary -->
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>KUNG ANO DIVISION</h2>
+                        <h2>Document</h2>
 
+                        <?php
 
-            <div class ="incoming">
-            <?php
-session_start(); 
-$server = "localhost";
+$servername = "localhost";
 $username = "root";
 $password = "";
-$db = "qcpl";
-$conn = new mysqli($server, $username, $password, $db);
+$dbname = "qcpl";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$rowsPerPage = 4;
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-$offset = ($page - 1) * $rowsPerPage;
+$locator_num = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
 
-$sql = "SELECT * FROM fileupload WHERE category = 'Incoming' LIMIT ? OFFSET ?";
-$stmt = $conn->prepare($sql);
-if (!$stmt) {
-    die("Error preparing statement: " . $conn->error);
-}
-$stmt->bind_param("ii", $rowsPerPage, $offset);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {                    
-    echo "<table>";
-    echo "<tr><th>Locator Number</th><th>Division</th><th>Section</th><th>Subject</th><th>Description</th><th>Receive From</th><th>Receive Date</th><th>Status</th><th>Action</th></tr>";
-
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td><center>" . $row["locator_num"] . "</center></td>";
-        echo "<td><center>" . $row["division"] . "</center></td>";
-        echo "<td><center>" . $row["section"] . "</center></td>";
-        echo "<td><center>" . $row["subject"] . "</center></td>";
-        echo "<td><center>" . $row["description"] . "</center></td>";
-        echo "<td><center>" . $row["received_from"] . "</center></td>";
-        echo "<td><center>" . $row["received_date"] . "</center></td>";
-        echo "<td id='status'><center>" . $row["status"] . "</center></td>";
-        echo "<td>" ."<center>". "<a href='adminlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
-        echo "</tr>";
+if(isset($_GET['locator_num'])){
+    $locator_num = $_GET['locator_num'];
+    echo "<h1>Locator Number: $locator_num</h1>";
+    $sql = "SELECT locator_num, category, subject, description, received_from, received_date, proofreader_comment, boss2_comment, boss1_comment, type, file_path, status FROM fileupload WHERE locator_num = '$locator_num'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "<table border='1'>";
+        echo "<tr><th>Locator Number</th><th>Category</th><th>Subject</th><th> Description</th><th>Receive From</th><th>Receive Date</th><th>Proofreader Comment</th><th>Boss 2 Comment</th><th>Boss 1 Comment</th><th>File Type</th><th>File</th><th>Status</th></tr>";
+        while($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td><center>".$row["locator_num"]."</td>";
+            echo "<td><center>".$row["category"]."</td>";
+            echo "<td><center>".$row["subject"]."</td>";
+            echo "<td><center>".$row["description"]."</td>";
+            echo "<td><center>".$row["received_from"]."</td>";
+            echo "<td><center>".$row["received_date"]."</td>";
+            echo "<td><center>".$row["proofreader_comment"]."</td>";
+            echo "<td><center>".$row["boss2_comment"]."</td>";
+            echo "<td><center>".$row["boss1_comment"]."</td>";
+            echo "<td><center>".$row["type"]."</td>";
+            echo "<td><center><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
+            echo "<td><center>".$row["status"]."</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "No results found.";
     }
-    echo "</table>";
-
-    $prevPage = $page - 1;
-    if ($prevPage > 0) {
-        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
-    }
-    $nextPage = $page + 1;
-    echo "<a href='?page=$nextPage' id='next'><ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
 } else {
-    echo "<p>No documents found.</p>";
+    echo "Locator number not provided.";
 }
-
-$stmt->close();
-$conn->close();
 ?>
-
+            <div class ="summary">
+         </div>
             </div>
                     </div>
                 </div>
@@ -177,4 +151,4 @@ $conn->close();
 </body>
 
 </html>
-    
+

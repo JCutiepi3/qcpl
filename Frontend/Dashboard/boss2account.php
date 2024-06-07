@@ -74,43 +74,62 @@
                         <div class="sum_tb">
                         <table aria-describedby="tableDescription">
     <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "qcpl";
+session_start(); 
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
+$conn = new mysqli($server, $username, $password, $db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+$rowsPerPage = 4;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $rowsPerPage;
 
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
+$sql = "SELECT * FROM fileupload WHERE status ='First Review' LIMIT ? OFFSET ?";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Error preparing statement: " . $conn->error);
+}
+$stmt->bind_param("ii", $rowsPerPage, $offset);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {                    
+    echo "<table>";
+    echo "<tr><th>Locator Number</th><th>Category</th><th>Division</th><th>Section</th><th>Subject</th><th>Description</th><th>Receive From</th><th>Receive Date</th><th>Status</th><th>Action</th></tr>";
+
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td><center>" . $row["locator_num"] . "</td>";
+        echo "<td><center>" . $row["category"] . "</td>";
+        echo "<td><center>" . $row["division"] . "</td>";
+        echo "<td><center>" . $row["section"] . "</td>";
+        echo "<td><center>" . $row["subject"] . "</td>";
+        echo "<td><center>" . $row["description"] . "</td>";
+        echo "<td><center>" . $row["received_from"] . "</td>";
+        echo "<td><center>" . $row["received_date"] . "</td>";
+        echo "<td><center>" . $row["status"] . "</td>";
+        echo "<td>" ."<center>". "<a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
+        echo "</tr>";
     }
-    
-    $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'First Review'";
+    echo "</table>";
 
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) { 
-      echo "<table>";
-      echo "<tr><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>From Boss2 Comment</th><th>Type</th><th>File</th><th>Status</th><th>Action</th></tr>";
-      while($row = $result->fetch_assoc()) {
-          echo "<tr>";
-          echo "<td>" ."<center>". $row["category"] . "</td>";
-          echo "<td>" ."<center>". $row["locator_num"] . "</td>";
-          echo "<td>" ."<center>". $row["received_date"] . "</td>";
-          echo "<td>" ."<center>". $row["received_from"] . "</td>";
-          echo "<td>" ."<center>". $row["boss2_comment"] . "</td>";
-          echo "<td>" ."<center>". $row["type"] . "</td>";
-          echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
-          echo "<td>" . "<center>" . $row["status"] . "</td>";
-          echo "<td>" ."<center>". "<a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
-          echo "</tr>";
-      }
-    } else {
-      echo "<tr><td colspan='8'>No records found.</td></tr>";
+    $prevPage = $page - 1;
+    if ($prevPage > 0) {
+        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
     }
+    $nextPage = $page + 1;
+    echo "<a href='?page=$nextPage' id='next' ><ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
+} else {
+    echo "<p>No Approved Document.</p>";
+}
 
-    $conn->close();
-    ?>
+$stmt->close();
+$conn->close();
+?>
 </div>
   </div>         
     <!-- =========== Scripts =========  -->

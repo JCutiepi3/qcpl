@@ -96,7 +96,7 @@
                                     echo "<td>" ."<center>". $row["received_from"] . "</td>";
                                     echo "<td>" ."<center>". $row["boss2_comment"] . "</td>";
                                     echo "<td>" ."<center>". $row["type"] . "</td>";
-                                    echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+                                    echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
                                     echo "<td>" . "<center>" . $row["status"] . "</td>";
                                     echo "<td>" ."<center>". "<a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
                                     echo "</tr>";

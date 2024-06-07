@@ -34,10 +34,6 @@
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
-
-                         <li class="sub_dash"><a href="receiveincoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="receiveoutgoing.php">Outgoing</a></li>
                 
                 </li>
                 <li>
@@ -105,11 +101,10 @@
                             </select>
                             <br>    
 
-                            <input id = "in_file" type="file" name="fileName"><br>
+                            <input id = "in_file" type="file" name="fileName" required><br>
                             <input id = "in_submit" type="submit" name="outgoingupload" value="Submit">
                         </form>
                     
-            
                     </div>
                 </div>
             </div>
