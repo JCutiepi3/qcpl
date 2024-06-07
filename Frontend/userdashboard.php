@@ -35,8 +35,8 @@
                     </a>
                     
 
-                         <li class="sub_dash"><a href="receiveincoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="receiveoutgoing.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="#">Incoming</a></li>
+                         <li class="sub_dash"><a href="#">Outgoing</a></li>
                 
                 <li>
                     <a href="useroutgoing.php" class="dropdown-toggle">
@@ -103,23 +103,22 @@
                                 die("Connection failed: " . $conn->connect_error);
                             }
                             
-                            $sql = "SELECT division, section, category, locator_num, received_date, received_from, file_path, type, status FROM fileupload";
+                            $sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload";
                             $result = $conn->query($sql);
                             
                             if ($result->num_rows > 0) { 
                                 echo "<table>";
-                                echo "<tr><th>Division</th><th>Section</th><th>Category</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>Type</th><th>File</th><th>Status</th></tr>";
+                                echo "<tr><th>Locator Number</th><th>Division</th><th>Section</th><th>Received From</th><th>Received Date</th><th>Category</th><th>Status</th><th>Action</th></tr>";
                                 while($row = $result->fetch_assoc()) {
                                     echo "<tr>";
-                                    echo "<td>" ."<center>". $row["division"] . "</td>";
-                                    echo "<td>" ."<center>". $row["section"] . "</td>";
-                                    echo "<td>" ."<center>". $row["category"] . "</td>";
                                     echo "<td>" ."<center>". $row["locator_num"] . "</td>";
-                                    echo "<td>" ."<center>". $row["received_date"] . "</td>";
+                                    echo "<td>" ."<center>". $row["division"] . "</td>";
+                                    echo "<td>" ."<center>". $row["section"] . "</td>";    
                                     echo "<td>" ."<center>". $row["received_from"] . "</td>";
-                                    echo "<td>" ."<center>". $row["type"] . "</td>";
-                                    echo "<td><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'>View File</a></td>";
+                                    echo "<td>" ."<center>". $row["received_date"] . "</td>";
+                                    echo "<td>" ."<center>". $row["category"] . "</td>";
                                     echo "<td>" . "<center>" . $row["status"] . "</td>";
+                                    echo "<td id='table_th'><center><a href='#?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
                                     echo "</tr>";
                                 }
                                 echo "</table>";

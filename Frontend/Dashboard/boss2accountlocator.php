@@ -66,13 +66,7 @@
                 <div class="upload">
                     <div class="cardHeader">
                         <h2>DOCUMENTS</h2>   
-                    </div> 
-                </div>
-                    <div class="table">
-    <table class="table_th">
-
-        <divdiv id="multiStepForm">    
-        <?php
+                        <?php
 
 $servername = "localhost";
 $username = "root";
@@ -85,8 +79,40 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$locatorNum = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
+$locator_num = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
+
+$sql = "SELECT `locator_num`, `category`, `subject`, `description`, `received_from`, `received_date`, `proofreader_comment`, `boss2_comment`, `boss1_comment`, `type`, `file_path`, `status` FROM fileupload WHERE `locator_num` = '$locator_num'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<table border='1'>";
+    while($row = $result->fetch_assoc()) {
+        echo "<h1>Locator Number: " . $row["locator_num"] . "</h1>";
+        echo "<p>Category: " . $row["category"] . "</p>";
+        echo "<p>Subject Description Receive from: " . $row["description"] . "</p>";
+        echo "<p>Receive Date: " . $row["received_date"] . "</p>";
+        echo "<p>Proofreader Comment: " . $row["proofreader_comment"] . "</p>";
+        echo "<p>Boss 2 Comment: " . $row["boss2_comment"] . "</p>";
+        echo "<p>Boss 1 Comment: " . $row["boss1_comment"] . "</p>";
+        echo "<p>File Type: " . $row["type"] . "</p>";
+        echo "<td><center><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
+        echo "<p>Status: " . $row["status"] . "</p>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
 ?>
+
+                    </div> 
+                </div>
+                    <div class="table">
+                        
+    <table class="table_th">
+
+
+        <divdiv id="multiStepForm">    
+       <div>
 <html>
 <head>
   <title>Boss 2 Locator</title>
@@ -101,24 +127,27 @@ if(isset($_GET['locator_num'])){
     echo "Locator number not provided.";
 }
 ?>
+<html>
+<head>
+  <title>Boss 2 Locator</title>
+</head>
+<body>
+
 <form action="/qcpl/Backend/boss2backend.php" method="POST">
     <input type="hidden" name="locator_num" value="<?php echo $locatorNum ?>">
 
-            </script>
-  <br>
-  <label for="comment" required>Comment:</label><br>
-  <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
-<br>
-<br>
-        <input type="submit" value="Submit">
-        
+    <br>
+    <label for="comment" required>Comment:</label><br>
+    <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
+    <br>
+    <br>
+    <input type="submit" value="Submit" name="submit">
 </form>
-<!-- HELP ME FIX MY CODE BUT DONT CHANGE OR REMOVE ANYTHING JUST ADD WHAT I NEEDED
-
-show only the Locator Number, Category, Subject Description Receive from, receive date, proofreader comment , boss 2 comment, boss 1 comment , file type, file, and status -->
 
 </body>
 </html>
+
+
 
     <script>
         function viewDocument() {

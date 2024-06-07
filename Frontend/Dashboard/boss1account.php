@@ -76,13 +76,13 @@
                         <table aria-describedby="tableDescription">
                             <thead>
                                 <tr>
-                                    <th><center>Category</center></th>
                                     <th><center>Locator Number</center></th>
-                                    <th><center>Received Date</center></th>
+                                    <th><center>Subject</center></th>
+                                    <th><center>Description</center></th>
                                     <th><center>Received From</center></th>
+                                    <th><center>Received Date</center></th>
                                     <th><center>Boss2 Comment</center></th>
-                                    <th><center>Type</center></th>
-                                    <th><center>File</center></th>
+                                    <th><center>Category</center></th>
                                     <th><center>Status</center></th>
                                     <th><center>Action</center></th>
                                 </tr>
@@ -100,19 +100,19 @@
                                     die("Connection failed: " . $conn->connect_error);
                                 }
 
-                                $sql = "SELECT category, locator_num, received_date, received_from, type, file_path, boss2_comment, status FROM fileupload WHERE status = 'Second Review'";
+                                $sql = "SELECT locator_num, subject, description, received_date, received_from, type, file_path, boss2_comment, category, status FROM fileupload WHERE status = 'Second Review'";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr id='table'>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["category"]) . "</td>";
                                         echo "<td id='table_th'><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["received_date"]) . "</td>";
+                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["subject"]) . "</td>";
+                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["description"]) . "</td>";
                                         echo "<td id='table_th'><center>" . htmlspecialchars($row["received_from"]) . "</td>";
+                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["received_date"]) . "</td>";
                                         echo "<td id='table_th'><center>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["type"]) . "</td>";
-                                        echo "<td id='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_blank'><center>View File</a></td>";
+                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["category"]) . "</td>";
                                         echo "<td id='table_th'><center>" . htmlspecialchars($row["status"]) . "</td>";
                                         echo "<td id='table_th'><center><a href='bossaccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
                                         echo "</tr>";
