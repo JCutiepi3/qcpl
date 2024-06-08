@@ -71,7 +71,7 @@
                     <div class="table">
     <table class="table_th">
 
-        <divdiv id="multiStepForm">    
+        <div id="multiStepForm">    
         <?php
 
 $servername = "localhost";

@@ -104,15 +104,14 @@ $locator_num = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provide
 if(isset($_GET['locator_num'])){
     $locator_num = $_GET['locator_num'];
     echo "<h1>Locator Number: $locator_num</h1>";
-    $sql = "SELECT locator_num, category, subject, description, received_from, received_date, proofreader_comment, boss2_comment, boss1_comment, type, file_path, status FROM fileupload WHERE locator_num = '$locator_num'";
+    $sql = "SELECT * FROM fileupload WHERE locator_num = '$locator_num'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo "<table border='1'>";
-        echo "<tr><th>Locator Number</th><th>Category</th><th>Subject</th><th> Description</th><th>Receive From</th><th>Receive Date</th><th>Proofreader Comment</th><th>Boss 2 Comment</th><th>Boss 1 Comment</th><th>File Type</th><th>File</th><th>Status</th></tr>";
+        echo "<tr><th>Locator Number</th><th>Subject</th><th> Description</th><th>Receive From</th><th>Receive Date</th><th>Proofreader Comment</th><th>Boss 2 Comment</th><th>Boss 1 Comment</th><th>File Type</th><th>File</th><th>Category</th><th>Status</th></tr>";
         while($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td><center>".$row["locator_num"]."</td>";
-            echo "<td><center>".$row["category"]."</td>";
             echo "<td><center>".$row["subject"]."</td>";
             echo "<td><center>".$row["description"]."</td>";
             echo "<td><center>".$row["received_from"]."</td>";
@@ -122,6 +121,7 @@ if(isset($_GET['locator_num'])){
             echo "<td><center>".$row["boss1_comment"]."</td>";
             echo "<td><center>".$row["type"]."</td>";
             echo "<td><center><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
+            echo "<td><center>".$row["category"]."</td>";
             echo "<td><center>".$row["status"]."</td>";
             echo "</tr>";
         }
