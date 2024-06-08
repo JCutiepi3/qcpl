@@ -66,6 +66,8 @@ $result_users = $conn->query($sql_users);
                          <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
                          <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
                          <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
+                         <li class="sub_dash"><a href="receivingaccounts.php">Receiving</a></li>
+                         <li class="sub_dash"><a href="proofreaderaccounts.php">Proof Reader</a></li>
                     </a>
                 </li>
 

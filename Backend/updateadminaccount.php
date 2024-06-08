@@ -47,18 +47,10 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>EditAdmin</title>
-    <script>
-        function confirmUpdate() {
-            return confirm("Are you sure you want to update this admin?");
-        }
-    </script>
+    <!-- Include SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EditAdmin</title>
+<body>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -115,10 +107,9 @@ if (isset($_GET['id'])) {
             background-color: #0277bd; /* Darker blue on hover */
         }
     </style>
-</head>
-<body>
+
     <!-- Edit Admin -->
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return confirmUpdate();">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" onsubmit="return confirmUpdate();">
         <input type="hidden" name="id" value="<?php echo $admin['id']; ?>">
         <p>
             <label for="name">Name:</label>
@@ -134,7 +125,29 @@ if (isset($_GET['id'])) {
         </p>
         <input type="submit" value="Update Admin">
     </form>
-</body>
-</html>
 
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        function confirmUpdate() {
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success").then(() => {
+                        document.querySelector("form").submit();
+                    });
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            });
+            return false; // Prevent the form from submitting immediately
+        }
+    </script>
+</body>
 </html>

@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $server = "localhost";
 $username = "root";
 $password = "";
@@ -9,25 +7,11 @@ $db = "qcpl";
 $conn = new mysqli($server, $username, $password, $db);
 
 if ($conn->connect_error) {
-    die("Failed to connect: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
-
-$name = "";
-if(isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-    $sql = "SELECT name FROM users WHERE username = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $name = $row['name'];
-    }
-    $stmt->close();
-}
+$sql_boss2 = "SELECT * FROM boss2";
+$result_boss2 = $conn->query($sql_boss2);
 
 ?>
 
@@ -66,7 +50,6 @@ if(isset($_SESSION['username'])) {
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                
                 </li>
          
                 <li>
@@ -129,66 +112,51 @@ if(isset($_SESSION['username'])) {
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>ACCOUNTS</h2>
+                        <h2>PROOF READER</h2>
 
-                        <div class="findaccount">
-            <?php
-                $server = "localhost";
-                $username = "root";
-                $password = "";
-                $db = "qcpl";
+                    <div class ="accts_boss2">
+                    <?php
+                    $rowsPerPage = 4;
+                    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+                    $offset = ($page - 1) * $rowsPerPage;
 
-                $conn = new mysqli($server, $username, $password, $db);
+                    $sql = "SELECT id, name, username, password FROM proofreader LIMIT ? OFFSET ?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("ii", $rowsPerPage, $offset);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
 
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+                    if ($result->num_rows > 0) {
+                        echo "<table aria-describedby='boss2-table'>";
+                        echo "<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
+                        echo "<tbody>";
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td><center>" . htmlspecialchars($row["id"]) . "</td>";
+                            echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
+                            echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
+                            echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                            echo "<td id='boss2_edit'><center><a href='/qcpl/Backend/updateboss2accounts.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
+                            echo "<td id='boss2_delete'><center><a href='#' onclick='confirmDeleteBoss2(" . htmlspecialchars($row["id"]) . ")'>Delete</a></td>";
+                            echo "</tr>";
+                        }
+                        echo "</tbody>";
+                        echo "</table>";
 
-                $rowsPerPage = 4;
-                $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-                $offset = ($page - 1) * $rowsPerPage;
-
-                $sql = "SELECT id, name, division, username, password, 'Admin' as role FROM admins
-                        UNION ALL
-                        SELECT id, name, division, username, password, 'User' as role FROM users
-                        UNION ALL
-                        SELECT id, name, division, username, password, 'Boss1' as role FROM boss1
-                        UNION ALL
-                        SELECT id, name, division, username, password, 'Boss2' as role FROM boss2
-                        LIMIT ? OFFSET ?";
-
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("ii", $rowsPerPage, $offset);
-                $stmt->execute();
-                $result = $stmt->get_result();
-
-                if ($result->num_rows > 0) {
-                    echo "<table style='width:100%; text-align:center;'>";
-                    echo "<tr><th>Role</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th></tr>";
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row["role"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["division"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["username"]) . "</td>";
-                        echo "<td>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                        echo "</tr>";
+                        $prevPage = $page - 1;
+                        if ($prevPage > 0) {
+                            echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
+                        }
+                        $nextPage = $page + 1;
+                        echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
+                    } else {
+                        echo "<script>alert('No Boss 2 Account found!'); window.location.href = '?page=1';</script>";
                     }
-                    echo "</table>";
+                    
+                    $stmt->close();
+                    $conn->close();
+                    ?>
 
-                    $prevPage = $page - 1;
-                    if ($prevPage > 0) {
-                        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
-                    }
-                    $nextPage = $page + 1;
-                    echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
-                } else {
-                    echo "<script>alert('No Accounts found!'); window.location.href = '?page=1';</script>";
-                }
-
-                $stmt->close();
-                $conn->close();
-                ?>
                     </div>
                     </div>
                 </div>
@@ -199,31 +167,30 @@ if(isset($_SESSION['username'])) {
     <!-- Scripts -->
     <script src="main.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+function confirmDeleteBoss2(boss2Id) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + boss2Id;
+        }
+    });
+}
+</script>
+
+
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-    <script>
-        function confirmDelete(id) {
-            if (confirm("Are you sure you want to delete this account?")) {
-                window.location.href = 'deleteuseradmin.php?id=' + id;
-            }
-        }
-        function confirmUpdate(id) {
-        if (confirm("Are you sure you want to update?")) {
-            window.location.href = 'updateuseradmin.php?id=' + id; 
-        }
-    }
-</script>
-
-    </script>
-
-    <?php
-    if (isset($_GET['delete_msg'])){
-        echo "<h6>".$_GET['delete_msg']."</h6>";
-    }
-    ?>
-
 </body>
 
 </html>

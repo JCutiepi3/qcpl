@@ -123,5 +123,28 @@ if (isset($_GET['id'])) {
         </p>
         <input type="submit" value="Update User">
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+<script>
+    function confirmUpdate() {
+        Swal.fire({
+            title: "Do you want to save the changes?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            denyButtonText: `Don't save`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire("Saved!", "", "success").then(() => {
+                    document.querySelector("form").submit();
+                });
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+            }
+        });
+        return false; // Prevent the form from submitting immediately
+    }
+</script>
+
 </body>
 </html>

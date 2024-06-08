@@ -15,12 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $username = $_POST['username'];
     $password = $_POST['password']; 
-    $query = "UPDATE boss2 SET name=?, username=?, password=? WHERE id=?";
+
+    $query = "UPDATE proofreader SET name=?, username=?, password=? WHERE id=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $name, $username, $password, $id);
     if ($stmt->execute()) {
-        echo "Boss2 updated successfully.";
-        header("Location: /qcpl/Frontend/Dashboard/boss2accounts.php");
+        echo "<script>alert('Account updated successfully.');</script>";
+        header("Location: /qcpl/Frontend/Dashboard/proofreaderaccounts.php"); 
         exit();
     } else {
         echo "Error updating record: " . $conn->error;
@@ -29,23 +30,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = "SELECT * FROM boss2 WHERE id = ?";
+    $query = "SELECT * FROM proofreader WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $boss2 = $result->fetch_assoc();
+    $user = $result->fetch_assoc();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Boss2</title>
+    <title>Edit User</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #e0f7fa; /* Light blue background */
+            background-color: #e0f7fa; 
             margin: 0;
             padding: 0;
             display: flex;
@@ -64,7 +66,7 @@ if (isset($_GET['id'])) {
             margin-bottom: 20px;
             font-size: 24px;
             text-align: center;
-            color: #0277bd; /* Dark blue heading */
+            color: #0277bd; 
         }
         p {
             margin-bottom: 15px;
@@ -73,7 +75,7 @@ if (isset($_GET['id'])) {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            color: #01579b; /* Medium blue label */
+            color: #01579b; 
         }
         input[type="text"],
         input[type="password"] {
@@ -81,13 +83,13 @@ if (isset($_GET['id'])) {
             padding: 8px;
             margin-top: 5px;
             margin-bottom: 15px;
-            border: 1px solid #81d4fa; /* Light blue border */
+            border: 1px solid #81d4fa;
             border-radius: 4px;
             box-sizing: border-box;
         }
         input[type="submit"] {
             width: 100%;
-            background-color: #0288d1; /* Blue button */
+            background-color: #0288d1;
             color: white;
             padding: 10px;
             border: none;
@@ -95,31 +97,31 @@ if (isset($_GET['id'])) {
             cursor: pointer;
         }
         input[type="submit"]:hover {
-            background-color: #0277bd; /* Darker blue on hover */
+            background-color: #0277bd;
         }
     </style>
     <script>
         function confirmUpdate() {
-            return confirm("Are you sure you want to update this Boss2?");
+            return confirm("Are you sure you want to update this user?");
         }
     </script>
 </head>
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return confirmUpdate();">
-        <input type="hidden" name="id" value="<?php echo $boss2['id']; ?>">
+        <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
         <p>
             <label for="name">Name:</label>
-            <input type="text" name="name" id="name" value="<?php echo $boss2['name']; ?>">
+            <input type="text" name="name" id="name" value="<?php echo $user['name']; ?>">
         </p>
         <p>
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username" value="<?php echo $boss2['username']; ?>">
+            <input type="text" name="username" id="username" value="<?php echo $user['username']; ?>">
         </p>
         <p>
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" value="<?php echo $boss2['password']; ?>">
+            <input type="password" name="password" id="password" value="<?php echo $user['password']; ?>">
         </p>
-        <input type="submit" value="Update Boss2">
+        <input type="submit" value="Update User">
     </form>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
@@ -140,7 +142,7 @@ if (isset($_GET['id'])) {
                 Swal.fire("Changes are not saved", "", "info");
             }
         });
-        return false; // Prevent the form from submitting immediately
+        return false; 
     }
 </script>
 
