@@ -36,7 +36,7 @@
                     </a>
                          <li class="sub_dash"><a href="proofreaderincoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="proofreaderoutgoing.php">Outgoing</a></li>
-                         <li class="sub_dash"><a href="#">Approved</a></li>
+                         <li class="sub_dash"><a href="proofreaderapproved.php">Approved</a></li>
                 
                 </li>
                 <li>
@@ -69,8 +69,13 @@
                             <thead>
                                 <tr>
                                     <th><center>Locator Number</center></th>
-                                    <th><center>File Name</center></th>
-                                    <th><center>File</center></th>
+                                    <th><center>Subject</center></th>
+                                    <th><center>Description</center></th>
+                                    <th><center>Division</center></th>
+                                    <th><center>Section</center></th>
+                                    <th><center>Received From</center></th>
+                                    <th><center>Received Date</center></th>
+                                    <th><center>Category</center></th>
                                     <th><center>Status</center></th>
                                     <th><center>Action</center></th>
                                 </tr>
@@ -88,15 +93,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT locator_num, file_path, status FROM fileupload WHERE status != 'Approved'";
+$sql = "SELECT * FROM fileupload WHERE status != 'Approved'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td style='text-align: center;'>" . htmlspecialchars($row["locator_num"]) . "</td>";
-        echo "<td style='text-align: center;'>" . htmlspecialchars($row["file_path"]) . "</td>";
-        echo "<td style='text-align: center;'><a href='/qcpl/Backend/" . htmlspecialchars($row["file_path"]) . "' target='_self' aria-label='View file for " . htmlspecialchars($row["locator_num"]) . "'>View File</a></td>";
+        echo "<td style='text-align: center;'>" . htmlspecialchars($row["subject"]) . "</td>";
+        echo "<td style='text-align: center;'>" . htmlspecialchars($row["description"]) . "</td>";
+        echo "<td style='text-align: center;'>" . htmlspecialchars($row["division"]) . "</td>";
+        echo "<td style='text-align: center;'>" . htmlspecialchars($row["section"]) . "</td>";
+        echo "<td style='text-align: center;'>" . htmlspecialchars($row["received_from"]) . "</td>";
+        echo "<td style='text-align: center;'>" . htmlspecialchars($row["received_date"]) . "</td>";
+        echo "<td style='text-align: center;'>" . htmlspecialchars($row["category"]) . "</td>";
         echo "<td style='text-align: center;'>" . htmlspecialchars($row["status"]) . "</td>";
         echo "<td><a href='proofreaderdocuments.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
         echo "</tr>";

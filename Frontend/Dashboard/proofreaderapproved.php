@@ -62,9 +62,7 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>OUTGOING</h2>
-
-
+                        <h2>APPROVED</h2>
             <div class ="summary">
             <table aria-describedby="tableDescription">
                             <thead>
@@ -81,43 +79,43 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "qcpl";
+            <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "qcpl";
 
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                            $sql = "SELECT * FROM fileupload WHERE status != 'Approved' AND category='Outgoing'";
-                            $result = $conn->query($sql);
+$sql = "SELECT * FROM fileupload WHERE status = 'Approved'";
+$result = $conn->query($sql);
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
-                                    echo "<td><center>" . htmlspecialchars($row["subject"]) . "</td>";
-                                    echo "<td><center>" . htmlspecialchars($row["description"]) . "</td>";
-                                    echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
-                                    echo "<td><center>" . htmlspecialchars($row["section"]) . "</td>";
-                                    echo "<td><center>" . htmlspecialchars($row["received_from"]) . "</td>";
-                                    echo "<td><center>" . htmlspecialchars($row["received_date"]) . "</td>";
-                                    echo "<td><center>" . htmlspecialchars($row["status"]) . "</td>";
-                                    echo "<td><a href='proofreaderdocuments.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
-                                    echo "</tr>";
-                                }
-                                echo "</tbody>";
-                                echo "</table>";
-                            } else {
-                                echo "<p>No records found.</p>";
-                            }
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["subject"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["description"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["section"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["received_from"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["received_date"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["status"]) . "</td>";
+        echo "<td><a href='approveddocuments.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+} else {
+    echo "<p>No records found.</p>";
+}
 
-                            $conn->close();
-                            ?>
+$conn->close();
+?>
             </div>
             </div>
                     </div>
