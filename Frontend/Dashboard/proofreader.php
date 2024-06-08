@@ -41,7 +41,7 @@
                 
                 </li>
                 <li>
-                    <a href="proofreaderdocuments.php">
+                    <a href="proofviewdocument.php">
                         <span class="icon">
                             <ion-icon name="documents-outline"></ion-icon>
                         </span>

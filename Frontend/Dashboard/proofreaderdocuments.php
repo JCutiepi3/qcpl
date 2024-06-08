@@ -85,33 +85,42 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$locatorNum = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
-?>
-<html>
-<head>
-  <title>Boss 2 Locator</title>
-</head>
-<body>
+$locator_num = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
 
-<?php
-if(isset($_GET['locator_num'])){
-    $locatorNum = $_GET['locator_num'];
-    echo "<h1>Locator Number: $locatorNum</h1>";
+$sql = "SELECT `locator_num`, `category`, `subject`, `description`, `received_from`, `received_date`, `proofreader_comment`, `boss2_comment`, `boss1_comment`, `type`, `file_path`, `status` FROM fileupload WHERE `locator_num` = '$locator_num'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<table border='1'>";
+    while($row = $result->fetch_assoc()) {
+        echo "<h1>Locator Number: " . $row["locator_num"] . "</h1>";
+        echo "<p>Category: " . $row["category"] . "</p>";
+        echo "<p>Subject:" . $row["subject"] . "</p>";
+        echo "<p>Description:" . $row["description"] . "</p>";
+        echo "<p>Receive from: " . $row["received_from"] . "</p>";
+        echo "<p>Receive Date: " . $row["received_date"] . "</p>";
+        echo "<p>Proofreader Comment: " . $row["proofreader_comment"] . "</p>";
+        echo "<p>Boss 2 Comment: " . $row["boss2_comment"] . "</p>";
+        echo "<p>Boss 1 Comment: " . $row["boss1_comment"] . "</p>";
+        echo "<p>File Type: " . $row["type"] . "</p>";
+        echo "<td><center><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
+        echo "<p>Status: " . $row["status"] . "</p>";
+    }
 } else {
-    echo "Locator number not provided.";
+    echo "0 results";
 }
+$conn->close();
 ?>
-<form action="/qcpl/Backend/boss2backend.php" method="POST">
+
+<form action="/qcpl/Backend/proofreaderbackend.php" method="POST">
     <input type="hidden" name="locator_num" value="<?php echo $locatorNum ?>">
 
             </script>
   <br>
   <label for="comment" required>Comment:</label><br>
-  <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
+  <textarea id="comment" name="proofreader_comment" rows="4" cols="50" required></textarea>
   <br><br>
-  
-  <!-- Removed the radio buttons for manual status setting -->
-  <input type="hidden" name="status" value="pending">
+
   
   <input type="submit" value="Submit">
 </form>
@@ -119,20 +128,6 @@ if(isset($_GET['locator_num'])){
 </body>
 </html>
 
-<?php
-session_start();
-
-$server = "localhost";
-$username = "root";
-$password = "";
-$db = "qcpl";
-
-$conn = new mysqli($server, $username, $password, $db);
-
-if ($conn->connect_error) {
-    die("Failed to connect: " . $conn->connect_error);
-}
-?>
 
                
     <!-- =========== Scripts =========  -->

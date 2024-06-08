@@ -28,26 +28,16 @@
                 </li>
                 
                 <li>
-                    <a href="proofreader.php" class="dropdown-toggle">
+                    <a href="proofviewdocument.php">
                     <span class="icon">
-                    <ion-icon name="apps"></ion-icon>
+                    <ion-icon name="documents-outline"></ion-icon>
                     </span>
-                    <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
+                    <span class="title">Documents<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
-
-                         <li class="sub_dash"><a href="#">Incoming</a></li>
-                         <li class="sub_dash"><a href="#">Outgoing</a></li>
+                         <li class="sub_dash"><a href="proofreaderincoming.php">Incoming</a></li>
+                         <li class="sub_dash"><a href="proofreaderoutgoing.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="#">Approved</a></li>
                 
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="documents-outline"></ion-icon>
-                        </span>
-                        <span class="title">Document</span>
-                    </a>
-                   
                 </li>
                 <li>
                     <a href="/qcpl/Backend/logout.php">
@@ -98,7 +88,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT locator_num, file_path, status FROM fileupload";
+$sql = "SELECT locator_num, file_path, status FROM fileupload WHERE status != 'Approved'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
