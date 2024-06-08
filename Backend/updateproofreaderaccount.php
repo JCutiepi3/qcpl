@@ -16,45 +16,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password']; 
 
-    $query = "UPDATE admins SET name=?, username=?, password=? WHERE id=?";
+    $query = "UPDATE proofreader SET name=?, username=?, password=? WHERE id=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $name, $username, $password, $id);
     if ($stmt->execute()) {
-        echo "Admin updated successfully.";
-        header("Location: ../Frontend/Dashboard/adminsaccounts.php"); // Redirect back to the admin accounts page
+        echo "<script>alert('Account updated successfully.');</script>";
+        echo "<script>window.location.href = '/qcpl/Frontend/Dashboard/proofreaderaccounts.php';</script>";
         exit();
     } else {
         echo "Error updating record: " . $conn->error;
     }
 }
 
-// Retrieve admin data
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = "SELECT * FROM admins WHERE id = ?";
+    $query = "SELECT * FROM proofreader WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $admin = $result->fetch_assoc();
+    $user = $result->fetch_assoc();
 }
 ?>
 
-
-<!-- Edit_Admin -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>EditAdmin</title>
-    <!-- Include SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-</head>
-<body>
+    <title>Edit User</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #e0f7fa; /* Light blue background */
+            background-color: #e0f7fa; 
             margin: 0;
             padding: 0;
             display: flex;
@@ -73,7 +66,7 @@ if (isset($_GET['id'])) {
             margin-bottom: 20px;
             font-size: 24px;
             text-align: center;
-            color: #0277bd; /* Dark blue heading */
+            color: #0277bd; 
         }
         p {
             margin-bottom: 15px;
@@ -82,7 +75,7 @@ if (isset($_GET['id'])) {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            color: #01579b; /* Medium blue label */
+            color: #01579b; 
         }
         input[type="text"],
         input[type="password"] {
@@ -90,13 +83,13 @@ if (isset($_GET['id'])) {
             padding: 8px;
             margin-top: 5px;
             margin-bottom: 15px;
-            border: 1px solid #81d4fa; /* Light blue border */
+            border: 1px solid #81d4fa;
             border-radius: 4px;
             box-sizing: border-box;
         }
         input[type="submit"] {
             width: 100%;
-            background-color: #0288d1; /* Blue button */
+            background-color: #0288d1;
             color: white;
             padding: 10px;
             border: none;
@@ -104,33 +97,12 @@ if (isset($_GET['id'])) {
             cursor: pointer;
         }
         input[type="submit"]:hover {
-            background-color: #0277bd; /* Darker blue on hover */
+            background-color: #0277bd;
         }
     </style>
-
-    <!-- Edit Admin -->
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" onsubmit="return confirmUpdate();">
-        <input type="hidden" name="id" value="<?php echo $admin['id']; ?>">
-        <p>
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name" value="<?php echo $admin['name']; ?>">
-        </p>
-        <p>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" value="<?php echo $admin['username']; ?>">
-        </p>
-        <p>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" value="<?php echo $admin['password']; ?>">
-        </p>
-        <input type="submit" value="Update Account">
-    </form>
-
-    <!-- Include SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
     <script>
-        function confirmUpdate() {
+        function confirmUpdate(event) {
+            event.preventDefault();
             Swal.fire({
                 title: "Do you want to save the changes?",
                 showDenyButton: true,
@@ -146,8 +118,26 @@ if (isset($_GET['id'])) {
                     Swal.fire("Changes are not saved", "", "info");
                 }
             });
-            return false; // Prevent the form from submitting immediately
         }
     </script>
+</head>
+<body>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="confirmUpdate(event);">
+        <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+        <p>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="<?php echo $user['name']; ?>">
+        </p>
+        <p>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" value="<?php echo $user['username']; ?>">
+        </p>
+        <p>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" value="<?php echo $user['password']; ?>">
+        </p>
+        <input type="submit" value="Update Account">
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 </body>
 </html>

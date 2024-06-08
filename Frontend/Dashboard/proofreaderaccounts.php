@@ -1,3 +1,20 @@
+<?php
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
+
+$conn = new mysqli($server, $username, $password, $db);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql_boss2 = "SELECT * FROM boss2";
+$result_boss2 = $conn->query($sql_boss2);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +22,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Accounts</title>
 
     <!-- Styles -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
@@ -13,8 +30,7 @@
 </head>
 
 <body>
-
-  <!-- =============== Navigation ================ -->
+         <!-- =============== Navigation ================ -->
   <div class="container">
         <div class="navigation">
             <ul>
@@ -34,12 +50,6 @@
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
-
-                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
-                         <li class="sub_dash"><a href="approved.php">Approved</a></li>
-                
                 </li>
          
                 <li>
@@ -53,6 +63,8 @@
                          <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
                          <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
                          <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
+                         <li class="sub_dash"><a href="receivingaccounts.php">Receiving</a></li>
+                         <li class="sub_dash"><a href="proofreaderaccounts.php">Proof Reader</a></li>
                     </a>
                 </li>
 
@@ -92,77 +104,60 @@
         <div class="main">
             <div class="topbar">
                 <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
-                
+
                 <div class="user"><span class="icon"><ion-icon name="person"></ion-icon></span></div>
             </div>
 
-            
             <!-- Document Summary -->
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>KUNG ANO DIVISION</h2>
+                        <h2>PROOF READER</h2>
 
+                    <div class ="accts_boss2">
+                    <?php
+                    $rowsPerPage = 4;
+                    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+                    $offset = ($page - 1) * $rowsPerPage;
 
-            <div class ="incoming">
-            <?php
-session_start(); 
-$server = "localhost";
-$username = "root";
-$password = "";
-$db = "qcpl";
-$conn = new mysqli($server, $username, $password, $db);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+                    $sql = "SELECT id, name, username, password FROM proofreader LIMIT ? OFFSET ?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("ii", $rowsPerPage, $offset);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
 
-$rowsPerPage = 4;
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-$offset = ($page - 1) * $rowsPerPage;
+                    if ($result->num_rows > 0) {
+                        echo "<table aria-describedby='boss2-table'>";
+                        echo "<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
+                        echo "<tbody>";
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td><center>" . htmlspecialchars($row["id"]) . "</td>";
+                            echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
+                            echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
+                            echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                            echo "<td id='boss2_edit'><center><a href='/qcpl/Backend/updateproofreaderaccount.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
+                            echo "<td id='boss2_delete'><center><a href='#' onclick='confirmDeleteBoss2(" . htmlspecialchars($row["id"]) . ")'>Delete</a></td>";
+                            echo "</tr>";
+                        }
+                        echo "</tbody>";
+                        echo "</table>";
 
-$sql = "SELECT * FROM fileupload WHERE category = 'Incoming' AND status != 'Approved' LIMIT ? OFFSET ?";
-$stmt = $conn->prepare($sql);
-if (!$stmt) {
-    die("Error preparing statement: " . $conn->error);
-}
-$stmt->bind_param("ii", $rowsPerPage, $offset);
-$stmt->execute();
-$result = $stmt->get_result();
+                        $prevPage = $page - 1;
+                        if ($prevPage > 0) {
+                            echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
+                        }
+                        $nextPage = $page + 1;
+                        echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
+                    } else {
+                        echo "No Proof Reader Account found!";
+                    }
+                    
+                    $stmt->close();
+                    $conn->close();
+                    ?>
 
-if ($result->num_rows > 0) {                    
-    echo "<table>";
-    echo "<tr><th>Locator Number</th><th>Division</th><th>Section</th><th>Subject</th><th>Description</th><th>Receive From</th><th>Receive Date</th><th>Status</th><th>Action</th></tr>";
-
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td><center>" . $row["locator_num"] . "</center></td>";
-        echo "<td><center>" . $row["division"] . "</center></td>";
-        echo "<td><center>" . $row["section"] . "</center></td>";
-        echo "<td><center>" . $row["subject"] . "</center></td>";
-        echo "<td><center>" . $row["description"] . "</center></td>";
-        echo "<td><center>" . $row["received_from"] . "</center></td>";
-        echo "<td><center>" . $row["received_date"] . "</center></td>";
-        echo "<td id='status'><center>" . $row["status"] . "</center></td>";
-        echo "<td>" ."<center>". "<a href='adminlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-
-    $prevPage = $page - 1;
-    if ($prevPage > 0) {
-        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
-    }
-    $nextPage = $page + 1;
-    echo "<a href='?page=$nextPage' id='next'><ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
-} else {
-    echo "<p>No documents found.</p>";
-}
-
-$stmt->close();
-$conn->close();
-?>
-
-            </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -171,6 +166,27 @@ $conn->close();
 
     <!-- Scripts -->
     <script src="main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+function confirmDeleteBoss2(boss2Id) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + boss2Id;
+        }
+    });
+}
+</script>
+
 
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

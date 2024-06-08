@@ -50,11 +50,6 @@ $result_boss2 = $conn->query($sql_boss2);
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
-
-                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
-                
                 </li>
          
                 <li>
@@ -68,6 +63,8 @@ $result_boss2 = $conn->query($sql_boss2);
                          <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
                          <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
                          <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
+                         <li class="sub_dash"><a href="receivingaccounts.php">Receiving</a></li>
+                         <li class="sub_dash"><a href="proofreaderaccounts.php">Proof Reader</a></li>
                     </a>
                 </li>
 
@@ -115,16 +112,14 @@ $result_boss2 = $conn->query($sql_boss2);
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>BOSS 2=</h2>
+                        <h2>BOSS 2</h2>
 
                     <div class ="accts_boss2">
                     <?php
-                    // Assuming $conn is your database connection
                     $rowsPerPage = 4;
                     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
                     $offset = ($page - 1) * $rowsPerPage;
 
-                    // Prepare the SQL query with pagination
                     $sql = "SELECT id, name, division, username, password FROM boss2 LIMIT ? OFFSET ?";
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("ii", $rowsPerPage, $offset);
@@ -156,7 +151,7 @@ $result_boss2 = $conn->query($sql_boss2);
                         $nextPage = $page + 1;
                         echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
                     } else {
-                        echo "<script>alert('No Boss 2 Account found!'); window.location.href = '?page=1';</script>";
+                        echo "No Boss 2 Account found!";
                     }
                     
                     $stmt->close();

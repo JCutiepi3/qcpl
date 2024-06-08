@@ -37,6 +37,7 @@
 
                          <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="approved.php">Approved</a></li>
                 
                 </li>
          
@@ -44,13 +45,6 @@
                     <a href="user.php">
                         <span class="icon"><ion-icon name="people"></ion-icon></span>
                         <span class="title">Accounts<ion-icon id="acct_down_btn" name="caret-down-outline"></ion-icon></span>
-                        
-                    </a>
-
-                         <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
-                         <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
-                         <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
-                         <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
                     </a>
                 </li>
 
@@ -116,7 +110,7 @@ $rowsPerPage = 4;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $offset = ($page - 1) * $rowsPerPage;
 
-$sql = "SELECT * FROM fileupload WHERE category = 'Outgoing' LIMIT ? OFFSET ?";
+$sql = "SELECT * FROM fileupload WHERE category = 'Outgoing' AND status != 'Approved' LIMIT ? OFFSET ?";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
     die("Error preparing statement: " . $conn->error);

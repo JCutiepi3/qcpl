@@ -96,7 +96,7 @@ $rowsPerPage = 4;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $offset = ($page - 1) * $rowsPerPage;
 
-$sql = "SELECT * FROM fileupload WHERE category = 'Outgoing' LIMIT ? OFFSET ?";
+$sql = "SELECT * FROM fileupload WHERE category ='Outgoing' AND status != 'Approved' LIMIT ? OFFSET ?";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
     die("Error preparing statement: " . $conn->error);

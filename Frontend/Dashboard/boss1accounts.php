@@ -49,12 +49,7 @@ $result_boss1 = $conn->query($sql_boss1);
                     <ion-icon name="apps"></ion-icon>
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
-                    </a>
-                    
-
-                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
-                
+                </a>
                 </li>
          
                 <li>
@@ -68,6 +63,8 @@ $result_boss1 = $conn->query($sql_boss1);
                          <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
                          <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
                          <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
+                         <li class="sub_dash"><a href="receivingaccounts.php">Receiving</a></li>
+                         <li class="sub_dash"><a href="proofreaderaccounts.php">Proof Reader</a></li>
                     </a>
                 </li>
 
@@ -154,7 +151,7 @@ $result_boss1 = $conn->query($sql_boss1);
                             $nextPage = $page + 1;
                             echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
                         } else {
-                            echo "<script>alert('No Boss 1 Account found!'); window.location.href = '?page=1';</script>";
+                            echo "No Boss 1 Account found!";
                         }
                         
                         $stmt->close();

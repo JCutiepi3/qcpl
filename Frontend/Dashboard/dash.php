@@ -37,6 +37,7 @@
                     <ul class="sub_menu" id="dashboard-submenu">
                         <li class="sub_dash"><a href="incoming.php">Incoming</a></li>
                         <li class="sub_dash"><a href="outgoing.php">Outgoing</a></li>
+                        <li class="sub_dash"><a href="approved.php">Approved</a></li>
                     </ul>
 
                          

@@ -10,12 +10,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql_admins = "SELECT * FROM admins";
-$result_admins = $conn->query($sql_admins);
-
+$sql_boss2 = "SELECT * FROM boss2";
+$result_boss2 = $conn->query($sql_boss2);
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +50,6 @@ $result_admins = $conn->query($sql_admins);
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                
                 </li>
          
                 <li>
@@ -66,7 +63,7 @@ $result_admins = $conn->query($sql_admins);
                          <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
                          <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
                          <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
-                         <li class="sub_dash"><a href="receivingaccounts.php">Receiving</a></li>
+                         <li class="sub_dash"><a href="receivingaccounts.php">Receiving</li>
                          <li class="sub_dash"><a href="proofreaderaccounts.php">Proof Reader</a></li>
                     </a>
                 </li>
@@ -115,53 +112,51 @@ $result_admins = $conn->query($sql_admins);
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>ADMIN</h2>
+                        <h2>Receiving</h2>
 
-  
-                        <div class="accts_admin">
-    
-                            <?php
-                                $rowsPerPage = 4;
-                                $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-                                $offset = ($page - 1) * $rowsPerPage;
+                    <div class ="accts_boss2">
+                    <?php
+                    $rowsPerPage = 4;
+                    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+                    $offset = ($page - 1) * $rowsPerPage;
 
-                                $sql = "SELECT id, name, division, username, password FROM admins LIMIT ? OFFSET ?";
-                                $stmt = $conn->prepare($sql);
-                                $stmt->bind_param("ii", $rowsPerPage, $offset);
-                                $stmt->execute();
-                                $result = $stmt->get_result();
+                    $sql = "SELECT id, name, division, username, password FROM receiving LIMIT ? OFFSET ?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("ii", $rowsPerPage, $offset);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
 
-                                if ($result->num_rows > 0) {
-                                    echo "<table aria-describedby='admin-table'>";
-                                    echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
-                                    echo "<tbody>";
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<tr>";
-                                        echo "<td><center>" . htmlspecialchars($row["id"]) . "</td>";
-                                        echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
-                                        echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
-                                        echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
-                                        echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                                        echo "<td id='ad_edit'><center><a href='/qcpl/Backend/updateadminaccount.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
-                                        echo "<td id='ad_delete'><center><a href='#' onclick='confirmDeleteAdmin(" . htmlspecialchars($row["id"]) . ")'>Delete</a></td>";
-                                        echo "</tr>";
-                                    }
-                                    echo "</tbody>";
-                                    echo "</table>";
+                    if ($result->num_rows > 0) {
+                        echo "<table aria-describedby='boss2-table'>";
+                        echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
+                        echo "<tbody>";
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td><center>" . htmlspecialchars($row["id"]) . "</td>";
+                            echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
+                            echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
+                            echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
+                            echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
+                            echo "<td id='boss2_edit'><center><a href='/qcpl/Backend/updatereceivingaccount.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
+                            echo "<td id='boss2_delete'><center><a href='#' onclick='confirmDeleteBoss2(" . htmlspecialchars($row["id"]) . ")'>Delete</a></td>";
+                            echo "</tr>";
+                        }
+                        echo "</tbody>";
+                        echo "</table>";
 
-                                    $prevPage = $page - 1;
-                                    if ($prevPage > 0) {
-                                        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
-                                    }
-                                    $nextPage = $page + 1;
-                                    echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
-                                } else {
-                                    echo "No Admin Account found!";
-                                }
-
-                                $stmt->close();
-                                $conn->close();
-                                ?>
+                        $prevPage = $page - 1;
+                        if ($prevPage > 0) {
+                            echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
+                        }
+                        $nextPage = $page + 1;
+                        echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
+                    } else {
+                        echo "No Receiving Account found!";
+                    }
+                    
+                    $stmt->close();
+                    $conn->close();
+                    ?>
 
                     </div>
                     </div>
@@ -172,29 +167,25 @@ $result_admins = $conn->query($sql_admins);
 
     <!-- Scripts -->
     <script src="main.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
-    function confirmDeleteAdmin(adminId) {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                }).then(() => {
-                    window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + adminId;
-                });
-            }
-        });
-    }
+
+<script>
+function confirmDeleteBoss2(boss2Id) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + boss2Id;
+        }
+    });
+}
 </script>
 
 
