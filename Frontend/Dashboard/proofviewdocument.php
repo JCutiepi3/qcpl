@@ -34,8 +34,6 @@
                     </span>
                     <span class="title">Documents<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                         <li class="sub_dash"><a href="proofreaderincoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="proofreaderoutgoing.php">Outgoing</a></li>
                          <li class="sub_dash"><a href="proofreaderapproved.php">Approved</a></li>
                 
                 </li>
@@ -93,7 +91,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM fileupload WHERE status != 'Approved'";
+$sql = "SELECT * FROM fileupload WHERE category = 'Outgoing' AND status = 'PROOFREAD'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

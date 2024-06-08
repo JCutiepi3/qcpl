@@ -38,6 +38,7 @@
 
                          <li class="sub_dash"><a href="receiveincoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="receiveoutgoing.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="receiveapproved.php">Approved</a></li>
                 
                 </li>
                 <li>
@@ -91,7 +92,7 @@ $rowsPerPage = 4;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $offset = ($page - 1) * $rowsPerPage;
 
-$sql = "SELECT * FROM fileupload WHERE status = 'Approved' LIMIT ? OFFSET ?";
+$sql = "SELECT * FROM fileupload LIMIT ? OFFSET ?";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
     die("Error preparing statement: " . $conn->error);

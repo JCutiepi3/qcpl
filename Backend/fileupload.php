@@ -14,9 +14,10 @@ if ($conn->connect_error) {
 
 if (isset($_POST["incomingupload"]) || isset($_POST["outgoingupload"])) {
     $category = isset($_POST["incomingupload"]) ? 'Incoming' : 'Outgoing';
+    $status = $category === 'Outgoing' ? 'PROOFREAD' : 'First Review';
 
     $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment, status) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '', 'First Review')";
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '', ?)";
     $stmt = $conn->prepare($query);
     $locator_num = $_POST['locator_num'];
     $received_date = $_POST['received_date'];
@@ -28,8 +29,8 @@ if (isset($_POST["incomingupload"]) || isset($_POST["outgoingupload"])) {
     $tempName = $_FILES['fileName']['tmp_name'];
     $file_path = "File_Uploaded/" . $fileName;
 
-    // Bind parameters
-    $stmt->bind_param("ssissssss", $fileName, $category, $locator_num, $received_date, $received_from, $subject, $description, $type, $file_path);
+
+    $stmt->bind_param("ssisssssss", $fileName, $category, $locator_num, $received_date, $received_from, $subject, $description, $type, $file_path, $status);
 
     if (!empty($fileName) && move_uploaded_file($tempName, $file_path)) {
         if ($stmt->execute()) {
@@ -40,7 +41,6 @@ if (isset($_POST["incomingupload"]) || isset($_POST["outgoingupload"])) {
         }
     } else {
         echo "<script>alert('Error uploading file.'); window.location.href = '../Frontend/Dashboard/uploadincoming.php';</script>";
-
     }
 
     $stmt->close();
@@ -49,13 +49,13 @@ if (isset($_POST["incomingupload"]) || isset($_POST["outgoingupload"])) {
 ?>
 
 <?php
-if(isset($_POST["upload"])) {
- 
+if (isset($_POST["upload"])) {
+
     $server = "localhost";
     $username = "root";
     $password = "";
     $db = "qcpl";
-    
+
     $conn = new mysqli($server, $username, $password, $db);
 
     if ($conn->connect_error) {
@@ -63,11 +63,11 @@ if(isset($_POST["upload"])) {
     }
 
     $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment, status) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '', 'First Review')";
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '', ?)";
     $stmt = $conn->prepare($query);
 
-    $stmt->bind_param("ssissssss", $fileName, $category, $locator_num, $received_date, $received_from, $subject, $description, $type, $file_path);
     $category = $_POST['category'];
+    $status = $category === 'Outgoing' ? 'PROOFREAD' : 'First Review';
     $locator_num = $_POST['locator_num'];
     $received_date = $_POST['received_date'];
     $received_from = $_POST['received_from'];
@@ -79,8 +79,9 @@ if(isset($_POST["upload"])) {
     $tempName = $_FILES['fileName']['tmp_name'];
     $file_path = "File_Uploaded/" . $fileName;
 
+    $stmt->bind_param("ssisssssss", $fileName, $category, $locator_num, $received_date, $received_from, $subject, $description, $type, $file_path, $status);
+
     if (!empty($fileName) && move_uploaded_file($tempName, $file_path)) {
-      
         if ($stmt->execute()) {
             echo "<script>alert('Successfully Added Documents!'); window.location='/qcpl/Frontend/Dashboard/doc.html';</script>";
         } else {
