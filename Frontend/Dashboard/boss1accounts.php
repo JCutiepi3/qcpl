@@ -151,7 +151,7 @@ $result_boss1 = $conn->query($sql_boss1);
                             $nextPage = $page + 1;
                             echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
                         } else {
-                            echo "<script>alert('No Boss 1 Account found!'); window.location.href = '?page=1';</script>";
+                            echo "No Boss 1 Account found!";
                         }
                         
                         $stmt->close();

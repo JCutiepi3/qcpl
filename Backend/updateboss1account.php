@@ -122,7 +122,7 @@ if (isset($_GET['id'])) {
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" value="<?php echo $boss1['password']; ?>">
         </p>
-        <input type="submit" value="Update Boss1">
+        <input type="submit" value="Update Account">
     </form>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 

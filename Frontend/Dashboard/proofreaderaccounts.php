@@ -136,7 +136,7 @@ $result_boss2 = $conn->query($sql_boss2);
                             echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
                             echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
                             echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                            echo "<td id='boss2_edit'><center><a href='/qcpl/Backend/updateboss2accounts.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
+                            echo "<td id='boss2_edit'><center><a href='/qcpl/Backend/updateproofreaderaccount.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
                             echo "<td id='boss2_delete'><center><a href='#' onclick='confirmDeleteBoss2(" . htmlspecialchars($row["id"]) . ")'>Delete</a></td>";
                             echo "</tr>";
                         }
@@ -150,7 +150,7 @@ $result_boss2 = $conn->query($sql_boss2);
                         $nextPage = $page + 1;
                         echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
                     } else {
-                        echo "<script>alert('No Boss 2 Account found!'); window.location.href = '?page=1';</script>";
+                        echo "No Proof Reader Account found!";
                     }
                     
                     $stmt->close();

@@ -16,12 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password']; 
 
-    $query = "UPDATE receiver SET name=?, username=?, password=? WHERE id=?";
+    $query = "UPDATE receiving SET name=?, username=?, password=? WHERE id=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $name, $username, $password, $id);
     if ($stmt->execute()) {
         echo "<script>alert('Account updated successfully.');</script>";
-        header("Location: /qcpl/Frontend/Dashboard/receivingaccounts.php"); 
+        echo "<script>window.location.href = '/qcpl/Frontend/Dashboard/receivingaccounts.php';</script>";
         exit();
     } else {
         echo "Error updating record: " . $conn->error;
@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
+    $receiving = $result->fetch_assoc(); // Fix variable name
 }
 ?>
 
@@ -101,50 +101,43 @@ if (isset($_GET['id'])) {
         }
     </style>
     <script>
-        function confirmUpdate() {
-            return confirm("Are you sure you want to update this user?");
+        function confirmUpdate(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success").then(() => {
+                        document.querySelector("form").submit();
+                    });
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            });
         }
     </script>
 </head>
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return confirmUpdate();">
-        <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="confirmUpdate(event);">
+        <input type="hidden" name="id" value="<?php echo $receiving['id']; ?>"> <!-- Fix variable name -->
         <p>
             <label for="name">Name:</label>
-            <input type="text" name="name" id="name" value="<?php echo $user['name']; ?>">
+            <input type="text" name="name" id="name" value="<?php echo $receiving['name']; ?>"> <!-- Fix variable name -->
         </p>
         <p>
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username" value="<?php echo $user['username']; ?>">
+            <input type="text" name="username" id="username" value="<?php echo $receiving['username']; ?>"> <!-- Fix variable name -->
         </p>
         <p>
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" value="<?php echo $user['password']; ?>">
+            <input type="password" name="password" id="password" value="<?php echo $receiving['password']; ?>"> <!-- Fix variable name -->
         </p>
-        <input type="submit" value="Update User">
+        <input type="submit" value="Update Account">
     </form>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
-<script>
-    function confirmUpdate() {
-        Swal.fire({
-            title: "Do you want to save the changes?",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Save",
-            denyButtonText: `Don't save`
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire("Saved!", "", "success").then(() => {
-                    document.querySelector("form").submit();
-                });
-            } else if (result.isDenied) {
-                Swal.fire("Changes are not saved", "", "info");
-            }
-        });
-        return false; 
-    }
-</script>
-
 </body>
 </html>
