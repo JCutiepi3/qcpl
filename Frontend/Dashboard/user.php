@@ -155,6 +155,10 @@ if(isset($_SESSION['username'])) {
                         SELECT id, name, division, username, password, 'Boss1' as role FROM boss1
                         UNION ALL
                         SELECT id, name, division, username, password, 'Boss2' as role FROM boss2
+                        UNION ALL
+                        SELECT id, name, division, username, password, 'Boss1' as role FROM receiving
+                        UNION ALL
+                        SELECT id, name, division, username, password, 'Boss2' as role FROM proofreader
                         LIMIT ? OFFSET ?";
 
                 $stmt = $conn->prepare($sql);
