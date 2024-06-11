@@ -1,1 +1,3 @@
-WORKING
+<php?
+    phpinfo();
+?>
