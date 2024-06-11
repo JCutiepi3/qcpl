@@ -48,6 +48,8 @@ if (isset($_POST["incomingupload"]) || isset($_POST["outgoingupload"])) {
 }
 ?>
 
+
+
 <?php
 if (isset($_POST["upload"])) {
 
@@ -91,6 +93,64 @@ if (isset($_POST["upload"])) {
         echo "Error uploading file.";
     }
 
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+
+
+<?php
+
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
+
+$conn = new mysqli($server, $username, $password, $db);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_POST["useroutgoingupload"])) {
+    $category = 'Outgoing'; // Assuming this form only handles outgoing documents
+    $status = 'First Review'; // Initial status
+
+    // Prepare the SQL query
+    $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment, status) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '', ?)";
+    $stmt = $conn->prepare($query);
+
+    // Bind parameters
+    $locator_num = $_POST['locator_num'];
+    $received_date = $_POST['received_date'];
+    $received_from = $_POST['received_from'];
+    $subject = $_POST['subject'];
+    $description = $_POST['description'];
+    $type = $_POST['type'];
+    $fileName = $_FILES['fileName']['name'];
+    $tempName = $_FILES['fileName']['tmp_name'];
+    $file_path = "File_Uploaded/" . $fileName;
+
+    $stmt->bind_param("ssisssssss", $fileName, $category, $locator_num, $received_date, $received_from, $subject, $description, $type, $file_path, $status);
+
+    // Move uploaded file to desired location
+    if (!empty($fileName) && move_uploaded_file($tempName, $file_path)) {
+        // Execute the prepared statement
+        if ($stmt->execute()) {
+            // If successful, show success message and redirect
+            echo "<script>alert('Successfully Added Documents!'); window.location='/qcpl/Frontend/useroutgoing.php';</script>";
+        } else {
+            // If execution fails, show error message
+            echo "Error: " . $query . "<br>" . $conn->error;
+        }
+    } else {
+        // If file upload fails, show error message
+        echo "Error uploading file.";
+    }
+
+    // Close statement and connection
     $stmt->close();
     $conn->close();
 }

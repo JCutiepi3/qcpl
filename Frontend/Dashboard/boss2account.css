@@ -321,7 +321,7 @@ input[type="submit"]:hover {
     cursor: pointer;
     border-radius: 5px;
     position: absolute;
-    right: 55px;
+    right: 60323px;
     top: 55vh;  
 }
 
@@ -331,7 +331,7 @@ input[type="submit"]:hover {
 /* ================== SUMMARY TABLE ============== */
 .sum_tb{
   position: relative;
-  top: -130px;
+  top: -1px;
   left: 65px;
   width: 100%;
   text-align: center;
