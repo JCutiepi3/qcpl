@@ -64,22 +64,7 @@
                         <h2>View Document</h2>
                         <div>   
                         <table aria-describedby="tableDescription">
-                            <thead>
-                                <tr>
-                                    <th><center>Locator Number</center></th>
-                                    <th><center>Subject</center></th>
-                                    <th><center>Description</center></th>
-                                    <th><center>Division</center></th>
-                                    <th><center>Section</center></th>
-                                    <th><center>Received From</center></th>
-                                    <th><center>Received Date</center></th>
-                                    <th><center>Category</center></th>
-                                    <th><center>Status</center></th>
-                                    <th><center>Action</center></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php
+                        <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -87,14 +72,27 @@ $dbname = "qcpl";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM fileupload WHERE category = 'Outgoing' AND status = 'PROOFREAD'";
+// Pagination variables
+$rowsPerPage = 4;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $rowsPerPage;
+
+// SQL query to fetch records with pagination
+$sql = "SELECT * FROM fileupload WHERE category = 'Outgoing' AND status = 'PROOFREAD' LIMIT $rowsPerPage OFFSET $offset";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
+    // Display table headers
+    echo "<table>";
+    echo "<thead><tr><th>Locator Number</th><th>Subject</th><th>Description</th><th>Division</th><th>Section</th><th>Received From</th><th>Received Date</th><th>Category</th><th>Status</th><th>Action</th></tr></thead>";
+    echo "<tbody>";
+
+    // Output data of each row
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td style='text-align: center;'>" . htmlspecialchars($row["locator_num"]) . "</td>";
@@ -109,14 +107,31 @@ if ($result->num_rows > 0) {
         echo "<td><a href='proofreaderdocuments.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
         echo "</tr>";
     }
+
     echo "</tbody>";
     echo "</table>";
+
+    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE category = 'Outgoing' AND status = 'PROOFREAD'";
+    $result_count = $conn->query($sql_count);
+    $row_count = $result_count->fetch_assoc();
+    $total_records = $row_count['total_count'];
+    $total_pages = ceil($total_records / $rowsPerPage);
+
+    if ($total_pages > 1) {
+        echo "<div style='text-align: center; margin-top: 20px;'>";
+        for ($i = 1; $i <= $total_pages; $i++) {
+            echo "<a href='?page=$i'>" . $i . "</a> ";
+        }
+        echo "</div>";
+    }
 } else {
     echo "<p>No records found.</p>";
 }
 
+// Close connection
 $conn->close();
 ?>
+
                         </div>
 
 

@@ -70,7 +70,7 @@
                         </div>
                     <div class="sum_tb">
                         <table aria-describedby="tableDescription">
-<?php
+                        <?php
 $server = "localhost";
 $username = "root";
 $password = "";
@@ -82,7 +82,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT subject, description,locator_num, received_date, received_from,  proofreader_comment, boss2_comment, status, description FROM fileupload WHERE category = 'Incoming' AND status = 'First Review'";
+$rowsPerPage = 4;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $rowsPerPage;
+
+$sql = "SELECT subject, description, locator_num, received_date, received_from, proofreader_comment, boss2_comment, status 
+        FROM fileupload 
+        WHERE category = 'Incoming' AND status = 'First Review' 
+        ORDER BY received_date DESC 
+        LIMIT $rowsPerPage OFFSET $offset";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) { 
@@ -98,18 +106,29 @@ if ($result->num_rows > 0) {
           </tr>";
     while($row = $result->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" ."<center>". $row["locator_num"] . "</td>";
-        echo "<td>" ."<center>". $row["subject"] . "</td>";
-        echo "<td>" ."<center>". $row["description"] . "</td>";
-        echo "<td>" ."<center>". $row["received_date"] . "</td>";
-        echo "<td>" ."<center>". $row["received_from"] . "</td>";
-        echo "<td>" . "<center>" . $row["status"] . "</td>";
-        echo "<td>" ."<center>". "<a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
+        echo "<td><center>" . $row["locator_num"] . "</td>";
+        echo "<td><center>" . $row["subject"] . "</td>";
+        echo "<td><center>" . $row["description"] . "</td>";
+        echo "<td><center>" . $row["received_date"] . "</td>";
+        echo "<td><center>" . $row["received_from"] . "</td>";
+        echo "<td><center>" . $row["status"] . "</td>";
+        echo "<td><center><a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
         echo "</tr>";
     }
     echo "</table>";
+
+    $sqlCount = "SELECT COUNT(*) AS total FROM fileupload WHERE category = 'Incoming' AND status = 'First Review'";
+    $resultCount = $conn->query($sqlCount);
+    $rowCount = $resultCount->fetch_assoc()['total'];
+    $totalPages = ceil($rowCount / $rowsPerPage);
+
+    echo "<div class='pagination'>";
+    for ($i = 1; $i <= $totalPages; $i++) {
+        echo "<a href='boss2incoming.php?page=$i'>$i</a>";
+    }
+    echo "</div>";
 } else {
-    echo "<tr><td colspan='12'>No records found.</td></tr>";
+    echo "<p>No records found.</p>";
 }
 
 $conn->close();

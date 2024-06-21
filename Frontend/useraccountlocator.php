@@ -5,34 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boss 2 Comment</title>
+    <title>User</title>
 
     <!-- ======= Styles ====== -->
-    <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
-    <link rel="stylesheet" href="boss2accountlocator.css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/Logo.png">
+    <link rel="stylesheet" href="userdashboard.css">
 </head>
-
 <body>
 
-    <!-- =============== Navigation ================ -->
-    <div class="container">
+     <!-- =============== Navigation ================ -->
+     <div class="container">
         <div class="navigation">
             <ul>
                 <li>
                     <a href="#">
                         <span class="img">
-                            <img src="imgs/logo.png">
+                            <img src="img/Logo.png" >
                         </span>
                         <span class="title">Quezon City Public Library</span>
                     </a>
                 </li>
                 
                 <li>
-                    <a href="boss2account.php">
-                        <span class="icon">
-                            <ion-icon name="documents-outline"></ion-icon>
-                        </span>
-                        <span class="title">Document</span>
+                    <a href="userdashboard.php" class="dropdown-toggle">
+                    <span class="icon">
+                    <ion-icon name="apps"></ion-icon>
+                    </span>
+                    <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
+                    </a>
+                    
+
+                         <li class="sub_dash"><a href="userincomingdash.php">Incoming</a></li>
+                         <li class="sub_dash"><a href="useroutgoingdash.php">Outgoing</a></li>
+                
+                <li>
+                    <a href="useroutgoing.php" class="dropdown-toggle">
+                    <span class="icon">
+                    <ion-icon name="add-circle"></ion-icon>
+                    </span>
+                    <span class="title">Upload Document</span>
                     </a>
                 </li>
 
@@ -53,12 +64,23 @@
                 <div class="toggle">
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
+                
+                
+            <form action="/qcpl/Backend/locator.php" method="GET">
+                <div class="search">
+                    <label>
+                        <input type="number" name="locator" placeholder="Search here">
+                        <input type="submit" id="sub_hide" name="find">
+                        <ion-icon name="search-outline" name="locate"></ion-icon>
+                    </label>
+                </div>
+            </form>
+               
 
                 <div class="user">
                     <span class="icon">
                         <ion-icon name="person"></ion-icon>
                     </span>
-
                 </div>
             </div>
 
@@ -66,6 +88,9 @@
                 <div class="upload">
                     <div class="cardHeader">
                         <h2>DOCUMENTS</h2>   
+                        </div>
+                    <div class="sum_tb">
+                        <table aria-describedby="tableDescription">
                         <?php
 
 $servername = "localhost";
@@ -106,82 +131,11 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
                     </div> 
+                    
                 </div>
-                    <div class="table">
-                        
-    <table class="table_th">
-
-
-        <divdiv id="multiStepForm">    
-       <div>
-<html>
-<head>
-  <title>Boss 2 Locator</title>
-</head>
-<body>
-
-<?php
-if(isset($_GET['locator_num'])){
-    $locatorNum = $_GET['locator_num'];
-    echo "<h1>Locator Number: $locatorNum</h1>";
-} else {
-    echo "Locator number not provided.";
-}
-?>
-<html>
-<head>
-  <title>Boss 2 Locator</title>
-</head>
-<body>
-
-<form action="/qcpl/Backend/boss2backend.php" method="POST">
-    <input type="hidden" name="locator_num" value="<?php echo $locatorNum ?>">
-
-    <br>
-    <label for="comment" required>Comment:</label><br>
-    <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
-    <br>
-    <br>
-    <input type="submit" value="Submit" name="submit">
-</form>
-
-</body>
-</html>
-
-
-
-    <script>
-        function viewDocument() {
-            window.open('document_path', '_blank');
-        }
-    </script>
-</body>
-</html>
                
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
-
-    <script>
-let list = document.querySelectorAll(".navigation li");
-
-function activeLink() {
-  list.forEach((item) => {
-    item.classList.focus("hovered")
-
-  });
-  this.classList.add("hovered");
-}
-
-list.forEach((item) => item.addEventListener("mouseover", activeLink));
-
-let toggle = document.querySelector(".toggle");
-let navigation = document.querySelector(".navigation");
-let main = document.querySelector(".main");
-
-toggle.onclick = function () {
-  navigation.classList.toggle("active");
-  main.classList.toggle("active");
-};</script>
 
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

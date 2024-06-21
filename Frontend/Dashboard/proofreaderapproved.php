@@ -63,21 +63,7 @@
                         <h2>APPROVED</h2>
             <div class ="summary">
             <table aria-describedby="tableDescription">
-                            <thead>
-                                <tr>
-                                    <th><center>Locator Number</center></th>
-                                    <th><center>Subject</center></th>
-                                    <th><center>Description</center></th>
-                                    <th><center>Division</center></th>
-                                    <th><center>Section</center></th>
-                                    <th><center>Received From</center></th>
-                                    <th><center>Received Date</center></th>
-                                    <th><center>Status</center></th>
-                                    <th><center>Action</center></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-            <?php
+                            <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -89,10 +75,18 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM fileupload WHERE status = 'Approved'";
+$rowsPerPage = 4;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $rowsPerPage;
+
+$sql = "SELECT * FROM fileupload WHERE status = 'Approved' LIMIT $rowsPerPage OFFSET $offset";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
+    echo "<table>";
+    echo "<thead><tr><th>Locator Number</th><th>Subject</th><th>Description</th><th>Division</th><th>Section</th><th>Received From</th><th>Received Date</th><th>Status</th><th>Action</th></tr></thead>";
+    echo "<tbody>";
+
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
@@ -103,17 +97,35 @@ if ($result->num_rows > 0) {
         echo "<td><center>" . htmlspecialchars($row["received_from"]) . "</td>";
         echo "<td><center>" . htmlspecialchars($row["received_date"]) . "</td>";
         echo "<td><center>" . htmlspecialchars($row["status"]) . "</td>";
-        echo "<td><a href='approveddocuments.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
+        echo "<td><center><a href='approveddocuments.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
         echo "</tr>";
     }
+
     echo "</tbody>";
     echo "</table>";
+
+    // Pagination logic
+    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE status = 'Approved'";
+    $result_count = $conn->query($sql_count);
+    $row_count = $result_count->fetch_assoc();
+    $total_records = $row_count['total_count'];
+    $total_pages = ceil($total_records / $rowsPerPage);
+
+    // Display pagination links
+    if ($total_pages > 1) {
+        echo "<div style='text-align: center; margin-top: 20px;'>";
+        for ($i = 1; $i <= $total_pages; $i++) {
+            echo "<a href='?page=$i'>" . $i . "</a> ";
+        }
+        echo "</div>";
+    }
 } else {
     echo "<p>No records found.</p>";
 }
 
 $conn->close();
 ?>
+
             </div>
             </div>
                     </div>

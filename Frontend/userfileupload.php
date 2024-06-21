@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 if (isset($_POST["useroutgoingupload"])) {
     $category = 'Outgoing';
-    $status = 'PROOFREAD'; // Assuming all outgoing documents are initially proofread
+    $status = 'PROOFREAD';
 
     $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment, status) 
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '', ?)";
