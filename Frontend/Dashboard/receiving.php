@@ -38,7 +38,7 @@
 
                          <li class="sub_dash"><a href="receiveincoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="receiveoutgoing.php">Outgoing</a></li>
-                         <li class="sub_dash"><a href="receiveapproved.php">Approved</a></li>
+                         <li class="sub_dash"><a href="receivingapproved.php">Approved</a></li>
                 
                 </li>
                 <li>
@@ -77,7 +77,7 @@
                         <h2>SUMMARY</h2>
 
                         <div class="rec_dash">
-                        <?php
+<?php
 session_start(); 
 $server = "localhost";
 $username = "root";

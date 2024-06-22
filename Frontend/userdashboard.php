@@ -37,6 +37,7 @@
 
                          <li class="sub_dash"><a href="userincomingdash.php">Incoming</a></li>
                          <li class="sub_dash"><a href="useroutgoingdash.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="userapprovedash.php">Approved</a></li>
                 
                 <li>
                     <a href="useroutgoing.php" class="dropdown-toggle">
@@ -109,7 +110,7 @@ $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 $offset = ($page - 1) * $rowsPerPage;
 
-$sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload LIMIT $rowsPerPage OFFSET $offset";
+$sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload WHERE status != 'Approved' LIMIT $rowsPerPage OFFSET $offset";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -125,13 +126,13 @@ if ($result->num_rows > 0) {
         echo "<td>" . htmlspecialchars($row["received_date"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["category"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
-        echo "<td id='table_th'><center><a href='useraccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
+        echo "<td id='table_th'><center><a href='useraccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
         echo "</tr>";
     }
 
     echo "</table>";
 
-    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload";
+    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE status != 'Approved'";
     $result_count = $conn->query($sql_count);
     $row_count = $result_count->fetch_assoc();
     $total_records = $row_count['total_count'];

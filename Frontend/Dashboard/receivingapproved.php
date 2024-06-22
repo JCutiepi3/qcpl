@@ -38,6 +38,7 @@
 
                          <li class="sub_dash"><a href="receiveincoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="receiveoutgoing.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="receivingapproved.php">Approved</a></li>
                 
                 </li>
                 <li>
@@ -73,7 +74,7 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>SUMMARY</h2>
+                        <h2>APPROVED</h2>
 
                         <div class="rec_dash">
                         <?php
@@ -102,15 +103,15 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {                    
     echo "<table>";
-    echo "<tr><th>Locator Number</th><th>Division</th><th>Section</th><th>Subject</th><th>Description</th><th>Receive From</th><th>Receive Date</th><th>Category</th><th>Status</th><th>Action</th></tr>";
+    echo "<tr><th>Locator Number</th><th>Subject</th><th>Description</th><th>Division</th><th>Section</th><th>Receive From</th><th>Receive Date</th><th>Category</th><th>Status</th><th>Action</th></tr>";
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td><center>" . $row["locator_num"] . "</td>";
-        echo "<td><center>" . $row["division"] . "</td>";
-        echo "<td><center>" . $row["section"] . "</td>";
         echo "<td><center>" . $row["subject"] . "</td>";
         echo "<td><center>" . $row["description"] . "</td>";
+        echo "<td><center>" . $row["division"] . "</td>";
+        echo "<td><center>" . $row["section"] . "</td>";
         echo "<td><center>" . $row["received_from"] . "</td>";
         echo "<td><center>" . $row["received_date"] . "</td>";
         echo "<td><center>" . $row["category"] . "</td>";
@@ -133,8 +134,6 @@ if ($result->num_rows > 0) {
 $stmt->close();
 $conn->close();
 ?>
-
-
                         </div>
                         
 

@@ -37,6 +37,7 @@
 
                          <li class="sub_dash"><a href="userincomingdash.php">Incoming</a></li>
                          <li class="sub_dash"><a href="useroutgoingdash.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="userapprovedash.php">Approved</a></li>
                 
                 <li>
                     <a href="useroutgoing.php" class="dropdown-toggle">
