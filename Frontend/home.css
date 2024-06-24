@@ -6,14 +6,14 @@
   box-sizing: content-box;
   width: 100%;
   font-size: 21px;
-  font-family: 'Arial', sans-serif; /* Changed font-family to Roboto */
+  font-family: 'Arial', sans-serif; 
   font-weight: bold;
 }
 
 body {
   min-height: 100vh;
   background: linear-gradient(#519872, #BEC5AD);
-  background-image: url("img/bg4.jpg"); /* Set the background image */
+  background-image: url("img/bg4.jpg"); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -25,12 +25,11 @@ img {
   left: 15px;
   top: 1.9px;
   position: fixed;
-  z-index: 1; /* Set a lower z-index to place it behind the navbar */
+  z-index: 1; 
   background-size: contain;
   background-repeat: no-repeat;
 }
 
-/* Navigation bar */
 
 .navbar {
   overflow: hidden;
@@ -42,13 +41,11 @@ img {
   text-align: right;
 }
 
-/* Links inside the navbar */
 .navbar a {
   position: relative;
   display: inline-block;
-  /*border-radius: 3px;*/
   color: #f2f2f2;
-  padding: 20px 25px; /* Adjusted padding */
+  padding: 20px 25px; 
   text-decoration: none;
   margin-top: -65px;
   vertical-align: text-bottom;
@@ -60,10 +57,8 @@ img {
   transition: 0.5s;
 }
 
-
-/* Main content */
 .main {
-  margin-top: 20px; /* Add a top margin to avoid content overlay */
+  margin-top: 20px;
 }
 
 
@@ -71,7 +66,7 @@ img {
   position: fixed;
   top: 650px;
   left: 10px;
-  z-index: 1; /* Ensure icons are above other content */
+  z-index: 1; 
   display: flex;
 }
 
@@ -87,9 +82,9 @@ img {
 }
 
 .login-icon {
-  font-size: 40px; /* Adjust font size as needed */
-  display: flex; /* Ensure it behaves as a flex container */
-  justify-content: center; /* Align text horizontally */
+  font-size: 40px;
+  display: flex; 
+  justify-content: center;
   position: relative;
   top: 5px;
   margin-top: 50px;
@@ -97,7 +92,7 @@ img {
 
 .login-icon::before {
   display: inline-block;
-  margin-right: 5px; /* Add space between text and icon */
+  margin-right: 5px;
 }
 .container {
   font-size: 50px;

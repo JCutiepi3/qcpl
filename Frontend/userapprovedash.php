@@ -88,7 +88,7 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>DOCUMENTS</h2>   
+                        <h2>INCOMING</h2>   
                         </div>
                     <div class="sum_tb">
                         <table aria-describedby="tableDescription">
@@ -110,7 +110,7 @@ $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 $offset = ($page - 1) * $rowsPerPage;
 
-$sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload WHERE status != 'Approved' LIMIT $rowsPerPage OFFSET $offset";
+$sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload WHERE status='Approved' LIMIT $rowsPerPage OFFSET $offset";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -132,7 +132,7 @@ if ($result->num_rows > 0) {
 
     echo "</table>";
 
-    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE status != 'Approved'";
+    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE category='Incoming'";
     $result_count = $conn->query($sql_count);
     $row_count = $result_count->fetch_assoc();
     $total_records = $row_count['total_count'];

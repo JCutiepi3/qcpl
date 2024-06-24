@@ -74,55 +74,67 @@
                     </div>
                     <div class="sum_tb">
                         <table aria-describedby="tableDescription">
-                            <thead>
-                                <tr>
-                                    <th><center>Locator Number</center></th>
-                                    <th><center>Subject</center></th>
-                                    <th><center>Description</center></th>
-                                    <th><center>Received From</center></th>
-                                    <th><center>Received Date</center></th>
-                                    <th><center>Boss2 Comment</center></th>
-                                    <th><center>Category</center></th>
-                                    <th><center>Status</center></th>
-                                    <th><center>Action</center></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $servername = "localhost";
-                                $username = "root";
-                                $password = "";
-                                $dbname = "qcpl";
+                            <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "qcpl";
 
-                                $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-                                if ($conn->connect_error) {
-                                    die("Connection failed: " . $conn->connect_error);
-                                }
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                                $sql = "SELECT locator_num, subject, description, received_date, received_from, type, file_path, boss2_comment, category, status FROM fileupload WHERE status = 'Second Review'";
-                                $result = $conn->query($sql);
+$rowsPerPage = 4;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $rowsPerPage;
 
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<tr id='table'>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["subject"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["description"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["received_from"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["received_date"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["category"]) . "</td>";
-                                        echo "<td id='table_th'><center>" . htmlspecialchars($row["status"]) . "</td>";
-                                        echo "<td id='table_th'><center><a href='bossaccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
-                                        echo "</tr>";
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='9'>No records found.</td></tr>";
-                                }
+$sql = "SELECT locator_num, subject, description, received_date, received_from, type, file_path, boss2_comment, category, status 
+        FROM fileupload 
+        WHERE status = 'Second Review'
+        LIMIT $rowsPerPage OFFSET $offset";
+$result = $conn->query($sql);
 
-                                $conn->close();
-                                ?>
+if ($result->num_rows > 0) {
+    echo "<table>";
+    echo "<tr><th>Locator Number</th><th>Subject</th><th>Description</th><th>Received From</th><th>Received Date</th><th>Boss2 Comment</th><th>Category</th><th>Status</th><th>Action</th></tr>";
+
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["subject"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["description"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["received_from"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["received_date"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["boss2_comment"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["category"]) . "</td>";
+        echo "<td><center>" . htmlspecialchars($row["status"]) . "</td>";
+        echo "<td><center><a href='bossaccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+
+    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE status = 'Second Review'";
+    $result_count = $conn->query($sql_count);
+    $row_count = $result_count->fetch_assoc();
+    $total_records = $row_count['total_count'];
+    $total_pages = ceil($total_records / $rowsPerPage);
+
+    if ($total_pages > 1) {
+        echo "<div style='text-align: center; margin-top: 20px;'>";
+        for ($i = 1; $i <= $total_pages; $i++) {
+            echo "<a href='?page=$i'>" . $i . "</a> ";
+        }
+        echo "</div>";
+    }
+} else {
+    echo "<p>No records found.</p>";
+}
+
+$conn->close();
+?>
+
                             </tbody>
                         </table>
                     </div>

@@ -38,6 +38,7 @@
 
                          <li class="sub_dash"><a href="receiveincoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="receiveoutgoing.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="receivingapproved.php">Approved</a></li>
                 
                 </li>
                 <li>
@@ -76,7 +77,7 @@
                         <h2>SUMMARY</h2>
 
                         <div class="rec_dash">
-                        <?php
+<?php
 session_start(); 
 $server = "localhost";
 $username = "root";
@@ -91,7 +92,7 @@ $rowsPerPage = 4;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $offset = ($page - 1) * $rowsPerPage;
 
-$sql = "SELECT * FROM fileupload WHERE status = 'Approved' LIMIT ? OFFSET ?";
+$sql = "SELECT * FROM fileupload LIMIT ? OFFSET ?";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
     die("Error preparing statement: " . $conn->error);
@@ -102,18 +103,18 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {                    
     echo "<table>";
-    echo "<tr><th>Locator Number</th><th>Category</th><th>Division</th><th>Section</th><th>Subject</th><th>Description</th><th>Receive From</th><th>Receive Date</th><th>Status</th><th>Action</th></tr>";
+    echo "<tr><th>Locator Number</th><th>Division</th><th>Section</th><th>Subject</th><th>Description</th><th>Receive From</th><th>Receive Date</th><th>Category</th><th>Status</th><th>Action</th></tr>";
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td><center>" . $row["locator_num"] . "</td>";
-        echo "<td><center>" . $row["category"] . "</td>";
         echo "<td><center>" . $row["division"] . "</td>";
         echo "<td><center>" . $row["section"] . "</td>";
         echo "<td><center>" . $row["subject"] . "</td>";
         echo "<td><center>" . $row["description"] . "</td>";
         echo "<td><center>" . $row["received_from"] . "</td>";
         echo "<td><center>" . $row["received_date"] . "</td>";
+        echo "<td><center>" . $row["category"] . "</td>";
         echo "<td><center>" . $row["status"] . "</td>";
         echo "<td>" ."<center>". "<a href='receivelocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
         echo "</tr>";

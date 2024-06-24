@@ -82,10 +82,18 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT locator_num, received_date, received_from, subject, description, division, section, proofreader_comment, boss2_comment, status, description FROM fileupload WHERE category = 'Outgoing' AND status = 'First Review'";
+// Pagination logic
+$records_per_page = 4;
+$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = ($current_page - 1) * $records_per_page;
+
+$sql = "SELECT locator_num, received_date, received_from, subject, description, division, section, proofreader_comment, boss2_comment, status 
+        FROM fileupload 
+        WHERE category = 'Outgoing' AND status = 'First Review'
+        LIMIT $offset, $records_per_page";
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) { 
+if ($result->num_rows > 0) {
     echo "<table>";
     echo "<tr>
             <th>Locator Number</th>
@@ -100,24 +108,38 @@ if ($result->num_rows > 0) {
           </tr>";
     while($row = $result->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" ."<center>". $row["locator_num"] . "</td>";
-        echo "<td>" ."<center>". $row["subject"] . "</td>";
-        echo "<td>" ."<center>". $row["description"] . "</td>";
-        echo "<td>" ."<center>". $row["division"] . "</td>";
-        echo "<td>" ."<center>". $row["section"] . "</td>";
-        echo "<td>" ."<center>". $row["received_date"] . "</td>";
-        echo "<td>" ."<center>". $row["received_from"] . "</td>";
-        echo "<td>" . "<center>" . $row["status"] . "</td>";
-        echo "<td>" ."<center>". "<a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
+        echo "<td><center>" . $row["locator_num"] . "</td>";
+        echo "<td><center>" . $row["subject"] . "</td>";
+        echo "<td><center>" . $row["description"] . "</td>";
+        echo "<td><center>" . $row["division"] . "</td>";
+        echo "<td><center>" . $row["section"] . "</td>";
+        echo "<td><center>" . $row["received_date"] . "</td>";
+        echo "<td><center>" . $row["received_from"] . "</td>";
+        echo "<td><center>" . $row["status"] . "</td>";
+        echo "<td><center><a href='boss2accountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
         echo "</tr>";
     }
     echo "</table>";
+
+    // Pagination links
+    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE category = 'Outgoing' AND status = 'First Review'";
+    $result_count = $conn->query($sql_count);
+    $row_count = $result_count->fetch_assoc();
+    $total_records = $row_count['total_count'];
+    $total_pages = ceil($total_records / $records_per_page);
+
+    echo "<div style='text-align: center; margin-top: 20px;'>";
+    for ($i = 1; $i <= $total_pages; $i++) {
+        echo "<a href='?page=$i'>" . $i . "</a> ";
+    }
+    echo "</div>";
 } else {
-    echo "<tr><td colspan='12'>No records found.</td></tr>";
+    echo "<p>No records found.</p>";
 }
 
 $conn->close();
 ?>
+
                     </div> 
                     
                 </div>

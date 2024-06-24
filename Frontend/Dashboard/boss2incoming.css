@@ -328,7 +328,7 @@ input[type="submit"]:hover {
 /* ================== SUMMARY TABLE ============== */
 .sum_tb{
   position: relative;
-  top: -125px;
+  top: -15px;
   left: 65px;
   width: 100%;
   text-align: center;

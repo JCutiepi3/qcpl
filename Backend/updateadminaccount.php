@@ -123,7 +123,7 @@ if (isset($_GET['id'])) {
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" value="<?php echo $admin['password']; ?>">
         </p>
-        <input type="submit" value="Update Admin">
+        <input type="submit" value="Update Account">
     </form>
 
     <!-- Include SweetAlert2 JS -->

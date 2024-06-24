@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Receiver</title>
 
     <!-- Styles -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
@@ -36,22 +36,18 @@
                     </a>
                     
 
-                         <li class="sub_dash"><a href="#">Incoming</a></li>
-                         <li class="sub_dash"><a href="#">Outgoing</a></li>
+                         <li class="sub_dash"><a href="receiveincoming.php">Incoming</a></li>
+                         <li class="sub_dash"><a href="receiveoutgoing.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="receivingapproved.php">Approved</a></li>
                 
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle">
+                    <a href="uploadincoming.php" class="dropdown-toggle">
                     <span class="icon">
                     <ion-icon name="add-circle"></ion-icon>
                     </span>
                     <span class="title">Upload Document<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
-
-                         <li class="sub_dash"><a href="uploadincoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="uploadingoutgoing.php">Outgoing</a></li>
-                
                 </li>
 
                 <li>
@@ -78,10 +74,70 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>SUMMARY</h2>
+                        <h2>APPROVED</h2>
 
+                        <div class="rec_dash">
+                        <?php
+session_start(); 
+$server = "localhost";
+$username = "root";
+$password = "";
+$db = "qcpl";
+$conn = new mysqli($server, $username, $password, $db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-            <div class ="summary">
+$rowsPerPage = 4;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $rowsPerPage;
+
+$sql = "SELECT * FROM fileupload WHERE status = 'Approved' LIMIT ? OFFSET ?";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Error preparing statement: " . $conn->error);
+}
+$stmt->bind_param("ii", $rowsPerPage, $offset);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {                    
+    echo "<table>";
+    echo "<tr><th>Locator Number</th><th>Subject</th><th>Description</th><th>Division</th><th>Section</th><th>Receive From</th><th>Receive Date</th><th>Category</th><th>Status</th><th>Action</th></tr>";
+
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td><center>" . $row["locator_num"] . "</td>";
+        echo "<td><center>" . $row["subject"] . "</td>";
+        echo "<td><center>" . $row["description"] . "</td>";
+        echo "<td><center>" . $row["division"] . "</td>";
+        echo "<td><center>" . $row["section"] . "</td>";
+        echo "<td><center>" . $row["received_from"] . "</td>";
+        echo "<td><center>" . $row["received_date"] . "</td>";
+        echo "<td><center>" . $row["category"] . "</td>";
+        echo "<td><center>" . $row["status"] . "</td>";
+        echo "<td>" ."<center>". "<a href='receivelocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+
+    $prevPage = $page - 1;
+    if ($prevPage > 0) {
+        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
+    }
+    $nextPage = $page + 1;
+    echo "<a href='?page=$nextPage' id='next' ><ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
+} else {
+    echo "<p>No Approved Document.</p>";
+}
+
+$stmt->close();
+$conn->close();
+?>
+                        </div>
+                        
+
+        
             
                     </div>
                 </div>

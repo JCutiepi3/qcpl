@@ -46,14 +46,6 @@
                     <a href="user.php">
                         <span class="icon"><ion-icon name="people"></ion-icon></span>
                         <span class="title">Accounts<ion-icon id="acct_down_btn" name="caret-down-outline"></ion-icon></span>
-                        
-                    </a>
-
-                         <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
-                         <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
-                         <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
-                         <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
-                    </a>
                 </li>
 
 
@@ -101,7 +93,7 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>KUNG ANO DIVISION</h2>
+                        <h2>INCOMING</h2>
 
 
             <div class ="incoming">

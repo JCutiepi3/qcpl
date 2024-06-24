@@ -69,7 +69,44 @@
                     <div class="cardHeader">
                         <h2>DOCUMENTS</h2>   
                 </div>
-                 
+                
+                <?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "qcpl";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$locator_num = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
+
+$sql = "SELECT `locator_num`, `category`, `subject`, `description`, `received_from`, `received_date`, `proofreader_comment`, `boss2_comment`, `boss1_comment`, `type`, `file_path`, `status` FROM fileupload WHERE `locator_num` = '$locator_num'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<table border='1'>";
+    while($row = $result->fetch_assoc()) {
+        echo "<h1>Locator Number: " . $row["locator_num"] . "</h1>";
+        echo "<p>Category: " . $row["category"] . "</p>";
+        echo "<p>Subject Description Receive from: " . $row["description"] . "</p>";
+        echo "<p>Receive Date: " . $row["received_date"] . "</p>";
+        echo "<p>Proofreader Comment: " . $row["proofreader_comment"] . "</p>";
+        echo "<p>Boss 2 Comment: " . $row["boss2_comment"] . "</p>";
+        echo "<p>Boss 1 Comment: " . $row["boss1_comment"] . "</p>";
+        echo "<p>File Type: " . $row["type"] . "</p>";
+        echo "<td><center><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
+        echo "<p>Status: " . $row["status"] . "</p>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>
         <?php
         session_start();
 
@@ -92,11 +129,7 @@
         <head>
           <title>Locator Number</title>
         </head>
-        <body>
-
-        <?php
-        echo "<h1>Locator Number: $locatorNum</h1>";
-        ?>
+        <body>  
 
         <form action="/qcpl/Backend/boss1backend.php" method="POST">
             <input type="hidden" name="locator_num" value="<?php echo htmlspecialchars($locatorNum); ?>">

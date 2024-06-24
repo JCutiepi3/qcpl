@@ -37,7 +37,6 @@
 
                          <li class="sub_dash"><a href="userincomingdash.php">Incoming</a></li>
                          <li class="sub_dash"><a href="useroutgoingdash.php">Outgoing</a></li>
-                         <li class="sub_dash"><a href="userapprovedash.php">Approved</a></li>
                 
                 <li>
                     <a href="useroutgoing.php" class="dropdown-toggle">
@@ -93,63 +92,44 @@
                     <div class="sum_tb">
                         <table aria-describedby="tableDescription">
                         <?php
-$server = "localhost";
+
+$servername = "localhost";
 $username = "root";
 $password = "";
-$db = "qcpl";
+$dbname = "qcpl";
 
-$conn = new mysqli($server, $username, $password, $db);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$rowsPerPage = 4;
+$locator_num = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
 
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-
-$offset = ($page - 1) * $rowsPerPage;
-
-$sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload WHERE status != 'Approved' LIMIT $rowsPerPage OFFSET $offset";
+$sql = "SELECT `locator_num`, `category`, `subject`, `description`, `received_from`, `received_date`, `proofreader_comment`, `boss2_comment`, `boss1_comment`, `type`, `file_path`, `status` FROM fileupload WHERE `locator_num` = '$locator_num'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table>";
-    echo "<tr><th>Locator Number</th><th>Division</th><th>Section</th><th>Received From</th><th>Received Date</th><th>Category</th><th>Status</th><th>Action</th></tr>";
-
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . htmlspecialchars($row["locator_num"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["division"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["section"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["received_from"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["received_date"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["category"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
-        echo "<td id='table_th'><center><a href='useraccountlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
-        echo "</tr>";
+    echo "<table border='1'>";
+    while($row = $result->fetch_assoc()) {
+        echo "<h1>Locator Number: " . $row["locator_num"] . "</h1>";
+        echo "<p>Category: " . $row["category"] . "</p>";
+        echo "<p>Subject: " . $row["subject"] . "</p>";
+        echo "<p>Description: " . $row["description"] . "</p>";
+        echo "<p>Receive from: " . $row["received_from"] . "</p>";
+        echo "<p>Receive Date: " . $row["received_date"] . "</p>";
+        echo "<p>Proofreader Comment: " . $row["proofreader_comment"] . "</p>";
+        echo "<p>Boss 2 Comment: " . $row["boss2_comment"] . "</p>";
+        echo "<p>Boss 1 Comment: " . $row["boss1_comment"] . "</p>";
+        echo "<p>File Type: " . $row["type"] . "</p>";
+        echo "<td><center><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
+        echo "<p>Status: " . $row["status"] . "</p>";
     }
-
-    echo "</table>";
-
-    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE status != 'Approved'";
-    $result_count = $conn->query($sql_count);
-    $row_count = $result_count->fetch_assoc();
-    $total_records = $row_count['total_count'];
-    $total_pages = ceil($total_records / $rowsPerPage);
-
-    echo "<div style='text-align: center; margin-top: 20px;'>";
-    for ($i = 1; $i <= $total_pages; $i++) {
-        echo "<a href='?page=$i'>" . $i . "</a> ";
-    }
-    echo "</div>";
 } else {
-    echo "<script>alert('No documents found!');</script>";
+    echo "0 results";
 }
-
 $conn->close();
 ?>
-
                     </div> 
                     
                 </div>

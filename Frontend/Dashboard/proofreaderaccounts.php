@@ -120,7 +120,7 @@ $result_boss2 = $conn->query($sql_boss2);
                     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
                     $offset = ($page - 1) * $rowsPerPage;
 
-                    $sql = "SELECT id, name, username, password FROM proofreader LIMIT ? OFFSET ?";
+                    $sql = "SELECT * FROM proofreader LIMIT ? OFFSET ?";
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("ii", $rowsPerPage, $offset);
                     $stmt->execute();
@@ -128,15 +128,16 @@ $result_boss2 = $conn->query($sql_boss2);
 
                     if ($result->num_rows > 0) {
                         echo "<table aria-describedby='boss2-table'>";
-                        echo "<tr><th>ID</th><th>Name</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
+                        echo "<tr><th>ID</th><th>Name</th><th>Division</th><th>Username</th><th>Password</th><th colspan='2'>Action</th></tr>";
                         echo "<tbody>";
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>";
                             echo "<td><center>" . htmlspecialchars($row["id"]) . "</td>";
                             echo "<td><center>" . htmlspecialchars($row["name"]) . "</td>";
+                            echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
                             echo "<td><center>" . htmlspecialchars($row["username"]) . "</td>";
                             echo "<td><center>" . str_repeat("*", strlen($row["password"])) . "</td>";
-                            echo "<td id='boss2_edit'><center><a href='/qcpl/Backend/updateboss2accounts.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
+                            echo "<td id='boss2_edit'><center><a href='/qcpl/Backend/updateproofreaderaccount.php?id=" . htmlspecialchars($row["id"]) . "'>Edit</a></td>";
                             echo "<td id='boss2_delete'><center><a href='#' onclick='confirmDeleteBoss2(" . htmlspecialchars($row["id"]) . ")'>Delete</a></td>";
                             echo "</tr>";
                         }
@@ -150,7 +151,7 @@ $result_boss2 = $conn->query($sql_boss2);
                         $nextPage = $page + 1;
                         echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
                     } else {
-                        echo "<script>alert('No Boss 2 Account found!'); window.location.href = '?page=1';</script>";
+                        echo "No Proof Reader Account found!";
                     }
                     
                     $stmt->close();

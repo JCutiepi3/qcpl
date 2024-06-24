@@ -73,7 +73,7 @@
                      </div>
                         <div class="sum_tb">
                         <table aria-describedby="tableDescription">
-    <?php
+                        <?php
 session_start(); 
 $server = "localhost";
 $username = "root";
@@ -117,12 +117,20 @@ if ($result->num_rows > 0) {
     }
     echo "</table>";
 
-    $prevPage = $page - 1;
-    if ($prevPage > 0) {
-        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
+    // Pagination logic
+    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE status ='First Review'";
+    $result_count = $conn->query($sql_count);
+    $row_count = $result_count->fetch_assoc();
+    $total_records = $row_count['total_count'];
+    $total_pages = ceil($total_records / $rowsPerPage);
+
+    if ($total_pages > 1) {
+        echo "<div style='text-align: center; margin-top: 20px;'>";
+        for ($i = 1; $i <= $total_pages; $i++) {
+            echo "<a href='?page=$i'>" . $i . "</a> ";
+        }
+        echo "</div>";
     }
-    $nextPage = $page + 1;
-    echo "<a href='?page=$nextPage' id='next' ><ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
 } else {
     echo "<p>No Approved Document.</p>";
 }
@@ -130,6 +138,7 @@ if ($result->num_rows > 0) {
 $stmt->close();
 $conn->close();
 ?>
+
 </div>
   </div>         
     <!-- =========== Scripts =========  -->

@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $roles = ['users', 'admins', 'boss1', 'boss2'];
+    $roles = ['users', 'admins', 'boss1', 'boss2', 'proofreader', 'receiving'];
     $deleted = false;
 
     foreach ($roles as $role) {

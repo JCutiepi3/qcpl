@@ -28,25 +28,15 @@
                 </li>
                 
                 <li>
-                    <a href="#" class="dropdown-toggle">
+                <a href="proofviewdocument.php">
                     <span class="icon">
-                    <ion-icon name="apps"></ion-icon>
+                    <ion-icon name="documents-outline"></ion-icon>
                     </span>
-                    <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
+                    <span class="title">Documents<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
-
-                         <li class="sub_dash"><a href="#">Incoming</a></li>
-                         <li class="sub_dash"><a href="#">Outgoing</a></li>
-                
-                </li>
-                <li>
-                    <a href="proofviewdocument.php">
-                        <span class="icon">
-                            <ion-icon name="documents-outline"></ion-icon>
-                        </span>
-                        <span class="title">Document</span>
-                    </a>
+                         <li class="sub_dash"><a href="proofreaderincoming.php">Incoming</a></li>
+                         <li class="sub_dash"><a href="proofreaderoutgoing.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="proofreaderapproved.php">Approved</a></li>
                 </li>
                 <li>
                     <a href="/qcpl/Backend/logout.php">
@@ -72,60 +62,62 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>SUMMARY</h2>
+                        <h2>OUTGOING</h2>
 
 
             <div class ="summary">
-            <?php
-                        $server = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $db = "qcpl";
-                        $conn = new mysqli($server, $username, $password, $db);
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-                        $rowsPerPage = 4;
-                        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-                        $offset = ($page - 1) * $rowsPerPage;
+            <table aria-describedby="tableDescription">
+                            <thead>
+                                <tr>
+                                    <th><center>Locator Number</center></th>
+                                    <th><center>Subject</center></th>
+                                    <th><center>Description</center></th>
+                                    <th><center>Division</center></th>
+                                    <th><center>Section</center></th>
+                                    <th><center>Received From</center></th>
+                                    <th><center>Received Date</center></th>
+                                    <th><center>Status</center></th>
+                                    <th><center>Action</center></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "qcpl";
 
-                        $sql = "SELECT * FROM fileupload WHERE category = 'Outgoing' LIMIT ? OFFSET ?";
-                        $stmt = $conn->prepare($sql);
-                        $stmt->bind_param("ii", $rowsPerPage, $offset);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
+                            $conn = new mysqli($servername, $username, $password, $dbname);
 
-                        if ($result->num_rows > 0) {
-                            echo "<table>";
-                            echo "<tr><th>Section</th><th>Locator Number</th><th>Received Date</th><th>Received From</th><th>File type</th><th>File</th><th>Status</th></tr>";
-
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" . "<center>" . $row["section"] . "</td>";
-                                echo "<td>" . "<center>" . $row["locator_num"] . "</td>";
-                                echo "<td>" . "<center>" . $row["received_date"] . "</td>";
-                                echo "<td>" . "<center>" . $row["received_from"] . "</td>";
-                                echo "<td>" . "<center>" . $row["type"] . "</td>";
-                                echo "<td id ='file'><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
-                                echo "<td id ='status'>" . "<center>" . $row["status"] . "</td>";
-                                echo "</tr>";
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
                             }
-                            echo "</table>";
 
-                            $prevPage = $page - 1;
-                            if ($prevPage > 0) {
-                                echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
+                            $sql = "SELECT * FROM fileupload WHERE status != 'Approved' AND category='Outgoing'";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td><center>" . htmlspecialchars($row["locator_num"]) . "</td>";
+                                    echo "<td><center>" . htmlspecialchars($row["subject"]) . "</td>";
+                                    echo "<td><center>" . htmlspecialchars($row["description"]) . "</td>";
+                                    echo "<td><center>" . htmlspecialchars($row["division"]) . "</td>";
+                                    echo "<td><center>" . htmlspecialchars($row["section"]) . "</td>";
+                                    echo "<td><center>" . htmlspecialchars($row["received_from"]) . "</td>";
+                                    echo "<td><center>" . htmlspecialchars($row["received_date"]) . "</td>";
+                                    echo "<td><center>" . htmlspecialchars($row["status"]) . "</td>";
+                                    echo "<td><a href='proofreaderdocuments.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self' aria-label='View details for " . htmlspecialchars($row["locator_num"]) . "'>View</a></td>";
+                                    echo "</tr>";
+                                }
+                                echo "</tbody>";
+                                echo "</table>";
+                            } else {
+                                echo "<p>No records found.</p>";
                             }
-                            $nextPage = $page + 1;
-                            echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
-                        } else {
-                            echo "<script>alert('No documents found!'); window.location.href = '?page=1';</script>";
-                        }
-        
 
-                        $stmt->close();
-                        $conn->close();
-                        ?>
+                            $conn->close();
+                            ?>
             </div>
             </div>
                     </div>

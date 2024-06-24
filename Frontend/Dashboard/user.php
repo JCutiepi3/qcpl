@@ -154,6 +154,10 @@ if(isset($_SESSION['username'])) {
                         SELECT id, name, division, username, password, 'Boss1' as role FROM boss1
                         UNION ALL
                         SELECT id, name, division, username, password, 'Boss2' as role FROM boss2
+                        UNION ALL
+                        SELECT id, name, division, username, password, 'Boss1' as role FROM receiving
+                        UNION ALL
+                        SELECT id, name, division, username, password, 'Boss2' as role FROM proofreader
                         LIMIT ? OFFSET ?";
 
                 $stmt = $conn->prepare($sql);
@@ -182,7 +186,7 @@ if(isset($_SESSION['username'])) {
                     $nextPage = $page + 1;
                     echo "<a href='?page=$nextPage' id='next' > <ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
                 } else {
-                    echo "<script>alert('No Accounts found!'); window.location.href = '?page=1';</script>";
+                    echo "No Accounts found!";
                 }
 
                 $stmt->close();

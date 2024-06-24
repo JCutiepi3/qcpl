@@ -95,8 +95,8 @@
                             </select>
                             <br>    
 
-                            <input id = "in_file" type="file" name="fileName"><br>
-                            <input id = "in_submit" type="submit" name="outgoingupload" value="Submit">
+                            <input id = "in_file" type="file" name="fileName" required><br>
+                            <input id = "in_submit" type="submit" name="useroutgoingupload" value="Submit">
                         </form>
                     
             

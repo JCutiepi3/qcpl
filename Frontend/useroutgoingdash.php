@@ -33,12 +33,9 @@
                     </span>
                     <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
-
-                         <li class="sub_dash"><a href="userincomingdash.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="useroutgoingdash.php">Outgoing</a></li>
-                         <li class="sub_dash"><a href="userapprovedash.php">Approved</a></li>
-                
+                    <li class="sub_dash"><a href="userincomingdash.php">Incoming</a></li>
+                    <li class="sub_dash"><a href="useroutgoingdash.php">Outgoing</a></li>
+                    <li class="sub_dash"><a href="userapprovedash.php">Approved</a></li>
                 <li>
                     <a href="useroutgoing.php" class="dropdown-toggle">
                     <span class="icon">
@@ -88,7 +85,7 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>DOCUMENTS</h2>   
+                        <h2>OUTGOING</h2>   
                         </div>
                     <div class="sum_tb">
                         <table aria-describedby="tableDescription">
@@ -110,7 +107,7 @@ $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 $offset = ($page - 1) * $rowsPerPage;
 
-$sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload WHERE status != 'Approved' LIMIT $rowsPerPage OFFSET $offset";
+$sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload WHERE category='Outgoing' LIMIT $rowsPerPage OFFSET $offset";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -132,7 +129,7 @@ if ($result->num_rows > 0) {
 
     echo "</table>";
 
-    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE status != 'Approved'";
+    $sql_count = "SELECT COUNT(*) AS total_count FROM fileupload WHERE category='Outgoing'";
     $result_count = $conn->query($sql_count);
     $row_count = $result_count->fetch_assoc();
     $total_records = $row_count['total_count'];

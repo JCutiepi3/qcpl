@@ -92,7 +92,7 @@
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
-                        <h2>KUNG ANO DIVISION</h2>
+                        <h2>OUTGOING</h2>
 
                     <div class ="outgoing">
                     <?php

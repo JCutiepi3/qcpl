@@ -20,10 +20,12 @@ if(isset($_GET['find'])) {
         echo "<script>alert('File was Found!');</script>";
 
         while($row = $result->fetch_assoc()) {
-            echo "Filename: " . $row["file_name"].  "<br>Division: " . $row["division"]. 
-            "<br> Section: " . $row["section"] . "<br>Category: " . $row["category"]. "<br>Locator Number: " . $row["locator_num"].
-            "<br>Received Date: " . $row["received_date"] ."<br>Received From: " . $row["received_from"]. "<br>Subject: " . $row["subject"].
-            "<br>Description: " . $row["description"]. "<br>Type: " . $row["type"]. "<br>File: <a href='/qcpl/Backend/".$row["file_path"]."' target='_blank'>View File</a>". $row["status"];
+            echo "Locator Number: " . $row["locator_num"]. "<br>Subject: " . $row["subject"].
+            "<br>Description: " . $row["description"].   "<br>Category: " . $row["category"]. 
+            "<br> Division: " . $row["division"] . "<br>Section: " . $row["section"] . "<br>Proof Reader Comment: " . $row["proofreader_comment"].
+            "<br>Boss 2 Comment: " . $row["section"]. "<br>Boss 1 Comment: " . $row["boss1_comment"]."<br>Received From: " . $row["received_from"].
+            "<br>Received Date: " . $row["received_date"] ."<br>File: <a href='/qcpl/Backend/".$row["file_path"]."' target='_blank'>View File</a>". 
+            "<br>Status: " . $row["status"];
         }
     } else {
         echo "<script>alert('No document found!'); window.location='/qcpl/Frontend/Dashboard/dash.php';</script>";

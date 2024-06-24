@@ -88,7 +88,7 @@ if(isset($_POST["login"])) {
                             $_SESSION["name"] = $_POST['username']; 
                             $_SESSION["role"] = "proofreader"; 
                             $_SESSION["division"] = $proofreader['division']; 
-                            echo "<script>alert('Successfully Login as Proofreader'); window.location='/qcpl/Frontend/Dashboard/proofreader.php';</script>";
+                            echo "<script>alert('Successfully Login as Proofreader'); window.location='/qcpl/Frontend/Dashboard/proofviewdocument.php';</script>";
                         } else {
                             echo "<script>alert('Incorrect Username or Password'); window.location='/qcpl/Frontend/login.html';</script>";
                         }

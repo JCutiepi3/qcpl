@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boss 2 Comment</title>
+    <title>Home</title>
 
     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
-    <link rel="stylesheet" href="boss2accountlocator.css">
+    <link rel="stylesheet" href="boss1.css">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                 </li>
                 
                 <li>
-                    <a href="boss2account.php">
+                    <a href="proofviewdocument.php">
                         <span class="icon">
                             <ion-icon name="documents-outline"></ion-icon>
                         </span>
@@ -66,7 +66,13 @@
                 <div class="upload">
                     <div class="cardHeader">
                         <h2>DOCUMENTS</h2>   
-                        <?php
+                    </div> 
+                </div>
+                    <div class="table">
+    <table class="table_th">
+
+        <divdiv id="multiStepForm">    
+        <?php
 
 $servername = "localhost";
 $username = "root";
@@ -81,7 +87,7 @@ if ($conn->connect_error) {
 
 $locator_num = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
 
-$sql = "SELECT `locator_num`, `category`, `subject`, `description`, `received_from`, `received_date`, `proofreader_comment`, `boss2_comment`, `boss1_comment`, `type`, `file_path`, `status` FROM fileupload WHERE `locator_num` = '$locator_num'";
+$sql = "SELECT * FROM fileupload WHERE `locator_num` = '$locator_num' AND status = 'Approved'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -89,8 +95,8 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "<h1>Locator Number: " . $row["locator_num"] . "</h1>";
         echo "<p>Category: " . $row["category"] . "</p>";
-        echo "<p>Subject: " . $row["subject"] . "</p>";
-        echo "<p>Description: " . $row["description"] . "</p>";
+        echo "<p>Subject:" . $row["subject"] . "</p>";
+        echo "<p>Description:" . $row["description"] . "</p>";
         echo "<p>Receive from: " . $row["received_from"] . "</p>";
         echo "<p>Receive Date: " . $row["received_date"] . "</p>";
         echo "<p>Proofreader Comment: " . $row["proofreader_comment"] . "</p>";
@@ -105,59 +111,7 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 ?>
-                    </div> 
-                </div>
-                    <div class="table">
-                        
-    <table class="table_th">
-
-
-        <divdiv id="multiStepForm">    
-       <div>
-<html>
-<head>
-  <title>Boss 2 Locator</title>
-</head>
-<body>
-
-<?php
-if(isset($_GET['locator_num'])){
-    $locatorNum = $_GET['locator_num'];
-    echo "<h1>Locator Number: $locatorNum</h1>";
-} else {
-    echo "Locator number not provided.";
-}
-?>
-<html>
-<head>
-  <title>Boss 2 Locator</title>
-</head>
-<body>
-
-<form action="/qcpl/Backend/boss2backend.php" method="POST">
-    <input type="hidden" name="locator_num" value="<?php echo $locatorNum ?>">
-
-    <br>
-    <label for="comment" required>Comment:</label><br>
-    <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
-    <br>
-    <br>
-    <input type="submit" value="Submit" name="submit">
-</form>
-
-</body>
-</html>
-
-
-
-    <script>
-        function viewDocument() {
-            window.open('document_path', '_blank');
-        }
-    </script>
-</body>
-</html>
-               
+ 
     <!-- =========== Scripts =========  -->
     <script src="main.js"></script>
 

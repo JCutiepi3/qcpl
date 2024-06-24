@@ -38,6 +38,7 @@
 
                          <li class="sub_dash"><a href="receiveincoming.php">Incoming</a></li>
                          <li class="sub_dash"><a href="receiveoutgoing.php">Outgoing</a></li>
+                         <li class="sub_dash"><a href="receivingapproved.php">Approved</a></li>
                 
                 </li>
                 <li>
@@ -47,10 +48,6 @@
                     </span>
                     <span class="title">Upload Document<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
                     </a>
-                    
-
-                         <li class="sub_dash"><a href="uploadincoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="uploadoutgoing.php">Outgoing</a></li>
                 
                 </li>
 
