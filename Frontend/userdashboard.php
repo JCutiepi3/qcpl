@@ -152,8 +152,7 @@
     $conn->close();
     ?>
 
-                            $conn->close();
-                            ?>
+                            
                     </div> 
                 </div>
             </div>
