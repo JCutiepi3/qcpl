@@ -5,72 +5,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Home</title>
 
-    <!-- Styles -->
+
+     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
     <link rel="stylesheet" href="style.css">
+
+    <!-- ======= Boxiocns ====== -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body>
 
-  <!-- =============== Navigation ================ -->
-  <div class="container">
-        <div class="navigation">
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="img">
-                            <img src="imgs/logo.png" >
-                        </span>
-                        <span class="title">Quezon City Public Library</span>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="receiving.php" class="dropdown-toggle">
-                    <span class="icon">
-                    <ion-icon name="apps"></ion-icon>
-                    </span>
-                    <span class="title">Dashboard<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
-                    </a>
-                
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                    <span class="icon">
-                    <ion-icon name="add-circle"></ion-icon>
-                    </span>
-                    <span class="title">Upload Document<ion-icon id="dash_down_btn" name="caret-down-outline"></ion-icon></span>
-                    </a>
-                    
-
-                         <li class="sub_dash"><a href="uploadincoming.php">Incoming</a></li>
-                         <li class="sub_dash"><a href="uploadoutgoing.php">Outgoing</a></li>
-                
-                </li>
-
-                <li>
-                    <a href="/qcpl/Backend/logout.php">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Sign Out</span>
-                    </a>
-                </li>
-            </ul>
-            
+     <!-- =============== Navigation ================ -->
+     <div class="sidebar close">
+        <div class="logo-details">
+            <span class="img">
+                <img src="imgs/logo.png" >
+            </span>
+          <span class="logo_name">Quezon City Public Library</span>
         </div>
+        
+        <ul class="nav-links">
+    
+          
+          <li>
+            <div class="iocn-link">
+              <a href="receiving.php">
+                <i class='bx bxs-grid'></i>
+                <span class="link_name">Dashboard</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a href="receiveincoming.php">Incoming</a></li>
+              <li><a href="receiveoutgoing.php">Outgoing</a></li>
+              <li><a href="receivingapproved.php">Approved</a></li>
+            </ul>
+          </li>
+    
+    
+          <li>
+            <div class="iocn-link">
+              <a href="uploadincoming.php">
+              <i class='bx bxs-file-plus' ></i>
+              <span class="link_name">Upload Document</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a href="uploadincoming.php">Incoming</a></li>
+              <li><a href="uploadoutgoing.php">Outgoing</a></li>
 
-        <!-- Main Content -->
-        <div class="main">
-            <div class="topbar">
-                <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
-                
-                <div class="user"><span class="icon"><ion-icon name="person"></ion-icon></span></div>
+            </ul>
+          </li>
+    
+          <li>
+            <a href="/qcpl/Backend/logout.php">
+              <i class='bx bxs-log-out' ></i>
+              <span class="link_name">Sign Out</span>
+            </a>
+          </li>
+    
+      </li>
+      </ul>
+      </div>
+
+        <!-- ========================= Main ==================== -->
+        <section class="home-section">
+            <div class="home-content">
+              <i class='bx bx-menu' ></i>
+        
             </div>
 
-            <!-- Document Summary -->
+         <!-- ========================= Summary ==================== -->
             <div class="details">
                 <div class="upload">
                     <div class="cardHeader">
@@ -110,19 +121,18 @@
                         </form>
                     
                         </div>
-            
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+    </section>
 
-    <!-- Scripts -->
-    <script src="main.js"></script>
+<!-- ========================= Script ==================== -->
+<script src="main.js"></script>
 
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<!-- ========================= Ionicons ==================== -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>
