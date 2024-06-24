@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>Home</title>
 
 
-    <!-- Styles -->
+     <!-- ======= Styles ====== -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.png">
     <link rel="stylesheet" href="style.css">
 
@@ -98,10 +98,6 @@
               <i class='bx bx-menu' ></i>
         
             </div>
-          </section>
-
-
-
 
          <!-- ========================= Summary ==================== -->
 
@@ -135,39 +131,40 @@
                 $stmt->execute();
                 $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {                    
-    echo "<table>";
-    echo "<tr><th>Locator Number</th><th>Subject</th><th>Description</th><th>Division</th><th>Section</th><th>Receive From</th><th>Receive Date</th><th>Category</th><th>Status</th><th>Action</th></tr>";
+                if ($result->num_rows > 0) {                    
+                    echo "<table>";
+                    echo "<tr><th>Locator Number</th><th>Subject</th><th>Description</th><th>Division</th><th>Section</th><th>Receive From</th><th>Receive Date</th><th>Category</th><th>Status</th><th>Action</th></tr>";
 
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td><center>" . $row["locator_num"] . "</td>";
-        echo "<td><center>" . $row["subject"] . "</td>";
-        echo "<td><center>" . $row["description"] . "</td>";
-        echo "<td><center>" . $row["division"] . "</td>";
-        echo "<td><center>" . $row["section"] . "</td>";
-        echo "<td><center>" . $row["received_from"] . "</td>";
-        echo "<td><center>" . $row["received_date"] . "</td>";
-        echo "<td><center>" . $row["category"] . "</td>";
-        echo "<td><center>" . $row["status"] . "</td>";
-        echo "<td>" ."<center>". "<a href='adminlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
-        echo "</tr>";
-    }
-    echo "</table>";
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td><center>" . $row["locator_num"] . "</td>";
+                        echo "<td><center>" . $row["subject"] . "</td>";
+                        echo "<td><center>" . $row["description"] . "</td>";
+                        echo "<td><center>" . $row["division"] . "</td>";
+                        echo "<td><center>" . $row["section"] . "</td>";
+                        echo "<td><center>" . $row["received_from"] . "</td>";
+                        echo "<td><center>" . $row["received_date"] . "</td>";
+                        echo "<td><center>" . $row["category"] . "</td>";
+                        echo "<td><center>" . $row["status"] . "</td>";
+                        echo "<td>" ."<center>". "<a href='adminlocator.php?locator_num=" . htmlspecialchars($row["locator_num"]) . "' target='_self'>View</a></td>";
+                        echo "</tr>";
+                      }
+                      echo "</table>";
 
-                    $prevPage = $page - 1;
-                    if ($prevPage > 0) {
-                        echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
-                    }
-                    $nextPage = $page + 1;
-                    echo "<a href='?page=$nextPage' id='next' ><ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
-                } else {
-                    echo "<p>No Approved Document.</p>";
-                }
+                      $prevPage = $page - 1;
+                      if ($prevPage > 0) {
+                          echo "<a href='?page=$prevPage' id='prev'><ion-icon name='arrow-back-circle'></ion-icon></a>";
+                      }
+                      $nextPage = $page + 1;
+                      echo "<a href='?page=$nextPage' id='next' ><ion-icon name='arrow-forward-circle-sharp'></ion-icon></a>";
+                  } else {
+                      echo "<p>No Approved Document.</p>";
+                  }
 
-                $stmt->close();
-                $conn->close();
-                ?>
+                  $stmt->close();
+                  $conn->close();
+            ?>
+            
             </div>
             </div>
                     </div>
@@ -175,13 +172,15 @@ if ($result->num_rows > 0) {
             </div>
         </div>
     </div>
+    </section>
 
-    <!-- ========================= Script ==================== -->
-    <script src="main.js"></script>
+<!-- ========================= Script ==================== -->
+<script src="main.js"></script>
 
-    <!-- ========================= Ionicons ==================== -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<!-- ========================= Ionicons ==================== -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>

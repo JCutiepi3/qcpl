@@ -104,9 +104,6 @@ body {
   
 }
 
-
-
-
 .sidebar .nav-links li .iocn-link{
   display: flex;
   align-items: center;
@@ -222,43 +219,16 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
-.home-section .home-content .bx-menu,
-.home-section .home-content .text{
-  color: #11101d;
-  font-size: 35px;
-}
+
 .home-section .home-content .bx-menu{
   cursor: pointer;
   margin-right: 10px;
+  font-size: 3rem;
+  color: #2a2185;
 }
 
-.home-section{
-  position: relative;
-  height: 100vh;
-  left: 300px;
-  width: calc(100% - 260px);
-  transition: all 0.5s ease;
-  padding: 12px;
-}
-.sidebar.close ~ .home-section{
-  left: 78px;
-  width: calc(100% - 78px);
-}
 
-.home-content{
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.home-section .home-content .bx-menu,
-.home-section .home-content .text{
-  color: #11101d;
-  font-size: 35px;
-}
-.home-section .home-content .bx-menu{
-  cursor: pointer;
-  margin-right: 10px;
-}
+
 
 
 
@@ -299,7 +269,7 @@ body {
   cursor: pointer;
 } */
 
-.search {
+/* .search {
   position: relative;
   width: 400px;
   margin: 0 10px;
@@ -350,7 +320,7 @@ body {
   top: 5px;
   left: 0px;
   font-size: 2rem;
-}
+} */
 
 
 /* ================== UPLOAD ============== */
@@ -366,18 +336,19 @@ body {
 .details .upload{
   position: absolute;
   min-height: 570px;
-  margin-top: -690px;
+  margin-top: -20px;
   display: grid;
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px rgb(206, 206, 206);
   border-radius: 30px;
+  width: 100%;
+  left: 0px;
 }
 
 .details .cardHeader {
-  margin-top: -60px;
-  justify-content: space-between;
-  align-items: flex-start;
+  margin-top: -70px;
+
 }
 .cardHeader h2 {
 
@@ -413,19 +384,20 @@ body {
 /* ================== ADMIN/USER  TEXT============== */
 .upload_file form {
   position: relative;
-  top: -1080px;
-  left: 300px;
+  margin-top: -1185px;
+  left: 350px;
   color: #2a2185;
+  font-weight: bolder;
 }
 
 .info_box2{
   position: relative;
-  height: 510px;
-  width: 900px;
-  top: -560px;
-  left: 100px;
+  height: 500px;
+  width: 1200px;
+  top: -670px;
+  left: 110px;
   box-shadow: 0 7px 25px rgb(206, 206, 206);
-  border: 2px solid #2a2185;
+  border: 3px solid #2a2185;
 
 }
 
@@ -538,7 +510,7 @@ body {
 #lb_filetype{
   position: relative;
   top: 200px;
-  right: 515px;
+  right: 570px;
 
 }
 #in_sel{
@@ -767,8 +739,8 @@ body {
 
 .add_user form{
   position: relative;
-  top: -845px;
-  left: 230px;
+  margin-top: -1075px;
+  left: 290px;
   color: #2a2185;
   font-weight: bolder;
 
@@ -865,12 +837,12 @@ body {
 
 .info_box{
   position: relative;
-  height: 400px;
-  width: 1000px;
-  top: -500px;
+  height: 500px;
+  width: 1200px;
+  top: -670px;
   left: 110px;
   box-shadow: 0 7px 25px rgb(206, 206, 206);
-  border: 2px solid #2a2185;
+  border: 3px solid #2a2185;
 
 }
 
@@ -1411,30 +1383,17 @@ body {
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
-  /* .navigation {
-    left: -300px;
-  }
-  .navigation.active {
-    width: 300px;
-    left: 0;
-  }
-  .main {
-    width: 100%;
-    left: 0;
-  }
-  .main.active {
-    left: 300px;
-  } */
+
   .summary{
     width: 100%;
     left: 20px;
   }
   .summary th{
-    font-size: .8rem;
+    font-size: .7rem;
   }
 
   .summary td{
-    font-size: .7rem;
+    font-size: .6rem;
   }
 
   .info_box{
@@ -1596,8 +1555,6 @@ body {
   left: 16%;
 }
 
-
-
 #lb_filetype{
   right: 372px;
 
@@ -1660,25 +1617,7 @@ body {
   .user {
     min-width: 40px;
   }
-  /* .navigation {
-    width: 100%;
-    left: -100%;
-    z-index: 1000;
-  }
-  .navigation.active {
-    width: 100%;
-    left: 0;
-  }
-  .toggle {
-    z-index: 10001;
-  }
-  .main.active .toggle {
-    color: #fff;
-    position: fixed;
-    right: 0;
-    left: initial;
-  } */
-
+ 
   #rec_in_sel{
     left: -238px;
   }
