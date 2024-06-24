@@ -114,7 +114,7 @@ $result_boss2 = $conn->query($sql_boss2);
                     <div class="cardHeader">
                         <h2>Receiving</h2>
 
-                    <div class ="accts_boss2">
+                    <div class ="rec_accts">
                     <?php
                     $rowsPerPage = 4;
                     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;

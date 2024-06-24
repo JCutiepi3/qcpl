@@ -75,13 +75,12 @@ if(isset($_SESSION['username'])) {
                         <span class="title">Accounts<ion-icon id="acct_down_btn" name="caret-down-outline"></ion-icon></span>
                         
                     </a>
-
-                         <li class="sub_dash"><a href="usersaccounts.php">Users</a></li>
-                         <li class="sub_dash"><a href="adminsaccounts.php">Admins</a></li>
-                         <li class="sub_dash"><a href="boss1accounts.php">Boss 1</a></li>
-                         <li class="sub_dash"><a href="boss2accounts.php">Boss 2</a></li>
-                         <li class="sub_dash"><a href="receivingaccounts.php">Receiving</a></li>
-                         <li class="sub_dash"><a href="proofreaderaccounts.php">Proof Reader</a></li>
+                         <li><a href="usersaccounts.php">Users</a></li>
+                         <li><a href="adminsaccounts.php">Admins</a></li>
+                         <li><a href="boss1accounts.php">Boss 1</a></li>
+                         <li><a href="boss2accounts.php">Boss 2</a></li>
+                         <li><a href="receivingaccounts.php">Receiving</a></li>
+                         <li><a href="proofreaderaccounts.php">Proof Reader</a></li>
                     </a>
                 </li>
 
@@ -225,6 +224,4 @@ if(isset($_SESSION['username'])) {
     ?>
 
 </body>
-
 </html>
-    
