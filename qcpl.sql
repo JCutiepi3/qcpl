@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2024 at 07:16 AM
+-- Generation Time: Jun 25, 2024 at 06:43 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,8 +40,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'Guillermom Mercado', '', 'admin', 'admin'),
-(2, 'Juluis Tadena', '', 'admins', 'admins');
+(1, 'Guillermo Mercado', '', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -62,8 +61,7 @@ CREATE TABLE `boss1` (
 --
 
 INSERT INTO `boss1` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'Guillermom Mercado', '', 'boss1', 'boss1'),
-(2, 'Juluis Tadena', '', 'boss11', 'boss11');
+(1, 'Boss 1', '', 'boss1', 'boss1');
 
 -- --------------------------------------------------------
 
@@ -84,8 +82,7 @@ CREATE TABLE `boss2` (
 --
 
 INSERT INTO `boss2` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'Guillermom Mercado', '', 'boss2', 'boss2'),
-(2, 'Juluis Tadena', '', 'boss22', 'boss22');
+(1, 'Boss 2', '', 'boss2', 'boss2');
 
 -- --------------------------------------------------------
 
@@ -117,13 +114,10 @@ CREATE TABLE `fileupload` (
 --
 
 INSERT INTO `fileupload` (`id`, `file_name`, `division`, `section`, `category`, `locator_num`, `received_date`, `received_from`, `subject`, `description`, `type`, `file_path`, `proofreader_comment`, `boss2_comment`, `boss1_comment`, `status`) VALUES
-(118, 'Annex_B-1_FOI_Laws_on_Disclosures.pdf', 'Readers Service Division', 'Reference Section', 'Incoming', '123456789012', '2024-06-07', 'MIS', 'QCPL', 'immediately', 'PDF', 'File_Uploaded/Annex_B-1_FOI_Laws_on_Disclosures.pdf', '', 'ghdh', 'lgagldmlambla', 'Approved'),
-(119, 'Elements_of_Law.pdf', 'Readers Service Division', 'Reference Section', 'Outgoing', '101112131415', '2024-06-07', 'ADMIN', 'QCPL', 'RUSH', 'PDF', 'File_Uploaded/Elements_of_Law.pdf', '', 'reeh', 'sdkhmfskmhkfmsh', 'Approved'),
-(120, 'basic-laws-book-2016.pdf', NULL, NULL, 'Incoming', '234567890123', '2024-06-07', 'LIBRARY', 'QCPL', 'N EED REVIEW', 'PDF', 'File_Uploaded/basic-laws-book-2016.pdf', '', 'adas', '', 'Second Review'),
-(121, 'legal.pdf', NULL, NULL, 'Outgoing', '990011223344', '2024-06-07', 'QCPL', 'PUBLICATION', 'NEED REVISION', 'PDF', 'File_Uploaded/legal.pdf', '', 'fs[g', '', 'Second Review'),
-(122, 'Patrick_Star.svg.png', NULL, NULL, 'Incoming', '345678901234', '2024-06-07', 'LIBRARY', 'QCPL', 'NEED DETAILS', 'IMG', 'File_Uploaded/Patrick_Star.svg.png', '', 'oks', '', 'Second Review'),
-(123, 'a837c9ebbacc661902b41878fb3e6503.jpg', NULL, NULL, 'Outgoing', '889900112233', '2024-06-07', 'EXECUTIVE', 'QCPL', 'RUSH', 'DOCS', 'File_Uploaded/a837c9ebbacc661902b41878fb3e6503.jpg', '', 'done', '', 'Second Review'),
-(124, '19490618-RA-0386-JPL.pdf', NULL, NULL, 'Outgoing', '0', '2024-06-07', 'ADMIN', 'QCPL', 'RE-CHECKED', 'PDF', 'File_Uploaded/19490618-RA-0386-JPL.pdf', '', '', '', 'First Review');
+(175, 'Screenshot 2024-05-07 105858.png', NULL, NULL, 'Outgoing', '123', '2024-06-25', 'ahhga', 'guhigug', 'hfuhu', 'DOCS', 'File_Uploaded/Screenshot 2024-05-07 105858.png', 'oks', 'boss1', '', 'Second Review'),
+(176, 'Screenshot 2024-05-07 105858.png', 'Readers Service Division', 'Reference Section', 'Incoming', '65775', '2024-06-25', 'kjsfv', 'guhvuih', 'hhuvui', 'PDF', 'File_Uploaded/Screenshot 2024-05-07 105858.png', '', 'boss1', 'ldg,d', 'Approved'),
+(177, 'Screenshot 2024-05-10 081013.png', NULL, NULL, 'Incoming', '9999', '2024-06-25', 'kokoko', 'lmglam', 'glnglkg', 'DOCS', 'File_Uploaded/Screenshot 2024-05-10 081013.png', '', '', '', 'First Review'),
+(178, 'Screenshot 2024-05-09 101939.png', NULL, NULL, 'Outgoing', '999', '2024-06-25', 'jngne', 'ngjjn', 'gknngj', 'PDF', 'File_Uploaded/Screenshot 2024-05-09 101939.png', '', '', '', 'PROOFREAD');
 
 -- --------------------------------------------------------
 
@@ -144,8 +138,7 @@ CREATE TABLE `proofreader` (
 --
 
 INSERT INTO `proofreader` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'Guillermo Mercado', '', 'proofreader', 'proofreader'),
-(2, 'Juluis Tadena', '', 'proofreaders', 'proofreaders');
+(1, 'Proof Reader', '', 'proofreader', 'proofreader');
 
 -- --------------------------------------------------------
 
@@ -166,8 +159,7 @@ CREATE TABLE `receiving` (
 --
 
 INSERT INTO `receiving` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'Guillermo Mercado', '', 'receiving', 'receiving'),
-(2, 'Juluis Tadena', '', 'receivings', 'receivings');
+(1, 'Receiving', '', 'receiving', 'receiving');
 
 -- --------------------------------------------------------
 
@@ -199,6 +191,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `division` varchar(255) NOT NULL,
+  `Section` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -207,9 +200,24 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `division`, `username`, `password`) VALUES
-(1, 'Guillermo Mercado', '', 'user', 'user'),
-(2, 'Juluis Tadena', '', 'users', 'users');
+INSERT INTO `users` (`id`, `name`, `division`, `Section`, `username`, `password`) VALUES
+(1, 'Guillermo Mercado', '', '', 'user', 'user'),
+(63, 'Fil Loc Arch Section', 'Readers\' Services Division', 'Filipiniana, Local History and Archives Section', 'filipiniana', 'filipiniana'),
+(64, 'Law Research Section', 'Readers\' Services Division', 'Law Research Section', 'research', 'research'),
+(65, 'Periodical Section', 'Readers\' Services Division', 'Periodical Section', 'periodical', 'periodical'),
+(66, 'Childrens Section', 'Readers\' Services Division', 'Childrens Section', 'children', 'children'),
+(67, 'MIS Section', 'Readers\' Services Division', 'Management Information System Section', 'informationsystem', 'informationsystem'),
+(68, 'Reference Section', 'Readers\' Services Division', 'Reference Section', 'reference', 'reference'),
+(69, 'Collection Development Section', 'Technical Division', 'Collection Development Section', 'collection', 'collection'),
+(70, 'Cataloging Section', 'Technical Division', 'Cataloging Section', 'cataloging', 'cataloging'),
+(71, 'Binding and Preservation Section', 'Technical Division', 'Binding and Preservation Section', 'bindingsection', 'bindingsection'),
+(72, 'Recreational', 'Library Extension Division', 'Recreational', 'recreational', 'recreational'),
+(73, 'Outreach', 'Library Extension Division', 'Outreach', 'outreach', 'outreach'),
+(74, 'Puppeteers', 'Library Extension Division', 'Puppeteers', 'puppeteers', 'puppeteers'),
+(75, 'Publishing Section', 'Publication Division', 'Publishing Section', 'publishing', 'publishing'),
+(76, 'Marketing Section', 'Publication Division', 'Marketing Section', 'marketing', 'marketing'),
+(77, 'District Libraries Division', 'District Libraries Division', 'District Libraries Division', 'branchlibraries', 'branchlibraries'),
+(78, 'Administrative Services', 'Administrative Services', 'Administrative Services', 'administrative', 'administrative');
 
 --
 -- Indexes for dumped tables
@@ -271,37 +279,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `boss1`
 --
 ALTER TABLE `boss1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `boss2`
 --
 ALTER TABLE `boss2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `fileupload`
 --
 ALTER TABLE `fileupload`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
 -- AUTO_INCREMENT for table `proofreader`
 --
 ALTER TABLE `proofreader`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `receiving`
 --
 ALTER TABLE `receiving`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `testupload`
@@ -313,7 +321,7 @@ ALTER TABLE `testupload`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
