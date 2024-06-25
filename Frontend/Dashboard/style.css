@@ -90,10 +90,9 @@ body {
   -ms-transform: scale(1);
   transform: scale(1.1); 
   width: 100%;
-  border-radius: 70px 0 0 70px; /* Inverted border radius */
-  font-weight: bolder;
-  background-color: #fff;
   
+  font-weight: bolder;
+  background-color: #fff;  
 }
 
 .sidebar .nav-links  :hover .link_name,
@@ -148,6 +147,7 @@ body {
   margin-top: -10px;
   background-color: #2a2185;
   display: none;
+
   
 }
 .sidebar .nav-links li.showMenu .sub-menu{
@@ -163,6 +163,7 @@ body {
 }
 .sidebar .nav-links .sub-menu li a:hover{
   color: var(--blue);
+  
 
 }
 
@@ -185,6 +186,7 @@ body {
   opacity: 1;
   pointer-events: auto;
   border-radius: 10px;
+  
   
 }
 .sidebar .nav-links li .sub-menu .link_name{

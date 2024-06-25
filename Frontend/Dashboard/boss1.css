@@ -90,7 +90,6 @@ body {
   -ms-transform: scale(1);
   transform: scale(1.1); 
   width: 100%;
-  border-radius: 70px 0 0 70px; /* Inverted border radius */
   font-weight: bolder;
   background-color: #fff;
   
