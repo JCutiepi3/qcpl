@@ -13,6 +13,7 @@ if(isset($_POST["create"])){
 
     $name = $conn->real_escape_string($_POST['name']);
     $division = $conn->real_escape_string($_POST['division']);
+    $section = $conn->real_escape_string($_POST['section']);
     $username = $conn->real_escape_string($_POST['username']);
     $password = $conn->real_escape_string($_POST['password']);
     $account_type = $conn->real_escape_string($_POST['account_type']);

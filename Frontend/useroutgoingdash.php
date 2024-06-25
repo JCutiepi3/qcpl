@@ -100,8 +100,8 @@
 
                             $offset = ($page - 1) * $rowsPerPage;
 
-                            $sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload WHERE category='Outgoing' LIMIT $rowsPerPage OFFSET $offset";
-                            $result = $conn->query($sql);
+$sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload WHERE category='Outgoing' AND status != 'Approved' LIMIT $rowsPerPage OFFSET $offset";
+$result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
                                 echo "<table>";
