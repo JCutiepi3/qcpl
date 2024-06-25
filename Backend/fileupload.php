@@ -114,8 +114,8 @@ if ($conn->connect_error) {
 }
 
 if (isset($_POST["useroutgoingupload"])) {
-    $category = 'Outgoing'; // Assuming this form only handles outgoing documents
-    $status = 'First Review'; // Initial status
+    $category = 'Outgoing';
+    $status = 'PROOFREAD'; 
 
     // Prepare the SQL query
     $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment, status) 
