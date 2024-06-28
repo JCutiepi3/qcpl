@@ -83,6 +83,7 @@
                     <div class="sum_tb">
                         <table aria-describedby="tableDescription">
                           <?php
+                          session_start();
                           $server = "localhost";
                           $username = "root";
                           $password = "";
@@ -104,7 +105,7 @@
                             $userSection = $_SESSION['section'];
                           }
 
-                          $sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload WHERE status='Approved' LIMIT $rowsPerPage OFFSET $offset";
+                          $sql = "SELECT division, section, category, locator_num, received_date, received_from, status FROM fileupload WHERE status='Approved' AND Section = '$userSection' LIMIT $rowsPerPage OFFSET $offset";
                           $result = $conn->query($sql);
 
                           if ($result->num_rows > 0) {

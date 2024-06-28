@@ -35,8 +35,8 @@ if(isset($_POST["login"])) {
             $user = $result->fetch_assoc();
             $_SESSION["name"] = $user['name']; 
             $_SESSION["role"] = "user";
-            $_SESSION["division"] = $userDivision['division']; 
-            $_SESSION["section"] = $userSection['section']; 
+            $_SESSION["division"] = $user['division']; 
+            $_SESSION["section"] = $user['Section']; 
             echo "<script>alert('Successfully Login as User'); window.location='/qcpl/Frontend/userdashboard.php';</script>";
         } else {
             $query = "SELECT * FROM boss1 WHERE username = ? AND password = ?";

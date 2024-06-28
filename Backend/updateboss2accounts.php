@@ -45,7 +45,7 @@ if (isset($_GET['id'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #e0f7fa; /* Light blue background */
+            background-color: #e0f7fa; 
             margin: 0;
             padding: 0;
             display: flex;
@@ -64,7 +64,7 @@ if (isset($_GET['id'])) {
             margin-bottom: 20px;
             font-size: 24px;
             text-align: center;
-            color: #0277bd; /* Dark blue heading */
+            color: #0277bd; 
         }
         p {
             margin-bottom: 15px;
@@ -73,7 +73,7 @@ if (isset($_GET['id'])) {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            color: #01579b; /* Medium blue label */
+            color: #01579b; 
         }
         input[type="text"],
         input[type="password"] {
@@ -81,13 +81,13 @@ if (isset($_GET['id'])) {
             padding: 8px;
             margin-top: 5px;
             margin-bottom: 15px;
-            border: 1px solid #81d4fa; /* Light blue border */
+            border: 1px solid #81d4fa;
             border-radius: 4px;
             box-sizing: border-box;
         }
         input[type="submit"] {
             width: 100%;
-            background-color: #0288d1; /* Blue button */
+            background-color: #0288d1; 
             color: white;
             padding: 10px;
             border: none;
@@ -95,7 +95,7 @@ if (isset($_GET['id'])) {
             cursor: pointer;
         }
         input[type="submit"]:hover {
-            background-color: #0277bd; /* Darker blue on hover */
+            background-color: #0277bd; 
         }
     </style>
     <script>
@@ -140,7 +140,7 @@ if (isset($_GET['id'])) {
                 Swal.fire("Changes are not saved", "", "info");
             }
         });
-        return false; // Prevent the form from submitting immediately
+        return false; 
     }
 </script>
 

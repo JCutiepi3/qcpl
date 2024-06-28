@@ -88,56 +88,145 @@
 
 
          <!-- ========================= Summary ==================== -->
-            <div class="details">
-                <div class="upload">
-                    <div class="cardHeader">
-                        <h2>DOCUMENTS</h2>   
-                        </div>
-                    <div class="sum_tb">
-                        <table aria-describedby="tableDescription">
-                        <?php
+         <?php
+if(isset($_GET['locator_num'])) {
+    $locator_num = $_GET['locator_num'];
 
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "qcpl";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "qcpl";
 
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-                            $locator_num = isset($_GET['locator_num']) ? $_GET['locator_num'] : 'Not provided';
+    $sql = "SELECT `locator_num`, `category`, `subject`, `description`, `received_from`, `received_date`, `proofreader_comment`, `boss2_comment`, `boss1_comment`, `type`, `file_path`, `status` FROM fileupload WHERE `locator_num` = '$locator_num'";
+    $result = $conn->query($sql);
 
-                            $sql = "SELECT `locator_num`, `category`, `subject`, `description`, `received_from`, `received_date`, `proofreader_comment`, `boss2_comment`, `boss1_comment`, `type`, `file_path`, `status` FROM fileupload WHERE `locator_num` = '$locator_num'";
-                            $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc(); // Fetching the first row assuming locator_num is unique
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #003366;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #003366;
+            color: #fff;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        td a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Document Details</h1>
+        <table>
+            <tr>
+                <th>Locator Number</th>
+                <td><?php echo $row["locator_num"]; ?></td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td><?php echo $row["category"]; ?></td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+                <td><?php echo $row["subject"]; ?></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><?php echo $row["description"]; ?></td>
+            </tr>
+            <tr>
+                <th>Received From</th>
+                <td><?php echo $row["received_from"]; ?></td>
+            </tr>
+            <tr>
+                <th>Received Date</th>
+                <td><?php echo $row["received_date"]; ?></td>
+            </tr>
+            <tr>
+                <th>Proofreader Comment</th>
+                <td><?php echo $row["proofreader_comment"]; ?></td>
+            </tr>
+            <tr>
+                <th>Boss 2 Comment</th>
+                <td><?php echo $row["boss2_comment"]; ?></td>
+            </tr>
+            <tr>
+                <th>Boss 1 Comment</th>
+                <td><?php echo $row["boss1_comment"]; ?></td>
+            </tr>
+            <tr>
+                <th>File Type</th>
+                <td><?php echo $row["type"]; ?></td>
+            </tr>
+            <tr>
+                <th>File</th>
+                <td><a href="/qcpl/Backend/<?php echo $row["file_path"]; ?>" target="_self">View File</a></td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td><?php echo $row["status"]; ?></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<?php
+    } else {
+        echo "0 results";
+    }
+    $conn->close();
+} else {
+    echo "Locator number not provided";
+}
+?>
 
-                            if ($result->num_rows > 0) {
-                                echo "<table border='1'>";
-                                while($row = $result->fetch_assoc()) {
-                                    echo "<h1>Locator Number: " . $row["locator_num"] . "</h1>";
-                                    echo "<p>Category: " . $row["category"] . "</p>";
-                                    echo "<p>Subject: " . $row["subject"] . "</p>";
-                                    echo "<p>Description: " . $row["description"] . "</p>";
-                                    echo "<p>Receive from: " . $row["received_from"] . "</p>";
-                                    echo "<p>Receive Date: " . $row["received_date"] . "</p>";
-                                    echo "<p>Proofreader Comment: " . $row["proofreader_comment"] . "</p>";
-                                    echo "<p>Boss 2 Comment: " . $row["boss2_comment"] . "</p>";
-                                    echo "<p>Boss 1 Comment: " . $row["boss1_comment"] . "</p>";
-                                    echo "<p>File Type: " . $row["type"] . "</p>";
-                                    echo "<td><center><a href='/qcpl/Backend/" . $row["file_path"] . "' target='_self'>View File</a></td>";
-                                    echo "<p>Status: " . $row["status"] . "</p>";
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                            ?>
-                    </div> 
-                </div>
-            </div>
-        </section>
 
 <!-- ========================= Script ==================== -->
 <script src="main.js"></script>
