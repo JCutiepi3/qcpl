@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Prepare and bind
     $stmt = $conn->prepare("UPDATE fileupload SET boss2_comment=?, status=? WHERE locator_num=?");
     $stmt->bind_param("sss", $boss2_comment, $status, $locator_num);
 

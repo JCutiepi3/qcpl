@@ -117,12 +117,12 @@ if (isset($_POST["useroutgoingupload"])) {
     $category = 'Outgoing';
     $status = 'PROOFREAD'; 
 
-    // Prepare the SQL query
+    
     $query = "INSERT INTO fileupload (file_name, category, locator_num, received_date, received_from, subject, description, type, file_path, boss2_comment, boss1_comment, status) 
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '', '', ?)";
     $stmt = $conn->prepare($query);
 
-    // Bind parameters
+  
     $locator_num = $_POST['locator_num'];
     $received_date = $_POST['received_date'];
     $received_from = $_POST['received_from'];
@@ -135,22 +135,21 @@ if (isset($_POST["useroutgoingupload"])) {
 
     $stmt->bind_param("ssisssssss", $fileName, $category, $locator_num, $received_date, $received_from, $subject, $description, $type, $file_path, $status);
 
-    // Move uploaded file to desired location
+    
     if (!empty($fileName) && move_uploaded_file($tempName, $file_path)) {
-        // Execute the prepared statement
+      
         if ($stmt->execute()) {
-            // If successful, show success message and redirect
+     
             echo "<script>alert('Successfully Added Documents!'); window.location='/qcpl/Frontend/useroutgoing.php';</script>";
         } else {
-            // If execution fails, show error message
+            
             echo "Error: " . $query . "<br>" . $conn->error;
         }
     } else {
-        // If file upload fails, show error message
+  
         echo "Error uploading file.";
     }
 
-    // Close statement and connection
     $stmt->close();
     $conn->close();
 }
