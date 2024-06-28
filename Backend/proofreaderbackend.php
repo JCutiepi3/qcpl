@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Prepare failed: " . $conn->error);
     }
 
-    $stmt->bind_param("sss", $proofreader_comment, $status, $locator_num);.
+    $stmt->bind_param("sss", $proofreader_comment, $status, $locator_num);
 
     if ($stmt->execute() === TRUE) {
         echo "<script>alert('Successfully Updated the Database!'); window.location='/qcpl/Frontend/Dashboard/proofviewdocument.php';</script>";
