@@ -117,6 +117,7 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
+                
 
                 $rowsPerPage = 4;
                 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
