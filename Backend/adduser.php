@@ -33,6 +33,12 @@ if(isset($_POST["create"])){
     } 
     elseif ($account_type == "boss2") {
         $query = "INSERT INTO boss2 (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
+    } 
+    elseif ($account_type == "proofread") {
+        $query = "INSERT INTO proofreader (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
+    } 
+    elseif ($account_type == "receive") {
+        $query = "INSERT INTO receiving (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
     } else {
         echo "<script>alert('Invalid account type!'); window.location='/qcpl/Frontend/Dashboard/dash.php';</script>";
         exit();

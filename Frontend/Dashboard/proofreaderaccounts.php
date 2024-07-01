@@ -193,7 +193,7 @@ function confirmDeleteBoss2(boss2Id) {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
+    }).then((result) => { 
         if (result.isConfirmed) {
             window.location.href = '/qcpl/Backend/deleteaccount.php?id=' + boss2Id;
         }
