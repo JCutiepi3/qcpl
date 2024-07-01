@@ -866,6 +866,24 @@ body {
 
 }
 
+#info_sect{
+  position: relative;
+  top: 47px;
+  
+}
+
+#sect{
+  position: relative;
+  border: 1px solid;
+  top: 42px;
+  left: 44px;
+  height: 30px;
+  width : 45.5%;
+  padding-left: 5px;
+  text-transform: uppercase;
+
+}
+
 
 
 
