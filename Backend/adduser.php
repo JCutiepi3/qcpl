@@ -1,5 +1,4 @@
 <?php
-if(isset($_POST["create"])){
     $server = "localhost";
     $username = "root";
     $password = "";
@@ -11,9 +10,10 @@ if(isset($_POST["create"])){
         die("Failed to connect. " . $conn->connect_error);
     }
 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $conn->real_escape_string($_POST['name']);
     $division = $conn->real_escape_string($_POST['division']);
-    $section = $conn->real_escape_string($_POST['section']);
+    $section = $conn->real_escape_string($_POST['Section']);
     $username = $conn->real_escape_string($_POST['username']);
     $password = $conn->real_escape_string($_POST['password']);
     $account_type = $conn->real_escape_string($_POST['account_type']);
@@ -24,21 +24,21 @@ if(isset($_POST["create"])){
     }
 
     if ($account_type == "admin") {
-        $query = "INSERT INTO admins (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
+        $query = "INSERT INTO admins (name, division, section, username, password) VALUES ('$name', '$division', '$section', '$username', '$password')";
     } elseif ($account_type == "user") {
-        $query = "INSERT INTO users (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
+        $query = "INSERT INTO users (name, division, section, username, password) VALUES ('$name', '$division', '$section', '$username', '$password')";
     } 
     elseif ($account_type == "boss1") {
-        $query = "INSERT INTO boss1 (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
+        $query = "INSERT INTO boss1 (name, division, section, username, password) VALUES ('$name', '$division', '$section', '$username', '$password')";
     } 
     elseif ($account_type == "boss2") {
-        $query = "INSERT INTO boss2 (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
+        $query = "INSERT INTO boss2 (name, division, section, username, password) VALUES ('$name', '$division', '$section', '$username', '$password')";
     } 
     elseif ($account_type == "proofread") {
-        $query = "INSERT INTO proofreader (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
+        $query = "INSERT INTO proofreader (name, division, section, username, password) VALUES ('$name', '$division', '$section', '$username', '$password')";
     } 
-    elseif ($account_type == "receive") {
-        $query = "INSERT INTO receiving (name, division, username, password) VALUES ('$name', '$division', '$username', '$password')";
+    elseif ($account_type == "receiver") {
+        $query = "INSERT INTO receiving (name, division, section, username, password) VALUES ('$name', '$division', '$section', '$username', '$password')";
     } else {
         echo "<script>alert('Invalid account type!'); window.location='/qcpl/Frontend/Dashboard/dash.php';</script>";
         exit();
